@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelykh was here</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: block;
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .language-toggle:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+            padding: 0 20px;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #fff;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #aaa;
+        }
+
+        /* Fade transition effect */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .language-toggle {
+                top: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .footer {
+                font-size: 12px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img id="mainImage" src="pelykh-en.png" alt="Pelykh was here" class="main-image fade-in">
+            <button id="langToggle" class="language-toggle">Українська</button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Pelykh | <a href="mailto:contact@pelykh.co">contact@pelykh.co</a></p>
+        </div>
+    </div>
+
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const langToggle = document.getElementById('langToggle');
+        
+        let currentLang = 'en';
+        
+        const images = {
+            en: 'pelykh-en.png',
+            ua: 'pelykh-ua.png'
+        };
+        
+        const buttonText = {
+            en: 'Українська',
+            ua: 'English'
+        };
+
+        langToggle.addEventListener('click', function() {
+            // Fade out
+            mainImage.classList.remove('fade-in');
+            mainImage.classList.add('fade-out');
+            
+            // Wait for fade out, then switch image
+            setTimeout(function() {
+                if (currentLang === 'en') {
+                    currentLang = 'ua';
+                    mainImage.src = images.ua;
+                    mainImage.alt = 'Тут був Пелих';
+                } else {
+                    currentLang = 'en';
+                    mainImage.src = images.en;
+                    mainImage.alt = 'Pelykh was here';
+                }
+                
+                langToggle.textContent = buttonText[currentLang];
+                
+                // Fade in
+                mainImage.classList.remove('fade-out');
+                mainImage.classList.add('fade-in');
+            }, 300);
+        });
+    </script>
+</body>
+</html>
