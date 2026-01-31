@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2: The Time Machine Problem | Valuation Course</title>
+  <meta name="description" content="Learn why money today is worth more than money tomorrow. Understand compounding and discount rates through real examples.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer data-domain="pelykh.co" src="https://plausible.io/js/script.js"></script>
+</head>
+<body data-module="2">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <nav class="nav-container">
+        <a href="index.html" class="nav-logo">Valuation Course</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Overview</a>
+          <a href="module-1.html" class="nav-link active">Modules</a>
+          <a href="cheat-sheet.html" class="nav-link">Cheat Sheet</a>
+          <a href="glossary.html" class="nav-link">Glossary</a>
+          <button class="theme-toggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
+    <main id="main-content">
+      <div class="container">
+        <div class="module-progress">
+          <a href="module-1.html" class="module-progress-item" data-module="1">1</a>
+          <a href="module-2.html" class="module-progress-item current" data-module="2">2</a>
+          <a href="module-3.html" class="module-progress-item" data-module="3">3</a>
+          <a href="module-4.html" class="module-progress-item" data-module="4">4</a>
+          <a href="module-5.html" class="module-progress-item" data-module="5">5</a>
+          <a href="module-6.html" class="module-progress-item" data-module="6">6</a>
+        </div>
+
+        <header class="module-header">
+          <span class="module-label">Module 2</span>
+          <img src="images/02-Time value of money.png" alt="Module 2 - Time Value of Money illustration" class="module-image">
+          <h1>The Time Machine Problem</h1>
+          <p class="module-intro">Discover why &euro;100 today is worth more than &euro;100 tomorrow &mdash; and how to calculate exactly how much more.</p>
+        </header>
+
+        <!-- Hook -->
+        <section class="hook-box">
+          <h2>Ronaldo's Money Question</h2>
+          <p>Imagine Cristiano Ronaldo offers you a deal:</p>
+          <p><strong>Option A:</strong> &euro;1,000,000 right now, in cash, today.</p>
+          <p><strong>Option B:</strong> &euro;1,200,000 in exactly 5 years &mdash; guaranteed, no risk.</p>
+          <p>Which do you take?</p>
+          <p>Your gut might say "Option B! That's &euro;200,000 more!" But your gut might be wrong. Let's figure out why.</p>
+        </section>
+
+        <!-- Big Idea -->
+        <section>
+          <div class="big-idea">
+            <h3>The Big Idea: Money Today &gt; Money Tomorrow</h3>
+            <p>Here's a universal truth in finance:</p>
+            <p><strong>&euro;100 today is worth more than &euro;100 in the future.</strong></p>
+          </div>
+
+          <p>Why? Three reasons:</p>
+
+          <h3>1. You Could Invest It</h3>
+          <p>If you have &euro;100 today and invest it at 7% return, in 5 years you'd have:</p>
+          <pre><code>&euro;100 &times; 1.07 &times; 1.07 &times; 1.07 &times; 1.07 &times; 1.07 = &euro;140.26</code></pre>
+          <p>So &euro;100 today = &euro;140 in 5 years. Flip that around: &euro;140 in 5 years = only &euro;100 today.</p>
+
+          <h3>2. Inflation Eats Your Money</h3>
+          <p>Things get more expensive over time. A PlayStation 5 costs &euro;500 today. In 5 years, the PS6 might cost &euro;600 for the same gaming power. Your &euro;500 buys less.</p>
+
+          <h3>3. Tomorrow Isn't Guaranteed</h3>
+          <p>What if the person promising you money goes broke? Money now is certain. Money later has risk.</p>
+        </section>
+
+        <!-- Compounding -->
+        <section>
+          <h2>The Compounding Superpower</h2>
+          <p>Let's see why Einstein (supposedly) called compound interest "the eighth wonder of the world."</p>
+
+          <h3>The MrBeast Case Study</h3>
+          <p>MrBeast started YouTube at 13. Let's say he made his first &euro;1,000 at 15 and reinvested everything back into videos.</p>
+          <p>If his money compounded at 50% per year (his channel grew WAY faster than this):</p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr><th>Age</th><th>Value</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>15</td><td>&euro;1,000</td></tr>
+                <tr><td>16</td><td>&euro;1,500</td></tr>
+                <tr><td>17</td><td>&euro;2,250</td></tr>
+                <tr><td>18</td><td>&euro;3,375</td></tr>
+                <tr><td>19</td><td>&euro;5,063</td></tr>
+                <tr><td>20</td><td>&euro;7,594</td></tr>
+                <tr><td>21</td><td>&euro;11,391</td></tr>
+                <tr><td>22</td><td>&euro;17,086</td></tr>
+                <tr><td>23</td><td>&euro;25,629</td></tr>
+                <tr><td>24</td><td>&euro;38,443</td></tr>
+                <tr><td>25</td><td>&euro;57,665</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>By age 26 (11 years of compounding), that &euro;1,000 became &euro;86,498 at "only" 50% annual returns.</p>
+          <p><strong>Key insight:</strong> Small amounts + high growth rates + long time = huge numbers.</p>
+        </section>
+
+        <!-- Discount Rates -->
+        <section>
+          <h2>Discount Rates: Working Backwards</h2>
+          <p>If compounding takes present money and grows it forward, <strong>discounting</strong> takes future money and shrinks it back to today.</p>
+
+          <div class="big-idea">
+            <h3>The Formula</h3>
+            <pre><code>Present Value = Future Value &divide; (1 + rate)^years</code></pre>
+          </div>
+
+          <h3>Back to Ronaldo's question:</h3>
+          <p>Option B is &euro;1,200,000 in 5 years. If you could invest money at 7% per year, what's that worth today?</p>
+          <pre><code>Present Value = &euro;1,200,000 &divide; (1.07)^5
+Present Value = &euro;1,200,000 &divide; 1.403
+Present Value = &euro;855,354</code></pre>
+
+          <p>So Option B (&euro;1.2M in 5 years) is really only worth <strong>&euro;855,354 in today's money</strong>.</p>
+          <p>Option A was &euro;1,000,000 today.</p>
+          <p><strong>&euro;1,000,000 &gt; &euro;855,354 &rarr; Option A wins.</strong> Take the money now.</p>
+        </section>
+
+        <!-- What's a Discount Rate -->
+        <section>
+          <h2>What's a "Discount Rate"?</h2>
+          <p>The discount rate is basically "what return could you get elsewhere?"</p>
+          <ul>
+            <li>If you're a safe investor (government bonds): ~4%</li>
+            <li>If you're a normal investor (stock market average): ~7-10%</li>
+            <li>If you're an aggressive investor (risky bets): ~15%+</li>
+            <li>If you're MrBeast reinvesting in content: ~50%+ (historically)</li>
+          </ul>
+          <p><strong>Higher discount rate = future money is worth less today.</strong></p>
+        </section>
+
+        <!-- Mini Exercise -->
+        <section class="exercise-box">
+          <h3>Mini-Exercise: Time Value Calculator</h3>
+
+          <h4>1. Future Value Problem</h4>
+          <p>You invest &euro;500 at 10% annual return. How much do you have in 7 years?</p>
+          <p>FV = &euro;500 &times; (1.10)^7 = &euro;500 &times; <span class="fill-blank"><input type="text" data-answer="1.9487" data-tolerance="0.01" placeholder="?"></span> = &euro;<span class="fill-blank"><input type="text" data-answer="974" data-tolerance="5" placeholder="?"></span></p>
+
+          <h4>2. Present Value Problem</h4>
+          <p>Someone promises you &euro;10,000 in 3 years. Your discount rate is 8%. What's that worth today?</p>
+          <p>PV = &euro;10,000 &divide; (1.08)^3 = &euro;10,000 &divide; <span class="fill-blank"><input type="text" data-answer="1.2597" data-tolerance="0.01" placeholder="?"></span> = &euro;<span class="fill-blank"><input type="text" data-answer="7938" data-tolerance="10" placeholder="?"></span></p>
+
+          <h4>3. Real Decision</h4>
+          <p>Would you rather have &euro;5,000 today or &euro;8,000 in 6 years? (Assume 8% annual return)</p>
+
+          <div class="collapsible">
+            <div class="collapsible-header">
+              <h4>View Answer Key</h4>
+              <svg class="collapsible-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="collapsible-content">
+              <p><strong>1.</strong> &euro;500 &times; 1.9487 = <strong>&euro;974.36</strong></p>
+              <p><strong>2.</strong> &euro;10,000 &divide; 1.2597 = <strong>&euro;7,938.32</strong></p>
+              <p><strong>3.</strong> &euro;5,000 today at 8% for 6 years = &euro;5,000 &times; 1.5869 = &euro;7,934.37. That's less than &euro;8,000, so <strong>&euro;8,000 in 6 years is better</strong> &mdash; but barely! If your rate was 9%, the answer would flip.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Investment Dilemma -->
+        <section class="dilemma-box">
+          <h3>Investment Dilemma: The Epic Games Offer</h3>
+          <p>Epic Games offers you two deals:</p>
+          <p><strong>Option A:</strong> &euro;50,000 cash today</p>
+          <p><strong>Option B:</strong> 0.001% of Fortnite's revenue for the next 20 years</p>
+
+          <div class="dilemma-options">
+            <div class="dilemma-option" data-choice="cash">
+              <h4>Take the Cash</h4>
+              <p>&euro;50,000 now, guaranteed</p>
+            </div>
+            <div class="dilemma-option" data-choice="revenue">
+              <h4>Take the Revenue Share</h4>
+              <p>Potential for much more, but uncertain</p>
+            </div>
+          </div>
+
+          <div class="dilemma-reveal">
+            <h4>How an Investor Would Think:</h4>
+            <p><strong>Step 1:</strong> Estimate Fortnite's annual revenue. Let's say &euro;5 billion per year currently. 0.001% of &euro;5B = &euro;50,000/year (hey, same as Option A!)</p>
+            <p><strong>Step 2:</strong> But will it stay at &euro;5B? This is the hard part. Does Fortnite keep players for 20 years? Does it grow? Shrink?</p>
+            <p><strong>Step 3:</strong> Discount it back. At an 8% discount rate, &euro;50,000/year for 20 years &asymp; &euro;490,000 present value.</p>
+            <p>So Option B <em>might</em> be worth &euro;490,000 vs. Option A's &euro;50,000. But what if Fortnite declines 10% per year? Or shuts down in 5 years?</p>
+            <p><strong>The lesson:</strong> The "obviously better" deal depends entirely on your assumptions about the future.</p>
+          </div>
+        </section>
+
+        <!-- AI Lab -->
+        <section>
+          <h2>AI Lab: Compounding Calculator</h2>
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>Prompt Template</h4>
+              <button class="copy-btn" data-target="prompt-2">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="prompt-2">I want to understand compounding better. Create a table showing what happens to &euro;[amount] invested at [X]% annual returns over [Y] years.
+
+Then tell me:
+1. How much did the initial investment multiply by?
+2. What percentage of the final amount came from the original money vs. from growth?
+3. What would happen if the rate was 2% higher? 2% lower?</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dinner Table -->
+        <section class="dinner-table-box">
+          <h4>Dinner Table Discussion</h4>
+          <blockquote>"If you could get paid your whole allowance for the year today instead of weekly/monthly, how much less would you accept? Why?"</blockquote>
+          <p>This makes time value personal. If your allowance is &euro;10/week (&euro;520/year), would you take &euro;400 today instead? &euro;300? This reveals your personal "discount rate."</p>
+        </section>
+
+        <!-- Takeaway -->
+        <section class="takeaway-box">
+          <h3>So What? The Investor Takeaway</h3>
+          <p>Whenever someone talks about future money, your investor brain should immediately ask:</p>
+          <p><strong>"What's that worth in today's money?"</strong></p>
+          <p>This is why:</p>
+          <ul>
+            <li>A company making &euro;10M profit today is worth more than one "projected" to make &euro;15M in 5 years</li>
+            <li>Investors pay more for money coming sooner vs. later</li>
+            <li>Growth rate expectations completely change what something is worth</li>
+          </ul>
+          <p>You now have the foundation for the most important valuation tool in finance: the DCF.</p>
+        </section>
+
+        <div class="text-center">
+          <button class="complete-module-btn" data-module="2">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Mark Module as Complete
+          </button>
+        </div>
+
+        <nav class="module-nav">
+          <a href="module-1.html" class="nav-btn nav-btn-prev">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            Module 1: Value
+          </a>
+          <a href="module-3.html" class="nav-btn nav-btn-next">
+            Module 3: DCF
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </a>
+        </nav>
+
+        <section class="comments-section">
+          <h3>Discussion</h3>
+          <button class="like-btn">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            <span class="like-count">0</span> likes
+          </button>
+          <form class="comment-form">
+            <input type="text" name="author" placeholder="Your name (optional)">
+            <textarea name="content" placeholder="Share your thoughts..." required></textarea>
+            <button type="submit">Post Comment</button>
+          </form>
+          <div class="comments-list"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-bottom">
+          <p>&copy; 2025 Pelykh. Educational content.</p>
+          <p><a href="index.html">Back to Course Overview</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 6: Your AI-Powered Investment Lab | Valuation Course</title>
+  <meta name="description" content="Turn Claude into your personal financial analyst with prompt templates. Build your first watchlist and create an investment pitch.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer data-domain="pelykh.co" src="https://plausible.io/js/script.js"></script>
+</head>
+<body data-module="6">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <nav class="nav-container">
+        <a href="index.html" class="nav-logo">Valuation Course</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Overview</a>
+          <a href="module-1.html" class="nav-link active">Modules</a>
+          <a href="cheat-sheet.html" class="nav-link">Cheat Sheet</a>
+          <a href="glossary.html" class="nav-link">Glossary</a>
+          <button class="theme-toggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
+    <main id="main-content">
+      <div class="container">
+        <div class="module-progress">
+          <a href="module-1.html" class="module-progress-item" data-module="1">1</a>
+          <a href="module-2.html" class="module-progress-item" data-module="2">2</a>
+          <a href="module-3.html" class="module-progress-item" data-module="3">3</a>
+          <a href="module-4.html" class="module-progress-item" data-module="4">4</a>
+          <a href="module-5.html" class="module-progress-item" data-module="5">5</a>
+          <a href="module-6.html" class="module-progress-item current" data-module="6">6</a>
+        </div>
+
+        <header class="module-header">
+          <span class="module-label">Module 6</span>
+          <img src="images/06-AI_for_investments.png" alt="Module 6 - AI for Investments illustration" class="module-image">
+          <h1>Your AI-Powered Investment Lab</h1>
+          <p class="module-intro">Turn Claude into your personal financial analyst with ready-to-use prompt templates.</p>
+        </header>
+
+        <!-- Hook -->
+        <section class="hook-box">
+          <h2>What If You Had a Financial Analyst on Call 24/7?</h2>
+          <p>Professional investors pay $200,000/year for analysts who build financial models, research companies, analyze news, and compare investment options.</p>
+          <p>You have something similar &mdash; for free. It's just a matter of knowing how to use it.</p>
+        </section>
+
+        <!-- Big Idea -->
+        <section>
+          <div class="big-idea">
+            <h3>The Big Idea: AI Amplifies Your Thinking</h3>
+            <p>AI won't tell you what stocks to buy. Anyone who says otherwise is lying to you.</p>
+            <p>But AI WILL:</p>
+            <ul>
+              <li>Explain business models you don't understand</li>
+              <li>Build spreadsheet models 10x faster than you could</li>
+              <li>Find information that would take hours to research</li>
+              <li>Stress-test your assumptions</li>
+            </ul>
+            <p><strong>Your curiosity + AI's speed = Superpower</strong></p>
+          </div>
+        </section>
+
+        <!-- Prompt Engineering -->
+        <section>
+          <h2>Prompt Engineering for Finance</h2>
+
+          <h3>Rule 1: Be Specific About What You Want</h3>
+          <p><strong>Bad:</strong> "Tell me about Nike"</p>
+          <p><strong>Good:</strong> "Explain Nike's business model like I'm 13. Focus on: how they make money, their main competitive advantages, and what could threaten them in 10 years."</p>
+
+          <h3>Rule 2: Ask for the Format You Need</h3>
+          <p><strong>Bad:</strong> "Build me a DCF model"</p>
+          <p><strong>Good:</strong> "Help me build a simple DCF model for Roblox in Google Sheets. Format it as a table with clear rows and columns I can copy-paste."</p>
+
+          <h3>Rule 3: Demand Intellectual Honesty</h3>
+          <p><strong>Bad:</strong> "Should I buy Epic Games stock?"</p>
+          <p><strong>Good:</strong> "What are the strongest arguments for AND against investing in Epic Games? Rate your confidence 1-10 for each argument."</p>
+
+          <h3>Rule 4: Use Follow-Ups to Go Deeper</h3>
+          <p>Start broad, then drill down:</p>
+          <ol>
+            <li>"Explain how Discord makes money"</li>
+            <li>"You mentioned Nitro subscriptions. What percentage of users pay for Nitro?"</li>
+            <li>"That seems low. Why would Discord be worth $15B with that conversion rate?"</li>
+            <li>"If conversion doubled, what would Discord be worth?"</li>
+          </ol>
+        </section>
+
+        <!-- 6 Prompt Templates -->
+        <section>
+          <h2>Your Toolkit: 6 Ready-to-Use Prompts</h2>
+
+          <!-- Template 1 -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>1. Business Model Explainer</h4>
+              <button class="copy-btn" data-target="template-1">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="template-1">Explain [Company]'s business model like I'm 13.
+
+Cover:
+1. How do they actually make money? (Not their mission statement - actual cash in the door)
+2. What's their "unfair advantage" that competitors can't easily copy?
+3. Who are their biggest customers?
+4. What could kill this business in 10 years?
+5. One thing that would make you want to invest in them
+6. One thing that would scare you away
+
+Be specific with numbers when you can find them.</pre>
+            </div>
+          </div>
+
+          <!-- Template 2 -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>2. Key Metrics Finder</h4>
+              <button class="copy-btn" data-target="template-2">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="template-2">For [Company], find and explain the 5 most important numbers an investor should know.
+
+For each metric:
+- The actual number (most recent)
+- What it means in plain English
+- What "good" looks like for this type of company
+- How this company compares
+
+Then tell me: Which ONE number would you watch most closely? Why?</pre>
+            </div>
+          </div>
+
+          <!-- Template 3 -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>3. Simple DCF Builder</h4>
+              <button class="copy-btn" data-target="template-3">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="template-3">Help me build a simple 5-year DCF model for [Company].
+
+Format it as a table I can paste into Google Sheets.
+
+Include:
+- Current free cash flow (find it or estimate it - explain your source)
+- Year 1-5 growth rates with reasoning for each year
+- Discount rate with explanation
+- Terminal value calculation
+- Total valuation
+
+After the model, answer:
+1. Which assumption matters most?
+2. If you're wrong about that assumption by 20%, how does the value change?
+3. What would make you more/less confident in this model?</pre>
+            </div>
+          </div>
+
+          <!-- Template 4 -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>4. Competitor Comparison</h4>
+              <button class="copy-btn" data-target="template-4">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="template-4">Compare [Company A] vs [Company B] as long-term investments.
+
+Create a comparison table with:
+- Revenue and profit (current)
+- Growth rates (last 3 years and expected)
+- Key multiples (P/E, EV/Revenue)
+- Main competitive advantages
+- Biggest risks
+
+Then give me your verdict:
+- Which would you pick for a 10-year hold?
+- What would have to change for you to switch your answer?
+- What's the one thing that makes this a hard decision?</pre>
+            </div>
+          </div>
+
+          <!-- Template 5 -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>5. News Impact Analyzer</h4>
+              <button class="copy-btn" data-target="template-5">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="template-5">Here's a headline: "[Insert headline]"
+
+Analyze this for [Company]:
+1. Is this actually new information, or already expected?
+2. Quantify the impact: How does this change expected revenue/profit? (Use numbers)
+3. Is this temporary or permanent?
+4. What would need to be true for this to be GOOD news? BAD news?
+5. On a scale of -10 to +10, how should this affect the stock price?
+6. What additional information would you want before acting on this?</pre>
+            </div>
+          </div>
+
+          <!-- Template 6 -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>6. Early Trend Spotter</h4>
+              <button class="copy-btn" data-target="template-6">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="template-6">What are 3 companies or brands that:
+- Most adults (35+) don't know yet
+- Teenagers are obsessed with
+- Could be valuable investments in 5 years
+
+For each one:
+1. What they do and why teens love it
+2. How they make money
+3. Current valuation or size (if known)
+4. Why this could be a huge opportunity
+5. Why this might be a trap
+6. How you'd invest if you wanted to (public stock? Wait for IPO?)</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Capstone -->
+        <section class="dilemma-box">
+          <h3>Capstone Project: Your &euro;1,000 Investment Pitch</h3>
+          <p>You have &euro;1,000 of imaginary money. Pick ONE stock to hold for 5 years.</p>
+          <p>Using everything you've learned and AI tools, create a <strong>1-page pitch</strong> including:</p>
+          <ol>
+            <li><strong>The Business</strong> (3-4 sentences): What do they do and why do people love them?</li>
+            <li><strong>The Numbers:</strong> 3 key metrics that matter for this business</li>
+            <li><strong>The Valuation:</strong> Your estimate of fair value (show your DCF or multiples work)</li>
+            <li><strong>The Risks:</strong> What could go wrong? What would make you sell?</li>
+            <li><strong>The Verdict:</strong> Buy / Hold / Avoid + Confidence level (High/Medium/Low)</li>
+          </ol>
+        </section>
+
+        <!-- Weekly Practice -->
+        <section>
+          <h2>Ongoing Practice</h2>
+          <p>Every week, pick ONE company you're curious about. Run through this sequence:</p>
+          <ul>
+            <li><strong>Monday:</strong> "Explain [Company]'s business model like I'm 13."</li>
+            <li><strong>Wednesday:</strong> "Build me a simple DCF for [Company] with your best assumptions."</li>
+            <li><strong>Friday:</strong> "What happened to [Company] this week in the news? Should I care?"</li>
+          </ul>
+          <p><strong>After 3 months, you'll understand 12 businesses better than 99% of adults.</strong></p>
+        </section>
+
+        <!-- Dinner Table -->
+        <section class="dinner-table-box">
+          <h4>Dinner Table Discussion</h4>
+          <blockquote>"If you had &euro;500 to invest in one stock for 10 years, what would you pick and why?"</blockquote>
+          <p>Share your research. Ask your family for their picks. Compare reasoning. This isn't about being "right" &mdash; it's about thinking through decisions with real stakes.</p>
+        </section>
+
+        <!-- Final Takeaway -->
+        <section class="takeaway-box">
+          <h3>The Final Investor Takeaway</h3>
+          <p><strong>You now have a complete toolkit:</strong></p>
+          <ol>
+            <li><strong>Understanding value</strong> &mdash; Price &ne; value. Your job is to find the gap.</li>
+            <li><strong>Time value of money</strong> &mdash; Future cash is worth less than present cash. Always discount.</li>
+            <li><strong>DCF modeling</strong> &mdash; Companies are worth their future cash flows, discounted back.</li>
+            <li><strong>Multiples</strong> &mdash; Shortcuts for comparison, but dangerous if misused.</li>
+            <li><strong>News analysis</strong> &mdash; Only react if it changes expected cash flows. Mostly, do nothing.</li>
+            <li><strong>AI leverage</strong> &mdash; Amplify your thinking with the right prompts.</li>
+          </ol>
+          <p><strong>The professional secret:</strong> These are the exact tools that real analysts use. They just have more practice.</p>
+          <p>Start small. Build your watchlist. Track your thinking. Be patient.</p>
+          <p>In 10 years, you might be writing much bigger checks &mdash; and you'll know exactly why.</p>
+        </section>
+
+        <!-- Celebration -->
+        <section style="text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%); border-radius: var(--radius-lg); margin: 2rem 0;">
+          <h2 style="margin-top: 0; color: var(--color-primary-dark);">Congratulations!</h2>
+          <p style="font-size: 1.125rem; color: var(--color-primary-dark);">You now know more about company valuation than most adults.</p>
+          <p style="color: var(--color-primary-dark); font-style: italic;">"The stock market is a device for transferring money from the impatient to the patient." &mdash; Warren Buffett</p>
+        </section>
+
+        <div class="text-center">
+          <button class="complete-module-btn" data-module="6">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Complete the Course!
+          </button>
+        </div>
+
+        <nav class="module-nav">
+          <a href="module-5.html" class="nav-btn nav-btn-prev">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            Module 5: News
+          </a>
+          <a href="cheat-sheet.html" class="nav-btn nav-btn-next">
+            View Cheat Sheet
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </a>
+        </nav>
+
+        <section class="comments-section">
+          <h3>Discussion</h3>
+          <button class="like-btn">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            <span class="like-count">0</span> likes
+          </button>
+          <form class="comment-form">
+            <input type="text" name="author" placeholder="Your name (optional)">
+            <textarea name="content" placeholder="Share your thoughts..." required></textarea>
+            <button type="submit">Post Comment</button>
+          </form>
+          <div class="comments-list"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-bottom">
+          <p>&copy; 2025 Pelykh. Educational content.</p>
+          <p><a href="index.html">Back to Course Overview</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
