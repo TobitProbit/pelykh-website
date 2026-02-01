@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Quiz | Valuation Course</title>
+  <meta name="description" content="Test your knowledge from the Young Investor's Valuation Course with this 20-question quiz.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer data-domain="pelykh.co" src="https://plausible.io/js/script.js"></script>
+
+  <style>
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-intro {
+      background: rgba(45, 85, 65, 0.08);
+      border: 2px solid var(--green);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+      text-align: center;
+    }
+
+    .quiz-intro h1 {
+      margin-bottom: var(--space-md);
+    }
+
+    .question-block {
+      background: var(--cream);
+      border: 2px solid var(--green);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .question-number {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.65rem;
+      color: var(--green);
+      margin-bottom: var(--space-sm);
+    }
+
+    .question-text {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+      line-height: 1.4;
+    }
+
+    .answer-option {
+      display: block;
+      padding: var(--space-md);
+      margin-bottom: var(--space-sm);
+      background: var(--cream);
+      border: 2px solid var(--green);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .answer-option:hover {
+      background: rgba(45, 85, 65, 0.1);
+    }
+
+    .answer-option.selected {
+      background: rgba(45, 85, 65, 0.2);
+      border-color: var(--green);
+    }
+
+    .answer-option.correct {
+      background: rgba(45, 85, 65, 0.3);
+      border-color: var(--green);
+    }
+
+    .answer-option.incorrect {
+      background: rgba(200, 50, 50, 0.2);
+      border-color: rgb(200, 50, 50);
+    }
+
+    .answer-option input {
+      display: none;
+    }
+
+    .answer-option span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95rem;
+    }
+
+    .submit-quiz {
+      display: block;
+      width: 100%;
+      padding: var(--space-lg);
+      background: var(--green);
+      color: var(--cream);
+      border: 2px solid var(--green);
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-top: var(--space-xl);
+    }
+
+    .submit-quiz:hover {
+      background: var(--cream);
+      color: var(--green);
+    }
+
+    .submit-quiz:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .results-box {
+      display: none;
+      background: rgba(45, 85, 65, 0.1);
+      border: 3px solid var(--green);
+      padding: var(--space-2xl);
+      margin-top: var(--space-2xl);
+      text-align: center;
+    }
+
+    .results-box.show {
+      display: block;
+    }
+
+    .score-display {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 2.5rem;
+      color: var(--green);
+      margin: var(--space-lg) 0;
+    }
+
+    .score-message {
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+    }
+
+    .retake-btn {
+      display: inline-block;
+      padding: var(--space-md) var(--space-xl);
+      background: var(--cream);
+      color: var(--green);
+      border: 2px solid var(--green);
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .retake-btn:hover {
+      background: var(--green);
+      color: var(--cream);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <nav class="nav-container">
+        <a href="index.html" class="nav-logo">Valuation Course</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Overview</a>
+          <a href="module-1.html" class="nav-link">Modules</a>
+          <a href="cheat-sheet.html" class="nav-link">Cheat Sheet</a>
+          <a href="glossary.html" class="nav-link">Glossary</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
+    <main id="main-content">
+      <div class="container quiz-container">
+
+        <div class="quiz-intro">
+          <h1>Course Quiz</h1>
+          <p class="module-intro">20 questions to test your valuation knowledge. Each correct answer is worth 5 points.</p>
+        </div>
+
+        <form id="quizForm">
+
+          <!-- Question 1 - Module 1 -->
+          <div class="question-block" data-correct="b">
+            <div class="question-number">Question 1 / 20</div>
+            <div class="question-text">A rare Fortnite skin costs Epic Games about $500 to design but sells to millions of players for $20 each. This demonstrates that:</div>
+            <label class="answer-option"><input type="radio" name="q1" value="a"><span>A) Epic Games is overcharging customers unfairly</span></label>
+            <label class="answer-option"><input type="radio" name="q1" value="b"><span>B) Price and production cost can be very different from perceived value</span></label>
+            <label class="answer-option"><input type="radio" name="q1" value="c"><span>C) Digital goods have no real value</span></label>
+            <label class="answer-option"><input type="radio" name="q1" value="d"><span>D) The skin's intrinsic value equals $20</span></label>
+          </div>
+
+          <!-- Question 2 - Module 1 -->
+          <div class="question-block" data-correct="c">
+            <div class="question-number">Question 2 / 20</div>
+            <div class="question-text">What type of value do investors focus on when deciding whether to buy a stock?</div>
+            <label class="answer-option"><input type="radio" name="q2" value="a"><span>A) Personal value</span></label>
+            <label class="answer-option"><input type="radio" name="q2" value="b"><span>B) Sentimental value</span></label>
+            <label class="answer-option"><input type="radio" name="q2" value="c"><span>C) Intrinsic value compared to market value</span></label>
+            <label class="answer-option"><input type="radio" name="q2" value="d"><span>D) Retail value</span></label>
+          </div>
+
+          <!-- Question 3 - Module 1 -->
+          <div class="question-block" data-correct="a">
+            <div class="question-number">Question 3 / 20</div>
+            <div class="question-text">A TikTok account with 10 million bot followers vs. one with 500,000 real engaged followers. Which is worth more to a brand paying for promotions?</div>
+            <label class="answer-option"><input type="radio" name="q3" value="a"><span>A) The 500,000 real followers account</span></label>
+            <label class="answer-option"><input type="radio" name="q3" value="b"><span>B) The 10 million followers account</span></label>
+            <label class="answer-option"><input type="radio" name="q3" value="c"><span>C) They're worth the same</span></label>
+            <label class="answer-option"><input type="radio" name="q3" value="d"><span>D) Neither has value for promotions</span></label>
+          </div>
+
+          <!-- Question 4 - Module 2 -->
+          <div class="question-block" data-correct="b">
+            <div class="question-number">Question 4 / 20</div>
+            <div class="question-text">Why is 100 euros today worth more than 100 euros in one year?</div>
+            <label class="answer-option"><input type="radio" name="q4" value="a"><span>A) Because euros lose their physical quality over time</span></label>
+            <label class="answer-option"><input type="radio" name="q4" value="b"><span>B) Because you can invest it, inflation erodes purchasing power, and future payments have risk</span></label>
+            <label class="answer-option"><input type="radio" name="q4" value="c"><span>C) Because the government prints more money each year</span></label>
+            <label class="answer-option"><input type="radio" name="q4" value="d"><span>D) It's actually worth the same amount</span></label>
+          </div>
+
+          <!-- Question 5 - Module 2 -->
+          <div class="question-block" data-correct="d">
+            <div class="question-number">Question 5 / 20</div>
+            <div class="question-text">If you invest 1,000 euros at 10% annual return, approximately how much will you have after 3 years with compounding?</div>
+            <label class="answer-option"><input type="radio" name="q5" value="a"><span>A) 1,100 euros</span></label>
+            <label class="answer-option"><input type="radio" name="q5" value="b"><span>B) 1,200 euros</span></label>
+            <label class="answer-option"><input type="radio" name="q5" value="c"><span>C) 1,300 euros</span></label>
+            <label class="answer-option"><input type="radio" name="q5" value="d"><span>D) 1,331 euros</span></label>
+          </div>
+
+          <!-- Question 6 - Module 2 -->
+          <div class="question-block" data-correct="c">
+            <div class="question-number">Question 6 / 20</div>
+            <div class="question-text">Someone offers you 1,000,000 euros today OR 1,200,000 euros in 5 years (guaranteed). If you can invest at 7% annually, which is better?</div>
+            <label class="answer-option"><input type="radio" name="q6" value="a"><span>A) 1,200,000 in 5 years - it's more money</span></label>
+            <label class="answer-option"><input type="radio" name="q6" value="b"><span>B) They're exactly equal</span></label>
+            <label class="answer-option"><input type="radio" name="q6" value="c"><span>C) 1,000,000 today - it grows to more than 1,200,000 at 7%</span></label>
+            <label class="answer-option"><input type="radio" name="q6" value="d"><span>D) Cannot be determined without more information</span></label>
+          </div>
+
+          <!-- Question 7 - Module 2 -->
+          <div class="question-block" data-correct="a">
+            <div class="question-number">Question 7 / 20</div>
+            <div class="question-text">What makes compounding so powerful over long periods?</div>
+            <label class="answer-option"><input type="radio" name="q7" value="a"><span>A) Your returns start earning their own returns</span></label>
+            <label class="answer-option"><input type="radio" name="q7" value="b"><span>B) Banks give you bonus interest for loyalty</span></label>
+            <label class="answer-option"><input type="radio" name="q7" value="c"><span>C) Inflation increases your money's value</span></label>
+            <label class="answer-option"><input type="radio" name="q7" value="d"><span>D) Tax benefits accumulate over time</span></label>
+          </div>
+
+          <!-- Question 8 - Module 3 -->
+          <div class="question-block" data-correct="b">
+            <div class="question-number">Question 8 / 20</div>
+            <div class="question-text">What is "Free Cash Flow"?</div>
+            <label class="answer-option"><input type="radio" name="q8" value="a"><span>A) Total revenue before any expenses</span></label>
+            <label class="answer-option"><input type="radio" name="q8" value="b"><span>B) Cash generated after all operating expenses and investments</span></label>
+            <label class="answer-option"><input type="radio" name="q8" value="c"><span>C) Money sitting in the company's bank account</span></label>
+            <label class="answer-option"><input type="radio" name="q8" value="d"><span>D) Profit shown on the income statement</span></label>
+          </div>
+
+          <!-- Question 9 - Module 3 -->
+          <div class="question-block" data-correct="c">
+            <div class="question-number">Question 9 / 20</div>
+            <div class="question-text">In DCF valuation, what does "discounting" mean?</div>
+            <label class="answer-option"><input type="radio" name="q9" value="a"><span>A) Giving customers a lower price</span></label>
+            <label class="answer-option"><input type="radio" name="q9" value="b"><span>B) Reducing the company's expenses</span></label>
+            <label class="answer-option"><input type="radio" name="q9" value="c"><span>C) Converting future money into today's value using an interest rate</span></label>
+            <label class="answer-option"><input type="radio" name="q9" value="d"><span>D) Ignoring small cash flows</span></label>
+          </div>
+
+          <!-- Question 10 - Module 3 -->
+          <div class="question-block" data-correct="d">
+            <div class="question-number">Question 10 / 20</div>
+            <div class="question-text">What is "Terminal Value" in a DCF model?</div>
+            <label class="answer-option"><input type="radio" name="q10" value="a"><span>A) The value when the company goes bankrupt</span></label>
+            <label class="answer-option"><input type="radio" name="q10" value="b"><span>B) The company's value at the end of each year</span></label>
+            <label class="answer-option"><input type="radio" name="q10" value="c"><span>C) The initial investment needed to start the company</span></label>
+            <label class="answer-option"><input type="radio" name="q10" value="d"><span>D) The value of all cash flows beyond the explicit forecast period</span></label>
+          </div>
+
+          <!-- Question 11 - Module 3 -->
+          <div class="question-block" data-correct="a">
+            <div class="question-number">Question 11 / 20</div>
+            <div class="question-text">If you use a higher discount rate in a DCF model, what happens to the present value?</div>
+            <label class="answer-option"><input type="radio" name="q11" value="a"><span>A) It decreases</span></label>
+            <label class="answer-option"><input type="radio" name="q11" value="b"><span>B) It increases</span></label>
+            <label class="answer-option"><input type="radio" name="q11" value="c"><span>C) It stays the same</span></label>
+            <label class="answer-option"><input type="radio" name="q11" value="d"><span>D) It depends on the company's revenue</span></label>
+          </div>
+
+          <!-- Question 12 - Module 4 -->
+          <div class="question-block" data-correct="b">
+            <div class="question-number">Question 12 / 20</div>
+            <div class="question-text">What does a P/E ratio of 25x mean?</div>
+            <label class="answer-option"><input type="radio" name="q12" value="a"><span>A) The company has 25 million euros in profit</span></label>
+            <label class="answer-option"><input type="radio" name="q12" value="b"><span>B) Investors pay 25 euros for every 1 euro of annual profit</span></label>
+            <label class="answer-option"><input type="radio" name="q12" value="c"><span>C) The stock price will increase 25% next year</span></label>
+            <label class="answer-option"><input type="radio" name="q12" value="d"><span>D) The company has 25 years of history</span></label>
+          </div>
+
+          <!-- Question 13 - Module 4 -->
+          <div class="question-block" data-correct="c">
+            <div class="question-number">Question 13 / 20</div>
+            <div class="question-text">Why would a company with lower profits be valued higher than one with higher profits?</div>
+            <label class="answer-option"><input type="radio" name="q13" value="a"><span>A) The market is always irrational</span></label>
+            <label class="answer-option"><input type="radio" name="q13" value="b"><span>B) Lower profits mean lower risk</span></label>
+            <label class="answer-option"><input type="radio" name="q13" value="c"><span>C) Investors expect much faster growth in the future</span></label>
+            <label class="answer-option"><input type="radio" name="q13" value="d"><span>D) The company has more employees</span></label>
+          </div>
+
+          <!-- Question 14 - Module 4 -->
+          <div class="question-block" data-correct="d">
+            <div class="question-number">Question 14 / 20</div>
+            <div class="question-text">What is Enterprise Value (EV)?</div>
+            <label class="answer-option"><input type="radio" name="q14" value="a"><span>A) The stock price multiplied by revenue</span></label>
+            <label class="answer-option"><input type="radio" name="q14" value="b"><span>B) The company's total revenue</span></label>
+            <label class="answer-option"><input type="radio" name="q14" value="c"><span>C) The founder's personal wealth</span></label>
+            <label class="answer-option"><input type="radio" name="q14" value="d"><span>D) Market Cap plus Debt minus Cash</span></label>
+          </div>
+
+          <!-- Question 15 - Module 4 -->
+          <div class="question-block" data-correct="a">
+            <div class="question-number">Question 15 / 20</div>
+            <div class="question-text">When using comparables, Nike and Adidas are good comps for each other. Which would NOT be a good comparable for Nike?</div>
+            <label class="answer-option"><input type="radio" name="q15" value="a"><span>A) Tesla</span></label>
+            <label class="answer-option"><input type="radio" name="q15" value="b"><span>B) Puma</span></label>
+            <label class="answer-option"><input type="radio" name="q15" value="c"><span>C) Under Armour</span></label>
+            <label class="answer-option"><input type="radio" name="q15" value="d"><span>D) Lululemon</span></label>
+          </div>
+
+          <!-- Question 16 - Module 5 -->
+          <div class="question-block" data-correct="b">
+            <div class="question-number">Question 16 / 20</div>
+            <div class="question-text">A company beats earnings expectations by 20%. The stock jumps 15%. This happens because:</div>
+            <label class="answer-option"><input type="radio" name="q16" value="a"><span>A) The company's intrinsic value instantly changed</span></label>
+            <label class="answer-option"><input type="radio" name="q16" value="b"><span>B) Investors update their expectations about future cash flows</span></label>
+            <label class="answer-option"><input type="radio" name="q16" value="c"><span>C) The company announced a dividend</span></label>
+            <label class="answer-option"><input type="radio" name="q16" value="d"><span>D) More shares were issued</span></label>
+          </div>
+
+          <!-- Question 17 - Module 5 -->
+          <div class="question-block" data-correct="c">
+            <div class="question-number">Question 17 / 20</div>
+            <div class="question-text">When evaluating news about a company, which question is MOST important to ask?</div>
+            <label class="answer-option"><input type="radio" name="q17" value="a"><span>A) Is the headline dramatic?</span></label>
+            <label class="answer-option"><input type="radio" name="q17" value="b"><span>B) Are other people talking about it on social media?</span></label>
+            <label class="answer-option"><input type="radio" name="q17" value="c"><span>C) Does this change expected future cash flows?</span></label>
+            <label class="answer-option"><input type="radio" name="q17" value="d"><span>D) Did the CEO make a public statement?</span></label>
+          </div>
+
+          <!-- Question 18 - Module 5 -->
+          <div class="question-block" data-correct="d">
+            <div class="question-number">Question 18 / 20</div>
+            <div class="question-text">Which type of news typically moves stock prices the MOST?</div>
+            <label class="answer-option"><input type="radio" name="q18" value="a"><span>A) CEO giving a speech at a conference</span></label>
+            <label class="answer-option"><input type="radio" name="q18" value="b"><span>B) Minor analyst rating changes</span></label>
+            <label class="answer-option"><input type="radio" name="q18" value="c"><span>C) Generic industry news</span></label>
+            <label class="answer-option"><input type="radio" name="q18" value="d"><span>D) Earnings surprises and guidance changes</span></label>
+          </div>
+
+          <!-- Question 19 - Module 6 -->
+          <div class="question-block" data-correct="b">
+            <div class="question-number">Question 19 / 20</div>
+            <div class="question-text">When using AI to analyze a company, what's the most important thing to verify?</div>
+            <label class="answer-option"><input type="radio" name="q19" value="a"><span>A) That the AI uses fancy financial terms</span></label>
+            <label class="answer-option"><input type="radio" name="q19" value="b"><span>B) That the specific numbers and facts are accurate and current</span></label>
+            <label class="answer-option"><input type="radio" name="q19" value="c"><span>C) That the AI gives a buy or sell recommendation</span></label>
+            <label class="answer-option"><input type="radio" name="q19" value="d"><span>D) That the response is very long and detailed</span></label>
+          </div>
+
+          <!-- Question 20 - Module 6 -->
+          <div class="question-block" data-correct="a">
+            <div class="question-number">Question 20 / 20</div>
+            <div class="question-text">What is a company's "moat" in investing terms?</div>
+            <label class="answer-option"><input type="radio" name="q20" value="a"><span>A) A competitive advantage that's hard for rivals to copy</span></label>
+            <label class="answer-option"><input type="radio" name="q20" value="b"><span>B) The water feature around their headquarters</span></label>
+            <label class="answer-option"><input type="radio" name="q20" value="c"><span>C) Their total amount of debt</span></label>
+            <label class="answer-option"><input type="radio" name="q20" value="d"><span>D) The number of products they sell</span></label>
+          </div>
+
+          <button type="button" class="submit-quiz" id="submitQuiz">Submit Quiz</button>
+        </form>
+
+        <div class="results-box" id="resultsBox">
+          <h2>Quiz Complete!</h2>
+          <div class="score-display" id="scoreDisplay">0 / 100</div>
+          <div class="score-message" id="scoreMessage"></div>
+          <button class="retake-btn" onclick="location.reload()">Retake Quiz</button>
+          <a href="index.html" class="retake-btn" style="margin-left: 10px;">Back to Course</a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="module-nav" style="margin-top: var(--space-2xl);">
+          <a href="index.html" class="nav-btn nav-btn-prev">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            Course Overview
+          </a>
+          <a href="cheat-sheet.html" class="nav-btn nav-btn-next">
+            Cheat Sheet
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </a>
+        </nav>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-bottom">
+          <p>&copy; 2025 Pelykh. Educational content.</p>
+          <p><a href="index.html">Back to Course Overview</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('submitQuiz').addEventListener('click', function() {
+      const questions = document.querySelectorAll('.question-block');
+      let score = 0;
+      let answered = 0;
+
+      questions.forEach((question, index) => {
+        const correctAnswer = question.dataset.correct;
+        const selected = question.querySelector('input:checked');
+        const options = question.querySelectorAll('.answer-option');
+
+        // Reset styles
+        options.forEach(opt => {
+          opt.classList.remove('correct', 'incorrect', 'selected');
+        });
+
+        if (selected) {
+          answered++;
+          const selectedLabel = selected.closest('.answer-option');
+
+          if (selected.value === correctAnswer) {
+            score += 5;
+            selectedLabel.classList.add('correct');
+          } else {
+            selectedLabel.classList.add('incorrect');
+            // Show correct answer
+            options.forEach(opt => {
+              if (opt.querySelector('input').value === correctAnswer) {
+                opt.classList.add('correct');
+              }
+            });
+          }
+        } else {
+          // Show correct answer for unanswered
+          options.forEach(opt => {
+            if (opt.querySelector('input').value === correctAnswer) {
+              opt.classList.add('correct');
+            }
+          });
+        }
+      });
+
+      // Display results
+      const resultsBox = document.getElementById('resultsBox');
+      const scoreDisplay = document.getElementById('scoreDisplay');
+      const scoreMessage = document.getElementById('scoreMessage');
+
+      scoreDisplay.textContent = score + ' / 100';
+
+      if (score === 100) {
+        scoreMessage.textContent = 'Perfect score! You have mastered valuation fundamentals!';
+      } else if (score >= 80) {
+        scoreMessage.textContent = 'Excellent work! You have a strong understanding of valuation concepts.';
+      } else if (score >= 60) {
+        scoreMessage.textContent = 'Good job! Review the modules where you missed questions.';
+      } else if (score >= 40) {
+        scoreMessage.textContent = 'Keep learning! Consider reviewing the course material again.';
+      } else {
+        scoreMessage.textContent = 'Take your time to study each module before retaking the quiz.';
+      }
+
+      resultsBox.classList.add('show');
+      resultsBox.scrollIntoView({ behavior: 'smooth' });
+
+      // Disable submit button
+      this.disabled = true;
+      this.textContent = 'Quiz Submitted';
+    });
+
+    // Add click handlers to options
+    document.querySelectorAll('.answer-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const questionBlock = this.closest('.question-block');
+        questionBlock.querySelectorAll('.answer-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        this.querySelector('input').checked = true;
+      });
+    });
+  </script>
+</body>
+</html>
