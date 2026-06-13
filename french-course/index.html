@@ -1,0 +1,1966 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>French B1 → B2 — Pillar Practice for Lyubo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#1a2332',
+          navy: '#1e3a5f',
+          accent: '#c44536',
+          gold: '#c9a961',
+          cream: '#fefef9',
+          paper: '#faf8f3',
+          rule: '#e6dfd0',
+          mute: '#6b6555',
+        },
+        fontFamily: {
+          sans: ['Inter','system-ui','sans-serif'],
+          serif: ['Cormorant Garamond','Georgia','serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  body { background:#faf8f3; color:#1a2332; font-family: Inter, system-ui, sans-serif; }
+  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: -0.01em; }
+  .ex-card { transition: all .2s ease; }
+  .ex-card.correct { background: #ecfdf5; border-color:#10b981; }
+  .ex-card.wrong { background: #fef2f2; border-color:#ef4444; }
+  .ex-input { transition: all .15s ease; }
+  .ex-input:focus { outline: 2px solid #1e3a5f33; outline-offset: 2px; }
+  .mcq-btn { transition: all .15s ease; }
+  .mcq-btn:hover:not(:disabled) { background:#f1ede0; }
+  .mcq-btn.selected { background:#1e3a5f; color:white; border-color:#1e3a5f; }
+  .mcq-btn.correct { background:#10b981; color:white; border-color:#10b981; }
+  .mcq-btn.wrong { background:#ef4444; color:white; border-color:#ef4444; }
+  .progress-dot { width:8px; height:8px; border-radius:50%; }
+  .nav-item.active { background:#1e3a5f; color:white; }
+  .nav-item.active .nav-sub { color:#cdd6e5; }
+  details summary { cursor: pointer; }
+  details summary::-webkit-details-marker { display:none; }
+  details summary::after { content:'+'; float:right; color:#1e3a5f; font-weight:700; }
+  details[open] summary::after { content:'−'; }
+  .keyboard {
+    display: inline-flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;
+  }
+  .keyboard button {
+    font-family: Inter, sans-serif; font-size: 14px; padding: 4px 10px;
+    border: 1px solid #e6dfd0; border-radius: 6px; background:#fff;
+  }
+  .keyboard button:hover { background:#f1ede0; }
+  ::selection { background:#c4453633; }
+  @media print { aside, .no-print { display:none; } main { width:100%; } }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div id="app" class="flex min-h-screen">
+
+  <!-- ============ Sidebar ============ -->
+  <aside class="no-print w-72 bg-ink text-cream shrink-0 hidden md:flex flex-col">
+    <div class="p-6 border-b border-white/10">
+      <div class="text-xs uppercase tracking-widest text-gold/80 mb-1">For Lyubo</div>
+      <h1 class="font-serif text-2xl leading-tight">French B1 → B2</h1>
+      <div class="text-sm text-white/60 mt-1">Pillar Practice</div>
+    </div>
+    <nav id="nav" class="flex-1 overflow-y-auto py-4"></nav>
+    <div class="p-4 border-t border-white/10 text-xs text-white/50">
+      <div class="flex items-center justify-between">
+        <span>Progress</span>
+        <span id="overall-progress">—</span>
+      </div>
+      <div class="h-1 bg-white/10 rounded mt-2 overflow-hidden">
+        <div id="overall-bar" class="h-full bg-gold transition-all" style="width:0%"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- mobile top bar -->
+  <div class="md:hidden fixed top-0 inset-x-0 bg-ink text-cream px-4 py-3 z-30 flex items-center gap-3 no-print">
+    <button id="m-menu" class="text-cream"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <span class="font-serif text-lg">French B1 → B2</span>
+  </div>
+  <div id="m-drawer" class="md:hidden fixed inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-black/50" onclick="closeMobileDrawer()"></div>
+    <div class="absolute left-0 top-0 bottom-0 w-72 bg-ink text-cream overflow-y-auto">
+      <div class="p-6 border-b border-white/10 flex items-center justify-between">
+        <span class="font-serif text-xl">Menu</span>
+        <button onclick="closeMobileDrawer()" class="text-cream text-2xl leading-none">×</button>
+      </div>
+      <nav id="m-nav" class="py-4"></nav>
+    </div>
+  </div>
+
+  <!-- ============ Main ============ -->
+  <main class="flex-1 md:ml-0 pt-14 md:pt-0">
+    <div class="max-w-3xl mx-auto px-5 md:px-10 py-8 md:py-14" id="view"></div>
+  </main>
+</div>
+
+<!-- ============ Templates / data ============ -->
+
+<script>
+/* ================================================================== */
+/* COURSE CONTENT                                                     */
+/* ================================================================== */
+
+const COURSE = {
+  title: "French B1 → B2: Pillar Practice",
+  pillars: [
+    /* ============================================================ */
+    /* PILLAR 1 — PRONOUNS                                           */
+    /* ============================================================ */
+    {
+      id: "pronouns",
+      title: "Pronouns",
+      subtitle: "y · en · lui · leur",
+      tagline: "Elevate the natural flow of professional French.",
+      intro: `<p>The four pronouns <strong>y</strong>, <strong>en</strong>, <strong>lui</strong> and <strong>leur</strong> are the single biggest fluency multiplier between solid B1 and confident B2. Native speakers use them constantly to avoid repeating nouns, and missing them out makes you sound like a textbook.</p>
+        <p>The mistakes are not random — they fall into a small number of patterns. By the end of this pillar you will be able to: <strong>(1)</strong> tell instantly whether a verb takes <em>à</em> or <em>de</em>; <strong>(2)</strong> pick the right pronoun for a thing versus a person; <strong>(3)</strong> place the pronoun correctly in simple, compound, and imperative sentences.</p>`,
+      subsections: [
+        /* ------- 1.1  y  ------- */
+        {
+          id: "y",
+          title: "y — the « à + thing » pronoun",
+          summary: "Replaces a thing or place introduced by à (and a few other prepositions of place).",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">When to use <em>y</em></h3>
+<p><strong>Rule:</strong> <em>y</em> stands in for a <strong>thing</strong> or a <strong>place</strong> introduced by <em>à</em> (or sometimes <em>dans</em>, <em>sur</em>, <em>chez</em>, <em>en</em>). It never refers to a person.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Two main uses</h4>
+<div class="space-y-3">
+  <div class="rounded-lg bg-paper border border-rule p-4">
+    <div class="text-xs uppercase tracking-wider text-mute mb-1">Place</div>
+    <div>Je vais <strong>à Paris</strong>. → J'<strong>y</strong> vais.</div>
+    <div>Tu travailles <strong>chez Aspeya</strong> ? → Oui, j'<strong>y</strong> travaille.</div>
+  </div>
+  <div class="rounded-lg bg-paper border border-rule p-4">
+    <div class="text-xs uppercase tracking-wider text-mute mb-1">Thing introduced by à</div>
+    <div>Je pense <strong>à mon projet</strong>. → J'<strong>y</strong> pense.</div>
+    <div>Elle s'intéresse <strong>à la finance</strong>. → Elle s'<strong>y</strong> intéresse.</div>
+  </div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Verbs to memorise (à + thing)</h4>
+<p class="text-sm text-mute mb-2">These are the verbs you will hit most often in a Swiss professional context:</p>
+<div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+  <div>• penser à</div><div>• s'intéresser à</div>
+  <div>• réfléchir à</div><div>• s'habituer à</div>
+  <div>• songer à</div><div>• se mettre à</div>
+  <div>• répondre à <span class="text-mute">(a letter, a question)</span></div><div>• tenir à <span class="text-mute">(to value, insist on)</span></div>
+  <div>• participer à</div><div>• jouer à <span class="text-mute">(a sport/game)</span></div>
+  <div>• assister à</div><div>• croire à</div>
+  <div>• réussir à</div><div>• consentir à</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Where it sits</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 pr-2 font-semibold">Tense</th><th class="text-left py-2 font-semibold">Example</th></tr></thead>
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-2 text-mute">Simple tense</td><td class="py-2">J'<strong>y</strong> pense.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Compound tense</td><td class="py-2">J'<strong>y</strong> ai pensé toute la nuit.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Negation</td><td class="py-2">Je n'<strong>y</strong> pense pas.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Future (with verb-of-motion + infinitive)</td><td class="py-2">Je vais <strong>y</strong> réfléchir.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Affirmative imperative</td><td class="py-2">Penses-<strong>y</strong> ! <span class="text-mute">(note the -s for euphony)</span></td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Negative imperative</td><td class="py-2">N'<strong>y</strong> pense pas.</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">The trap: people are not « y »</h4>
+<div class="rounded-lg bg-red-50 border border-red-200 p-4 text-sm">
+  <div>✗ Je pense à Marie. → <s>J'y pense.</s></div>
+  <div>✓ Je pense à Marie. → Je pense <strong>à elle</strong>.</div>
+  <div class="mt-2">For people after <em>à</em>, use a <strong>stressed pronoun</strong> (à moi, à toi, à lui, à elle, à nous, à vous, à eux, à elles) — except with verbs that take an indirect object pronoun (see 1.3).</div>
+</div>
+`,
+          examples: [
+            { fr: "Tu réfléchis à l'offre ? — Oui, j'y réfléchis.", note: "thing → y" },
+            { fr: "Elle s'intéresse à la stratégie d'acquisition. → Elle s'y intéresse.", note: "thing → y" },
+            { fr: "On va au bureau ce matin. → On y va.", note: "place → y" },
+            { fr: "Tu as répondu à son mail ? — Pas encore, j'y répondrai cet après-midi.", note: "thing → y, future" },
+            { fr: "Penses-y avant de signer.", note: "imperative + -s for euphony" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "Tu participes à la réunion de 14h ? — Oui, j'___ participe.", answer: "y", hint: "« à + une réunion » → which pronoun?" },
+            { type: "fill", prompt: "Nous réfléchissons à votre proposition. → Nous ___ réfléchissons.", answer: "y" },
+            { type: "fill", prompt: "Elle tient à son indépendance. → Elle ___ tient.", answer: "y" },
+            { type: "mcq", prompt: "« Il s'intéresse à cette nouvelle marque. »  Replace correctly:", choices: ["Il s'en intéresse.", "Il s'y intéresse.", "Il lui intéresse.", "Il l'intéresse."], answer: 1, hint: "s'intéresser takes à; the object is a thing." },
+            { type: "fill", prompt: "Vous croyez à l'innovation ? — Oui, j'___ crois fermement.", answer: "y" },
+            { type: "mcq", prompt: "Which sentence is correct?", choices: ["Je y pense.", "J'y pense.", "Je lui pense.", "Je pense y."], answer: 1, hint: "Elision: « je » + « y » = « j'y »." },
+            { type: "fill", prompt: "Si tu vas à Genève demain, j'___ vais avec toi.", answer: "y" },
+            { type: "transform", prompt: "Transform: « Il s'habitue à sa nouvelle équipe. »", answer: "Il s'y habitue.", hint: "Replace « à sa nouvelle équipe » with y." },
+            { type: "fill", prompt: "Affirmative imperative — encourage your colleague to think about it: ___-y !", answer: "Penses", hint: "tu form of penser + « s » for euphony before y." },
+            { type: "mcq", prompt: "« Elle pense à son fiancé. »  Replace correctly:", choices: ["Elle y pense.", "Elle pense à lui.", "Elle en pense.", "Elle lui pense."], answer: 1, hint: "Person, not thing." },
+            { type: "fill", prompt: "Tu joues au tennis ? — Oui, j'___ joue tous les samedis.", answer: "y" },
+            { type: "transform", prompt: "Rewrite using y: « Nous assisterons à la conférence. »", answer: "Nous y assisterons.", hint: "y goes before the verb." },
+            { type: "fill", prompt: "Past tense: « As-tu pensé à ton entretien ? » — « Oui, j'___ ai pensé tout le week-end. »", answer: "y" },
+            { type: "mcq", prompt: "Negative imperative: « Don't think about it (your old job). »", choices: ["N'y pense pas.", "Ne pense pas y.", "Ne y pense pas.", "Penses-en pas."], answer: 0, hint: "Negation wraps around « y + verb »." },
+            { type: "fill", prompt: "Je me suis enfin habitué au climat suisse. → Je m'___ suis enfin habitué.", answer: "y", hint: "s'habituer à + thing." },
+            { type: "transform", prompt: "Transform: « Il a réussi à son examen. »", answer: "Il y a réussi.", hint: "y goes before the auxiliary." },
+          ],
+          quiz: [
+            { type: "fill", prompt: "« Tu réfléchis à ma proposition ? » — « Oui, j'___ réfléchis. »", answer: "y" },
+            { type: "mcq", prompt: "Replace correctly: « Elle s'intéresse à cette acquisition. »", choices: ["Elle s'en intéresse.", "Elle s'y intéresse.", "Elle l'intéresse.", "Elle lui intéresse."], answer: 1 },
+            { type: "fill", prompt: "« Je tiens à mon avis. » → J'___ tiens.", answer: "y" },
+            { type: "mcq", prompt: "« Il pense à sa femme. »  Correct replacement:", choices: ["Il y pense.", "Il pense à elle.", "Il en pense.", "Il lui pense."], answer: 1 },
+            { type: "transform", prompt: "Rewrite using y: « Vous croyez à cette stratégie. »", answer: "Vous y croyez." },
+            { type: "fill", prompt: "Imperative — push a teammate to think about it: « ___-y avant la réunion ! » (tu form, « penser »)", answer: "Penses" },
+            { type: "fill", prompt: "Past compound: « Nous ___ avons participé hier. » (à la conférence)", answer: "y" },
+          ],
+        },
+
+        /* ------- 1.2  en  ------- */
+        {
+          id: "en",
+          title: "en — the « de + thing » pronoun",
+          summary: "Replaces things introduced by de, partitive articles, and quantities.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">When to use <em>en</em></h3>
+<p><em>en</em> covers three jobs at once: <strong>(a)</strong> things introduced by <em>de</em>, <strong>(b)</strong> partitive articles (du, de la, des), and <strong>(c)</strong> quantities and numbers.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Three jobs</h4>
+<div class="space-y-3">
+  <div class="rounded-lg bg-paper border border-rule p-4">
+    <div class="text-xs uppercase tracking-wider text-mute mb-1">de + thing</div>
+    <div>Nous discutons <strong>de la stratégie</strong>. → Nous <strong>en</strong> discutons.</div>
+    <div>Tu as besoin <strong>d'aide</strong> ? → Tu <strong>en</strong> as besoin ?</div>
+  </div>
+  <div class="rounded-lg bg-paper border border-rule p-4">
+    <div class="text-xs uppercase tracking-wider text-mute mb-1">Partitive (du / de la / des)</div>
+    <div>Tu veux <strong>du café</strong> ? → Tu <strong>en</strong> veux ?</div>
+    <div>Il achète <strong>des fruits</strong>. → Il <strong>en</strong> achète.</div>
+  </div>
+  <div class="rounded-lg bg-paper border border-rule p-4">
+    <div class="text-xs uppercase tracking-wider text-mute mb-1">Quantity — the number/quantity stays at the end</div>
+    <div>J'ai <strong>trois</strong> enfants. → J'<strong>en</strong> ai <strong>trois</strong>.</div>
+    <div>Il a <strong>beaucoup d'</strong>amis. → Il <strong>en</strong> a <strong>beaucoup</strong>.</div>
+    <div>Combien de cafés par jour ? — J'<strong>en</strong> bois <strong>deux</strong>.</div>
+  </div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Verbs to memorise (de + thing)</h4>
+<div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+  <div>• parler de</div><div>• avoir besoin de</div>
+  <div>• discuter de</div><div>• avoir envie de</div>
+  <div>• se souvenir de</div><div>• avoir peur de</div>
+  <div>• se rappeler de</div><div>• s'occuper de</div>
+  <div>• être responsable de</div><div>• profiter de</div>
+  <div>• décider de</div><div>• se servir de <span class="text-mute">(use)</span></div>
+  <div>• se moquer de</div><div>• se plaindre de</div>
+  <div>• rêver de</div><div>• s'agir de</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">The trap: people with <em>de</em></h4>
+<div class="rounded-lg bg-red-50 border border-red-200 p-4 text-sm">
+  <div>For verbs of <strong>emotion</strong> (parler de, se souvenir de, se moquer de) referring to a <em>person</em>, prefer <strong>de + stressed pronoun</strong>:</div>
+  <div class="mt-2">• Je parle de mon frère → Je parle <strong>de lui</strong>. <span class="text-mute">(not « j'en parle »)</span></div>
+  <div>• Elle se souvient de toi.</div>
+  <div class="mt-2">For <em>en</em> with a person is OK only when the person is treated impersonally (« il en a beaucoup » = « he has many [staff] »).</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Position</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-2 text-mute">Simple</td><td class="py-2">J'<strong>en</strong> veux.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Compound</td><td class="py-2">J'<strong>en</strong> ai pris.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Negation</td><td class="py-2">Je n'<strong>en</strong> veux pas.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Quantity</td><td class="py-2">J'<strong>en</strong> ai trois. / Il <strong>en</strong> a beaucoup.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Imperative +</td><td class="py-2">Prends-<strong>en</strong> ! <span class="text-mute">(« s » added to tu form)</span></td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Imperative −</td><td class="py-2">N'<strong>en</strong> prends pas.</td></tr>
+  </tbody>
+</table>
+`,
+          examples: [
+            { fr: "Nous discutons de la fusion. → Nous en discutons.", note: "parler/discuter de + thing" },
+            { fr: "Tu as besoin de plus de temps ? — Oui, j'en ai besoin.", note: "avoir besoin de" },
+            { fr: "Combien de réunions aujourd'hui ? — J'en ai quatre.", note: "quantity — number stays" },
+            { fr: "Elle s'occupe du dossier client. → Elle s'en occupe.", note: "s'occuper de" },
+            { fr: "Prends-en ! (du café)", note: "imperative + -en" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "Nous avons discuté de la stratégie. → Nous ___ avons discuté.", answer: "en" },
+            { type: "fill", prompt: "Tu as besoin de mon aide ? — Oui, j'___ ai besoin.", answer: "en" },
+            { type: "fill", prompt: "Il a beaucoup d'amis. → Il ___ a beaucoup.", answer: "en" },
+            { type: "mcq", prompt: "« Je me souviens bien de cette présentation. »  Replace:", choices: ["Je m'en souviens bien.", "Je me lui souviens bien.", "Je m'y souviens bien.", "Je la souviens bien."], answer: 0 },
+            { type: "fill", prompt: "Combien d'enfants as-tu ? — J'___ ai trois.", answer: "en", hint: "Number stays at the end." },
+            { type: "mcq", prompt: "Which is correct?", choices: ["Je en veux.", "J'en veux.", "Je veux en.", "Je lui veux."], answer: 1 },
+            { type: "transform", prompt: "Replace with en: « Tu profites de tes vacances ? »", answer: "Tu en profites ?" },
+            { type: "fill", prompt: "Imperative — offer some bread: « ___-en, ils sont délicieux ! » (tu form, prendre)", answer: "Prends" },
+            { type: "fill", prompt: "Il a peur des changements. → Il ___ a peur.", answer: "en" },
+            { type: "mcq", prompt: "« Je rêve d'une maison à la montagne. »", choices: ["J'y rêve.", "J'en rêve.", "Je lui rêve.", "Je la rêve."], answer: 1 },
+            { type: "fill", prompt: "Past tense: « As-tu parlé de cette idée à ton chef ? » — « Oui, je lui ___ ai parlé hier. »", answer: "en" },
+            { type: "transform", prompt: "Replace with en: « Nous nous occuperons de ce dossier. »", answer: "Nous nous en occuperons." },
+            { type: "fill", prompt: "Vous voulez du vin ? — Non merci, je n'___ veux pas.", answer: "en" },
+            { type: "mcq", prompt: "« Je parle de mon frère » — best replacement:", choices: ["J'en parle.", "Je parle de lui.", "Je lui parle.", "J'y parle."], answer: 1, hint: "Person + verb of emotion/affection → prefer de + stressed pronoun." },
+            { type: "fill", prompt: "Il se sert de ce logiciel chaque jour. → Il s'___ sert chaque jour.", answer: "en" },
+            { type: "transform", prompt: "Replace with en: « Elle est responsable de ce projet. »", answer: "Elle en est responsable." },
+          ],
+          quiz: [
+            { type: "fill", prompt: "« Nous avons discuté de la stratégie. » → Nous ___ avons discuté.", answer: "en" },
+            { type: "mcq", prompt: "« Il a besoin de cinq jours pour finir. »", choices: ["Il y a besoin de cinq jours.", "Il en a besoin de cinq.", "Il en a besoin cinq.", "Il lui a besoin de cinq."], answer: 1, hint: "Quantity « de cinq » becomes part of « en … cinq »." },
+            { type: "fill", prompt: "Combien d'enfants ont-ils ? — Ils ___ ont deux.", answer: "en" },
+            { type: "transform", prompt: "Replace with en: « Tu te souviens de notre première réunion ? »", answer: "Tu t'en souviens ?" },
+            { type: "mcq", prompt: "« Elle parle souvent de son patron. » (a person)  Most natural:", choices: ["Elle en parle souvent.", "Elle parle souvent de lui.", "Elle y parle souvent.", "Elle lui parle souvent."], answer: 1 },
+            { type: "fill", prompt: "Imperative offering pastries: « ___-en encore ! » (tu form, prendre)", answer: "Prends" },
+            { type: "fill", prompt: "Je n'ai pas envie d'y aller. → Je n'___ ai pas envie.", answer: "en" },
+          ],
+        },
+
+        /* ------- 1.3  lui / leur  ------- */
+        {
+          id: "lui-leur",
+          title: "lui · leur — indirect object pronouns for people",
+          summary: "When the indirect object is a person, use lui (singular) or leur (plural).",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">When to use <em>lui</em> and <em>leur</em></h3>
+<p><strong>lui</strong> (singular, any gender) and <strong>leur</strong> (plural, any gender) replace <em>à + a person</em> for verbs of communication, giving, or showing.</p>
+<p class="mt-2">This was the source of Q5 in your diagnostic — « Je ___ ai envoyé le rapport ». You wrote <em>les</em>, but <em>les</em> is the <strong>direct</strong> object pronoun. Here the rapport is the direct object, and the investors are the indirect object (you sent something <em>to them</em>) — so the answer is <strong>leur</strong>.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Test: direct or indirect?</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p class="mb-2">Ask: does the verb have « <strong>à quelqu'un</strong> » in its construction?</p>
+  <ul class="space-y-1">
+    <li>• <strong>parler à</strong> qqn → Je <strong>lui</strong> parle.</li>
+    <li>• <strong>écrire à</strong> qqn → Je <strong>lui</strong> écris.</li>
+    <li>• <strong>envoyer</strong> qqch <strong>à</strong> qqn → Je <strong>lui</strong> envoie le rapport.</li>
+    <li>• <strong>voir</strong> qqn (no à!) → Je <strong>le</strong>/<strong>la</strong>/<strong>les</strong> vois. <span class="text-mute">(direct, not lui)</span></li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Common verbs (à + person)</h4>
+<div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+  <div>• parler à</div><div>• demander à</div>
+  <div>• dire à</div><div>• expliquer à</div>
+  <div>• écrire à</div><div>• montrer à</div>
+  <div>• répondre à</div><div>• offrir à</div>
+  <div>• donner à</div><div>• prêter à</div>
+  <div>• envoyer à</div><div>• rendre à</div>
+  <div>• apprendre à <span class="text-mute">(teach)</span></div><div>• téléphoner à</div>
+  <div>• ressembler à</div><div>• obéir à</div>
+  <div>• plaire à</div><div>• manquer à <span class="text-mute">(« il me manque »)</span></div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Direct vs indirect — the look-alikes</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Direct</th><th class="text-left py-2 font-semibold">Indirect</th></tr></thead>
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2"><strong>le</strong> / <strong>la</strong> / <strong>les</strong></td><td class="py-2"><strong>lui</strong> (sing) / <strong>leur</strong> (pl)</td></tr>
+    <tr><td class="py-2 align-top">Je <strong>le</strong> vois (je vois <em>lui</em>)</td><td class="py-2 align-top">Je <strong>lui</strong> parle (je parle <em>à lui</em>)</td></tr>
+    <tr><td class="py-2 align-top">Je <strong>les</strong> regarde</td><td class="py-2 align-top">Je <strong>leur</strong> écris</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Past participle agreement</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>With <em>avoir</em>, the past participle agrees with a <strong>direct</strong> object placed before the verb — but <strong>never</strong> with <em>lui</em> / <em>leur</em>:</p>
+  <p class="mt-2">• Les rapports ? Je <strong>les ai envoyés</strong>. <span class="text-mute">(direct → agrees: -s)</span></p>
+  <p>• Aux investisseurs ? Je <strong>leur ai envoyé</strong> le rapport. <span class="text-mute">(indirect → no agreement)</span></p>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Position — same as y / en</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-2 text-mute">Simple</td><td class="py-2">Je <strong>lui</strong> parle.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Compound</td><td class="py-2">Je <strong>lui</strong> ai parlé.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Negation</td><td class="py-2">Je ne <strong>lui</strong> parle pas.</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Affirmative imperative</td><td class="py-2">Parle-<strong>lui</strong> ! / Parlez-<strong>leur</strong> !</td></tr>
+    <tr><td class="py-2 pr-2 text-mute">Negative imperative</td><td class="py-2">Ne <strong>lui</strong> parle pas.</td></tr>
+  </tbody>
+</table>
+`,
+          examples: [
+            { fr: "J'ai envoyé le rapport aux investisseurs. → Je leur ai envoyé le rapport.", note: "the rapport is direct; the investors are indirect" },
+            { fr: "Tu as répondu à Marie ? — Oui, je lui ai répondu ce matin.", note: "person + à → lui" },
+            { fr: "Il téléphone à son chef tous les vendredis. → Il lui téléphone tous les vendredis.", note: "téléphoner à qqn → lui" },
+            { fr: "Cette stratégie plaît aux actionnaires. → Cette stratégie leur plaît.", note: "plaire à qqn → leur" },
+            { fr: "Parle-leur de ton idée !", note: "imperative + leur" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "J'ai envoyé le rapport aux investisseurs. → Je ___ ai envoyé le rapport.", answer: "leur", hint: "Indirect object, plural → ?" },
+            { type: "mcq", prompt: "« Je téléphone à mon avocat. » Replace correctly:", choices: ["Je le téléphone.", "Je lui téléphone.", "Je l'y téléphone.", "Je en téléphone."], answer: 1 },
+            { type: "fill", prompt: "Tu as répondu à Marie ? — Oui, je ___ ai répondu ce matin.", answer: "lui" },
+            { type: "fill", prompt: "Il offre des fleurs à sa femme. → Il ___ offre des fleurs.", answer: "lui" },
+            { type: "mcq", prompt: "Direct or indirect? « Je regarde mes collègues. »  →", choices: ["Je leur regarde.", "Je les regarde.", "Je lui regarde.", "Je en regarde."], answer: 1, hint: "regarder takes no à — direct object." },
+            { type: "fill", prompt: "Cette idée plaît à mes collègues. → Cette idée ___ plaît.", answer: "leur" },
+            { type: "fill", prompt: "Imperative — tell your team to call her: « ___-lui ! » (vous form, téléphoner)", answer: "Téléphonez" },
+            { type: "transform", prompt: "Replace: « Il demande de l'aide à ses parents. »", answer: "Il leur demande de l'aide.", hint: "demander qqch à qqn → indirect object pronoun before verb." },
+            { type: "mcq", prompt: "« Nous voyons souvent nos voisins. »", choices: ["Nous leur voyons souvent.", "Nous les voyons souvent.", "Nous y voyons souvent.", "Nous en voyons souvent."], answer: 1 },
+            { type: "fill", prompt: "Past with no agreement: J'ai parlé à mes parents. → Je ___ ai ___.", answer: "leur parlé", hint: "Past participle does NOT agree with leur." },
+            { type: "mcq", prompt: "Which verb takes lui/leur (indirect)?", choices: ["voir", "regarder", "écouter", "écrire à"], answer: 3 },
+            { type: "fill", prompt: "Il manque à ses enfants. → Il ___ manque.", answer: "leur", hint: "manquer à qqn = to be missed by someone." },
+            { type: "transform", prompt: "Replace: « Elle apprend le français à ses élèves. »", answer: "Elle leur apprend le français.", hint: "apprendre qqch à qqn → leur for plural indirect." },
+            { type: "fill", prompt: "Vous avez expliqué la situation à votre patronne ? — Oui, je ___ ai tout expliqué.", answer: "lui" },
+            { type: "mcq", prompt: "« Donne ce dossier au directeur. » (imperative)", choices: ["Donne-le-lui.", "Donne-lui-le.", "Lui donne-le.", "Donne lui le."], answer: 0, hint: "Order: direct (le) before indirect (lui) in affirmative imperative." },
+            { type: "fill", prompt: "Il ressemble à son père. → Il ___ ressemble.", answer: "lui" },
+          ],
+          quiz: [
+            { type: "fill", prompt: "J'ai envoyé le rapport aux investisseurs. → Je ___ ai envoyé le rapport.", answer: "leur" },
+            { type: "mcq", prompt: "« Tu téléphones à ta sœur ? » →", choices: ["Tu la téléphones ?", "Tu lui téléphones ?", "Tu y téléphones ?", "Tu en téléphones ?"], answer: 1 },
+            { type: "fill", prompt: "Cette stratégie plaît à nos clients. → Cette stratégie ___ plaît.", answer: "leur" },
+            { type: "mcq", prompt: "« Je vois mes parents ce week-end. »", choices: ["Je leur vois.", "Je les vois.", "Je y vois.", "Je en vois."], answer: 1 },
+            { type: "fill", prompt: "Past tense: « As-tu écrit à ton chef ? » — « Oui, je ___ ai écrit hier soir. »", answer: "lui" },
+            { type: "transform", prompt: "Replace: « Elle a expliqué la procédure aux nouveaux. »", answer: "Elle leur a expliqué la procédure." },
+            { type: "fill", prompt: "Il manque à sa famille. → Il ___ manque.", answer: "lui" },
+          ],
+        },
+
+        /* ------- 1.4  decision tree  ------- */
+        {
+          id: "decision-tree",
+          title: "Which pronoun? Decision tree",
+          summary: "A 30-second mental checklist to pick the right pronoun every time.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">A simple decision tree</h3>
+<p>The four pronouns y, en, lui, leur each have an obvious test. Run through them in order:</p>
+
+<div class="space-y-3 mt-5">
+  <div class="rounded-lg border border-navy/20 p-4 bg-white">
+    <div class="font-semibold text-navy">Step 1 — Is the object a person?</div>
+    <div class="text-sm mt-1 text-mute">If <strong>yes</strong>: go to Step 2. If <strong>no</strong>: skip to Step 3.</div>
+  </div>
+  <div class="rounded-lg border border-navy/20 p-4 bg-white">
+    <div class="font-semibold text-navy">Step 2 — (person) Does the verb take « à » ?</div>
+    <div class="text-sm mt-1">• <strong>Yes</strong>, à qqn (parler à, écrire à, dire à…) → <strong>lui</strong> / <strong>leur</strong></div>
+    <div class="text-sm">• <strong>No</strong>, direct (voir, regarder, aimer, connaître…) → <strong>le</strong> / <strong>la</strong> / <strong>les</strong></div>
+    <div class="text-sm">• <strong>Yes</strong>, but with verbs of emotion (penser à qqn, tenir à qqn) → keep « à + stressed pronoun » (à lui, à elle…)</div>
+  </div>
+  <div class="rounded-lg border border-navy/20 p-4 bg-white">
+    <div class="font-semibold text-navy">Step 3 — (thing) Is the verb followed by « à » or « de » ?</div>
+    <div class="text-sm mt-1">• <strong>à</strong> (penser à, s'intéresser à, tenir à…) → <strong>y</strong></div>
+    <div class="text-sm">• <strong>de</strong> (parler de, avoir besoin de…) → <strong>en</strong></div>
+    <div class="text-sm">• Direct object, no preposition (voir, prendre, manger…) → <strong>le</strong> / <strong>la</strong> / <strong>les</strong></div>
+    <div class="text-sm">• Quantity / partitive → <strong>en</strong></div>
+  </div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Worked examples</h4>
+<table class="w-full text-sm border-collapse">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Sentence</th><th class="text-left py-2 font-semibold">Reasoning</th><th class="text-left py-2 font-semibold">Result</th></tr></thead>
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-3">Je pense à mon projet.</td><td class="py-2 pr-3 text-mute">Thing + à</td><td class="py-2">J'<strong>y</strong> pense.</td></tr>
+    <tr><td class="py-2 pr-3">Je pense à Marie.</td><td class="py-2 pr-3 text-mute">Person + à (penser à) → keep à + stressed</td><td class="py-2">Je pense <strong>à elle</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">Je parle à Marie.</td><td class="py-2 pr-3 text-mute">Person + à (parler à) → lui</td><td class="py-2">Je <strong>lui</strong> parle.</td></tr>
+    <tr><td class="py-2 pr-3">Je parle de Marie.</td><td class="py-2 pr-3 text-mute">Person + de (emotion) → de + stressed</td><td class="py-2">Je parle <strong>d'elle</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">Je discute de la fusion.</td><td class="py-2 pr-3 text-mute">Thing + de</td><td class="py-2">J'<strong>en</strong> discute.</td></tr>
+    <tr><td class="py-2 pr-3">J'ai vu Marie.</td><td class="py-2 pr-3 text-mute">Person, direct</td><td class="py-2">Je <strong>l'</strong>ai vue.</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Verbs that look similar but take different prepositions</h4>
+<div class="rounded-lg bg-yellow-50 border border-yellow-300 p-4 text-sm">
+  <ul class="space-y-1">
+    <li>• <strong>parler à</strong> qqn (talk to) vs <strong>parler de</strong> qqch (talk about)</li>
+    <li>• <strong>penser à</strong> qqn/qqch (think about) vs <strong>penser de</strong> (to have an opinion of, only in questions)</li>
+    <li>• <strong>jouer à</strong> un sport vs <strong>jouer de</strong> un instrument</li>
+    <li>• <strong>se servir de</strong> (use) — always de</li>
+    <li>• <strong>profiter de</strong> — always de</li>
+    <li>• <strong>tenir à</strong> qqn/qqch (to value, to insist on) — always à</li>
+  </ul>
+</div>
+`,
+          examples: [
+            { fr: "Je pense à mon projet → J'y pense.   |   Je pense à Marie → Je pense à elle.", note: "« penser à » + thing vs person" },
+            { fr: "Je parle à Marie → Je lui parle.   |   Je parle de Marie → Je parle d'elle.", note: "« à » vs « de » with people" },
+            { fr: "Je joue au tennis → J'y joue.   |   Je joue du piano → J'en joue.", note: "à vs de with hobbies" },
+            { fr: "Je tiens à mon avis → J'y tiens.   |   Je tiens à mes parents → Je tiens à eux.", note: "tenir à thing vs person" },
+            { fr: "J'ai besoin de toi → J'ai besoin de toi (person, kept). J'ai besoin de temps → J'en ai besoin.", note: "avoir besoin de" },
+          ],
+          exercises: [
+            { type: "mcq", prompt: "« Tu réfléchis à mon offre ? » →", choices: ["Tu y réfléchis ?", "Tu en réfléchis ?", "Tu lui réfléchis ?", "Tu la réfléchis ?"], answer: 0 },
+            { type: "mcq", prompt: "« Tu parles à Sophie ? » →", choices: ["Tu y parles ?", "Tu en parles ?", "Tu lui parles ?", "Tu la parles ?"], answer: 2 },
+            { type: "mcq", prompt: "« Tu parles de Sophie ? » →", choices: ["Tu y parles ?", "Tu en parles ?", "Tu parles d'elle ?", "Tu lui parles ?"], answer: 2, hint: "Person + de (emotion) → de + stressed pronoun is most natural." },
+            { type: "mcq", prompt: "« Elle a besoin de deux jours. » →", choices: ["Elle y a besoin.", "Elle en a besoin de deux.", "Elle en a besoin deux.", "Elle leur a besoin."], answer: 1 },
+            { type: "mcq", prompt: "« Je joue du piano. » →", choices: ["J'y joue.", "J'en joue.", "Je le joue.", "Je lui joue."], answer: 1, hint: "jouer DE un instrument → en." },
+            { type: "mcq", prompt: "« Je joue au tennis. » →", choices: ["J'y joue.", "J'en joue.", "Je le joue.", "Je lui joue."], answer: 0, hint: "jouer À un sport → y." },
+            { type: "fill", prompt: "Il ressemble à son frère. → Il ___ ressemble.", answer: "lui" },
+            { type: "fill", prompt: "Il s'intéresse à la peinture. → Il s'___ intéresse.", answer: "y" },
+            { type: "fill", prompt: "Il discute de la stratégie avec son équipe. → Il ___ discute avec son équipe.", answer: "en" },
+            { type: "mcq", prompt: "« Tu te souviens de ton premier jour ? » →", choices: ["Tu y te souviens ?", "Tu t'en souviens ?", "Tu te lui souviens ?", "Tu te le souviens ?"], answer: 1 },
+            { type: "mcq", prompt: "« Tu te souviens de Pierre ? » →", choices: ["Tu t'en souviens ?", "Tu te souviens de lui ?", "Tu te lui souviens ?", "Tu y te souviens ?"], answer: 1, hint: "Person → de + stressed pronoun for souvenirs." },
+            { type: "fill", prompt: "Mark says: « J'envoie un mail à mon chef. »  Replace 'à mon chef': J'___ envoie un mail.", answer: "lui" },
+            { type: "mcq", prompt: "« Mes employés ont besoin de formation. »", choices: ["Ils y ont besoin.", "Ils en ont besoin.", "Ils leur ont besoin.", "Ils l'ont besoin."], answer: 1 },
+            { type: "fill", prompt: "Je tiens à cette stratégie. → J'___ tiens.", answer: "y" },
+            { type: "fill", prompt: "Je tiens à mes parents. → Je tiens ___ ___.", answer: "à eux", hint: "« tenir à » + person stays with à + stressed pronoun." },
+          ],
+          quiz: [
+            { type: "mcq", prompt: "« Tu parles à ta chef ? » →", choices: ["Tu y parles ?", "Tu en parles ?", "Tu lui parles ?", "Tu la parles ?"], answer: 2 },
+            { type: "mcq", prompt: "« Tu parles de ta chef ? » →", choices: ["Tu en parles ?", "Tu parles d'elle ?", "Tu y parles ?", "Tu lui parles ?"], answer: 1 },
+            { type: "mcq", prompt: "« Il s'intéresse à la finance. » →", choices: ["Il s'y intéresse.", "Il s'en intéresse.", "Il l'intéresse.", "Il lui intéresse."], answer: 0 },
+            { type: "mcq", prompt: "« J'ai besoin de votre signature. » →", choices: ["J'y ai besoin.", "J'en ai besoin.", "Je vous ai besoin.", "Je l'ai besoin."], answer: 1 },
+            { type: "fill", prompt: "« Elle joue de la guitare. » → Elle ___ joue.", answer: "en" },
+            { type: "fill", prompt: "« Il téléphone à ses enfants chaque soir. » → Il ___ téléphone chaque soir.", answer: "leur" },
+            { type: "fill", prompt: "« Tu te souviens de notre dîner ? » → Tu t'___ souviens ?", answer: "en" },
+          ],
+        },
+
+        /* ------- 1.5  order  ------- */
+        {
+          id: "order",
+          title: "Combining pronouns — position & order",
+          summary: "When two pronouns meet in the same sentence, the order is fixed.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">Standard order in declarative sentences</h3>
+<p>When multiple pronouns appear together <strong>before the verb</strong>, the order is strict:</p>
+<div class="rounded-lg bg-paper border border-rule p-4 my-3 font-mono text-center">
+  me · te · se · nous · vous &nbsp; &lt; &nbsp; le · la · les &nbsp; &lt; &nbsp; lui · leur &nbsp; &lt; &nbsp; <strong>y</strong> &nbsp; &lt; &nbsp; <strong>en</strong>
+</div>
+<p class="text-sm text-mute">Read: « group 1 comes before group 2 before group 3… ». You'll almost never have all of them at once — usually 2.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Most common combinations</h4>
+<table class="w-full text-sm border-collapse">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Sentence</th><th class="text-left py-2 font-semibold">With pronouns</th></tr></thead>
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-3">Je donne le rapport à Marie.</td><td class="py-2">Je <strong>le lui</strong> donne. <span class="text-mute">(direct + indirect-person)</span></td></tr>
+    <tr><td class="py-2 pr-3">Je parle de cette idée à Marie.</td><td class="py-2">Je <strong>lui en</strong> parle.</td></tr>
+    <tr><td class="py-2 pr-3">Il m'a envoyé le contrat.</td><td class="py-2">Il <strong>me l'</strong>a envoyé.</td></tr>
+    <tr><td class="py-2 pr-3">Tu as donné de l'argent à tes parents ?</td><td class="py-2">Tu <strong>leur en</strong> as donné ?</td></tr>
+    <tr><td class="py-2 pr-3">Il y a de la place ?</td><td class="py-2">Il <strong>y en</strong> a.</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Affirmative imperative — order flips</h4>
+<p>In the <strong>affirmative imperative</strong>, the pronouns come <strong>after</strong> the verb, joined by hyphens, and the order changes:</p>
+<div class="rounded-lg bg-paper border border-rule p-4 my-3 font-mono text-center">
+  verbe-<strong>direct</strong>-<strong>indirect</strong>-<strong>y</strong>-<strong>en</strong>
+</div>
+<p class="text-sm text-mute">Also: <strong>me</strong> → moi and <strong>te</strong> → toi (except before y/en).</p>
+<table class="w-full text-sm border-collapse">
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-3">Donne-moi le livre.</td><td class="py-2">Donne-<strong>le-moi</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">Dis-le à ton chef.</td><td class="py-2">Dis-<strong>le-lui</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">Donne-en à Pierre.</td><td class="py-2">Donne-<strong>lui-en</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">Va à la réunion.</td><td class="py-2">Vas-<strong>y</strong>. <span class="text-mute">(extra -s)</span></td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Negative imperative — same as normal</h4>
+<p>In the <strong>negative</strong> imperative, the pronouns return to their normal pre-verbal position and standard order:</p>
+<table class="w-full text-sm border-collapse">
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-3">Affirmative: Donne-le-lui.</td><td class="py-2">Negative: Ne le lui donne pas.</td></tr>
+    <tr><td class="py-2 pr-3">Affirmative: Vas-y.</td><td class="py-2">Negative: N'y va pas.</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Past participle agreement (compound tenses)</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>The participle agrees with a <strong>direct</strong> object that comes before the verb.</p>
+  <ul class="mt-2 space-y-1">
+    <li>• Les contrats ? Je <strong>les ai signés</strong>. <span class="text-mute">(les is direct → agreement)</span></li>
+    <li>• Je <strong>leur ai envoyé</strong> les contrats. <span class="text-mute">(leur is indirect → no agreement)</span></li>
+    <li>• Les contrats, je <strong>les leur ai envoyés</strong>. <span class="text-mute">(les is direct, before verb → agreement)</span></li>
+  </ul>
+</div>
+`,
+          examples: [
+            { fr: "Je donne le rapport à Marie → Je le lui donne.", note: "direct (le) before indirect-person (lui)" },
+            { fr: "Tu parles de ce projet à ton chef ? → Tu lui en parles ?", note: "indirect-person (lui) before en" },
+            { fr: "Il m'a envoyé le mail → Il me l'a envoyé.", note: "me before le; elision l'" },
+            { fr: "Donne-le-moi.   |  Ne me le donne pas.", note: "imperative order flips affirmative vs negative" },
+            { fr: "Vas-y !  |  N'y va pas.", note: "imperative euphony -s, then drops in negative" },
+          ],
+          exercises: [
+            { type: "transform", prompt: "Replace both pronouns: « Je donne le contrat à Pierre. »", answer: "Je le lui donne.", hint: "direct (le) then indirect (lui)." },
+            { type: "transform", prompt: "Replace both: « Elle parle de la fusion à son équipe. »", answer: "Elle lui en parle." },
+            { type: "transform", prompt: "Replace both: « Il a envoyé les contrats aux clients. »", answer: "Il les leur a envoyés.", hint: "Agreement: les is direct, before verb, so participe accord en -s." },
+            { type: "mcq", prompt: "« Donne-moi le livre. »  →", choices: ["Donne-le-moi.", "Donne-moi-le.", "Me le donne.", "Le moi donne."], answer: 0 },
+            { type: "mcq", prompt: "Negative imperative: « Don't tell it to her. »", choices: ["Ne le lui dis pas.", "Ne lui le dis pas.", "Dis-le-lui pas.", "Ne dis-le-lui pas."], answer: 0 },
+            { type: "fill", prompt: "Replace 'à Pierre' and 'du dossier' both: « Je parle du dossier à Pierre. » → Je ___ ___ parle.", answer: "lui en" },
+            { type: "transform", prompt: "Replace both: « Tu m'as envoyé le mail. »", answer: "Tu me l'as envoyé." },
+            { type: "mcq", prompt: "« Vas à la pharmacie ! »  →", choices: ["Va-y !", "Vas-y !", "Y va !", "Y vas !"], answer: 1, hint: "Add -s before y for euphony." },
+            { type: "fill", prompt: "« Il y a du café ? »  →  Oui, il ___ ___ a.", answer: "y en", hint: "y before en." },
+            { type: "transform", prompt: "Affirmative imperative — tell your assistant to send it to the client: « Envoyer-le-lui. » Correct?", answer: "Envoyez-le-lui.", hint: "vous form imperative." },
+            { type: "mcq", prompt: "Past participle: « Les rapports, je les leur ai ___. » (envoyer)", choices: ["envoyé", "envoyés", "envoyée", "envoyées"], answer: 1, hint: "les is direct masculine plural, before verb." },
+            { type: "transform", prompt: "Replace both: « Donne de l'eau aux enfants ! »", answer: "Donne-leur-en !" },
+            { type: "mcq", prompt: "« Je ne lui ai pas parlé de ce projet. » Add « en »:", choices: ["Je ne lui en ai pas parlé.", "Je ne en lui ai pas parlé.", "Je ne lui ai pas en parlé.", "Je n'en lui ai pas parlé."], answer: 0 },
+            { type: "fill", prompt: "« Combien d'employés a-t-elle ? » — Elle ___ ___ a vingt.", answer: "en a", hint: "wait — only en is needed; vingt stays at the end." },
+            { type: "transform", prompt: "Replace both pronouns: « Il a expliqué la stratégie à ses managers. »", answer: "Il la leur a expliquée.", hint: "la is direct feminine sing; agreement → -e." },
+          ],
+          quiz: [
+            { type: "transform", prompt: "Replace both: « Je donne le rapport à mon chef. »", answer: "Je le lui donne." },
+            { type: "transform", prompt: "Replace both: « Elle a envoyé les contrats à ses clients. »", answer: "Elle les leur a envoyés.", hint: "Past participle agrees with les (direct, before verb)." },
+            { type: "mcq", prompt: "« Donne-moi le sel. » → ", choices: ["Donne-moi-le.", "Donne-le-moi.", "Me le donne.", "Lui donne le."], answer: 1 },
+            { type: "mcq", prompt: "Negative imperative: « Don't say it to him. »", choices: ["Ne le lui dis pas.", "Ne dis-le-lui pas.", "Ne lui le dis pas.", "Dis-le-lui pas."], answer: 0 },
+            { type: "fill", prompt: "« Tu parles de tes idées à ton équipe ? » → Tu ___ ___ parles ?", answer: "leur en" },
+            { type: "transform", prompt: "Affirmative imperative — tell your colleague to go there: ___-___ !", answer: "Vas-y" },
+            { type: "mcq", prompt: "Past with two pronouns: « Les fleurs, il les lui a ___. » (offrir)", choices: ["offert", "offerts", "offerte", "offertes"], answer: 3, hint: "les fleurs = feminine plural, direct, before verb → offertes." },
+          ],
+        },
+      ],
+
+      /* end-of-pillar comprehensive quiz */
+      sectionQuiz: [
+        { type: "mcq", prompt: "[Pronouns Q1] « Il s'intéresse à cette nouvelle marque. » →", choices: ["Il s'en intéresse.", "Il s'y intéresse.", "Il l'intéresse.", "Il lui intéresse."], answer: 1 },
+        { type: "fill", prompt: "[Pronouns Q2] Nous avons discuté de la stratégie ce matin. → Nous ___ avons discuté ce matin.", answer: "en" },
+        { type: "fill", prompt: "[Pronouns Q3] J'ai envoyé le rapport aux investisseurs. → Je ___ ai envoyé le rapport.", answer: "leur" },
+        { type: "mcq", prompt: "[Pronouns Q4] « Je pense à ma fille. » →", choices: ["J'y pense.", "Je pense à elle.", "Je lui pense.", "J'en pense."], answer: 1, hint: "Person after « penser à » → kept as à + stressed pronoun." },
+        { type: "fill", prompt: "[Pronouns Q5] « Tu te souviens de notre première rencontre ? » → Tu t'___ souviens ?", answer: "en" },
+        { type: "transform", prompt: "[Pronouns Q6] Replace both pronouns: « Il a envoyé le contrat à son avocat. »", answer: "Il le lui a envoyé." },
+        { type: "fill", prompt: "[Pronouns Q7] Imperative — go to the meeting: ___-___ !", answer: "Vas-y" },
+        { type: "mcq", prompt: "[Pronouns Q8] « Tu téléphones à ta sœur ? » →", choices: ["Tu l'y téléphones ?", "Tu lui téléphones ?", "Tu la téléphones ?", "Tu en téléphones ?"], answer: 1 },
+        { type: "fill", prompt: "[Pronouns Q9] Cette idée plaît à mes collègues. → Cette idée ___ plaît.", answer: "leur" },
+        { type: "mcq", prompt: "[Pronouns Q10] « Elle joue du violon. » →", choices: ["Elle y joue.", "Elle en joue.", "Elle le joue.", "Elle lui joue."], answer: 1 },
+        { type: "fill", prompt: "[Pronouns Q11] « Tu participes à la réunion ? » → Tu ___ participes ?", answer: "y" },
+        { type: "transform", prompt: "[Pronouns Q12] Replace both: « Elle a expliqué la procédure aux nouveaux. »", answer: "Elle la leur a expliquée." },
+        { type: "mcq", prompt: "[Pronouns Q13] « J'ai besoin de trois jours. » →", choices: ["J'y ai besoin de trois.", "J'en ai besoin de trois.", "J'en ai besoin trois.", "J'ai besoin de trois."], answer: 2, hint: "« en + verb + quantité »: J'en ai besoin trois — the number stays at the end without 'de'." },
+        { type: "fill", prompt: "[Pronouns Q14] Past tense: « Avez-vous répondu au mail du client ? » — « Oui, j'___ ai répondu hier. »", answer: "y" },
+        { type: "mcq", prompt: "[Pronouns Q15] Negative imperative: « Don't speak to her about it. »", choices: ["Ne lui en parle pas.", "Ne lui parle pas en.", "N'en lui parle pas.", "Ne parle-lui-en pas."], answer: 0 },
+      ],
+    },
+
+    /* ============================================================ */
+    /* PILLAR 2 — SUBJUNCTIVE                                        */
+    /* ============================================================ */
+    {
+      id: "subjunctive",
+      title: "The Subjunctive",
+      subtitle: "Triggers, regulars, irregulars",
+      tagline: "Express opinions, emotions, and necessities the way native speakers do.",
+      intro: `<p>The subjunctive (<em>le subjonctif</em>) is not a tense — it's a <strong>mood</strong>. French triggers it after a small set of expressions where the verb's action is not stated as fact but as <em>wanted, feared, doubted, judged, or hypothetical</em>. Two of your diagnostic errors (Q6 « comprenne » and Q7 « trouvions ») came from missing these triggers — once the triggers are reflex, the subjunctive becomes automatic.</p>
+        <p>Plan: <strong>(1)</strong> drill the 5 trigger categories until they jump off the page; <strong>(2)</strong> nail the regular endings; <strong>(3)</strong> memorise the 9 irregular subjunctives you hit constantly in business French; <strong>(4)</strong> learn when NOT to use it — espérer, je pense que (affirmative), il est certain que.</p>`,
+      subsections: [
+        /* ------- 2.1  Triggers  ------- */
+        {
+          id: "triggers",
+          title: "Triggers — when subjunctive is required",
+          summary: "5 categories: impersonal necessity, emotion, will, doubt, conjunctions.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">The 5 trigger categories</h3>
+<p>The subjunctive only appears in <strong>subordinate clauses introduced by que</strong>. The trigger sits before the « que ». Memorise the 5 buckets — that's the whole game.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">① Impersonal expressions of necessity or judgment</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-1">
+    <div>• <strong>il faut que</strong></div><div>• il est dommage que</div>
+    <div>• il est nécessaire que</div><div>• il vaut mieux que</div>
+    <div>• il est important que</div><div>• il est temps que</div>
+    <div>• il est indispensable que</div><div>• il est rare que</div>
+    <div>• il est essentiel que</div><div>• il est surprenant que</div>
+    <div>• il est possible que</div><div>• il est normal que</div>
+    <div>• il est impossible que</div><div>• il convient que</div>
+  </div>
+  <div class="mt-3 pt-3 border-t border-rule italic">Il est indispensable que l'acheteur <strong>comprenne</strong> la valeur de notre portefeuille. <span class="text-mute">(your Q6 — comprendre → comprenne)</span></div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">② Emotion (any feeling about the verb's action)</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-1">
+    <div>• être content / heureux que</div><div>• regretter que</div>
+    <div>• être ravi que</div><div>• avoir peur que</div>
+    <div>• être satisfait que</div><div>• craindre que</div>
+    <div>• être triste / désolé que</div><div>• se réjouir que</div>
+    <div>• être surpris / étonné que</div><div>• être fier que</div>
+    <div>• être fâché / déçu que</div><div>• adorer / détester que</div>
+  </div>
+  <div class="mt-3 pt-3 border-t border-rule italic">Je suis ravi que nous <strong>trouvions</strong> un accord sur la valorisation. <span class="text-mute">(your Q7 — trouver → trouvions)</span></div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">③ Will / volition / order</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-1">
+    <div>• <strong>vouloir que</strong></div><div>• exiger que</div>
+    <div>• désirer que</div><div>• ordonner que</div>
+    <div>• souhaiter que</div><div>• demander que</div>
+    <div>• préférer que</div><div>• permettre que</div>
+    <div>• aimer mieux que</div><div>• défendre / interdire que</div>
+    <div>• suggérer / proposer que</div><div>• attendre que</div>
+  </div>
+  <div class="mt-3 pt-3 border-t border-rule italic">Je veux qu'il <strong>fasse</strong> le rapport pour vendredi.</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">④ Doubt / uncertainty (often after negation)</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <div>• douter que</div>
+  <div>• nier que</div>
+  <div>• <strong>ne pas penser / croire / trouver que</strong> <span class="text-mute">(only when negative!)</span></div>
+  <div>• ne pas être sûr / certain que</div>
+  <div class="mt-3 pt-3 border-t border-rule italic">Je ne pense pas qu'il <strong>vienne</strong> demain. <span class="text-mute">(Je pense qu'il vient = indicative)</span></div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">⑤ Specific conjunctions</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-1">
+    <div>• <strong>bien que</strong> / quoique <span class="text-mute">(although)</span></div><div>• jusqu'à ce que <span class="text-mute">(until)</span></div>
+    <div>• pour que / afin que <span class="text-mute">(so that)</span></div><div>• à condition que <span class="text-mute">(provided)</span></div>
+    <div>• <strong>avant que</strong> <span class="text-mute">(before)</span></div><div>• à moins que <span class="text-mute">(unless)</span></div>
+    <div>• sans que <span class="text-mute">(without)</span></div><div>• pourvu que <span class="text-mute">(provided)</span></div>
+    <div>• de peur / crainte que <span class="text-mute">(for fear)</span></div><div>• en attendant que <span class="text-mute">(while waiting)</span></div>
+  </div>
+  <div class="mt-3 pt-3 border-t border-rule italic">Bien qu'il <strong>soit</strong> fatigué, il continue. / Avant que tu <strong>partes</strong>, signe ici.</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">What does NOT trigger subjunctive</h4>
+<div class="rounded-lg bg-red-50 border border-red-200 p-4 text-sm">
+  <ul class="space-y-1">
+    <li>• <strong>espérer que</strong> → indicative (huge trap!). « J'espère qu'il <em>viendra</em>. »</li>
+    <li>• <strong>je pense / crois / trouve que</strong> (affirmative) → indicative.</li>
+    <li>• <strong>il est certain / évident / sûr / vrai que</strong> → indicative.</li>
+    <li>• <strong>parce que, puisque, comme</strong> (cause) → indicative.</li>
+    <li>• <strong>quand, lorsque, dès que, après que</strong> (time) → indicative.</li>
+  </ul>
+</div>
+`,
+          examples: [
+            { fr: "Il faut que tu viennes au comité de direction.", note: "il faut que → category 1 (necessity)" },
+            { fr: "Je suis ravi que nous trouvions un accord.", note: "être ravi que → category 2 (emotion)" },
+            { fr: "Mon chef exige que nous finissions avant vendredi.", note: "exiger que → category 3 (will)" },
+            { fr: "Je doute qu'il puisse livrer à temps.", note: "douter que → category 4 (doubt)" },
+            { fr: "Bien qu'il soit débordé, il accepte le projet.", note: "bien que → category 5 (conjunction)" },
+          ],
+          exercises: [
+            { type: "mcq", prompt: "Which of these triggers the subjunctive?", choices: ["J'espère que…", "Il est important que…", "Je sais que…", "Il est certain que…"], answer: 1, hint: "Impersonal necessity/judgment → subjunctive." },
+            { type: "mcq", prompt: "Which triggers indicative (NOT subjunctive)?", choices: ["Bien que…", "Pour que…", "J'espère que…", "Avant que…"], answer: 2, hint: "Espérer is the classic trap." },
+            { type: "fill", prompt: "Il faut que tu ___ (venir) au comité demain matin.", answer: "viennes", hint: "venir → boot verb. ils viennent → vienne, viennes, vienne, venions, veniez, viennent." },
+            { type: "fill", prompt: "Je suis content que vous ___ (être) là.", answer: "soyez", hint: "être is irregular. Sois, sois, soit, soyons, soyez, soient." },
+            { type: "fill", prompt: "Mon directeur veut que je ___ (faire) une présentation.", answer: "fasse", hint: "faire is irregular. fasse, fasses, fasse, fassions, fassiez, fassent." },
+            { type: "mcq", prompt: "« Je pense qu'il ___ raison. »  Indicative or subjunctive form?", choices: ["a (indicative)", "ait (subjunctive)"], answer: 0, hint: "Affirmative « je pense que » → indicative." },
+            { type: "mcq", prompt: "« Je ne pense pas qu'il ___ raison. »", choices: ["a (indicative)", "ait (subjunctive)"], answer: 1, hint: "Negative penser que → subjunctive." },
+            { type: "fill", prompt: "Bien qu'il ___ (avoir) beaucoup d'expérience, il a fait une erreur.", answer: "ait" },
+            { type: "fill", prompt: "Pour que la fusion ___ (réussir), il faut une équipe unie.", answer: "réussisse", hint: "Regular -ir verb: stem from ils réussissent." },
+            { type: "fill", prompt: "Je doute qu'elle ___ (pouvoir) finir à temps.", answer: "puisse", hint: "pouvoir → irregular. puisse, puisses, puisse, puissions, puissiez, puissent." },
+            { type: "mcq", prompt: "« Il est dommage qu'elle ___ partir. »", choices: ["doit", "doive", "devra", "devait"], answer: 1, hint: "Il est dommage que → subjunctive. devoir → doive (boot verb)." },
+            { type: "fill", prompt: "Avant que tu ___ (signer) le contrat, lisons-le ensemble.", answer: "signes" },
+            { type: "mcq", prompt: "Pick the form: « J'espère que le projet ___ bientôt. »", choices: ["finisse (subj)", "finira (futur indic)"], answer: 1, hint: "Espérer que → indicative; future is natural here." },
+            { type: "fill", prompt: "Il est nécessaire que nous ___ (analyser) les marges avant l'offre.", answer: "analysions" },
+            { type: "mcq", prompt: "Which sentence is CORRECT?", choices: ["Il est certain qu'il vienne.", "Il est certain qu'il vient.", "Il est certain qu'il viendrait.", "Il est certain qu'il vînt."], answer: 1, hint: "Certitude → indicative." },
+          ],
+          quiz: [
+            { type: "mcq", prompt: "Which expression requires subjunctive?", choices: ["Je sais que…", "Il faut que…", "J'espère que…", "Il est certain que…"], answer: 1 },
+            { type: "fill", prompt: "Il est indispensable que l'acheteur ___ (comprendre) la valeur du portefeuille.", answer: "comprenne" },
+            { type: "fill", prompt: "Je suis ravi que nous ___ (trouver) un accord.", answer: "trouvions" },
+            { type: "mcq", prompt: "« Je crois qu'il ___ raison. » (affirmative)", choices: ["a", "ait"], answer: 0 },
+            { type: "fill", prompt: "Bien qu'il ___ (être) fatigué, il continue à travailler.", answer: "soit" },
+            { type: "fill", prompt: "Mon chef veut que je ___ (faire) un rapport détaillé.", answer: "fasse" },
+            { type: "mcq", prompt: "Identify the trap — which TAKES indicative?", choices: ["pour que", "avant que", "espérer que", "à moins que"], answer: 2 },
+          ],
+        },
+
+        /* ------- 2.2  Regular  ------- */
+        {
+          id: "regular",
+          title: "Regular conjugation",
+          summary: "Stem from ils-form of present + standard endings.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">The mechanical rule</h3>
+<p>For nearly every verb, the subjunctive stem is the <strong>ils/elles</strong> form of the present indicative <strong>minus -ent</strong>. Add the endings:</p>
+<div class="rounded-lg bg-paper border border-rule p-4 my-3 text-center font-mono">
+  -e &nbsp; -es &nbsp; -e &nbsp; -ions &nbsp; -iez &nbsp; -ent
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">The three regular groups</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Verb</th><th class="text-left py-2">parler (-er)</th><th class="text-left py-2">finir (-ir)</th><th class="text-left py-2">vendre (-re)</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">ils form</td><td>ils parl<u>ent</u></td><td>ils finiss<u>ent</u></td><td>ils vend<u>ent</u></td></tr>
+    <tr><td class="py-1 pr-2 text-mute">stem</td><td>parl-</td><td>finiss-</td><td>vend-</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que je</td><td>parle</td><td>finisse</td><td>vende</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que tu</td><td>parles</td><td>finisses</td><td>vendes</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'il/elle</td><td>parle</td><td>finisse</td><td>vende</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que nous</td><td>parlions</td><td>finissions</td><td>vendions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que vous</td><td>parliez</td><td>finissiez</td><td>vendiez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'ils/elles</td><td>parlent</td><td>finissent</td><td>vendent</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">Notice: the <strong>singular + 3rd plural</strong> forms (je, tu, il, ils) are pronounced identically — only spelling differs.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Boot verbs — nous/vous take a different stem</h4>
+<p>For some irregular-stem verbs (boire, prendre, venir, devoir, recevoir, voir, croire…), the <strong>nous/vous</strong> forms use the <strong>nous-form stem</strong> of the present, not the ils form. The other four forms (je, tu, il, ils) use the ils stem. The pattern looks like a boot 🥾 around je/tu/il/ils.</p>
+<table class="w-full text-sm border-collapse mt-3">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Verb</th><th class="text-left py-2">boire</th><th class="text-left py-2">prendre</th><th class="text-left py-2">venir</th><th class="text-left py-2">devoir</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">ils form</td><td>boivent</td><td>prennent</td><td>viennent</td><td>doivent</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">nous form</td><td>buvons</td><td>prenons</td><td>venons</td><td>devons</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que je</td><td>boive</td><td>prenne</td><td>vienne</td><td>doive</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que nous</td><td>buvions</td><td>prenions</td><td>venions</td><td>devions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que vous</td><td>buviez</td><td>preniez</td><td>veniez</td><td>deviez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'ils</td><td>boivent</td><td>prennent</td><td>viennent</td><td>doivent</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Que vs qu'</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>Subjunctive forms are almost always preceded by <em>que</em> (or <em>qu'</em> before a vowel). When drilling, picture the « que » in front — it cues the mood:</p>
+  <p class="mt-2">Il faut <strong>que je</strong> parte. &nbsp;|&nbsp; Il faut <strong>qu'il</strong> parte. &nbsp;|&nbsp; Je veux <strong>que tu</strong> écoutes.</p>
+</div>
+`,
+          examples: [
+            { fr: "Il faut que je parle au directeur. (parler → ils parlent → parle)", note: "regular -er" },
+            { fr: "Il est important qu'elle finisse à temps. (finir → ils finissent → finisse)", note: "regular -ir" },
+            { fr: "Je veux que tu vendes cette idée. (vendre → ils vendent → vendes)", note: "regular -re" },
+            { fr: "Il faut que nous buvions plus d'eau. (boire — boot verb, nous form)", note: "boot verb nous" },
+            { fr: "Bien qu'ils prennent leur temps, ils avancent. (prendre — ils form)", note: "boot verb ils" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "Il faut que je ___ (parler) à mon chef. (parler)", answer: "parle" },
+            { type: "fill", prompt: "Il faut que nous ___ (parler) à mon chef.", answer: "parlions" },
+            { type: "fill", prompt: "Il faut que tu ___ (finir) ce dossier. (finir)", answer: "finisses" },
+            { type: "fill", prompt: "Il faut qu'elles ___ (finir) ce dossier.", answer: "finissent" },
+            { type: "fill", prompt: "Bien que vous ___ (vendre) bien, les marges baissent. (vendre)", answer: "vendiez" },
+            { type: "fill", prompt: "Je veux que tu ___ (boire) plus d'eau au bureau. (boire)", answer: "boives", hint: "Boot verb. ils boivent → boive, boives." },
+            { type: "fill", prompt: "Il est important que nous ___ (boire) plus d'eau. (boire)", answer: "buvions", hint: "nous/vous use the NOUS-form stem: buvons → buvions." },
+            { type: "fill", prompt: "Il faut que je ___ (prendre) une décision rapidement.", answer: "prenne" },
+            { type: "fill", prompt: "Il faut que nous ___ (prendre) une décision.", answer: "prenions", hint: "Boot: nous prenons → prenions." },
+            { type: "fill", prompt: "Bien qu'il ___ (devoir) partir tôt, il finit la réunion.", answer: "doive" },
+            { type: "fill", prompt: "Il est nécessaire que vous ___ (recevoir) ce mail.", answer: "receviez", hint: "Boot: nous recevons → receviez." },
+            { type: "mcq", prompt: "What's the « qu'ils » form of « venir »?", choices: ["viennent", "venient", "viennient", "viennaient"], answer: 0 },
+            { type: "fill", prompt: "Il faut que tu ___ (envoyer) le rapport au client. (envoyer)", answer: "envoies" },
+            { type: "fill", prompt: "Il faut que je ___ (choisir) une stratégie. (choisir, -ir like finir)", answer: "choisisse" },
+            { type: "fill", prompt: "Je veux que nous ___ (réfléchir) à cette option.", answer: "réfléchissions" },
+          ],
+          quiz: [
+            { type: "fill", prompt: "Il faut que tu ___ (finir) le rapport ce soir.", answer: "finisses" },
+            { type: "fill", prompt: "Il faut que nous ___ (parler) franchement.", answer: "parlions" },
+            { type: "fill", prompt: "Bien qu'il ___ (vendre) bien, sa marge diminue.", answer: "vende" },
+            { type: "fill", prompt: "Il est important que nous ___ (boire) plus d'eau. (boire)", answer: "buvions" },
+            { type: "fill", prompt: "Il faut que je ___ (prendre) une décision aujourd'hui.", answer: "prenne" },
+            { type: "fill", prompt: "Avant que vous ___ (partir), signez ici.", answer: "partiez" },
+            { type: "fill", prompt: "Je veux que tu ___ (choisir) avec soin.", answer: "choisisses" },
+          ],
+        },
+
+        /* ------- 2.3  Irregular  ------- */
+        {
+          id: "irregular",
+          title: "Irregular subjunctives — the must-know 9",
+          summary: "être, avoir, aller, faire, pouvoir, savoir, vouloir, falloir, valoir.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">The 9 you absolutely need cold</h3>
+<p>These nine verbs do not follow the « ils-stem + endings » rule. They have their own subjunctive stems. They are also the highest-frequency verbs in spoken French — knowing them is non-negotiable.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">être &amp; avoir — the two auxiliaries</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold"></th><th class="text-left py-2">être</th><th class="text-left py-2">avoir</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">que je</td><td>sois</td><td>aie</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que tu</td><td>sois</td><td>aies</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'il</td><td>soit</td><td>ait</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que nous</td><td>soyons</td><td>ayons</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que vous</td><td>soyez</td><td>ayez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'ils</td><td>soient</td><td>aient</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">Many high-frequency triggers use these — « il est possible que vous soyez », « bien qu'il ait raison ».</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">aller &amp; faire</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold"></th><th class="text-left py-2">aller</th><th class="text-left py-2">faire</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">que je</td><td>aille</td><td>fasse</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que tu</td><td>ailles</td><td>fasses</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'il</td><td>aille</td><td>fasse</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que nous</td><td>allions</td><td>fassions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que vous</td><td>alliez</td><td>fassiez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'ils</td><td>aillent</td><td>fassent</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">aller is a « boot » verb (aille- / all-). faire keeps fass- everywhere.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">pouvoir · savoir · vouloir</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold"></th><th class="text-left py-2">pouvoir</th><th class="text-left py-2">savoir</th><th class="text-left py-2">vouloir</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">que je</td><td>puisse</td><td>sache</td><td>veuille</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que tu</td><td>puisses</td><td>saches</td><td>veuilles</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'il</td><td>puisse</td><td>sache</td><td>veuille</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que nous</td><td>puissions</td><td>sachions</td><td>voulions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que vous</td><td>puissiez</td><td>sachiez</td><td>vouliez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'ils</td><td>puissent</td><td>sachent</td><td>veuillent</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">pouvoir and savoir keep one stem. vouloir is a boot verb (veuill- / voul-).</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">falloir &amp; valoir (impersonal / value)</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold"></th><th class="text-left py-2">falloir (impersonal)</th><th class="text-left py-2">valoir</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">qu'il</td><td>faille</td><td>vaille</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que nous</td><td>—</td><td>valions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">que vous</td><td>—</td><td>valiez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">qu'ils</td><td>—</td><td>vaillent</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">« Bien qu'il faille beaucoup d'efforts » / « Il vaut mieux qu'il vaille la peine. »</p>
+`,
+          examples: [
+            { fr: "Il faut que tu sois patient. (être → sois)", note: "Common: « il faut que tu sois… »" },
+            { fr: "Je suis surpris qu'il ait gagné. (avoir → ait)", note: "Auxiliaries in compound subjunctive too." },
+            { fr: "Il est impossible que nous allions à Genève ce soir. (aller → allions)", note: "« aille-/all- » boot verb." },
+            { fr: "Mon chef veut que je fasse les diapositives. (faire → fasse)", note: "fass- everywhere." },
+            { fr: "Je doute qu'elle puisse venir. (pouvoir → puisse)", note: "puiss- everywhere." },
+          ],
+          exercises: [
+            { type: "fill", prompt: "Il faut que tu ___ (être) à l'heure.", answer: "sois" },
+            { type: "fill", prompt: "Il faut que vous ___ (être) à l'heure.", answer: "soyez" },
+            { type: "fill", prompt: "Je suis content qu'il ___ (avoir) le poste.", answer: "ait" },
+            { type: "fill", prompt: "Bien que nous ___ (avoir) du retard, tout va bien.", answer: "ayons" },
+            { type: "fill", prompt: "Il est essentiel que vous ___ (aller) à cette conférence.", answer: "alliez" },
+            { type: "fill", prompt: "Mon directeur veut que je ___ (faire) la synthèse.", answer: "fasse" },
+            { type: "fill", prompt: "Bien que nous ___ (faire) de notre mieux, le client refuse.", answer: "fassions" },
+            { type: "fill", prompt: "Je doute qu'elle ___ (pouvoir) livrer à temps.", answer: "puisse" },
+            { type: "fill", prompt: "Il faut que nous ___ (pouvoir) compter sur lui.", answer: "puissions" },
+            { type: "fill", prompt: "Il est important que tu ___ (savoir) la vérité.", answer: "saches" },
+            { type: "fill", prompt: "Je veux que tu ___ (savoir) que je te soutiens.", answer: "saches" },
+            { type: "fill", prompt: "Bien qu'il ___ (vouloir) partir, il reste.", answer: "veuille" },
+            { type: "fill", prompt: "Il est rare que les actionnaires ___ (vouloir) attendre.", answer: "veuillent" },
+            { type: "fill", prompt: "Il faut qu'il ___ (falloir) du temps pour réussir.", answer: "faille", hint: "Falloir is impersonal — only « qu'il faille »." },
+            { type: "fill", prompt: "Pourvu que ça ___ (valoir) la peine !", answer: "vaille" },
+          ],
+          quiz: [
+            { type: "fill", prompt: "Il faut que tu ___ (être) au bureau à 9h.", answer: "sois" },
+            { type: "fill", prompt: "Je suis ravi qu'elle ___ (avoir) ce poste.", answer: "ait" },
+            { type: "fill", prompt: "Il est important que nous ___ (aller) à Berne pour la réunion.", answer: "allions" },
+            { type: "fill", prompt: "Bien que vous ___ (faire) un excellent travail, le budget est coupé.", answer: "fassiez" },
+            { type: "fill", prompt: "Il faut que je ___ (pouvoir) compter sur ton aide.", answer: "puisse" },
+            { type: "fill", prompt: "Il est rare qu'il ___ (savoir) la réponse aussi vite.", answer: "sache" },
+            { type: "fill", prompt: "Bien qu'il ___ (vouloir) signer, son avocat hésite.", answer: "veuille" },
+          ],
+        },
+
+        /* ------- 2.4  Vs Indicative  ------- */
+        {
+          id: "vs-indicative",
+          title: "Subjunctive vs Indicative — when NOT to use it",
+          summary: "The traps: espérer, certain, après que, penser affirmatif.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">The contrast table</h3>
+<p>French has a small set of look-alike expressions where one takes subjunctive and its near-twin takes indicative. Knowing the splits is what separates B1 from B2.</p>
+
+<table class="w-full text-sm border-collapse mt-3">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Trigger</th><th class="text-left py-2 font-semibold">Mood</th><th class="text-left py-2 font-semibold">Example</th></tr></thead>
+  <tbody class="divide-y divide-rule">
+    <tr><td class="py-2 pr-3">je pense / crois / trouve que (<strong>affirm.</strong>)</td><td class="py-2 pr-3">indicative</td><td class="py-2">Je pense qu'il <strong>vient</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">je ne pense / crois / trouve pas que (<strong>neg.</strong>)</td><td class="py-2 pr-3">subjunctive</td><td class="py-2">Je ne pense pas qu'il <strong>vienne</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">penses-tu que (<strong>question</strong>)</td><td class="py-2 pr-3">subj. preferred</td><td class="py-2">Penses-tu qu'il <strong>vienne</strong> ?</td></tr>
+    <tr><td class="py-2 pr-3"><strong>espérer que</strong></td><td class="py-2 pr-3">indicative (always)</td><td class="py-2">J'espère qu'il <strong>viendra</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">il est certain / sûr / évident / vrai que</td><td class="py-2 pr-3">indicative</td><td class="py-2">Il est certain qu'il <strong>vient</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">il est probable que</td><td class="py-2 pr-3">indicative</td><td class="py-2">Il est probable qu'il <strong>viendra</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">il est possible / impossible que</td><td class="py-2 pr-3">subjunctive</td><td class="py-2">Il est possible qu'il <strong>vienne</strong>.</td></tr>
+    <tr><td class="py-2 pr-3">il est peu probable que</td><td class="py-2 pr-3">subjunctive</td><td class="py-2">Il est peu probable qu'il <strong>vienne</strong>.</td></tr>
+    <tr><td class="py-2 pr-3"><strong>après que</strong> (after)</td><td class="py-2 pr-3">indicative*</td><td class="py-2">Après qu'il <strong>est arrivé</strong>, on a commencé.</td></tr>
+    <tr><td class="py-2 pr-3"><strong>avant que</strong> (before)</td><td class="py-2 pr-3">subjunctive</td><td class="py-2">Avant qu'il <strong>arrive</strong>, finissons.</td></tr>
+    <tr><td class="py-2 pr-3">parce que · puisque · comme</td><td class="py-2 pr-3">indicative</td><td class="py-2">Parce qu'il <strong>est</strong> en retard.</td></tr>
+    <tr><td class="py-2 pr-3">pour que · afin que (so that)</td><td class="py-2 pr-3">subjunctive</td><td class="py-2">Pour qu'il <strong>soit</strong> content.</td></tr>
+    <tr><td class="py-2 pr-3">quand · lorsque · dès que (time)</td><td class="py-2 pr-3">indicative</td><td class="py-2">Quand il <strong>arrivera</strong>, on partira.</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">* Modern usage increasingly puts subjunctive after « après que ». Traditional grammar (and most exams) keep it indicative — that's what to use.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">The mental check</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>When in doubt, ask: <strong>is the verb's action stated as a fact, or as something wanted/doubted/hypothetical?</strong></p>
+  <p class="mt-2">• Fact (real, known, expected) → <strong>indicative</strong>.</p>
+  <p>• Wanted, doubted, judged, conditional → <strong>subjunctive</strong>.</p>
+  <p class="mt-2">« J'espère » expresses a wish, but French treats it as factual hope — hence indicative.</p>
+</div>
+`,
+          examples: [
+            { fr: "Je pense qu'il a raison. (affirm. → indic)   |   Je ne pense pas qu'il ait raison. (neg. → subj)", note: "penser que: + or −" },
+            { fr: "J'espère qu'il viendra. (espérer → toujours indicatif)", note: "the big trap" },
+            { fr: "Il est certain qu'il vient. (indic)   |   Il est possible qu'il vienne. (subj)", note: "certitude vs possibilité" },
+            { fr: "Avant qu'il parte, signons. (subj)   |   Après qu'il est parti, on a signé. (indic)", note: "avant que vs après que" },
+            { fr: "Quand tu arriveras, appelle-moi. (indic)   |   Pour que tu arrives à temps, prends un taxi. (subj)", note: "time vs purpose" },
+          ],
+          exercises: [
+            { type: "mcq", prompt: "« Je pense qu'il ___ raison. » (affirmative)", choices: ["a (indic)", "ait (subj)"], answer: 0 },
+            { type: "mcq", prompt: "« Je ne pense pas qu'il ___ raison. »", choices: ["a (indic)", "ait (subj)"], answer: 1 },
+            { type: "mcq", prompt: "« J'espère qu'il ___ demain. »", choices: ["vienne (subj)", "viendra (futur indic)"], answer: 1, hint: "Espérer → ALWAYS indicatif." },
+            { type: "mcq", prompt: "« Il est certain qu'il ___ . »", choices: ["vient", "vienne"], answer: 0 },
+            { type: "mcq", prompt: "« Il est possible qu'il ___ . »", choices: ["vient", "vienne"], answer: 1 },
+            { type: "mcq", prompt: "« Quand tu ___ , appelle-moi. »", choices: ["arrives (subj)", "arriveras (futur indic)"], answer: 1, hint: "quand + time → indicative; future tense is natural." },
+            { type: "mcq", prompt: "« Pour que tu ___ à l'heure, prends un taxi. »", choices: ["arrives (subj)", "arriveras (futur indic)"], answer: 0, hint: "pour que → subjunctive." },
+            { type: "fill", prompt: "Il est peu probable qu'il ___ (réussir) sans aide.", answer: "réussisse", hint: "« peu probable » → subjunctive." },
+            { type: "fill", prompt: "Il est probable qu'il ___ (réussir) sans aide.", answer: "réussira", hint: "« probable » → indicative (futur)." },
+            { type: "fill", prompt: "Je crois qu'elle ___ (avoir) raison.", answer: "a" },
+            { type: "fill", prompt: "Je ne crois pas qu'elle ___ (avoir) raison.", answer: "ait" },
+            { type: "mcq", prompt: "Identify the trap — which is CORRECT?", choices: ["J'espère qu'il vienne.", "J'espère qu'il viendra.", "J'espère qu'il vînt.", "J'espère qu'il vînt-il."], answer: 1 },
+            { type: "fill", prompt: "Avant qu'il ___ (partir), donne-lui le dossier.", answer: "parte" },
+            { type: "fill", prompt: "Après qu'il ___ (signer), nous avons applaudi.", answer: "a signé", hint: "Après que → indicative; passé composé is natural." },
+            { type: "mcq", prompt: "Pick the CORRECT one:", choices: ["Bien qu'il soit malade, il vient.", "Bien qu'il est malade, il vient."], answer: 0 },
+          ],
+          quiz: [
+            { type: "mcq", prompt: "« J'espère qu'il ___ . »", choices: ["vienne", "viendra"], answer: 1 },
+            { type: "mcq", prompt: "« Je ne pense pas qu'il ___ raison. »", choices: ["a", "ait"], answer: 1 },
+            { type: "mcq", prompt: "« Il est certain que la fusion ___ . »", choices: ["réussit", "réussisse"], answer: 0 },
+            { type: "mcq", prompt: "« Il est possible que la fusion ___ . »", choices: ["réussit", "réussisse"], answer: 1 },
+            { type: "fill", prompt: "Pour que tu ___ (être) prêt, étudie ce dossier ce soir.", answer: "sois" },
+            { type: "fill", prompt: "Quand tu ___ (avoir) fini, envoie-moi le mail.", answer: "auras", hint: "quand + futur antérieur (indicative)." },
+            { type: "fill", prompt: "Avant qu'il ___ (partir), donne-lui les chiffres.", answer: "parte" },
+          ],
+        },
+      ],
+
+      sectionQuiz: [
+        { type: "fill", prompt: "[Subj Q1] Il est indispensable que l'acheteur ___ (comprendre) la valeur du portefeuille.", answer: "comprenne" },
+        { type: "fill", prompt: "[Subj Q2] Je suis ravi que nous ___ (trouver) un accord sur la valorisation.", answer: "trouvions" },
+        { type: "mcq", prompt: "[Subj Q3] Which expression takes INDICATIVE?", choices: ["bien que", "il faut que", "j'espère que", "pour que"], answer: 2 },
+        { type: "fill", prompt: "[Subj Q4] Il faut que tu ___ (être) à l'heure pour la réunion.", answer: "sois" },
+        { type: "fill", prompt: "[Subj Q5] Je doute qu'il ___ (pouvoir) finir avant midi.", answer: "puisse" },
+        { type: "mcq", prompt: "[Subj Q6] « Je pense qu'il ___ raison. »", choices: ["a (indic)", "ait (subj)"], answer: 0 },
+        { type: "mcq", prompt: "[Subj Q7] « Je ne pense pas qu'il ___ raison. »", choices: ["a (indic)", "ait (subj)"], answer: 1 },
+        { type: "fill", prompt: "[Subj Q8] Bien qu'il ___ (avoir) beaucoup d'expérience, il fait des erreurs.", answer: "ait" },
+        { type: "fill", prompt: "[Subj Q9] Mon chef veut que je ___ (faire) le rapport pour vendredi.", answer: "fasse" },
+        { type: "fill", prompt: "[Subj Q10] Il est important que nous ___ (aller) à Genève cette semaine.", answer: "allions" },
+        { type: "fill", prompt: "[Subj Q11] Avant que tu ___ (signer) le contrat, lisons les annexes.", answer: "signes" },
+        { type: "mcq", prompt: "[Subj Q12] Pick the form: « Quand le client ___ , on présentera l'offre. »", choices: ["arrive (subj)", "arrivera (futur indic)"], answer: 1 },
+        { type: "fill", prompt: "[Subj Q13] Il est rare qu'elle ___ (vouloir) déléguer.", answer: "veuille" },
+        { type: "fill", prompt: "[Subj Q14] Il faut que nous ___ (prendre) une décision aujourd'hui.", answer: "prenions" },
+        { type: "mcq", prompt: "[Subj Q15] CORRECT sentence?", choices: ["J'espère qu'il fasse beau.", "J'espère qu'il fera beau."], answer: 1 },
+      ],
+    },
+
+    /* ============================================================ */
+    /* PILLAR 3 — Si TYPE 3 (PAST HYPOTHETICALS)                     */
+    /* ============================================================ */
+    {
+      id: "si-type-3",
+      title: "Past Hypotheticals",
+      subtitle: "Si + plus-que-parfait + conditionnel passé",
+      tagline: "« Si nous avions su, nous aurions investi. »",
+      intro: `<p>Your diagnostic Q9 (« Si la valorisation avait été plus basse, nous ___ l'accord plus rapidement ») wanted the <strong>Type 3</strong> si-clause: <em>plus-que-parfait</em> in the si clause, <em>conditionnel passé</em> in the main clause. You wrote the present conditional — a classic B1 instinct. The fix is structural: once you see the « si + avait/était… », the main clause needs « aurais/serais… ».</p>
+        <p>Plan: <strong>(1)</strong> overview of all three Si types so the contrast is clear; <strong>(2)</strong> refresher on plus-que-parfait; <strong>(3)</strong> conditionnel passé formation; <strong>(4)</strong> drill the Type 3 formula on retrospectives, M&amp;A scenarios, and regret expressions.</p>`,
+      subsections: [
+        /* ------- 3.1  Overview  ------- */
+        {
+          id: "overview",
+          title: "The three Si clauses — overview",
+          summary: "Likely · Hypothetical present · Impossible past.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">Three templates, fixed pairings</h3>
+<p>Si-clauses come in three standard pairings. The si clause sets the condition; the main clause states the result. <strong>Never</strong> use a future or conditional in the si clause itself — that's the one rule that holds across all three.</p>
+
+<table class="w-full text-sm border-collapse mt-4">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Type</th><th class="text-left py-2 font-semibold">Meaning</th><th class="text-left py-2 font-semibold">Si clause</th><th class="text-left py-2 font-semibold">Main clause</th></tr></thead>
+  <tbody class="divide-y divide-rule">
+    <tr>
+      <td class="py-3 pr-3 font-semibold">Type 1</td>
+      <td class="py-3 pr-3">Real / likely</td>
+      <td class="py-3 pr-3"><strong>présent</strong></td>
+      <td class="py-3"><strong>présent</strong> / <strong>futur</strong> / <strong>impératif</strong></td>
+    </tr>
+    <tr>
+      <td class="py-3 pr-3 font-semibold">Type 2</td>
+      <td class="py-3 pr-3">Hypothetical (present/future unreal)</td>
+      <td class="py-3 pr-3"><strong>imparfait</strong></td>
+      <td class="py-3"><strong>conditionnel présent</strong></td>
+    </tr>
+    <tr>
+      <td class="py-3 pr-3 font-semibold">Type 3</td>
+      <td class="py-3 pr-3">Impossible past (counterfactual)</td>
+      <td class="py-3 pr-3"><strong>plus-que-parfait</strong></td>
+      <td class="py-3"><strong>conditionnel passé</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Type 1 — Si + présent</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>Use when the condition is realistic — present habit, possible future event, or an instruction:</p>
+  <ul class="mt-2 space-y-1">
+    <li>• Si tu <strong>viens</strong> à la réunion, <strong>prends</strong> ton ordinateur. <span class="text-mute">(impératif)</span></li>
+    <li>• Si les taux <strong>baissent</strong>, nous <strong>pourrons</strong> augmenter le capital. <span class="text-mute">(futur — your Q8)</span></li>
+    <li>• Si je <strong>finis</strong> tôt, je <strong>passe</strong> chez toi. <span class="text-mute">(présent — habit / planned)</span></li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Type 2 — Si + imparfait</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>The hypothetical present / near future — the condition is not the case <em>now</em>, but you imagine it. English equivalent: « if I had / were … I would … ».</p>
+  <ul class="mt-2 space-y-1">
+    <li>• Si j'<strong>avais</strong> plus de temps, je <strong>voyagerais</strong>. <span class="text-mute">(I don't have time → I won't travel)</span></li>
+    <li>• Si nous <strong>étions</strong> plus nombreux, nous <strong>pourrions</strong> ouvrir un second bureau.</li>
+    <li>• Si tu <strong>connaissais</strong> le marché allemand, ce serait plus facile.</li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Type 3 — Si + plus-que-parfait</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>The counterfactual past. The condition is over — it didn't happen — and we imagine an alternative outcome that didn't happen either. Classic retrospective / strategy-meeting / regret structure:</p>
+  <ul class="mt-2 space-y-1">
+    <li>• Si nous <strong>avions su</strong>, nous <strong>aurions investi</strong>. <span class="text-mute">(We didn't know → we didn't invest)</span></li>
+    <li>• Si la valorisation <strong>avait été</strong> plus basse, nous <strong>aurions conclu</strong> plus vite. <span class="text-mute">(your Q9)</span></li>
+    <li>• Si tu m'<strong>avais prévenu</strong>, je <strong>serais venu</strong>.</li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Mixed: past condition → present consequence</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>When the past condition has a consequence that's still felt <em>now</em>, you can mix the past with present conditional in the main clause:</p>
+  <ul class="mt-2 space-y-1">
+    <li>• Si j'<strong>avais étudié</strong> médecine, je <strong>serais</strong> chirurgien maintenant. <span class="text-mute">(plus-que-parfait + conditionnel présent)</span></li>
+    <li>• Si tu m'<strong>avais écouté</strong>, tu <strong>n'aurais</strong> pas ces problèmes aujourd'hui.</li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">The hard rule</h4>
+<div class="rounded-lg bg-red-50 border border-red-200 p-4 text-sm">
+  <p>In the <strong>si clause</strong>, never use:</p>
+  <ul class="space-y-1 mt-1">
+    <li>✗ a future (Si tu <s>seras</s>…)</li>
+    <li>✗ a present conditional (Si nous <s>aurions</s> su…)</li>
+    <li>✗ a past conditional (Si tu m'<s>aurais</s> écouté…)</li>
+  </ul>
+  <p class="mt-2">Si clause sticks to <strong>présent · imparfait · plus-que-parfait</strong>. Conditionals and futures live only in the <em>main</em> clause.</p>
+</div>
+`,
+          examples: [
+            { fr: "Type 1: Si tu viens, on dîne ensemble. (présent + présent)", note: "Real present habit" },
+            { fr: "Type 1: Si les taux baissent, nous pourrons augmenter le capital. (présent + futur — your Q8)", note: "Real future" },
+            { fr: "Type 2: Si j'avais plus de temps, je voyagerais. (imparfait + conditionnel présent)", note: "Hypothetical present" },
+            { fr: "Type 3: Si nous avions su, nous aurions investi. (plus-que-parfait + conditionnel passé)", note: "Counterfactual past" },
+            { fr: "Mixed: Si j'avais étudié médecine, je serais chirurgien maintenant. (plus-que-parfait + conditionnel présent)", note: "Past cause, present consequence" },
+          ],
+          exercises: [
+            { type: "mcq", prompt: "Identify the type: « Si tu viens demain, on prendra un café. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 0 },
+            { type: "mcq", prompt: "Identify the type: « Si j'avais le temps, je viendrais. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 1 },
+            { type: "mcq", prompt: "Identify the type: « Si j'avais eu le temps, je serais venu. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 2 },
+            { type: "mcq", prompt: "« Si la valorisation avait été plus basse, nous ___ l'accord plus rapidement. » (Type 3)", choices: ["conclurions (cond prés)", "aurions conclu (cond passé)", "conclurons (futur)", "concluons (présent)"], answer: 1, hint: "This is your diagnostic Q9. Type 3 → main clause = cond passé." },
+            { type: "mcq", prompt: "Pick the form: « Si les taux baissent, nous ___ augmenter le capital. »", choices: ["pouvons (prés)", "pourrons (futur)", "pourrions (cond prés)", "aurions pu (cond passé)"], answer: 1, hint: "Type 1: présent in si clause → futur in main clause." },
+            { type: "mcq", prompt: "SPOT THE ERROR: « Si nous aurions su, nous aurions investi. »", choices: ["The si clause should be plus-que-parfait (avions su).", "The main clause should be cond présent.", "Both clauses are correct.", "Si never takes plus-que-parfait."], answer: 0, hint: "Never put a conditional in the si clause." },
+            { type: "mcq", prompt: "Which is the ONLY tense NOT allowed in a si clause?", choices: ["présent", "imparfait", "plus-que-parfait", "conditionnel"], answer: 3 },
+            { type: "fill", prompt: "Type 1 (présent + futur): « Si tu ___ (travailler) bien, tu auras une promotion. »", answer: "travailles" },
+            { type: "fill", prompt: "Type 2 (imparfait + cond prés): « Si je ___ (être) directeur, je changerais beaucoup de choses. »", answer: "étais" },
+            { type: "fill", prompt: "Type 3 (PQP + cond passé): « Si tu ___ (étudier) médecine, tu serais médecin. » (Wait — this is Mixed!)", answer: "avais étudié", hint: "« serais » is conditionnel présent, so this is Mixed type: PQP in si." },
+            { type: "mcq", prompt: "Which sentence is Mixed (past condition, present consequence)?", choices: ["Si tu venais, on dînerait ensemble.", "Si tu étais venu, on aurait dîné ensemble.", "Si tu m'avais écouté, tu serais riche maintenant.", "Si tu viens, on dîne ensemble."], answer: 2 },
+            { type: "fill", prompt: "Type 3 — fill: « Si nous ___ (analyser) les marges plus tôt, nous aurions évité l'erreur. »", answer: "avions analysé" },
+            { type: "mcq", prompt: "Identify the type: « Si tu m'avais écouté, tu n'aurais pas ces problèmes aujourd'hui. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 3 },
+            { type: "fill", prompt: "Type 2: « Si je ___ (savoir) la réponse, je te la dirais. »", answer: "savais" },
+            { type: "fill", prompt: "Type 1 (présent + impératif): « Si tu ___ (avoir) faim, mange quelque chose. »", answer: "as" },
+          ],
+          quiz: [
+            { type: "mcq", prompt: "Pick the form: « Si tu viens, on ___ ensemble. » (Type 1)", choices: ["dînons (prés)", "dînerons (futur)", "dînerions (cond prés)", "aurions dîné (cond passé)"], answer: 1 },
+            { type: "mcq", prompt: "Pick the form: « Si j'avais le temps, je ___ . » (Type 2)", choices: ["voyage (prés)", "voyagerai (futur)", "voyagerais (cond prés)", "aurais voyagé (cond passé)"], answer: 2 },
+            { type: "mcq", prompt: "Pick the form: « Si j'avais eu le temps, je ___ . » (Type 3)", choices: ["voyage", "voyagerai", "voyagerais", "aurais voyagé"], answer: 3 },
+            { type: "fill", prompt: "Diagnostic Q9 revisited — type 3: « Si la valorisation avait été plus basse, nous ___ (conclure) l'accord plus rapidement. »", answer: "aurions conclu" },
+            { type: "mcq", prompt: "Which tense is FORBIDDEN in the si clause?", choices: ["présent", "imparfait", "plus-que-parfait", "conditionnel passé"], answer: 3 },
+            { type: "fill", prompt: "Mixed: « Si j'avais étudié à HEC, je ___ (être) PDG maintenant. »", answer: "serais" },
+            { type: "fill", prompt: "Type 1: « Si tu ___ (vouloir) ce poste, candidate maintenant. »", answer: "veux" },
+          ],
+        },
+
+        /* ------- 3.2  Plus-que-parfait  ------- */
+        {
+          id: "plus-que-parfait",
+          title: "Plus-que-parfait — refresher",
+          summary: "Imparfait of avoir/être + past participle. The « past before past ».",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">Formation</h3>
+<p>The plus-que-parfait is the « past before past » — it describes an action completed before another past action. In Type 3 si-clauses, it sets the (counterfactual) prior condition.</p>
+<div class="rounded-lg bg-paper border border-rule p-4 my-3 text-center font-mono">
+  <strong>imparfait of avoir / être</strong> &nbsp; + &nbsp; <strong>past participle</strong>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Imparfait of the auxiliaries</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold"></th><th class="text-left py-2">avoir</th><th class="text-left py-2">être</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">je / j'</td><td>avais</td><td>étais</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">tu</td><td>avais</td><td>étais</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">il/elle</td><td>avait</td><td>était</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">nous</td><td>avions</td><td>étions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">vous</td><td>aviez</td><td>étiez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">ils/elles</td><td>avaient</td><td>étaient</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Which auxiliary?</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p><strong>être</strong> is used for the « DR. MRS. VANDERTRAMPP » verbs (motion / state change) and all reflexive verbs. Everything else takes <strong>avoir</strong>.</p>
+  <p class="mt-2">DR. MRS. VANDERTRAMPP: <em>devenir, revenir, monter, rester, sortir, venir, aller, naître, descendre, entrer, rentrer, tomber, retourner, arriver, mourir, partir, passer (when intransitive)</em>.</p>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">High-frequency past participles</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold">Verb</th><th class="text-left py-2">Past participle</th><th class="text-left py-2 font-semibold">Verb</th><th class="text-left py-2">Past participle</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2">avoir</td><td>eu</td><td class="py-1 pr-2">être</td><td>été</td></tr>
+    <tr><td class="py-1 pr-2">faire</td><td>fait</td><td class="py-1 pr-2">dire</td><td>dit</td></tr>
+    <tr><td class="py-1 pr-2">voir</td><td>vu</td><td class="py-1 pr-2">savoir</td><td>su</td></tr>
+    <tr><td class="py-1 pr-2">pouvoir</td><td>pu</td><td class="py-1 pr-2">vouloir</td><td>voulu</td></tr>
+    <tr><td class="py-1 pr-2">devoir</td><td>dû</td><td class="py-1 pr-2">prendre</td><td>pris</td></tr>
+    <tr><td class="py-1 pr-2">mettre</td><td>mis</td><td class="py-1 pr-2">écrire</td><td>écrit</td></tr>
+    <tr><td class="py-1 pr-2">lire</td><td>lu</td><td class="py-1 pr-2">comprendre</td><td>compris</td></tr>
+    <tr><td class="py-1 pr-2">ouvrir</td><td>ouvert</td><td class="py-1 pr-2">offrir</td><td>offert</td></tr>
+    <tr><td class="py-1 pr-2">venir</td><td>venu</td><td class="py-1 pr-2">aller</td><td>allé</td></tr>
+    <tr><td class="py-1 pr-2">partir</td><td>parti</td><td class="py-1 pr-2">naître</td><td>né</td></tr>
+    <tr><td class="py-1 pr-2">conclure</td><td>conclu</td><td class="py-1 pr-2">décider</td><td>décidé</td></tr>
+  </tbody>
+</table>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Examples</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm font-mono">
+  j'avais analysé · tu avais vu · il avait su · nous avions conclu<br>
+  j'étais allé(e) · elle était partie · ils étaient venus · vous étiez resté(e)(s)<br>
+  je m'étais levé(e) · ils s'étaient préparés
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Agreement</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <p>Same rules as passé composé:</p>
+  <ul class="mt-1 space-y-1">
+    <li>• With <strong>être</strong>: past participle agrees with the <strong>subject</strong>. (elle était partie, ils étaient arrivés)</li>
+    <li>• With <strong>avoir</strong>: agrees with a <strong>direct object</strong> placed before the verb. (Les rapports que j'avais envoyés…)</li>
+    <li>• Reflexive: agrees with the reflexive pronoun if it's a direct object. (Elle s'était lavée vs. elle s'était lavé les mains.)</li>
+  </ul>
+</div>
+`,
+          examples: [
+            { fr: "j'avais analysé les marges (avoir-aux)", note: "imparfait avais + analysé" },
+            { fr: "elle était partie avant la réunion (être-aux, agreement)", note: "était + partie (-e for elle)" },
+            { fr: "nous avions conclu l'accord la veille (avoir + conclu)", note: "no agreement (no preceding direct object)" },
+            { fr: "ils s'étaient préparés (reflexive être)", note: "s' + étaient + préparés (-s for ils)" },
+            { fr: "les rapports que j'avais envoyés (preceding direct object → agreement)", note: "envoyés (-s for masc. pl.)" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "PQP of « parler » for « j' »: ___", answer: "j'avais parlé", hint: "j' + avais + parlé." },
+            { type: "fill", prompt: "PQP of « finir » for « nous »: ___", answer: "nous avions fini" },
+            { type: "fill", prompt: "PQP of « aller » for « elle »: ___ (agreement!)", answer: "elle était allée" },
+            { type: "fill", prompt: "PQP of « venir » for « ils »: ___ (agreement!)", answer: "ils étaient venus" },
+            { type: "fill", prompt: "PQP of « savoir » for « tu »: ___", answer: "tu avais su" },
+            { type: "fill", prompt: "PQP of « voir » for « vous »: ___", answer: "vous aviez vu" },
+            { type: "fill", prompt: "PQP of « conclure » for « nous »: ___", answer: "nous avions conclu" },
+            { type: "fill", prompt: "PQP of « se lever » for « je » (féminin): ___", answer: "je m'étais levée" },
+            { type: "fill", prompt: "Fill the PQP: « Avant la réunion, j' ___ (analyser) toutes les marges. »", answer: "avais analysé" },
+            { type: "fill", prompt: "« Quand je suis arrivé, ils ___ (partir) déjà. »", answer: "étaient partis" },
+            { type: "mcq", prompt: "Past participle of « écrire »:", choices: ["écris", "écrit", "écrivé", "écrié"], answer: 1 },
+            { type: "mcq", prompt: "Past participle of « comprendre »:", choices: ["comprendu", "comprends", "compris", "comprenu"], answer: 2 },
+            { type: "fill", prompt: "Past participle of « devoir »: ___", answer: "dû", hint: "Special: takes a circumflex to distinguish from « du »." },
+            { type: "fill", prompt: "Fill: « Les contrats que nous ___ (signer) la veille étaient déjà obsolètes. »", answer: "avions signés", hint: "Direct object « les contrats » before verb → agreement -s." },
+            { type: "fill", prompt: "Fill: « Elle ___ (rentrer) tard la nuit précédente. » (être-aux + agreement)", answer: "était rentrée" },
+          ],
+          quiz: [
+            { type: "fill", prompt: "PQP of « voir » for « j' »: ___", answer: "j'avais vu" },
+            { type: "fill", prompt: "PQP of « partir » for « ils »: ___", answer: "ils étaient partis" },
+            { type: "fill", prompt: "Past participle of « prendre »: ___", answer: "pris" },
+            { type: "fill", prompt: "Past participle of « conclure »: ___", answer: "conclu" },
+            { type: "fill", prompt: "Fill: « Avant qu'il arrive, nous ___ (finir) le rapport. »", answer: "avions fini" },
+            { type: "fill", prompt: "Fill: « Elle ___ (arriver) en retard ce matin-là. » (être-aux)", answer: "était arrivée" },
+            { type: "fill", prompt: "Fill: « Les options que j' ___ (proposer) n'étaient pas retenues. » (avoir-aux, agreement)", answer: "avais proposées" },
+          ],
+        },
+
+        /* ------- 3.3  Conditionnel passé  ------- */
+        {
+          id: "conditionnel-passe",
+          title: "Conditionnel passé — formation",
+          summary: "Conditionnel présent of avoir/être + past participle. The « would have ».",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">Formation</h3>
+<p>The conditionnel passé translates « would have… ». It sits in the main clause of a Type 3 si-clause.</p>
+<div class="rounded-lg bg-paper border border-rule p-4 my-3 text-center font-mono">
+  <strong>conditionnel présent of avoir / être</strong> &nbsp; + &nbsp; <strong>past participle</strong>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Conditionnel présent of the auxiliaries</h4>
+<table class="w-full text-sm border-collapse mt-2">
+  <thead><tr class="border-b border-rule"><th class="text-left py-2 font-semibold"></th><th class="text-left py-2">avoir</th><th class="text-left py-2">être</th></tr></thead>
+  <tbody class="divide-y divide-rule font-mono">
+    <tr><td class="py-1 pr-2 text-mute">je / j'</td><td>aurais</td><td>serais</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">tu</td><td>aurais</td><td>serais</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">il/elle</td><td>aurait</td><td>serait</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">nous</td><td>aurions</td><td>serions</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">vous</td><td>auriez</td><td>seriez</td></tr>
+    <tr><td class="py-1 pr-2 text-mute">ils/elles</td><td>auraient</td><td>seraient</td></tr>
+  </tbody>
+</table>
+<p class="text-xs text-mute mt-2">Pronunciation tip: the « -rais / -rait / -raient » endings sound the same — the distinction is in spelling.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Same auxiliary as passé composé</h4>
+<p>If the verb takes <em>être</em> in the passé composé, it takes <em>être</em> in the conditionnel passé too. Same agreement rules apply.</p>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Examples</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm font-mono">
+  j'aurais investi · tu aurais signé · il aurait conclu · nous aurions vu<br>
+  je serais venu(e) · elle serait partie · ils seraient restés<br>
+  je me serais préparé(e) · elle se serait levée
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Three uses of the conditionnel passé</h4>
+<div class="space-y-3 mt-3">
+  <div class="rounded-lg bg-paper border border-rule p-3 text-sm">
+    <div class="font-semibold text-navy">1. Type 3 main clause</div>
+    <div class="text-mute italic mt-1">Si nous avions su, nous <strong>aurions investi</strong>.</div>
+  </div>
+  <div class="rounded-lg bg-paper border border-rule p-3 text-sm">
+    <div class="font-semibold text-navy">2. Regret / reproach (« should have / could have »)</div>
+    <div class="text-mute italic mt-1">J'<strong>aurais dû</strong> partir plus tôt. (I should have left earlier.)<br>Tu <strong>aurais pu</strong> me prévenir. (You could have warned me.)</div>
+  </div>
+  <div class="rounded-lg bg-paper border border-rule p-3 text-sm">
+    <div class="font-semibold text-navy">3. Reported speech / journalism (unconfirmed information)</div>
+    <div class="text-mute italic mt-1">Le suspect <strong>aurait pris</strong> la fuite. (The suspect allegedly fled.)</div>
+  </div>
+</div>
+`,
+          examples: [
+            { fr: "j'aurais investi (cond passé of investir)", note: "aurais + investi" },
+            { fr: "nous aurions conclu l'accord", note: "aurions + conclu" },
+            { fr: "elle serait venue à la réunion (être-aux + agreement)", note: "serait + venue (-e)" },
+            { fr: "tu aurais dû me prévenir (regret/reproach)", note: "common construction" },
+            { fr: "ils se seraient préparés (reflexive)", note: "se + seraient + préparés" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "Cond passé of « investir » for « j' »: ___", answer: "j'aurais investi" },
+            { type: "fill", prompt: "Cond passé of « finir » for « nous »: ___", answer: "nous aurions fini" },
+            { type: "fill", prompt: "Cond passé of « venir » for « elle » (agreement!): ___", answer: "elle serait venue" },
+            { type: "fill", prompt: "Cond passé of « partir » for « ils »: ___", answer: "ils seraient partis" },
+            { type: "fill", prompt: "Cond passé of « conclure » for « nous »: ___", answer: "nous aurions conclu" },
+            { type: "fill", prompt: "Cond passé of « savoir » for « tu »: ___", answer: "tu aurais su" },
+            { type: "fill", prompt: "Cond passé of « voir » for « vous »: ___", answer: "vous auriez vu" },
+            { type: "fill", prompt: "Cond passé of « se lever » for « je » (féminin): ___", answer: "je me serais levée" },
+            { type: "fill", prompt: "Regret: « J' ___ (devoir) partir plus tôt. » (I should have left earlier.)", answer: "aurais dû" },
+            { type: "fill", prompt: "Reproach: « Tu ___ (pouvoir) me prévenir. » (You could have warned me.)", answer: "aurais pu" },
+            { type: "fill", prompt: "Type 3 main clause: « Si j'avais su, je ___ (agir) différemment. »", answer: "aurais agi" },
+            { type: "fill", prompt: "Type 3 main clause: « Si tu m'avais écouté, tu ___ (éviter) ce piège. »", answer: "aurais évité" },
+            { type: "fill", prompt: "Reported speech: « Le PDG ___ (démissionner) hier soir. »", answer: "aurait démissionné", hint: "Journalism use — unconfirmed." },
+            { type: "fill", prompt: "Cond passé of « se rendre compte » for « je »: ___", answer: "je me serais rendu compte", hint: "« compte » is the direct object — no agreement on « rendu »." },
+            { type: "fill", prompt: "Cond passé of « écrire » for « nous »: ___", answer: "nous aurions écrit" },
+          ],
+          quiz: [
+            { type: "fill", prompt: "Cond passé of « investir » for « nous »: ___", answer: "nous aurions investi" },
+            { type: "fill", prompt: "Cond passé of « partir » for « elle » (agreement!): ___", answer: "elle serait partie" },
+            { type: "fill", prompt: "Cond passé of « conclure » for « ils »: ___", answer: "ils auraient conclu" },
+            { type: "fill", prompt: "Regret: « Nous ___ (devoir) anticiper. »", answer: "aurions dû" },
+            { type: "fill", prompt: "Type 3 main clause: « Si tu m'avais prévenu, je ___ (venir). »", answer: "serais venu" },
+            { type: "fill", prompt: "Type 3 main clause: « Si nous avions su, nous ___ (refuser) cette acquisition. »", answer: "aurions refusé" },
+            { type: "fill", prompt: "Reported speech: « Selon les rumeurs, l'entreprise ___ (perdre) un client majeur. »", answer: "aurait perdu" },
+          ],
+        },
+
+        /* ------- 3.4  Combining  ------- */
+        {
+          id: "combining",
+          title: "Combining — Type 3 sentences",
+          summary: "Drill « Si + PQP, cond passé » until it's automatic.",
+          explanation: `
+<h3 class="font-serif text-2xl text-navy mb-3">The Type 3 formula</h3>
+<div class="rounded-lg bg-navy text-cream p-4 my-3 text-center font-mono text-lg">
+  <strong>Si</strong> + <strong>plus-que-parfait</strong> &nbsp;,&nbsp; <strong>conditionnel passé</strong>
+</div>
+<p>The si clause and the main clause can appear in any order:</p>
+<div class="rounded-lg bg-paper border border-rule p-4 my-3 text-sm">
+  <div>• <strong>Si nous avions su</strong>, nous aurions investi.</div>
+  <div>• Nous aurions investi <strong>si nous avions su</strong>.</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">The three deadly mistakes</h4>
+<div class="rounded-lg bg-red-50 border border-red-200 p-4 text-sm">
+  <ul class="space-y-2">
+    <li>✗ <s>Si nous aurions su</s>, nous aurions investi. → <strong>Never put a conditional in the si clause.</strong></li>
+    <li>✗ <s>Si nous savions</s>, nous aurions investi. → Mixing imparfait (Type 2) with cond passé doesn't fit; the past is counterfactual, not present.</li>
+    <li>✗ Si nous avions su, nous <s>investirions</s>. → That's a Mixed type (PQP + cond présent), which means « we would be investing right now » — a different meaning.</li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">When to reach for Type 3</h4>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <ul class="space-y-1">
+    <li>• <strong>Retrospectives</strong>: « Si nous avions identifié le risque plus tôt, nous aurions évité la perte. »</li>
+    <li>• <strong>Strategy meetings</strong>: « Si nous avions analysé les marges, nous n'aurions pas lancé ce produit. »</li>
+    <li>• <strong>M&amp;A regret</strong>: « Si le marché avait été stable, nous aurions finalisé la transaction. »</li>
+    <li>• <strong>Personal regret</strong>: « Si j'avais su que tu étais là, je serais venu plus tôt. »</li>
+    <li>• <strong>Counterfactual analysis</strong>: « Si Microsoft n'avait pas racheté LinkedIn, le marché serait très différent. » (Mixed)</li>
+  </ul>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Mixed type — past condition, present consequence</h4>
+<p>When the past condition still has a present effect, swap the main clause to <strong>conditionnel présent</strong>:</p>
+<div class="rounded-lg bg-paper border border-rule p-4 text-sm">
+  <div>• Si j'<strong>avais étudié</strong> médecine, je <strong>serais</strong> chirurgien maintenant.</div>
+  <div>• Si tu m'<strong>avais écouté</strong>, tu <strong>n'aurais</strong> pas ces problèmes aujourd'hui.</div>
+  <div>• Si nous <strong>avions investi</strong> en 2010, nous <strong>serions</strong> millionnaires.</div>
+</div>
+
+<h4 class="font-serif text-xl text-navy mt-6 mb-2">Inversion in formal writing</h4>
+<p>In very formal writing, the « si » can be dropped and the auxiliary inverted: <em>Eussions-nous su, nous eussions investi.</em> You'll see this in contracts or 19th-century literature — recognise it, but don't use it in business email.</p>
+`,
+          examples: [
+            { fr: "Si nous avions su, nous aurions investi.", note: "canonical Type 3" },
+            { fr: "Nous aurions conclu plus vite si la valorisation avait été plus basse.", note: "swapped order — same meaning" },
+            { fr: "Si tu m'avais prévenu, je serais venu à la conférence.", note: "personal" },
+            { fr: "Si Microsoft n'avait pas racheté LinkedIn, le marché serait très différent. (Mixed)", note: "past cause → present consequence" },
+            { fr: "Si j'avais étudié à HEC, je serais peut-être PDG maintenant. (Mixed)", note: "PQP + cond présent" },
+          ],
+          exercises: [
+            { type: "fill", prompt: "Si nous ___ (savoir) plus tôt, nous aurions investi.", answer: "avions su" },
+            { type: "fill", prompt: "Si tu m'avais prévenu, je ___ (venir).", answer: "serais venu" },
+            { type: "fill", prompt: "Si la valorisation ___ (être) plus basse, nous aurions conclu plus rapidement.", answer: "avait été", hint: "Your Q9 si clause." },
+            { type: "fill", prompt: "Si la valorisation avait été plus basse, nous ___ (conclure) plus rapidement.", answer: "aurions conclu", hint: "Your Q9 main clause." },
+            { type: "fill", prompt: "Si j' ___ (étudier) plus, je serais médecin maintenant. (Mixed)", answer: "avais étudié" },
+            { type: "fill", prompt: "Si j'avais étudié plus, je ___ (être) médecin maintenant. (Mixed)", answer: "serais" },
+            { type: "transform", prompt: "Rewrite without changing meaning, swap clause order: « Si tu étais venu, on aurait dîné ensemble. »", answer: "On aurait dîné ensemble si tu étais venu." },
+            { type: "mcq", prompt: "SPOT THE ERROR: « Si nous aurions su, nous aurions investi. »", choices: ["The si clause should be « avions su » (PQP), not cond passé.", "The main clause should be cond présent.", "Both clauses are wrong.", "No error."], answer: 0 },
+            { type: "mcq", prompt: "SPOT THE ERROR: « Si nous avions su, nous investirions. »", choices: ["No error — this is a valid sentence.", "If meaning is Type 3 counterfactual, main clause should be cond passé (aurions investi).", "Si clause is wrong.", "Investirions is the wrong verb."], answer: 1, hint: "« investirions » = cond présent, which means « we would be investing right now » — different meaning from Type 3." },
+            { type: "fill", prompt: "M&A retrospective: « Si nous ___ (analyser) les marges en amont, nous aurions identifié le risque. »", answer: "avions analysé" },
+            { type: "fill", prompt: "M&A retrospective: « Si nous avions analysé les marges, nous ___ (identifier) le risque. »", answer: "aurions identifié" },
+            { type: "fill", prompt: "Personal regret: « Si tu m' ___ (écouter), tu ___ (éviter) ces problèmes. » (Type 3, both blanks)", answer: "avais écouté, aurais évité", hint: "Type your answer as: « avais écouté, aurais évité » with a comma between." },
+            { type: "fill", prompt: "Strategy: « Si nos concurrents ___ (être) plus agressifs, nous ___ (perdre) ce contrat. » (Type 3)", answer: "avaient été, aurions perdu", hint: "Two blanks, comma-separated answer." },
+            { type: "fill", prompt: "Mixed: « Si Microsoft n'avait pas racheté LinkedIn, le marché ___ (être) très différent aujourd'hui. »", answer: "serait" },
+            { type: "transform", prompt: "Translate to French (Type 3): « If you had told me, I would have come earlier. »", answer: "Si tu m'avais dit, je serais venu plus tôt.", hint: "Si + plus-que-parfait, conditionnel passé." },
+          ],
+          quiz: [
+            { type: "fill", prompt: "Diagnostic Q9: « Si la valorisation avait été plus basse, nous ___ (conclure) l'accord plus rapidement. »", answer: "aurions conclu" },
+            { type: "fill", prompt: "Type 3 si clause: « Si tu m' ___ (prévenir), je serais venu. »", answer: "avais prévenu" },
+            { type: "fill", prompt: "Type 3: « Si nous ___ (savoir), nous aurions changé de stratégie. »", answer: "avions su" },
+            { type: "fill", prompt: "Type 3 main: « Si tu avais signé hier, l'accord ___ (être) bouclé. »", answer: "aurait été" },
+            { type: "mcq", prompt: "SPOT THE ERROR: « Si nous aurions investi, nous serions riches. »", choices: ["The si clause should use plus-que-parfait, not cond passé.", "The main clause is wrong.", "No error.", "Both are wrong."], answer: 0 },
+            { type: "fill", prompt: "Mixed type: « Si j'avais étudié à HEC, je ___ (être) peut-être PDG maintenant. »", answer: "serais" },
+            { type: "fill", prompt: "Translate to French (Type 3): « If we had analysed the margins, we would not have launched. » (start: « Si nous… »)", answer: "Si nous avions analysé les marges, nous n'aurions pas lancé." },
+          ],
+        },
+      ],
+
+      sectionQuiz: [
+        { type: "mcq", prompt: "[Si Q1] Identify: « Si tu viens demain, je te montrerai les chiffres. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 0 },
+        { type: "mcq", prompt: "[Si Q2] Identify: « Si j'avais le temps, je voyagerais. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 1 },
+        { type: "mcq", prompt: "[Si Q3] Identify: « Si nous avions su, nous aurions investi. »", choices: ["Type 1", "Type 2", "Type 3", "Mixed"], answer: 2 },
+        { type: "fill", prompt: "[Si Q4] Diagnostic Q9: « Si la valorisation avait été plus basse, nous ___ (conclure) l'accord plus rapidement. »", answer: "aurions conclu" },
+        { type: "fill", prompt: "[Si Q5] Type 3 si clause: « Si tu ___ (étudier) plus, tu aurais réussi. »", answer: "avais étudié" },
+        { type: "fill", prompt: "[Si Q6] Type 1: « Si les taux baissent, nous ___ (pouvoir) augmenter le capital. »", answer: "pourrons", hint: "Your Q8: présent + futur." },
+        { type: "fill", prompt: "[Si Q7] Type 2: « Si nous ___ (être) plus nombreux, nous pourrions ouvrir un second bureau. »", answer: "étions" },
+        { type: "fill", prompt: "[Si Q8] Mixed: « Si j'avais étudié médecine, je ___ (être) chirurgien aujourd'hui. »", answer: "serais" },
+        { type: "mcq", prompt: "[Si Q9] Which tense is FORBIDDEN in the si clause?", choices: ["présent", "imparfait", "plus-que-parfait", "conditionnel"], answer: 3 },
+        { type: "mcq", prompt: "[Si Q10] SPOT THE ERROR: « Si nous aurions su, nous aurions investi. »", choices: ["Si clause should be PQP (« avions su »).", "Main clause should be cond présent.", "Both are correct.", "Si never takes PQP."], answer: 0 },
+        { type: "fill", prompt: "[Si Q11] Regret: « Tu ___ (devoir) me prévenir. » (You should have warned me.)", answer: "aurais dû" },
+        { type: "fill", prompt: "[Si Q12] Type 3: « Si tu m'avais écouté, tu ___ (éviter) ce piège. »", answer: "aurais évité" },
+        { type: "transform", prompt: "[Si Q13] Translate (Type 3): « If we had known, we would have refused. » (start: « Si nous… »)", answer: "Si nous avions su, nous aurions refusé." },
+        { type: "fill", prompt: "[Si Q14] Type 3 both blanks (comma-separated answer): « Si nous ___ (analyser) les marges, nous n' ___ pas (lancer) ce produit. »", answer: "avions analysé, aurions lancé", hint: "Format: « avions analysé, aurions lancé »." },
+        { type: "fill", prompt: "[Si Q15] Mixed: « Si Microsoft n'avait pas racheté LinkedIn, le marché ___ (être) très différent aujourd'hui. »", answer: "serait" },
+      ],
+    }
+  ]
+};
+
+/* ================================================================== */
+/* APP STATE                                                          */
+/* ================================================================== */
+
+const STATE = {
+  current: null,            // { pillarId, subId } or { pillarId, view:'section' } or {view:'home'}
+  results: {},              // pillarId -> subId/'section' -> { score, total, items[] }
+  practiceTried: {},        // exerciseKey -> boolean (just track attempted)
+};
+
+function key(p, s) { return p + '/' + s; }
+
+/* ================================================================== */
+/* RENDERERS                                                          */
+/* ================================================================== */
+
+function el(tag, props={}, children=[]) {
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(props)) {
+    if (k === 'class') e.className = v;
+    else if (k === 'html') e.innerHTML = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2).toLowerCase(), v);
+    else e.setAttribute(k, v);
+  }
+  for (const c of (Array.isArray(children) ? children : [children])) {
+    if (c == null) continue;
+    if (typeof c === 'string') e.appendChild(document.createTextNode(c));
+    else e.appendChild(c);
+  }
+  return e;
+}
+
+function renderNav(target) {
+  target.innerHTML = '';
+  COURSE.pillars.forEach((p, pi) => {
+    const head = el('div', { class:'px-4 pt-4 pb-1 text-[10px] uppercase tracking-widest text-gold/80' }, `Pillar ${pi+1}`);
+    target.appendChild(head);
+    p.subsections.forEach((s, si) => {
+      const r = STATE.results[p.id]?.[s.id];
+      const dot = el('span', { class:'progress-dot ' + (r && r.score === r.total ? 'bg-green-400' : r ? 'bg-yellow-400' : 'bg-white/20'), title: r ? `${r.score}/${r.total}` : 'not done' });
+      const navTitle = el('div', { class:'flex-1 min-w-0' }, [
+        el('div', { class:'text-sm font-medium truncate', title: s.title }, `${pi+1}.${si+1} ${s.title.split('—')[0].trim()}`),
+        el('div', { class:'nav-sub text-[11px] text-white/40 truncate' }, s.summary || ''),
+      ]);
+      const item = el('button', {
+        class: 'nav-item w-full text-left px-4 py-2.5 hover:bg-white/5 flex items-start gap-3',
+        onclick: () => navigate(p.id, s.id),
+      }, [dot, navTitle]);
+      item.dataset.path = p.id + '/' + s.id;
+      target.appendChild(item);
+    });
+    // section quiz item
+    const r = STATE.results[p.id]?.section;
+    const dot = el('span', { class:'progress-dot ' + (r && r.score / r.total >= 0.8 ? 'bg-green-400' : r ? 'bg-yellow-400' : 'bg-white/20') });
+    const sec = el('button', {
+      class: 'nav-item w-full text-left px-4 py-2.5 hover:bg-white/5 flex items-start gap-3 text-accent',
+      onclick: () => navigate(p.id, null, true),
+    }, [dot, el('div', { class:'flex-1 min-w-0' }, [
+      el('div', { class:'text-sm font-semibold' }, `★ Section Quiz`),
+      el('div', { class:'nav-sub text-[11px] text-white/40' }, p.title),
+    ])]);
+    sec.dataset.path = p.id + '/__section__';
+    target.appendChild(sec);
+  });
+  // home
+  const home = el('button', {
+    class:'nav-item w-full text-left px-4 py-2.5 hover:bg-white/5 flex items-start gap-3 mt-4 border-t border-white/10',
+    onclick: () => navigateHome(),
+  }, [el('span', { class:'progress-dot bg-white/30' }), el('div', { class:'flex-1' }, [el('div', { class:'text-sm' }, '← Home')])]);
+  home.dataset.path = '__home__';
+  target.appendChild(home);
+
+  // mark active
+  const path = STATE.current?.view === 'home' ? '__home__' :
+               STATE.current?.view === 'section' ? STATE.current.pillarId + '/__section__' :
+               STATE.current ? STATE.current.pillarId + '/' + STATE.current.subId : '';
+  target.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.path === path);
+  });
+}
+
+function navigate(pillarId, subId, isSection) {
+  STATE.current = isSection ? { pillarId, view: 'section' } : { pillarId, subId };
+  render();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  closeMobileDrawer();
+}
+
+function navigateHome() {
+  STATE.current = { view: 'home' };
+  render();
+  closeMobileDrawer();
+}
+
+function closeMobileDrawer() {
+  document.getElementById('m-drawer').classList.add('hidden');
+}
+
+/* ---------- views ---------- */
+
+function viewHome() {
+  const view = document.getElementById('view');
+  view.innerHTML = '';
+  view.appendChild(el('div', { class: 'mb-8' }, [
+    el('div', { class:'text-xs uppercase tracking-widest text-accent mb-2' }, 'For Lyubo · B1 → B2'),
+    el('h1', { class:'font-serif text-5xl md:text-6xl text-ink leading-tight' }, 'French Pillar Practice'),
+    el('p', { class:'mt-3 text-mute max-w-xl text-lg' }, 'Three pillars chosen from your diagnostic. Pronouns first — the biggest fluency multiplier. Subjunctive and past hypotheticals next.'),
+  ]));
+
+  const grid = el('div', { class:'grid md:grid-cols-3 gap-5 mt-6' });
+  COURSE.pillars.forEach((p, i) => {
+    const score = pillarOverallScore(p);
+    const card = el('button', {
+      class:'text-left rounded-2xl border border-rule bg-white p-6 hover:border-navy/40 transition',
+      onclick: () => navigate(p.id, p.subsections[0].id),
+    }, [
+      el('div', { class:'text-xs uppercase tracking-widest text-mute mb-2' }, `Pillar ${i+1}`),
+      el('h3', { class:'font-serif text-2xl text-navy' }, p.title),
+      el('div', { class:'text-sm text-mute mt-1' }, p.subtitle),
+      el('p', { class:'mt-3 text-sm leading-relaxed' }, p.tagline),
+      el('div', { class:'mt-4 flex items-center justify-between text-xs' }, [
+        el('span', { class:'text-mute' }, p.placeholder ? 'Stub — fill next iteration' : `${p.subsections.length} subsections`),
+        el('span', { class: score.total > 0 ? 'font-semibold text-navy' : 'text-mute' }, score.total > 0 ? `${score.score}/${score.total}` : ''),
+      ]),
+    ]);
+    grid.appendChild(card);
+  });
+  view.appendChild(grid);
+
+  view.appendChild(el('div', { class:'mt-12 p-6 bg-paper border border-rule rounded-xl' }, [
+    el('h3', { class:'font-serif text-2xl text-navy mb-2' }, 'How this works'),
+    el('ol', { class:'list-decimal pl-5 text-sm space-y-1.5 text-ink/80' }, [
+      el('li', {}, 'Pick a pillar and work through its subsections in order. Each one has: explanation → worked examples → 15-20 interactive exercises → a 7-question subsection quiz.'),
+      el('li', {}, 'Once you finish all subsections of a pillar, take the comprehensive Section Quiz (15 mixed questions).'),
+      el('li', {}, 'At the end of each quiz, hit « Copy results » — it puts a structured report on your clipboard.'),
+      el('li', {}, 'Paste the report back to Claude in Cowork. I will use it to build more drills targeted at whatever you missed.'),
+    ]),
+  ]));
+  view.appendChild(el('div', { class:'mt-8 text-xs text-mute text-center' }, '© Lyubo · Built with Claude · pelykh.co/french/'));
+}
+
+function viewSubsection(pillar, sub) {
+  const view = document.getElementById('view');
+  view.innerHTML = '';
+
+  // breadcrumb
+  view.appendChild(el('div', { class:'text-xs text-mute mb-3 no-print' }, [
+    el('button', { class:'hover:text-navy', onclick: () => navigateHome() }, 'Home'),
+    el('span', {}, ' / '),
+    el('span', {}, `Pillar: ${pillar.title}`),
+    el('span', {}, ' / '),
+    el('span', { class:'text-navy font-semibold' }, sub.title),
+  ]));
+
+  view.appendChild(el('h1', { class:'font-serif text-4xl text-ink' }, sub.title));
+  view.appendChild(el('p', { class:'text-mute mt-2 mb-7' }, sub.summary || ''));
+
+  // placeholder content
+  if (sub.placeholder) {
+    view.appendChild(el('div', { class:'rounded-xl bg-paper border border-rule p-6 text-sm' }, [
+      el('div', { class:'font-semibold text-navy mb-2' }, 'Coming in the next build'),
+      el('p', { class:'mb-3 text-mute' }, 'Planned topics for this subsection:'),
+      el('ul', { class:'list-disc pl-5 space-y-1' }, (sub.plannedTopics || []).map(t => el('li', {}, t))),
+      el('p', { class:'mt-4 text-xs text-mute' }, 'Run the Pillar 1 quizzes first, paste me the results, and I will iterate this section with content tuned to your weak spots.'),
+    ]));
+    return;
+  }
+
+  // explanation
+  view.appendChild(el('div', { class:'prose-block leading-relaxed space-y-3', html: sub.explanation || '' }));
+
+  // examples
+  if (sub.examples?.length) {
+    view.appendChild(el('h3', { class:'font-serif text-2xl text-navy mt-10 mb-3' }, 'Examples to internalise'));
+    const list = el('div', { class:'space-y-2' });
+    sub.examples.forEach(ex => {
+      list.appendChild(el('div', { class:'rounded-lg bg-paper border border-rule p-3 flex flex-col gap-1' }, [
+        el('div', { class:'font-medium', html: ex.fr }),
+        el('div', { class:'text-xs text-mute' }, ex.note || ''),
+      ]));
+    });
+    view.appendChild(list);
+  }
+
+  // exercises
+  if (sub.exercises?.length) {
+    view.appendChild(el('h3', { class:'font-serif text-2xl text-navy mt-10 mb-2' }, 'Practice'));
+    view.appendChild(el('p', { class:'text-sm text-mute mb-4' }, `${sub.exercises.length} exercises — work through them with no time pressure. Inline feedback on each.`));
+    const wrap = el('div', { class:'space-y-3' });
+    sub.exercises.forEach((q, i) => wrap.appendChild(renderExerciseCard(q, pillar.id + '/' + sub.id + '/ex/' + i, false)));
+    view.appendChild(wrap);
+  }
+
+  // subsection quiz
+  if (sub.quiz?.length) {
+    view.appendChild(el('div', { class:'mt-12 p-6 rounded-2xl bg-ink text-cream' }, [
+      el('div', { class:'flex items-center justify-between mb-4' }, [
+        el('h3', { class:'font-serif text-3xl' }, 'Subsection Quiz'),
+        el('div', { class:'text-xs uppercase tracking-widest text-gold' }, `${sub.quiz.length} questions`),
+      ]),
+      el('p', { class:'text-cream/70 text-sm mb-5' }, 'Get them right on the first try. After you submit, your results land in a copyable report.'),
+      renderQuiz(pillar, sub, false),
+    ]));
+  }
+
+  // nav buttons
+  const idx = pillar.subsections.findIndex(s => s.id === sub.id);
+  const prev = idx > 0 ? pillar.subsections[idx-1] : null;
+  const next = idx < pillar.subsections.length - 1 ? pillar.subsections[idx+1] : null;
+  const navRow = el('div', { class:'flex justify-between mt-10 gap-3 no-print' });
+  navRow.appendChild(prev ? el('button', { class:'px-4 py-2 border border-rule rounded-lg hover:border-navy/40', onclick: () => navigate(pillar.id, prev.id) }, '← ' + prev.title.split('—')[0].trim()) : el('span'));
+  navRow.appendChild(next ? el('button', { class:'px-4 py-2 bg-navy text-white rounded-lg hover:bg-ink', onclick: () => navigate(pillar.id, next.id) }, next.title.split('—')[0].trim() + ' →') : el('button', { class:'px-4 py-2 bg-accent text-white rounded-lg', onclick: () => navigate(pillar.id, null, true) }, 'Take the Section Quiz →'));
+  view.appendChild(navRow);
+}
+
+function viewSectionQuiz(pillar) {
+  const view = document.getElementById('view');
+  view.innerHTML = '';
+  view.appendChild(el('div', { class:'text-xs text-mute mb-3 no-print' }, [
+    el('button', { class:'hover:text-navy', onclick: () => navigateHome() }, 'Home'),
+    el('span', {}, ' / '),
+    el('span', {}, `Pillar: ${pillar.title}`),
+    el('span', {}, ' / '),
+    el('span', { class:'text-navy font-semibold' }, 'Section Quiz'),
+  ]));
+
+  view.appendChild(el('h1', { class:'font-serif text-4xl text-ink' }, `${pillar.title} — Section Quiz`));
+  view.appendChild(el('p', { class:'text-mute mt-2 mb-7' }, pillar.tagline));
+
+  if (!pillar.sectionQuiz?.length) {
+    view.appendChild(el('div', { class:'rounded-xl bg-paper border border-rule p-6 text-sm text-mute' }, 'Section quiz will appear once this pillar is fully built out.'));
+    return;
+  }
+  view.appendChild(el('div', { class:'mt-2 p-6 rounded-2xl bg-ink text-cream' }, [
+    el('div', { class:'flex items-center justify-between mb-4' }, [
+      el('h3', { class:'font-serif text-3xl' }, 'Section Quiz'),
+      el('div', { class:'text-xs uppercase tracking-widest text-gold' }, `${pillar.sectionQuiz.length} questions`),
+    ]),
+    renderQuiz(pillar, { id:'section', title: pillar.title, quiz: pillar.sectionQuiz }, true),
+  ]));
+}
+
+/* ---------- exercise card ---------- */
+
+function normalizeAns(s) {
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')   // strip combining diacritics for forgiving compare
+    .replace(/[!?.,;:'’«»"\-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isCorrect(userAns, correct) {
+  if (Array.isArray(correct)) return correct.some(c => normalizeAns(userAns) === normalizeAns(c));
+  return normalizeAns(userAns) === normalizeAns(correct);
+}
+
+const SPECIAL_CHARS = ['à','â','ç','è','é','ê','ë','î','ï','ô','ù','û','ü','œ'];
+
+function renderExerciseCard(q, key, asQuiz) {
+  const card = el('div', { class:'ex-card rounded-xl border border-rule bg-white p-4', 'data-key':key });
+  const prompt = el('div', { class:'mb-2 leading-relaxed', html: q.prompt });
+  card.appendChild(prompt);
+  let result = null;
+
+  if (q.type === 'mcq') {
+    const choices = el('div', { class:'flex flex-col gap-2 mt-1' });
+    q.choices.forEach((c, i) => {
+      const b = el('button', { class:'mcq-btn text-left px-3 py-2 border border-rule rounded-lg', onclick: () => choose(i) }, c);
+      choices.appendChild(b);
+    });
+    card.appendChild(choices);
+    function choose(i) {
+      [...choices.children].forEach((b, bi) => {
+        b.disabled = true;
+        if (bi === i) b.classList.add('selected');
+      });
+      const correct = i === q.answer;
+      [...choices.children].forEach((b, bi) => {
+        if (bi === q.answer) b.classList.add('correct');
+        else if (bi === i) b.classList.add('wrong');
+      });
+      card.classList.add(correct ? 'correct' : 'wrong');
+      const fb = renderFeedback(correct, q, q.choices[q.answer]);
+      card.appendChild(fb);
+      result = { key, q, userAns: q.choices[i], correct };
+      card._result = result;
+      // notify quiz tracker if part of quiz
+      card.dispatchEvent(new CustomEvent('answered', { detail: result, bubbles: true }));
+    }
+  } else if (q.type === 'fill' || q.type === 'transform') {
+    const input = el('input', { type:'text', class:'ex-input w-full px-3 py-2 border border-rule rounded-lg bg-white font-mono', placeholder:'Type your answer…', autocomplete:'off', spellcheck:'false' });
+    const kb = el('div', { class:'keyboard' });
+    SPECIAL_CHARS.forEach(ch => {
+      kb.appendChild(el('button', { type:'button', onclick: () => { insertAtCursor(input, ch); input.focus(); } }, ch));
+    });
+    card.appendChild(input);
+    card.appendChild(kb);
+    const row = el('div', { class:'mt-2 flex gap-2' }, [
+      el('button', { class:'px-3 py-1.5 bg-navy text-white rounded-md text-sm', onclick: check }, 'Check'),
+      q.hint ? el('button', { class:'px-3 py-1.5 border border-rule rounded-md text-sm', onclick: showHint }, 'Hint') : null,
+    ]);
+    card.appendChild(row);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+    function showHint() {
+      if (card.querySelector('.hint-line')) return;
+      card.appendChild(el('div', { class:'hint-line mt-2 text-sm text-mute italic' }, '💡 ' + q.hint));
+    }
+    function check() {
+      if (card._result) return;
+      const u = input.value;
+      const correct = isCorrect(u, q.answer);
+      input.disabled = true;
+      [...row.children].forEach(c => c && (c.disabled = true));
+      card.classList.add(correct ? 'correct' : 'wrong');
+      const fb = renderFeedback(correct, q, q.answer);
+      card.appendChild(fb);
+      result = { key, q, userAns: u, correct };
+      card._result = result;
+      card.dispatchEvent(new CustomEvent('answered', { detail: result, bubbles: true }));
+    }
+  }
+  return card;
+}
+
+function renderFeedback(correct, q, expectedDisplay) {
+  if (correct) {
+    return el('div', { class:'mt-2 text-sm text-green-700 font-medium' }, '✓ Correct.');
+  }
+  return el('div', { class:'mt-2 text-sm text-red-700' }, [
+    el('div', { class:'font-semibold' }, '✗ Not quite.'),
+    el('div', {}, [
+      el('span', { class:'text-red-700/70' }, 'Expected: '),
+      el('span', { class:'font-mono font-semibold' }, Array.isArray(expectedDisplay) ? expectedDisplay[0] : expectedDisplay),
+    ]),
+    q.hint ? el('div', { class:'mt-1 text-mute italic' }, '💡 ' + q.hint) : null,
+  ]);
+}
+
+function insertAtCursor(input, ch) {
+  const s = input.selectionStart, e = input.selectionEnd;
+  input.value = input.value.slice(0,s) + ch + input.value.slice(e);
+  input.selectionStart = input.selectionEnd = s + ch.length;
+}
+
+/* ---------- quiz block ---------- */
+
+function renderQuiz(pillar, sub, isSection) {
+  const wrap = el('div', { class:'space-y-3' });
+  const items = [];
+  sub.quiz.forEach((q, i) => {
+    const card = renderExerciseCard(q, (sub.id === 'section' ? 'section' : sub.id) + '/quiz/' + i, true);
+    card.classList.replace('bg-white','bg-cream');
+    card.classList.replace('border-rule','border-cream/30');
+    wrap.appendChild(card);
+    items.push({ card, q });
+  });
+  const finishBtn = el('button', { class:'mt-2 px-4 py-2.5 rounded-lg bg-accent text-white font-semibold disabled:opacity-50', disabled:'true', onclick: finalize }, 'Finish & see results');
+  const status = el('div', { class:'text-sm text-cream/70 mt-3' }, `0 / ${sub.quiz.length} answered`);
+  const reportContainer = el('div', { class:'mt-5' });
+
+  let answered = 0;
+  wrap.addEventListener('answered', () => {
+    answered = items.filter(it => it.card._result).length;
+    status.textContent = `${answered} / ${sub.quiz.length} answered`;
+    if (answered === sub.quiz.length) finishBtn.removeAttribute('disabled');
+  });
+
+  function finalize() {
+    finishBtn.disabled = true;
+    const results = items.map(it => it.card._result);
+    const score = results.filter(r => r.correct).length;
+    const total = results.length;
+    // store
+    if (!STATE.results[pillar.id]) STATE.results[pillar.id] = {};
+    STATE.results[pillar.id][isSection ? 'section' : sub.id] = { score, total, items: results, ts: new Date().toISOString() };
+    renderNav(document.getElementById('nav'));
+    renderNav(document.getElementById('m-nav'));
+    updateOverall();
+    reportContainer.innerHTML = '';
+    reportContainer.appendChild(buildReportBlock(pillar, sub, score, total, results, isSection));
+  }
+
+  const container = el('div', {}, [wrap, el('div', { class:'flex items-center justify-between' }, [status, finishBtn]), reportContainer]);
+  return container;
+}
+
+function buildReportBlock(pillar, sub, score, total, items, isSection) {
+  const pct = Math.round(score/total*100);
+  const wrong = items.filter(r => !r.correct);
+  const summary = el('div', { class:'rounded-xl bg-cream text-ink p-5' });
+  summary.appendChild(el('div', { class:'flex items-center justify-between' }, [
+    el('div', {}, [
+      el('div', { class:'text-xs uppercase tracking-widest text-mute' }, 'Result'),
+      el('div', { class:'font-serif text-4xl' }, `${score} / ${total}`),
+      el('div', { class:'text-sm text-mute mt-1' }, pct >= 80 ? '★ Strong. Move on.' : pct >= 60 ? 'Solid. A bit more practice.' : 'Worth a re-run after iteration.'),
+    ]),
+    el('div', { class:'text-right' }, [
+      el('div', { class:'text-3xl font-bold ' + (pct >= 80 ? 'text-green-600' : pct >= 60 ? 'text-yellow-600' : 'text-accent')}, `${pct}%`),
+    ]),
+  ]));
+
+  // text report for copy
+  const reportText = formatReport(pillar, sub, score, total, items, isSection);
+  const ta = el('textarea', { class:'mt-4 w-full font-mono text-xs p-3 border border-rule rounded-lg bg-white', rows:Math.min(12, 6+wrong.length) }, '');
+  ta.value = reportText;
+
+  const copyBtn = el('button', { class:'mt-3 px-4 py-2 bg-navy text-white rounded-lg text-sm font-semibold', onclick: copy }, 'Copy results to clipboard');
+  const copyMsg = el('span', { class:'ml-3 text-sm text-green-700 hidden' }, '✓ Copied. Paste it back to Claude.');
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(ta.value);
+      copyMsg.classList.remove('hidden');
+      setTimeout(() => copyMsg.classList.add('hidden'), 3000);
+    } catch(err) {
+      ta.select();
+      document.execCommand('copy');
+      copyMsg.classList.remove('hidden');
+    }
+  }
+  summary.appendChild(el('div', { class:'mt-4 text-sm text-mute' }, 'Paste this report back to Claude — I will spin up extra drill subsections aimed at exactly the gaps below.'));
+  summary.appendChild(ta);
+  summary.appendChild(el('div', { class:'mt-2 flex items-center' }, [copyBtn, copyMsg]));
+  return summary;
+}
+
+function formatReport(pillar, sub, score, total, items, isSection) {
+  const lines = [];
+  lines.push('=== FRENCH PILLAR PRACTICE — QUIZ REPORT ===');
+  lines.push(`Date: ${new Date().toISOString().slice(0,16).replace('T',' ')}`);
+  lines.push(`Pillar: ${pillar.title} (${pillar.id})`);
+  lines.push(`Quiz: ${isSection ? 'Section quiz' : 'Subsection — ' + sub.title}`);
+  lines.push(`Score: ${score}/${total}  (${Math.round(score/total*100)}%)`);
+  lines.push('');
+  lines.push('--- DETAIL ---');
+  items.forEach((r, i) => {
+    const mark = r.correct ? '✓' : '✗';
+    const expected = Array.isArray(r.q.answer) ? r.q.answer[0] : (r.q.choices ? r.q.choices[r.q.answer] : r.q.answer);
+    lines.push(`Q${i+1} ${mark}  ${stripHtml(r.q.prompt).slice(0,180)}`);
+    lines.push(`    Your answer: ${r.userAns}`);
+    if (!r.correct) lines.push(`    Expected:    ${expected}`);
+  });
+  const wrong = items.filter(r => !r.correct);
+  if (wrong.length) {
+    lines.push('');
+    lines.push('--- WEAK AREAS (auto-detected) ---');
+    const tags = {};
+    wrong.forEach(r => {
+      const p = stripHtml(r.q.prompt).toLowerCase();
+      if (/\by\b|à\s|penser|s'intéresser|tenir|réfléchir|participer/.test(p)) tags['y (à + thing)'] = (tags['y (à + thing)']||0)+1;
+      if (/\ben\b|de\b|parler de|besoin|discuter|souvenir|s'occuper/.test(p)) tags['en (de + thing / quantity)'] = (tags['en (de + thing / quantity)']||0)+1;
+      if (/lui|leur|téléphoner|parler à|écrire à|envoyer/.test(p)) tags['lui/leur (indirect)'] = (tags['lui/leur (indirect)']||0)+1;
+      if (/imperative|imperative|donne-|vas-y|prends-en|!/.test(p)) tags['imperative + pronoun'] = (tags['imperative + pronoun']||0)+1;
+      if (/order|both|two pronouns|combining/.test(p) || /lui en|le lui|les leur/.test(stripHtml(r.q.prompt + ' ' + (r.q.choices||[]).join(' ')).toLowerCase())) tags['pronoun order'] = (tags['pronoun order']||0)+1;
+    });
+    Object.entries(tags).forEach(([k,v]) => lines.push(`  • ${k}: ${v} miss${v>1?'es':''}`));
+  }
+  lines.push('');
+  lines.push('=== END ===');
+  return lines.join('\n');
+}
+
+function stripHtml(s) {
+  return (s || '').replace(/<[^>]+>/g, '').replace(/\s+/g,' ').trim();
+}
+
+/* ---------- aggregate ---------- */
+
+function pillarOverallScore(p) {
+  let score=0, total=0;
+  for (const s of p.subsections) {
+    const r = STATE.results[p.id]?.[s.id];
+    if (r) { score += r.score; total += r.total; }
+  }
+  const sec = STATE.results[p.id]?.section;
+  if (sec) { score += sec.score; total += sec.total; }
+  return { score, total };
+}
+
+function updateOverall() {
+  let score=0, total=0;
+  for (const p of COURSE.pillars) {
+    const s = pillarOverallScore(p);
+    score += s.score; total += s.total;
+  }
+  const el1 = document.getElementById('overall-progress');
+  const el2 = document.getElementById('overall-bar');
+  if (total > 0) {
+    el1.textContent = `${score}/${total}`;
+    el2.style.width = (score/total*100) + '%';
+  } else {
+    el1.textContent = '—';
+    el2.style.width = '0%';
+  }
+}
+
+/* ---------- main render ---------- */
+
+function render() {
+  if (!STATE.current || STATE.current.view === 'home') {
+    viewHome();
+  } else if (STATE.current.view === 'section') {
+    const p = COURSE.pillars.find(x => x.id === STATE.current.pillarId);
+    viewSectionQuiz(p);
+  } else {
+    const p = COURSE.pillars.find(x => x.id === STATE.current.pillarId);
+    const s = p.subsections.find(x => x.id === STATE.current.subId);
+    viewSubsection(p, s);
+  }
+  renderNav(document.getElementById('nav'));
+  renderNav(document.getElementById('m-nav'));
+  updateOverall();
+}
+
+/* ---------- init ---------- */
+
+document.getElementById('m-menu').addEventListener('click', () => {
+  document.getElementById('m-drawer').classList.remove('hidden');
+});
+
+navigateHome();
+</script>
+
+</body>
+</html>
