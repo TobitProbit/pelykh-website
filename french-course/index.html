@@ -1793,6 +1793,7 @@ function renderQuiz(pillar, sub, isSection) {
     const card = renderExerciseCard(q, (sub.id === 'section' ? 'section' : sub.id) + '/quiz/' + i, true);
     card.classList.replace('bg-white','bg-cream');
     card.classList.replace('border-rule','border-cream/30');
+    card.classList.add('text-ink');   // dark text on cream card inside dark quiz wrapper
     wrap.appendChild(card);
     items.push({ card, q });
   });
