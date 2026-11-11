@@ -3,772 +3,216 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pelykh was here</title>
-<meta name="description" content="A table in the mountains. Move the sun, shout at the peaks, carve your name.">
-<meta property="og:title" content="Pelykh was here">
-<meta property="og:description" content="A table in the mountains. Move the sun, shout at the peaks, carve your name.">
-<meta name="theme-color" content="#101a44">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23875f3c'/%3E%3Cpath d='M11 25V7h7l3 3v3l-3 3h-7' fill='none' stroke='%232b1508' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+<title>Pelykh. A surname, performed nightly</title>
+<meta name="description" content="The One-Surname Theatre: six letters with googly eyes sing Shchedryk. Hold a letter to make it sing. Roses and tomatoes provided.">
+<meta property="og:title" content="Pelykh. A surname, performed nightly">
+<meta property="og:description" content="Six letters with googly eyes sing Shchedryk. Roses and tomatoes provided.">
+<meta property="og:image" content="https://pelykh.co/poster.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#160826">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23160826'/%3E%3Cpath d='M8 26V6h9a7 7 0 0 1 0 14h-3v6z' fill='%23f5b301'/%3E%3Ccircle cx='12.5' cy='11' r='3' fill='%23fff'/%3E%3Ccircle cx='19.5' cy='11' r='3' fill='%23fff'/%3E%3Ccircle cx='13.3' cy='11.6' r='1.4'/%3E%3Ccircle cx='20.3' cy='11.6' r='1.4'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/rubik-mono-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face { font-family: "Rubik Mono One"; src: url(assets/fonts/rubik-mono-one-latin-400-normal.woff2) format("woff2"); font-display: swap; unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: "Rubik Mono One"; src: url(assets/fonts/rubik-mono-one-cyrillic-400-normal.woff2) format("woff2"); font-display: swap; unicode-range: U+0301, U+0400-045F, U+0490-0491, U+2116; }
+  @font-face { font-family: "Cormorant Garamond"; font-weight: 500; src: url(assets/fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2"); font-display: swap; unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: "Cormorant Garamond"; font-weight: 500; src: url(assets/fonts/cormorant-garamond-cyrillic-500-normal.woff2) format("woff2"); font-display: swap; unicode-range: U+0301, U+0400-045F, U+0490-0491, U+2116; }
+  @font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: italic; src: url(assets/fonts/cormorant-garamond-latin-500-italic.woff2) format("woff2"); font-display: swap; unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: italic; src: url(assets/fonts/cormorant-garamond-cyrillic-500-italic.woff2) format("woff2"); font-display: swap; unicode-range: U+0301, U+0400-045F, U+0490-0491, U+2116; }
+  @font-face { font-family: "Cormorant Garamond"; font-weight: 700; src: url(assets/fonts/cormorant-garamond-latin-700-normal.woff2) format("woff2"); font-display: swap; unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122; }
+  @font-face { font-family: "Cormorant Garamond"; font-weight: 700; src: url(assets/fonts/cormorant-garamond-cyrillic-700-normal.woff2) format("woff2"); font-display: swap; unicode-range: U+0301, U+0400-045F, U+0490-0491, U+2116; }
+
   :root {
-    --snow: #f7f5ee;
-    --spruce: #12332e;
-    --night: #101a44;
-    --alpenglow: #f2a7a0;
-    --larch: #b9824a;
-    --bark: #2b1508;
-    --paper: #f3ead2;
-    --serif: "Alegreya", "Georgia", "Times New Roman", serif;
+    --plum: #160826;
+    --paper: #dce8b0;
+    --ink: #2330d8;
+    --pink: #ff3d8b;
+    --saffron: #f5b301;
+    --cream: #fff6e0;
+    --poster: "Rubik Mono One", "Arial Black", Impact, sans-serif;
+    --book: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --pad: clamp(1.1rem, 5vw, 4.5rem);
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: #2b1b10;
-    color: var(--snow);
-    font-family: var(--serif);
-    font-size: 1.125rem;
-    line-height: 1.5;
-    overflow-x: hidden;
-  }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: hidden; }
+  body { margin: 0; background: var(--plum); color: var(--cream); font-family: var(--book); font-weight: 500; font-size: 1.4rem; line-height: 1.3; overflow-x: hidden; }
   button { font: inherit; color: inherit; cursor: pointer; }
   a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--alpenglow); outline-offset: 3px; border-radius: 4px; }
+  :focus-visible { outline: 3px solid var(--saffron); outline-offset: 4px; }
 
-  /* ---------- the sky ---------- */
-  .sky {
-    position: relative;
-    height: 100vh;
-    height: 100svh;
-    min-height: 480px;
-    overflow: hidden;
-    touch-action: pan-y;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-  .sky.is-dragging { cursor: grabbing; }
-  .sky canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* ---------------- the house ---------------- */
+  .house { position: relative; height: 100vh; height: 100svh; min-height: 540px; overflow: hidden; background: var(--plum); }
+  #stage { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; }
+  .dark { display: none; position: absolute; inset: 22% 10% auto; text-align: center; font-style: italic; font-size: 1.6rem; }
+  .no-webgl .dark { display: block; }
+  .no-webgl #stage { display: none; }
 
-  .topbar {
-    position: absolute; inset: 0 0 auto 0;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: clamp(1rem, 3vw, 2rem) clamp(1.1rem, 4vw, 3rem);
-    text-shadow: 0 1px 12px rgba(0, 0, 30, .45);
-    pointer-events: none;
-  }
-  .topbar > * { pointer-events: auto; }
-  .wordmark { font-style: italic; font-weight: 500; font-size: 1.35rem; letter-spacing: .01em; }
-  .lang { display: flex; gap: .15rem; background: rgba(8, 12, 40, .28); border-radius: 999px; padding: .2rem; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-  .lang button {
-    border: 0; background: none; border-radius: 999px;
-    padding: .25rem .85rem; font-size: 1rem; line-height: 1.4;
-  }
-  .lang button[aria-pressed="true"] { background: var(--snow); color: var(--night); text-shadow: none; }
+  .bar { position: absolute; inset: 0 0 auto 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: clamp(.7rem, 2vw, 1.3rem) var(--pad); pointer-events: none; }
+  .bar > * { pointer-events: auto; }
+  .name { font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.6rem); text-shadow: 0 2px 10px rgba(40, 0, 20, .8); }
+  .lang { display: flex; gap: .2rem; padding: .2rem; border-radius: 999px; background: rgba(22, 8, 38, .55); }
+  .lang button { border: 0; background: none; border-radius: 999px; padding: .15rem .8rem; font-size: 1.15rem; }
+  .lang button[aria-pressed="true"] { background: var(--cream); color: var(--plum); }
 
-  .readout {
-    position: absolute;
-    left: clamp(1.1rem, 4vw, 3rem);
-    bottom: calc(9vh + 1.6rem);
-    max-width: 22rem;
-    text-shadow: 0 1px 14px rgba(0, 0, 30, .6);
-    pointer-events: none;
+  .footlights {
+    position: absolute; inset: auto 0 0 0; text-align: center; pointer-events: none;
+    padding: 4.5rem var(--pad) clamp(.9rem, 2.5vh, 1.6rem);
+    background: linear-gradient(to top, rgba(22, 8, 38, .94) 35%, rgba(22, 8, 38, 0));
   }
-  .readout > * { pointer-events: auto; }
-  .clock { font-size: clamp(3.2rem, 9vw, 5.6rem); font-weight: 700; line-height: .95; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
-  .clock-label { font-style: italic; font-size: 1.25rem; margin: .1rem 0 .5rem; }
-  .hint { margin: 0; font-size: 1rem; opacity: .92; }
-  .now {
-    margin-top: .7rem; border: 1.5px solid currentColor; background: rgba(8, 12, 40, .25);
-    border-radius: 999px; padding: .25rem .95rem; font-size: 1rem;
+  .footlights > * { pointer-events: auto; }
+  .tagline { margin: 0 auto .9rem; max-width: 30ch; font-style: italic; font-size: clamp(1.5rem, 3.4vw, 2.5rem); line-height: 1.05; text-wrap: balance; }
+  .acts { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem .8rem; }
+  .acts button {
+    font-family: var(--poster); font-size: clamp(.78rem, 1.6vw, .95rem); letter-spacing: .01em; line-height: 1;
+    padding: .85em 1.15em; border-radius: 999px; border: 2px solid var(--cream); background: rgba(22, 8, 38, .5);
+    transition: transform .12s ease;
   }
-  .now[hidden] { display: none; }
+  .acts button:hover { transform: translateY(-2px) rotate(-1.5deg); }
+  .acts button:active { transform: translateY(2px); }
+  .acts button:disabled { opacity: .4; cursor: default; transform: none; }
+  .acts #startBtn { background: var(--saffron); color: var(--plum); border-color: var(--saffron); box-shadow: 4px 4px 0 var(--pink); }
+  .hint { margin: .9rem auto 0; max-width: 46ch; font-size: clamp(1.05rem, 1.9vw, 1.25rem); opacity: .9; text-wrap: balance; }
+  .down { display: inline-block; margin-top: .45rem; font-style: italic; font-size: 1.15rem; text-underline-offset: .2em; }
 
-  /* ---------- the table ---------- */
-  .table {
-    position: relative;
-    margin-top: -9vh;
-    min-height: 109vh;
-    box-shadow: 0 -18px 40px rgba(0, 0, 0, .45);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    color: var(--paper);
+  /* ---------------- the playbill ---------------- */
+  .playbill { background: var(--paper); color: var(--ink); position: relative; overflow: hidden; }
+  .marquee {
+    background: var(--pink); color: var(--plum); font-family: var(--poster); font-size: clamp(1rem, 2.4vw, 1.5rem);
+    white-space: nowrap; overflow: hidden; padding: .7em 0; transform: rotate(-1.2deg) scale(1.04); margin-top: -.6rem; position: relative; z-index: 2;
+    box-shadow: 0 6px 0 var(--ink);
   }
-  .table canvas {
-    position: absolute; inset: 0; width: 100%; height: 100%; display: block;
-    touch-action: none; cursor: crosshair;
-  }
-  .table-ui {
-    position: relative; pointer-events: none;
-    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;
-    gap: 1.5rem 2rem;
-    padding: 0 clamp(1.1rem, 4vw, 3rem) 1.4rem;
-  }
-  .table-ui > * { pointer-events: auto; }
-  .tools { max-width: 24rem; text-shadow: 0 1px 6px rgba(20, 8, 0, .9); }
-  .tools p { margin: 0 0 .7rem; font-style: italic; font-size: 1.15rem; }
-  .tools .row { display: flex; flex-wrap: wrap; gap: .6rem; }
-  .tools button {
-    border: 0; border-radius: 6px; padding: .45rem 1rem;
-    background: var(--bark); color: var(--paper);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 220, 170, .18);
-    text-shadow: none;
-  }
-  .tools button:active { transform: translateY(2px); box-shadow: inset 0 1px 0 rgba(255, 220, 170, .18); }
+  .marquee div { display: inline-flex; animation: slide 36s linear infinite; }
+  .marquee span { padding-right: .5em; }
+  @keyframes slide { to { transform: translateX(-50%); } }
 
-  .note {
-    display: block; width: min(17rem, 78vw);
-    padding: 1.5rem 1.2rem 1.1rem;
-    background: var(--paper); color: #2a2418;
-    text-decoration: none;
-    font-size: 1.3rem; line-height: 1.25; font-style: italic; font-weight: 500;
-    transform: rotate(-2.5deg);
-    box-shadow: 0 10px 18px rgba(20, 8, 0, .5);
-    position: relative;
-    transition: transform .25s ease;
-  }
-  .note::before { /* the nail */
-    content: ""; position: absolute; top: .5rem; left: 50%; width: .7rem; height: .7rem; margin-left: -.35rem;
-    border-radius: 50%; background: radial-gradient(circle at 35% 30%, #c9ccd2, #4b4f58 70%);
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, .45);
-  }
-  .note span { display: block; margin-top: .55rem; font-size: 1rem; font-weight: 400; font-style: normal; text-decoration: underline; text-underline-offset: .18em; }
-  .note:hover, .note:focus-visible { transform: rotate(1deg) scale(1.03); }
+  .sheet { padding: clamp(3.5rem, 9vw, 7rem) var(--pad); }
+  h2 { font-family: var(--poster); font-weight: 400; margin: 0; font-size: clamp(2.3rem, 9.5vw, 8rem); line-height: .9; letter-spacing: -.03em; text-shadow: .055em .055em 0 var(--pink); overflow-wrap: anywhere; }
+  .lede { margin: 1.4rem 0 0; max-width: 30ch; font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-style: italic; line-height: 1.15; }
 
-  footer {
-    position: relative; pointer-events: none;
-    display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem 1.5rem;
-    padding: .7rem clamp(1.1rem, 4vw, 3rem) 1rem;
-    font-size: 1rem; color: rgba(243, 234, 210, .85);
-    text-shadow: 0 1px 5px rgba(20, 8, 0, .9);
+  .cast { list-style: none; margin: clamp(2.5rem, 6vw, 5rem) 0 0; padding: 0; display: grid; gap: clamp(2rem, 5vw, 4rem); }
+  .cast li { display: grid; grid-template-columns: minmax(0, clamp(5.5rem, 17vw, 13rem)) minmax(0, 27ch); gap: clamp(1rem, 4vw, 3.5rem); align-items: center; position: relative; }
+  .cast li:nth-child(even) { margin-left: clamp(0rem, 16vw, 16rem); }
+  .cast li:nth-child(3n) { margin-left: clamp(0rem, 30vw, 30rem); }
+  .cast button {
+    border: 0; background: none; padding: 0; font-family: var(--poster); font-size: clamp(5.5rem, 17vw, 13rem); line-height: .8;
+    color: var(--c); text-shadow: .05em .05em 0 var(--ink); justify-self: start; transition: transform .15s ease;
   }
-  footer a { pointer-events: auto; }
+  .cast button:hover { transform: rotate(-6deg) scale(1.05); }
+  .cast button.sung { animation: sing .9s ease; }
+  @keyframes sing { 20% { transform: scale(.9, 1.25) rotate(-4deg); } 45% { transform: scale(1.12, .9) rotate(5deg); } 70% { transform: scale(.97, 1.08) rotate(-2deg); } }
+  .voice { display: block; font-style: italic; font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1; margin-bottom: .3em; }
+  .bio { margin: 0; font-size: clamp(1.4rem, 2.5vw, 2.1rem); line-height: 1.16; }
+  .stamp { display: none; position: absolute; left: clamp(1rem, 7vw, 6rem); top: 38%; transform: rotate(-11deg); font-family: var(--poster); font-size: clamp(.8rem, 1.8vw, 1.2rem); color: var(--pink); border: 3px solid var(--pink); border-radius: 6px; padding: .4em .6em; background: rgba(220, 232, 176, .88); pointer-events: none; white-space: nowrap; }
+  .cast li.away button { opacity: .28; transform: rotate(14deg); }
+  .cast li.away .stamp { display: block; }
 
-  @media (max-width: 640px) {
-    .table-ui { flex-direction: column; align-items: flex-start; }
-    .note { align-self: flex-end; }
-    .table { min-height: 135vh; }
+  .bill { background: var(--pink); color: var(--plum); }
+  .bill .kicker { margin: 0 0 .6rem; font-style: italic; font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+  .bill h2 { color: var(--paper); text-shadow: .055em .055em 0 var(--plum); }
+  .bill .by { margin: 1rem 0 0; font-weight: 700; font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+  .bill .about { margin: .8rem 0 0; max-width: 34ch; font-size: clamp(1.4rem, 2.5vw, 2.1rem); line-height: 1.16; }
+
+  .rules ul { list-style: none; margin: clamp(2rem, 5vw, 3.5rem) 0 0; padding: 0; max-width: 34ch; display: grid; gap: 1.1rem; font-size: clamp(1.45rem, 2.6vw, 2.2rem); line-height: 1.14; }
+  .rules li { padding-left: 1.5em; position: relative; }
+  .rules li::before { content: "★"; position: absolute; left: 0; top: .08em; color: var(--pink); font-size: .9em; }
+  .rules li:nth-child(odd) { margin-left: clamp(0rem, 8vw, 7rem); }
+
+  .elsewhere { background: var(--saffron); color: var(--plum); }
+  .elsewhere h2 { text-shadow: .055em .055em 0 var(--cream); font-size: clamp(2rem, 7vw, 5.5rem); }
+  .doors { margin: clamp(2rem, 5vw, 3.5rem) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: clamp(1.6rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem); }
+  .doors a { text-decoration: none; display: block; }
+  .doors b { display: inline; font-family: var(--poster); font-weight: 400; font-size: clamp(1.25rem, 2.6vw, 2rem); line-height: 1.15; text-decoration: underline; text-decoration-thickness: .16em; text-underline-offset: .18em; }
+  .doors span { display: block; margin-top: .55rem; font-size: clamp(1.35rem, 2.1vw, 1.75rem); font-style: italic; line-height: 1.2; max-width: 26ch; }
+  .doors a:hover b { background: var(--plum); color: var(--saffron); text-decoration: none; }
+
+  footer { background: var(--ink); color: var(--paper); padding: 2rem var(--pad) 2.4rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; font-size: 1.2rem; }
+  footer p { margin: 0; }
+  footer .wink { font-style: italic; }
+
+  @media (max-width: 620px) {
+    .stamp { left: 0; top: -1.6rem; font-size: .68rem; }
+    .cast li:nth-child(even), .cast li:nth-child(3n), .rules li:nth-child(odd) { margin-left: 0; }
+    .cast li:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, clamp(5.5rem, 17vw, 13rem)); }
+    .cast li:nth-child(even) button { order: 2; justify-self: end; }
+    .hint { display: none; }
   }
-  @media (prefers-reduced-motion: reduce) { .note { transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .marquee div { animation: none; }
+    .cast button.sung { animation: none; }
+    .acts button, .cast button { transition: none; }
+  }
 </style>
 </head>
 <body>
 
-<section class="sky" id="sky" aria-label="Mountain sky">
-  <canvas id="skyCanvas" aria-hidden="true"></canvas>
-  <div class="topbar">
-    <span class="wordmark">pelykh.co</span>
+<header class="house">
+  <canvas id="stage" role="img" aria-label="A small theatre stage. Six letters with eyes stand in a row waiting to sing."></canvas>
+  <p class="dark" data-t="noWebgl"></p>
+  <div class="bar">
+    <span class="name" data-t="house">The One-Surname Theatre</span>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true" lang="en">English</button>
       <button type="button" data-lang="uk" aria-pressed="false" lang="uk">Українська</button>
     </div>
   </div>
-  <div class="readout">
-    <div class="clock" id="clock">12:00</div>
-    <div class="clock-label" id="clockLabel" data-i18n="skyNow">your sky, right now</div>
-    <p class="hint" data-i18n="skyHint">Drag sideways to move the sun. Tap a mountain to shout at it.</p>
-    <button type="button" class="now" id="nowBtn" hidden data-i18n="backToNow">Back to right now</button>
-  </div>
-</section>
-
-<section class="table" id="table">
-  <canvas id="tableCanvas" role="img" aria-label="A weathered wooden table with “Pelykh was here” carved into it"></canvas>
-  <div class="table-ui">
-    <div class="tools">
-      <p data-i18n="carveHint">Carve something of your own. It stays on this device.</p>
-      <div class="row">
-        <button type="button" id="sandBtn" data-i18n="sand">Sand the table</button>
-        <button type="button" id="saveBtn" data-i18n="save">Save a photo</button>
-      </div>
+  <div class="footlights">
+    <h1 class="tagline" data-t="tagline">A surname, performed nightly by its own letters.</h1>
+    <div class="acts">
+      <button type="button" id="startBtn" data-t="start">Start the concert</button>
+      <button type="button" id="roseBtn" data-t="rose">Throw a rose</button>
+      <button type="button" id="tomatoBtn" data-t="tomato">Throw a tomato</button>
     </div>
-    <a class="note" href="/valuation-course/">
-      <b data-i18n="noteTitle">Secret crash-course for young curious minds</b>
-      <span data-i18n="noteGo">Open the course</span>
-    </a>
+    <p class="hint" data-t="hint">Hold a letter and it sings. Drag up for higher, sideways for a different vowel.</p>
+    <a class="down" href="#playbill" data-t="toPlaybill">Read the playbill</a>
   </div>
-  <footer>
-    <span>© 2025–2026 Pelykh</span>
-    <a href="mailto:l.pelykh@icloud.com">contact@pelykh.co</a>
-  </footer>
-</section>
+</header>
 
-<script>
-(() => {
-'use strict';
+<main class="playbill" id="playbill">
+  <div class="marquee" aria-hidden="true"><div><span></span><span></span></div></div>
 
-/* ================= helpers ================= */
-const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const lerp = (a, b, t) => a + (b - a) * t;
-const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
-const hex = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
-const mix = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
-const rgb = (c, a = 1) => `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${a})`;
-function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-const hash = n => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
-function noise1(x) { const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f); return lerp(hash(i), hash(i + 1), u); }
-function fbm(x, oct) { let v = 0, a = .5, tot = 0; for (let o = 0; o < oct; o++) { v += a * noise1(x); tot += a; x = x * 2.03 + 17.3; a *= .5; } return v / tot; }
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const store = {
-  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-};
+  <section class="sheet company">
+    <h2 data-t="companyH">The company</h2>
+    <p class="lede" data-t="companyP"></p>
+    <ul class="cast">
+      <li data-cast="P" style="--c:#f5b301"><button type="button">P</button><div><span class="voice"></span><p class="bio"></p></div></li>
+      <li data-cast="E" style="--c:#ff4f9a"><button type="button">E</button><div><span class="voice"></span><p class="bio"></p></div></li>
+      <li data-cast="L" style="--c:#19b98d"><button type="button">L</button><div><span class="voice"></span><p class="bio"></p></div></li>
+      <li data-cast="Y" style="--c:#4f7bff"><button type="button">Y</button><div><span class="voice"></span><p class="bio"></p></div></li>
+      <li data-cast="K" style="--c:#ff7a1a"><button type="button">K</button><div><span class="voice"></span><p class="bio"></p></div><span class="stamp"></span></li>
+      <li data-cast="H" style="--c:#a585ff"><button type="button">H</button><div><span class="voice"></span><p class="bio"></p></div></li>
+    </ul>
+  </section>
 
-/* ================= language ================= */
-const T = {
-  en: {
-    title: 'Pelykh was here',
-    lines1: ['PELYKH WAS HERE'], lines2: ['PELYKH', 'WAS HERE'],
-    skyNow: 'your sky, right now', skyAt: 'the sky you asked for',
-    skyHint: 'Drag sideways to move the sun. Tap a mountain to shout at it.',
-    backToNow: 'Back to right now',
-    carveHint: 'Carve something of your own. It stays on this device.',
-    sand: 'Sand the table', save: 'Save a photo',
-    noteTitle: 'Secret crash-course for young curious minds', noteGo: 'Open the course',
-    shout: 'PELYKH!',
-    tableAlt: 'A weathered wooden table with “Pelykh was here” carved into it'
-  },
-  uk: {
-    title: 'Тут був Пелих',
-    lines1: ['ТУТ БУВ ПЕЛИХ'], lines2: ['ТУТ БУВ', 'ПЕЛИХ'],
-    skyNow: 'твоє небо просто зараз', skyAt: 'небо на замовлення',
-    skyHint: 'Тягни вбік, щоб пересунути сонце. Торкнися гори, щоб гукнути до неї.',
-    backToNow: 'Повернутися в зараз',
-    carveHint: 'Виріж щось своє. Воно залишиться лише на цьому пристрої.',
-    sand: 'Зашліфувати стіл', save: 'Зберегти фото',
-    noteTitle: 'Таємний експрес-курс для юних допитливих умів', noteGo: 'Відкрити курс',
-    shout: 'ПЕЛИХ!',
-    tableAlt: 'Старий дерев’яний стіл, на якому вирізано «Тут був Пелих»'
-  }
-};
-let lang = store.get('pelykh.lang') || ((navigator.language || '').toLowerCase().startsWith('uk') ? 'uk' : 'en');
-if (!T[lang]) lang = 'en';
+  <section class="sheet bill">
+    <p class="kicker" data-t="billH">On the bill tonight</p>
+    <h2 data-t="billTitle">Shchedryk</h2>
+    <p class="by" data-t="billBy"></p>
+    <p class="about" data-t="billP"></p>
+  </section>
 
-/* ================= the sky ================= */
-const skyEl = document.getElementById('sky');
-const skyCv = document.getElementById('skyCanvas');
-const sx = skyCv.getContext('2d');
-const clockEl = document.getElementById('clock');
-const clockLabel = document.getElementById('clockLabel');
-const nowBtn = document.getElementById('nowBtn');
-let SW = 0, SH = 0, sdpr = 1;
-let hourOffset = 0;          // hours the visitor has dragged away from their real clock
-let par = 0, parTarget = 0;  // parallax, -0.5..0.5
-let stars = [], trees = [], echoes = [], meteor = null;
+  <section class="sheet rules">
+    <h2 data-t="rulesH">House rules</h2>
+    <ul id="rules"></ul>
+  </section>
 
-const KEYS = [
-  [0,    '#070b24', '#101a44', '#1c2a5a'],
-  [4.5,  '#0a1030', '#1a2456', '#3a3a70'],
-  [6,    '#27356f', '#8d6f9f', '#f6a98b'],
-  [7.5,  '#4f86c6', '#9fc4e4', '#fbd9b5'],
-  [12,   '#2f7fd0', '#7db8ea', '#d5ecf7'],
-  [16.5, '#3b7cc4', '#93bfe3', '#f3e2c0'],
-  [18.5, '#3a3f86', '#c9698d', '#ffb070'],
-  [20,   '#141a4a', '#3b2f6b', '#8a4f78'],
-  [22,   '#080c28', '#111b47', '#1f2c5c'],
-  [24,   '#070b24', '#101a44', '#1c2a5a']
-].map(k => [k[0], hex(k[1]), hex(k[2]), hex(k[3])]);
+  <section class="sheet elsewhere">
+    <h2 data-t="elsewhereH">Elsewhere in the building</h2>
+    <div class="doors">
+      <a href="/archive/2025-pelykh-was-here/"><b data-t="archive1T"></b><span data-t="archive1D"></span></a>
+      <a href="/archive/2026-mountain-table/"><b data-t="archive2T"></b><span data-t="archive2D"></span></a>
+      <a href="/valuation-course/"><b data-t="courseT"></b><span data-t="courseD"></span></a>
+      <a href="mailto:l.pelykh@icloud.com"><b data-t="doorT"></b><span data-t="doorD"></span></a>
+    </div>
+  </section>
+</main>
 
-function skyColors(t) {
-  let i = 0; while (i < KEYS.length - 2 && t >= KEYS[i + 1][0]) i++;
-  const a = KEYS[i], b = KEYS[i + 1], f = clamp((t - a[0]) / (b[0] - a[0]));
-  return [mix(a[1], b[1], f), mix(a[2], b[2], f), mix(a[3], b[3], f)];
-}
-function realHours() { const d = new Date(); return d.getHours() + d.getMinutes() / 60 + d.getSeconds() / 3600; }
-function sceneHours() { return (((realHours() + hourOffset) % 24) + 24) % 24; }
-function light(t) {              // everything the table also needs to know
-  const e = Math.sin((t - 6) / 12 * Math.PI);
-  return { e, day: smooth(-.18, .28, e), night: 1 - smooth(-.42, -.1, e), glow: Math.exp(-Math.pow(e / .28, 2)) };
-}
+<footer>
+  <p>© 2025–2026 Pelykh</p>
+  <p class="wink" data-t="foot"></p>
+</footer>
 
-function sizeSky() {
-  sdpr = Math.min(devicePixelRatio || 1, 2);
-  SW = skyEl.clientWidth; SH = skyEl.clientHeight;
-  skyCv.width = SW * sdpr; skyCv.height = SH * sdpr;
-  const r = rng(7);
-  stars = Array.from({ length: Math.round(SW * SH / 5200) }, () => ({ x: r(), y: r() * .72, s: .5 + r() * 1.3, p: r() * 6.28, f: .6 + r() * 1.8 }));
-  const r2 = rng(21); trees = [];
-  for (let x = -60; x < SW + 60; x += 7 + r2() * 13) trees.push({ x, h: 12 + r2() * 26 });
-}
-
-const LAYERS = 5;
-function ridgeY(i, x) {
-  const d = i / (LAYERS - 1);
-  const base = SH * (.50 + .105 * i), amp = SH * (.27 - .035 * i);
-  const scale = Math.max(SW, 700);
-  const n = fbm(x / scale * (1.5 + i * .55) + i * 37.7, 5);
-  const sharp = 1 - Math.abs(2 * n - 1);            // ridged: pointy peaks
-  return base - amp * lerp(sharp, n, d * .7) + amp * .45;
-}
-
-function drawSky(now) {
-  const t = sceneHours(), L = light(t), [cTop, cMid, cHor] = skyColors(t);
-  const c = sx; c.setTransform(sdpr, 0, 0, sdpr, 0, 0);
-  const horizon = SH * .72;
-  const g = c.createLinearGradient(0, 0, 0, horizon);
-  g.addColorStop(0, rgb(cTop)); g.addColorStop(.6, rgb(cMid)); g.addColorStop(1, rgb(cHor));
-  c.fillStyle = g; c.fillRect(0, 0, SW, SH);
-
-  // stars
-  if (L.night > .01) {
-    c.fillStyle = '#fff';
-    for (const s of stars) {
-      const tw = reduced ? .8 : .6 + .4 * Math.sin(now / 1000 * s.f + s.p);
-      c.globalAlpha = L.night * tw * (1 - s.y * .8);
-      c.beginPath(); c.arc(s.x * SW - par * 8, s.y * SH, s.s, 0, 6.3); c.fill();
-    }
-    c.globalAlpha = 1;
-    if (!reduced) {
-      if (!meteor && Math.random() < .0018) meteor = { x: SW * (.2 + Math.random() * .7), y: SH * (.05 + Math.random() * .25), life: 0 };
-      if (meteor) {
-        meteor.life += 1 / 45; const m = meteor, k = m.life, len = 130;
-        const hx = m.x - k * 330, hy = m.y + k * 150;
-        const mg = c.createLinearGradient(hx, hy, hx + len, hy - len * .45);
-        mg.addColorStop(0, `rgba(255,255,255,${L.night * (1 - k)})`); mg.addColorStop(1, 'rgba(255,255,255,0)');
-        c.strokeStyle = mg; c.lineWidth = 1.6; c.beginPath(); c.moveTo(hx, hy); c.lineTo(hx + len, hy - len * .45); c.stroke();
-        if (k >= 1) meteor = null;
-      }
-    }
-  }
-
-  // sun and moon ride the same arc, twelve hours apart
-  const body = (tt, isSun) => {
-    const p = (((tt - 6) % 24) + 24) % 24 / 12; if (p > 1.12 && p < 1.88) return;
-    const el = Math.sin(p * Math.PI);
-    const x = SW * (.08 + .84 * p) - par * 14, y = horizon - el * horizon * .78 + (isSun ? 0 : SH * .04);
-    const R = Math.max(20, Math.min(SW, SH) * (isSun ? .052 : .04));
-    if (isSun) {
-      const low = 1 - clamp(el * 1.6), col = mix([255, 244, 214], [255, 150, 90], low);
-      const gl = c.createRadialGradient(x, y, R * .6, x, y, R * 7);
-      gl.addColorStop(0, rgb(col, .55)); gl.addColorStop(.3, rgb(col, .16)); gl.addColorStop(1, rgb(col, 0));
-      c.fillStyle = gl; c.fillRect(x - R * 7, y - R * 7, R * 14, R * 14);
-      c.fillStyle = rgb(mix([255, 252, 240], [255, 190, 130], low)); c.beginPath(); c.arc(x, y, R, 0, 6.3); c.fill();
-    } else {
-      const a = clamp(L.night * 1.4 + .15);
-      const gl = c.createRadialGradient(x, y, R * .8, x, y, R * 4.5);
-      gl.addColorStop(0, `rgba(210,222,255,${.28 * a})`); gl.addColorStop(1, 'rgba(210,222,255,0)');
-      c.fillStyle = gl; c.fillRect(x - R * 5, y - R * 5, R * 10, R * 10);
-      c.globalAlpha = a; c.fillStyle = '#eef0f6'; c.beginPath(); c.arc(x, y, R, 0, 6.3); c.fill();
-      c.fillStyle = 'rgba(150,160,190,.35)';
-      for (const [dx, dy, rr] of [[-.3, -.2, .22], [.25, .3, .16], [.35, -.35, .1], [-.2, .45, .12]]) { c.beginPath(); c.arc(x + dx * R, y + dy * R, rr * R, 0, 6.3); c.fill(); }
-      c.globalAlpha = 1;
-    }
-  };
-  body(t + 12, false); body(t, true);
-
-  // ridgelines, far to near
-  const near = mix(hex('#04070f'), hex('#1c3d36'), L.day);
-  for (let i = 0; i < LAYERS; i++) {
-    const d = i / (LAYERS - 1), off = par * (10 + 46 * d);
-    const col = mix(near, mix(cHor, cMid, .55), (1 - d) * .8);
-    const topCol = mix(col, hex('#ff9d8a'), L.glow * .55 * (1 - d));
-    const top = SH * (.30 + .1 * i);
-    const lg = c.createLinearGradient(0, top, 0, top + SH * .3);
-    lg.addColorStop(0, rgb(topCol)); lg.addColorStop(1, rgb(col));
-    c.fillStyle = lg; c.beginPath(); c.moveTo(-2, SH + 2);
-    const step = i === LAYERS - 1 ? 6 : 4;
-    for (let x = -2; x <= SW + step; x += step) c.lineTo(x, ridgeY(i, x + off));
-    c.lineTo(SW + 2, SH + 2); c.closePath(); c.fill();
-    if (i === LAYERS - 1) {               // spruces on the nearest ridge
-      c.fillStyle = rgb(col); c.beginPath();
-      for (const tr of trees) {
-        const x = tr.x - off, y = ridgeY(i, tr.x) + 3;
-        c.moveTo(x - tr.h * .26, y); c.lineTo(x, y - tr.h); c.lineTo(x + tr.h * .26, y);
-      }
-      c.fill();
-    } else {                              // valley mist between ranges
-      const my = SH * (.56 + .105 * i), mg = c.createLinearGradient(0, my, 0, my + SH * .16);
-      mg.addColorStop(0, rgb(cHor, 0)); mg.addColorStop(1, rgb(cHor, .2 + .12 * L.glow));
-      c.fillStyle = mg; c.fillRect(0, my, SW, SH * .16);
-    }
-  }
-
-  // echoes
-  for (let k = echoes.length - 1; k >= 0; k--) {
-    const ec = echoes[k]; ec.age += 1 / 60;
-    if (ec.age < 0) continue;
-    const life = ec.age / ec.dur; if (life >= 1) { echoes.splice(k, 1); continue; }
-    c.save(); c.translate(ec.x + ec.dx * life, ec.y - 26 * life); c.rotate(ec.rot);
-    c.font = `italic 700 ${ec.size * (1 + life * .25)}px ${getComputedStyle(document.body).fontFamily}`;
-    c.textAlign = 'center'; c.globalAlpha = ec.alpha * (1 - life) * Math.min(1, life * 8);
-    c.fillStyle = '#fff'; c.shadowColor = 'rgba(0,0,40,.5)'; c.shadowBlur = 10;
-    c.fillText(ec.text, 0, 0); c.restore();
-  }
-
-  // clock
-  const hh = Math.floor(t), mm = Math.floor((t - hh) * 60);
-  const txt = String(hh).padStart(2, '0') + ':' + String(mm).padStart(2, '0');
-  if (clockEl.textContent !== txt) clockEl.textContent = txt;
-  return L;
-}
-
-function shout(x, y) {
-  const word = T[lang].shout, base = clamp(SW / 14, 26, 58);
-  const dir = x < SW / 2 ? 1 : -1;
-  for (let n = 0; n < 4; n++) {
-    echoes.push({
-      text: n === 0 ? word : word.toLowerCase().replace('!', '…'),
-      x: x + dir * n * base * 1.15, y: y - n * base * .6, dx: dir * 30,
-      size: base * Math.pow(.72, n), alpha: Math.pow(.7, n), rot: (Math.random() - .5) * .12,
-      age: -n * .55, dur: 1.5
-    });
-  }
-}
-
-// drag = move the sun, tap = shout
-let drag = null;
-skyEl.addEventListener('pointerdown', e => {
-  if (e.target.closest('button')) return;
-  drag = { x: e.clientX, y: e.clientY, last: e.clientX, moved: false };
-});
-addEventListener('pointermove', e => {
-  if (e.pointerType === 'mouse') parTarget = e.clientX / innerWidth - .5;
-  if (!drag) return;
-  if (!drag.moved && Math.abs(e.clientX - drag.x) > 8 && Math.abs(e.clientX - drag.x) > Math.abs(e.clientY - drag.y)) {
-    drag.moved = true; skyEl.classList.add('is-dragging');
-  }
-  if (drag.moved) { hourOffset += (e.clientX - drag.last) / SW * 12; drag.last = e.clientX; timeChanged(); }
-});
-const endDrag = e => {
-  if (!drag) return;
-  if (!drag.moved && e.type === 'pointerup' && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 8) {
-    const r = skyEl.getBoundingClientRect(); shout(e.clientX - r.left, e.clientY - r.top);
-  }
-  drag = null; skyEl.classList.remove('is-dragging');
-};
-addEventListener('pointerup', endDrag); addEventListener('pointercancel', endDrag);
-skyEl.tabIndex = 0;
-skyEl.addEventListener('keydown', e => {
-  if (e.target !== skyEl) return;
-  if (e.key === 'ArrowLeft') { hourOffset -= .25; timeChanged(); }
-  else if (e.key === 'ArrowRight') { hourOffset += .25; timeChanged(); }
-  else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); shout(SW / 2, SH * .5); }
-});
-function timeChanged() {
-  const away = Math.abs(hourOffset) > .02;
-  nowBtn.hidden = !away;
-  clockLabel.textContent = T[lang][away ? 'skyAt' : 'skyNow'];
-}
-nowBtn.addEventListener('click', () => { hourOffset = 0; timeChanged(); });
-
-/* ================= the table ================= */
-const tblEl = document.getElementById('table');
-const tblCv = document.getElementById('tableCanvas');
-const tx = tblCv.getContext('2d');
-const mk = () => { const cv = document.createElement('canvas'); return [cv, cv.getContext('2d')]; };
-const [woodCv, woodX] = mk(), [fixedCv, fixedX] = mk(), [userCv, userX] = mk(), [maskCv, maskX] = mk(), [tmpCv, tmpX] = mk(), [compCv, compX] = mk();
-let TW = 0, TH = 0, tdpr = 1, dirty = true, tableVisible = false;
-let strokes = [];                 // the visitor's carvings: {w, p:[x0,y0,x1,y1...]} in 0..1 units
-let chips = [];
-let lantern = { x: .5, y: .35 };
-let title = { segs: [], total: 0, drawn: 0, width: 4 }, fading = null;
-try { strokes = JSON.parse(store.get('pelykh.carvings') || '[]') || []; } catch (e) { strokes = []; }
-
-// A knife makes straight cuts, so every letter is a handful of straight strokes on a 4 x 6 grid.
-const P_ = [[0, 6], [0, 0], [3, 0], [4, 1], [4, 2], [3, 3], [0, 3]];
-const E_ = [[[4, 0], [0, 0], [0, 6], [4, 6]], [[0, 3], [3, 3]]];
-const GLYPHS = {
-  P: [P_], E: E_, 'Е': E_,
-  L: [[[0, 0], [0, 6], [4, 6]]],
-  Y: [[[0, 0], [2, 3], [4, 0]], [[2, 3], [2, 6]]],
-  K: [[[0, 0], [0, 6]], [[4, 0], [0, 3], [4, 6]]],
-  H: [[[0, 0], [0, 6]], [[4, 0], [4, 6]], [[0, 3], [4, 3]]],
-  W: [[[0, 0], [1, 6], [2, 2], [3, 6], [4, 0]]],
-  A: [[[0, 6], [2, 0], [4, 6]], [[1, 4], [3, 4]]],
-  S: [[[4, 1], [3, 0], [1, 0], [0, 1], [0, 2], [1, 3], [3, 3], [4, 4], [4, 5], [3, 6], [1, 6], [0, 5]]],
-  R: [P_, [[2, 3], [4, 6]]],
-  'Т': [[[0, 0], [4, 0]], [[2, 0], [2, 6]]],
-  'У': [[[0, 0], [2, 3.6]], [[4, 0], [1.4, 6], [.4, 6]]],
-  'Б': [[[4, 0], [0, 0], [0, 6], [3, 6], [4, 5], [4, 4], [3, 3], [0, 3]]],
-  'В': [[[0, 0], [0, 6], [3, 6], [4, 5], [4, 4], [3, 3], [0, 3]], [[0, 0], [3, 0], [4, 1], [4, 2], [3, 3]]],
-  'П': [[[0, 6], [0, 0], [4, 0], [4, 6]]],
-  'Л': [[[0, 6], [2, 0], [4, 6]]],
-  'И': [[[0, 0], [0, 6], [4, 0], [4, 6]]],
-  'Х': [[[0, 0], [4, 6]], [[4, 0], [0, 6]]],
-  '2': [[[0, 1], [1, 0], [3, 0], [4, 1], [4, 2], [0, 6], [4, 6]]],
-  '0': [[[1, 0], [3, 0], [4, 1], [4, 5], [3, 6], [1, 6], [0, 5], [0, 1], [1, 0]]],
-  '5': [[[4, 0], [0, 0], [0, 3], [3, 3], [4, 4], [4, 5], [3, 6], [0, 6]]]
-};
-const ADV = 5.7, SPACE = 3.2;
-const lineUnits = s => [...s].reduce((a, ch) => a + (ch === ' ' ? SPACE : ADV), 0) - 1.7;
-
-// text -> list of straight cuts [x0,y0,x1,y1] in canvas px, slightly wobbly like a real hand
-function cutsFor(text, x, y, u, seed) {
-  const r = rng(seed), out = [];
-  for (const ch of text) {
-    if (ch === ' ') { x += SPACE * u; continue; }
-    const g = GLYPHS[ch]; if (!g) { x += ADV * u; continue; }
-    const tilt = (r() - .5) * .09, oy = (r() - .5) * .5 * u, cx = x + 2 * u, cy = y + 3 * u;
-    const cos = Math.cos(tilt), sin = Math.sin(tilt);
-    for (const poly of g) {
-      const pts = poly.map(([px, py]) => {
-        const lx = (px - 2 + (r() - .5) * .34) * u, ly = (py - 3 + (r() - .5) * .34) * u;
-        return [cx + lx * cos - ly * sin, cy + oy + lx * sin + ly * cos];
-      });
-      for (let k = 0; k < pts.length - 1; k++) out.push([pts[k][0], pts[k][1], pts[k + 1][0], pts[k + 1][1]]);
-    }
-    x += ADV * u;
-  }
-  return out;
-}
-
-function layoutTitle() {
-  const W = tblCv.width, H = tblCv.height;
-  const lines = TW < 820 ? T[lang].lines2 : T[lang].lines1;
-  const widest = Math.max(...lines.map(lineUnits)), rows = lines.length;
-  const u = Math.min(W * .84 / widest, H * (rows > 1 ? .30 : .2) / (rows * 6 + (rows - 1) * 3));
-  let y = H * (TW < 820 ? .17 : .24), segs = [];
-  lines.forEach((ln, i) => { segs = segs.concat(cutsFor(ln, (W - lineUnits(ln) * u) / 2, y, u, 11 + i * 7 + (lang === 'uk' ? 100 : 0))); y += 9 * u; });
-  let total = 0; for (const s of segs) { s[4] = Math.hypot(s[2] - s[0], s[3] - s[1]); total += s[4]; }
-  title = { segs, total, drawn: reduced ? total : 0, width: Math.max(3 * tdpr, u * .62) };
-}
-
-// things earlier visitors left behind
-function drawRelics() {
-  const W = tblCv.width, H = tblCv.height, u = Math.max(5 * tdpr, Math.min(W, H) * .0085), c = fixedX;
-  const cuts = [], narrow = TW < 820;
-  const add = (poly, ox, oy, s) => { for (let k = 0; k < poly.length - 1; k++) cuts.push([ox + poly[k][0] * s, oy + poly[k][1] * s, ox + poly[k + 1][0] * s, oy + poly[k + 1][1] * s]); };
-  const mx = W * (narrow ? .08 : .07), my = H * (narrow ? .44 : .6);
-  add([[0, 6], [3, 0], [5, 3.4], [7, 1], [10.5, 6]], mx, my, u * 1.5);           // two peaks
-  add([[2.2, 1.4], [3, 2.6], [3.8, 1.6]], mx, my, u * 1.5);                       // snow line
-  const tx0 = W * (narrow ? .68 : .86), ty0 = H * (narrow ? .45 : .6);
-  for (let k = 0; k < 4; k++) add([[k * 1.5, 0], [k * 1.5 + .2, 5]], tx0, ty0, u * 1.4); // tally
-  add([[-1, 4], [5.6, 1]], tx0, ty0, u * 1.4);
-  cuts.push(...cutsFor('2025', W * (narrow ? .36 : .47), H * (narrow ? .54 : .63), u * .95, 5));
-  c.lineCap = 'round'; c.lineJoin = 'round'; c.strokeStyle = 'rgba(0,0,0,.62)'; c.lineWidth = u * .55;
-  c.beginPath(); for (const s of cuts) { c.moveTo(s[0], s[1]); c.lineTo(s[2], s[3]); } c.stroke();
-}
-
-function drawFixed() {
-  const c = fixedX; c.clearRect(0, 0, fixedCv.width, fixedCv.height);
-  drawRelics();
-  if (fading) { c.globalAlpha = fading.a; c.drawImage(fading.cv, 0, 0); c.globalAlpha = 1; }
-  c.lineCap = 'round'; c.lineJoin = 'round'; c.strokeStyle = '#000'; c.lineWidth = title.width;
-  let left = title.drawn; c.beginPath();
-  for (const s of title.segs) {
-    if (left <= 0) break;
-    const f = Math.min(1, left / s[4]);
-    c.moveTo(s[0], s[1]); c.lineTo(lerp(s[0], s[2], f), lerp(s[1], s[3], f));
-    left -= s[4];
-  }
-  c.stroke();
-}
-function knifeTip() {              // where the title is being cut right now
-  let left = title.drawn;
-  for (const s of title.segs) { if (left <= s[4]) { const f = left / s[4]; return [lerp(s[0], s[2], f), lerp(s[1], s[3], f)]; } left -= s[4]; }
-  return null;
-}
-
-function drawStroke(c, s, from = 0) {
-  const W = tblCv.width, H = tblCv.height, p = s.p;
-  c.lineCap = 'round'; c.lineJoin = 'round'; c.strokeStyle = '#000'; c.lineWidth = s.w * W;
-  c.beginPath();
-  const start = Math.max(0, from - 2);
-  c.moveTo(p[start] * W, p[start + 1] * H);
-  if (p.length === 2) c.lineTo(p[0] * W + .1, p[1] * H);
-  for (let k = start + 2; k < p.length; k += 2) c.lineTo(p[k] * W, p[k + 1] * H);
-  c.stroke();
-}
-function redrawUser() { userX.clearRect(0, 0, userCv.width, userCv.height); for (const s of strokes) drawStroke(userX, s); }
-
-function paintWood() {
-  const W = woodCv.width, H = woodCv.height, c = woodX, r = rng(4242);
-  const boards = Math.max(4, Math.round(TH / 150)), bh = H / boards;
-  for (let b = 0; b < boards; b++) {
-    const y0 = b * bh, tone = r();
-    const base = mix(hex('#8b6440'), hex('#6f4c30'), tone);
-    const g = c.createLinearGradient(0, y0, 0, y0 + bh);
-    g.addColorStop(0, rgb(mix(base, [255, 225, 180], .1))); g.addColorStop(.5, rgb(base)); g.addColorStop(1, rgb(mix(base, [30, 12, 0], .2)));
-    c.fillStyle = g; c.fillRect(0, y0, W, bh);
-    c.save(); c.beginPath(); c.rect(0, y0, W, bh); c.clip();
-    const seed = b * 91.7 + 3, knotX = W * (.12 + r() * .76), knotY = y0 + bh * (.3 + r() * .4), knotR = bh * (.1 + r() * .1), hasKnot = r() < .7;
-    const n = Math.round(bh / (2.1 * tdpr));
-    for (let k = 0; k < n; k++) {
-      const yy = y0 + (k + r()) / n * bh, dark = r() < .72;
-      c.strokeStyle = dark ? `rgba(40,18,4,${.04 + r() * .16})` : `rgba(255,220,170,${.03 + r() * .09})`;
-      c.lineWidth = (.5 + r() * 1.5) * tdpr; c.beginPath();
-      for (let x = 0; x <= W + 16; x += 14 * tdpr) {
-        let y = yy + (fbm(x / (520 * tdpr) + seed + k * .013, 3) - .5) * bh * .34;
-        if (hasKnot) { const dx = x - knotX, dy = y - knotY, d2 = (dx * dx + dy * dy * 5) / (knotR * knotR * 9); y += Math.sign(dy || 1) * knotR * 1.5 * Math.exp(-d2); }
-        x === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
-      }
-      c.stroke();
-    }
-    if (hasKnot) {
-      for (let q = 5; q > 0; q--) {
-        c.fillStyle = `rgba(38,18,6,${.16 + (5 - q) * .1})`;
-        c.beginPath(); c.ellipse(knotX, knotY, knotR * q / 5 * 1.5, knotR * q / 5 * .62, 0, 0, 6.3); c.fill();
-      }
-    }
-    c.restore();
-    // gap between boards, and where one plank ends and the next begins
-    c.fillStyle = 'rgba(18,7,0,.82)'; c.fillRect(0, y0 - 1.5 * tdpr, W, 3 * tdpr);
-    c.fillStyle = 'rgba(255,225,180,.16)'; c.fillRect(0, y0 + 1.5 * tdpr, W, 1.2 * tdpr);
-    const ex = W * (.15 + r() * .7);
-    c.fillStyle = 'rgba(18,7,0,.7)'; c.fillRect(ex, y0, 2.2 * tdpr, bh);
-    for (const nx of [ex - 16 * tdpr, ex + 18 * tdpr]) for (const ny of [y0 + bh * .22, y0 + bh * .78]) {
-      c.fillStyle = 'rgba(22,12,6,.85)'; c.beginPath(); c.arc(nx, ny, 3.4 * tdpr, 0, 6.3); c.fill();
-      c.fillStyle = 'rgba(210,205,200,.35)'; c.beginPath(); c.arc(nx - tdpr, ny - tdpr, 1.2 * tdpr, 0, 6.3); c.fill();
-    }
-  }
-  // the front edge of the table, nearest the mountains
-  const eg = c.createLinearGradient(0, 0, 0, 26 * tdpr);
-  eg.addColorStop(0, 'rgba(255,225,180,.3)'); eg.addColorStop(.25, 'rgba(255,225,180,0)');
-  c.fillStyle = eg; c.fillRect(0, 0, W, 26 * tdpr);
-  const vg = c.createRadialGradient(W / 2, H * .45, Math.min(W, H) * .3, W / 2, H * .45, Math.max(W, H) * .8);
-  vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(15,5,0,.5)');
-  c.fillStyle = vg; c.fillRect(0, 0, W, H);
-}
-
-function tint(color, dx, dy) {
-  const c = tmpX; c.globalCompositeOperation = 'source-over'; c.clearRect(0, 0, tmpCv.width, tmpCv.height);
-  c.drawImage(maskCv, 0, 0); c.globalCompositeOperation = 'source-in'; c.fillStyle = color; c.fillRect(0, 0, tmpCv.width, tmpCv.height);
-  compX.drawImage(tmpCv, dx, dy);
-}
-function composite() {
-  const W = compCv.width, H = compCv.height, o = 1.3 * tdpr;
-  maskX.clearRect(0, 0, W, H); maskX.drawImage(fixedCv, 0, 0); maskX.drawImage(userCv, 0, 0);
-  compX.clearRect(0, 0, W, H); compX.drawImage(woodCv, 0, 0);
-  tint('rgba(255,228,180,.5)', o, o * 1.4);        // lit lower lip of each groove
-  tint('rgba(70,38,16,.9)', 0, 0);                 // the groove itself
-  const c = tmpX;                                  // shadow under the upper lip
-  c.globalCompositeOperation = 'source-over'; c.clearRect(0, 0, W, H); c.drawImage(maskCv, 0, 0);
-  c.globalCompositeOperation = 'destination-out'; c.drawImage(maskCv, o * 1.5, o * 2);
-  c.globalCompositeOperation = 'source-in'; c.fillStyle = 'rgba(14,5,0,.85)'; c.fillRect(0, 0, W, H);
-  compX.drawImage(tmpCv, 0, 0);
-  dirty = false;
-}
-
-function sizeTable() {
-  tdpr = Math.min(devicePixelRatio || 1, 2);
-  TW = tblEl.clientWidth; TH = tblEl.clientHeight;
-  for (const cv of [tblCv, woodCv, fixedCv, userCv, maskCv, tmpCv, compCv]) { cv.width = TW * tdpr; cv.height = TH * tdpr; }
-  paintWood(); redrawUser();
-  const done = title.total && title.drawn >= title.total;
-  layoutTitle(); if (done) title.drawn = title.total;
-  fading = null; drawFixed(); dirty = true;
-}
-
-function spawnChips(x, y, n) {
-  if (reduced) return;
-  for (let k = 0; k < n; k++) chips.push({ x, y, vx: (Math.random() - .5) * 5 * tdpr, vy: (-1 - Math.random() * 3.5) * tdpr, r: Math.random() * 6.28, vr: (Math.random() - .5) * .5, s: (1.5 + Math.random() * 3.5) * tdpr, life: 1 });
-  if (chips.length > 260) chips.splice(0, chips.length - 260);
-}
-
-function drawTable(L) {
-  // carve the title a little further
-  if (title.drawn < title.total) {
-    title.drawn = Math.min(title.total, title.drawn + Math.max(title.total / 190, 9 * tdpr));
-    const tip = knifeTip(); if (tip) spawnChips(tip[0], tip[1], 2);
-    if (fading) { fading.a -= .04; if (fading.a <= 0) fading = null; }
-    drawFixed(); dirty = true;
-  } else if (fading) { fading = null; drawFixed(); dirty = true; }
-  if (dirty) composite();
-
-  const W = tblCv.width, H = tblCv.height, c = tx;
-  c.globalCompositeOperation = 'source-over'; c.drawImage(compCv, 0, 0);
-  if (L.glow > .03) { c.globalCompositeOperation = 'soft-light'; c.fillStyle = `rgba(255,120,60,${L.glow * .45})`; c.fillRect(0, 0, W, H); c.globalCompositeOperation = 'source-over'; }
-  if (L.night > .01) {             // after dark, the pointer carries a lantern
-    const lx = lantern.x * W, ly = lantern.y * H, R = Math.max(W, H) * .62;
-    const flick = reduced ? 1 : 1 + Math.sin(performance.now() / 90) * .012 + Math.sin(performance.now() / 37) * .008;
-    const g = c.createRadialGradient(lx, ly, R * .05, lx, ly, R * flick);
-    g.addColorStop(0, 'rgba(6,8,28,0)'); g.addColorStop(.35, `rgba(6,8,28,${.45 * L.night})`); g.addColorStop(1, `rgba(6,8,28,${.86 * L.night})`);
-    c.fillStyle = g; c.fillRect(0, 0, W, H);
-    c.globalCompositeOperation = 'soft-light';
-    const w = c.createRadialGradient(lx, ly, 0, lx, ly, R * .45);
-    w.addColorStop(0, `rgba(255,170,70,${.75 * L.night})`); w.addColorStop(1, 'rgba(255,170,70,0)');
-    c.fillStyle = w; c.fillRect(0, 0, W, H); c.globalCompositeOperation = 'source-over';
-  }
-  for (let k = chips.length - 1; k >= 0; k--) {
-    const p = chips[k]; p.x += p.vx; p.y += p.vy; p.vy += .22 * tdpr; p.r += p.vr; p.life -= .022;
-    if (p.life <= 0) { chips.splice(k, 1); continue; }
-    c.save(); c.translate(p.x, p.y); c.rotate(p.r); c.globalAlpha = Math.min(1, p.life * 2);
-    c.fillStyle = '#e9c48e'; c.fillRect(-p.s, -p.s * .35, p.s * 2, p.s * .7); c.restore();
-  }
-}
-
-// carving by hand
-let carving = null;
-const tpos = e => { const r = tblCv.getBoundingClientRect(); return [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height]; };
-tblCv.addEventListener('pointerdown', e => {
-  if (e.button) return;
-  tblCv.setPointerCapture(e.pointerId);
-  const [x, y] = tpos(e);
-  carving = { w: clamp(5.5 / TW, .003, .012), p: [x, y] };
-  strokes.push(carving); drawStroke(userX, carving); dirty = true;
-  lantern = { x, y }; e.preventDefault();
-});
-tblCv.addEventListener('pointermove', e => {
-  const [x, y] = tpos(e); lantern = { x, y };
-  if (!carving) return;
-  const p = carving.p, n = p.length;
-  if (Math.hypot((x - p[n - 2]) * TW, (y - p[n - 1]) * TH) < 2) return;
-  p.push(x, y); drawStroke(userX, carving, n); dirty = true;
-  spawnChips(x * tblCv.width, y * tblCv.height, 1);
-});
-const endCarve = () => {
-  if (!carving) return; carving = null;
-  while (strokes.length > 400) strokes.shift();
-  store.set('pelykh.carvings', JSON.stringify(strokes.map(s => ({ w: s.w, p: s.p.map(v => +v.toFixed(4)) }))));
-};
-tblCv.addEventListener('pointerup', endCarve); tblCv.addEventListener('pointercancel', endCarve);
-
-document.getElementById('sandBtn').addEventListener('click', () => {
-  for (const s of strokes) for (let k = 0; k < s.p.length; k += 8) spawnChips(s.p[k] * tblCv.width, s.p[k + 1] * tblCv.height, 1);
-  strokes = []; store.set('pelykh.carvings', '[]'); redrawUser(); dirty = true;
-});
-document.getElementById('saveBtn').addEventListener('click', () => {
-  tblCv.toBlob(b => {
-    if (!b) return;
-    const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'i-was-at-pelykh.png';
-    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-  }, 'image/png');
-});
-
-/* ================= language switch ================= */
-function applyLang(first) {
-  const t = T[lang];
-  document.documentElement.lang = lang; document.title = t.title;
-  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t[el.dataset.i18n]; });
-  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
-  tblCv.setAttribute('aria-label', t.tableAlt);
-  timeChanged();
-  if (first) return;
-  // sand the old title away while the new one is cut
-  const [cv, cx] = mk(); cv.width = fixedCv.width; cv.height = fixedCv.height;
-  const keep = title; cx.lineCap = 'round'; cx.lineJoin = 'round'; cx.lineWidth = keep.width; cx.beginPath();
-  let left = keep.drawn;
-  for (const s of keep.segs) { if (left <= 0) break; const f = Math.min(1, left / s[4]); cx.moveTo(s[0], s[1]); cx.lineTo(lerp(s[0], s[2], f), lerp(s[1], s[3], f)); left -= s[4]; }
-  cx.stroke();
-  fading = reduced ? null : { cv, a: 1 };
-  layoutTitle(); drawFixed(); dirty = true;
-}
-document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
-  if (b.dataset.lang === lang) return;
-  lang = b.dataset.lang; store.set('pelykh.lang', lang); applyLang(false);
-}));
-
-/* ================= go ================= */
-let skyVisible = true, started = false;
-new IntersectionObserver(es => { skyVisible = es[0].isIntersecting; }).observe(skyEl);
-new IntersectionObserver(es => {
-  tableVisible = es[0].isIntersecting;
-  if (tableVisible && !started) started = true;    // the title is carved when the table first comes into view
-}, { threshold: .18 }).observe(tblCv);
-
-function frame(now) {
-  par += (parTarget - par) * .06;
-  const L = skyVisible ? drawSky(now) : light(sceneHours());
-  if (started && (tableVisible || dirty)) drawTable(L);
-  else if (!started) { if (dirty) composite(); tx.drawImage(compCv, 0, 0); }
-  requestAnimationFrame(frame);
-}
-let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { sizeSky(); sizeTable(); }, 120); });
-applyLang(true); sizeSky(); sizeTable();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { dirty = true; });
-requestAnimationFrame(frame);
-})();
-</script>
+<script type="module" src="assets/app.js"></script>
 </body>
 </html>
