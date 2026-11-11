@@ -19,10 +19,23 @@ export class Choir {
     if (!this.ctx) {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return null;
+      try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
       this.build(new AC());
     }
-    if (this.ctx.state === 'suspended') this.ctx.resume();
+    if (this.ctx.state !== 'running') { const p = this.ctx.resume(); if (p && p.catch) p.catch(() => {}); }
     return this.ctx;
+  }
+
+  // iPhones only start audio from a finished tap (touchend / click), and by default they mute
+  // web audio when the ring/silent switch is on silent. Called on every tap anywhere on the page.
+  unlock() {
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+    const ctx = this.ensure(); if (!ctx || this.unlocked) return;
+    try {
+      const src = ctx.createBufferSource(); src.buffer = ctx.createBuffer(1, 1, ctx.sampleRate);
+      src.connect(ctx.destination); src.start(0);
+    } catch (e) {}
+    if (ctx.state === 'running') this.unlocked = true;
   }
 
   build(ctx) {

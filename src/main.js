@@ -47,6 +47,8 @@ function snap(m) {
 }
 
 const choir = new Choir();
+for (const ev of ['touchend', 'pointerup', 'click', 'keydown']) addEventListener(ev, () => choir.unlock(), { passive: true, capture: true });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && choir.ctx) choir.ensure(); });
 const canvas = $('#stage');
 let renderer = null;
 try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' }); }
