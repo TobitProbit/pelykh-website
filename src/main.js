@@ -279,9 +279,11 @@ function boot() {
   const GAP = 2.5, RISE = 2.75, STEP = 1.5;
   const lightScale = { key: 400, fill: 300, follow: 400 };
   const view = { d: 20, cy: 2, hw: 10, vh: 10, cyAt: () => 2 };
+  let laidOut = null;
   function layout(snapTo = false) {
     const W = canvas.clientWidth, H = canvas.clientHeight; if (!W || !H) return;
-    renderer.setSize(W, H, false); camera.aspect = W / H;
+    if (!laidOut) snapTo = true;
+    laidOut = [W, H]; renderer.setSize(W, H, false); camera.aspect = W / H;
     const active = perfs.filter(p => p.present), n = active.length, aspect = W / H;
     const rows = aspect > 1.3 ? 1 : aspect > 0.74 ? 2 : 3, per = Math.ceil(n / rows);
     active.forEach((p, k) => {
@@ -478,7 +480,6 @@ function boot() {
   /* ---------------- run ---------------- */
   let visible = true, last = performance.now(), time = 0, introT = reduced ? 9 : 0;
   new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(canvas);
-  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => layout(false), 100); });
   perfs.find(p => p.id === 'K').offX = 30;
   applyCast(getLang(), true); layout(true);
   if (!reduced) for (const p of perfs) p.root.position.y = -0.001;
@@ -487,8 +488,10 @@ function boot() {
     requestAnimationFrame(frame);
     const dt = Math.min(0.4, (now - last) / 1000); last = now;
     conduct();
-    if (!visible) return;
-    time += dt; introT += dt;
+    // Re-fit whenever the canvas changes size, including a page that first loaded hidden at 0 x 0.
+    if (!laidOut || laidOut[0] !== canvas.clientWidth || laidOut[1] !== canvas.clientHeight) layout(false);
+    if (!visible || !laidOut) return;
+    time += dt; introT += Math.min(dt, 0.05);
 
     // curtain up
     if (curtainOpen < 1) {
