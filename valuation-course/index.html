@@ -1,282 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Young Investor's Guide to Company Valuation | Free Course for Teens</title>
-  <meta name="description" content="Learn company valuation fundamentals in 6 engaging modules. Perfect for curious 13-year-olds who want to understand how businesses are valued. Features DCF, multiples, and AI-powered analysis.">
-  <meta name="keywords" content="company valuation course, teen investing, DCF for beginners, stock market education, financial literacy teens">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Young Investor's Guide: what is anything really worth?</title>
+<meta name="description" content="A free, hands-on crash-course for young curious minds. Six short missions and one lemonade stand teach how to work out what a business is really worth.">
+<meta property="og:title" content="The Young Investor's Guide">
+<meta property="og:description" content="Six short missions. One lemonade stand. Learn to work out what a business is really worth.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pelykh.co/valuation-course/">
+<meta name="theme-color" content="#ffd93b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f2440'/%3E%3Cellipse cx='16' cy='16' rx='10' ry='8' fill='%23ffd93b'/%3E%3Cellipse cx='12' cy='13' rx='3' ry='2' fill='%23fff3a8'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script defer data-domain="pelykh.co" src="https://plausible.io/js/script.js"></script>
+<style>
+  @font-face { font-family: "Bricolage Grotesque"; src: url(fonts/bricolage-grotesque-latin-wght-normal.woff2) format("woff2"); font-weight: 200 800; font-display: swap; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url(fonts/atkinson-hyperlegible-latin-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+  @font-face { font-family: "Atkinson Hyperlegible"; src: url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-display: swap; }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Young Investor's Guide to Company Valuation">
-  <meta property="og:description" content="Free 6-module course teaching teens how to value companies like an investor.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pelykh.co/valuation-course/">
+  :root {
+    --lemon: #ffd93b;
+    --lemon-soft: #fff4b8;
+    --ink: #1f2440;
+    --pink: #ff5d8a;
+    --pink-soft: #ffe1ea;
+    --leaf: #12805c;
+    --leaf-soft: #d5f3e6;
+    --sky: #dff1ff;
+    --paper: #ffffff;
+    --line: #1f2440;
+    --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --body: "Atkinson Hyperlegible", Verdana, system-ui, sans-serif;
+    --r: 18px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.125rem; line-height: 1.55; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+  p { margin: 0 0 .9em; } p:last-child { margin-bottom: 0; }
+  a { color: inherit; text-underline-offset: .18em; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.15rem; }
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Young Investor's Guide to Company Valuation">
-  <meta name="twitter:description" content="Free 6-module course teaching teens how to value companies like an investor.">
+  /* ---------- top bar ---------- */
+  .top { position: sticky; top: 0; z-index: 20; background: var(--lemon); border-bottom: 3px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: .8rem; min-height: 3.3rem; max-width: 60rem; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-decoration: none; letter-spacing: -.01em; }
+  .top nav { display: flex; align-items: center; gap: clamp(.5rem, 2.5vw, 1.2rem); font-size: 1rem; }
+  .top nav a { text-decoration: none; font-weight: 700; }
+  .top nav a:hover { text-decoration: underline; }
+  .purse { background: var(--paper); border: 2.5px solid var(--line); border-radius: 999px; padding: .1rem .7rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .purse.bump { animation: bump .45s ease; }
+  @keyframes bump { 40% { transform: scale(1.25) rotate(-4deg); } }
 
-  <!-- Fonts - 1980s Retro -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  /* ---------- buttons ---------- */
+  .btn { display: inline-block; font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-decoration: none; background: var(--pink); color: var(--ink); border: 3px solid var(--line); border-radius: 999px; padding: .6rem 1.4rem; box-shadow: 0 5px 0 var(--line); transition: transform .08s, box-shadow .08s; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 0 var(--line); }
+  .btn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--line); }
+  .btn[disabled] { background: #e9e9ee; color: #70748a; cursor: not-allowed; box-shadow: 0 5px 0 #a9acbb; border-color: #a9acbb; transform: none; }
+  .btn.quiet { background: var(--paper); font-size: 1rem; padding: .4rem 1rem; box-shadow: 0 4px 0 var(--line); }
+  .btn.lemon { background: var(--lemon); }
+  .link { background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: .18em; }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  /* ---------- home ---------- */
+  .hero { background: var(--lemon); border-bottom: 3px solid var(--line); padding: clamp(1.6rem, 5vw, 3.2rem) 0 0; overflow: hidden; }
+  .hero .wrap { max-width: 60rem; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 1rem 2rem; align-items: end; }
+  .hero h1 { font-size: clamp(2.5rem, 7.2vw, 4.9rem); }
+  .hero .sub { font-size: clamp(1.15rem, 2.2vw, 1.4rem); max-width: 26ch; margin: 1rem 0 1.4rem; line-height: 1.35; }
+  .hero .copy { padding-bottom: clamp(1.6rem, 5vw, 3.2rem); }
+  .hero .meta { margin-top: 1rem; font-size: 1rem; }
+  .stand { width: 100%; height: auto; display: block; }
+  .standnote { font-size: .95rem; text-align: center; margin: -.3rem 0 .5rem; font-weight: 700; }
 
-  <!-- Analytics (Plausible - privacy-friendly) -->
-  <script defer data-domain="pelykh.co" src="https://plausible.io/js/script.js"></script>
+  .path { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; gap: .9rem; }
+  .path a { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: 1rem; align-items: center; text-decoration: none; border: 3px solid var(--line); border-radius: var(--r); padding: .9rem 1.1rem; background: var(--paper); box-shadow: 0 5px 0 var(--line); transition: transform .08s; }
+  .path a:hover { transform: translateY(-2px); }
+  .path .num { font-family: var(--display); font-weight: 800; font-size: 2.3rem; line-height: 1; text-align: center; }
+  .path h3 { font-size: 1.35rem; }
+  .path p { font-size: 1rem; margin: .25rem 0 0; line-height: 1.35; }
+  .path .state { font-size: .95rem; font-weight: 700; white-space: nowrap; text-align: right; }
+  .path li.done a { background: var(--leaf-soft); }
+  .path li.next a { background: var(--lemon-soft); }
+  .path li.boss a { background: var(--ink); color: var(--paper); }
+  .section-h { font-size: clamp(1.8rem, 4.5vw, 2.6rem); margin-top: 3rem; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; margin-top: 1.2rem; }
+  .tile { border: 3px solid var(--line); border-radius: var(--r); padding: 1rem 1.1rem; background: var(--sky); text-decoration: none; display: block; }
+  .tile h3 { font-size: 1.25rem; margin-bottom: .3rem; }
+  .tile p { font-size: 1rem; line-height: 1.35; }
+  .grownups { margin-top: 3rem; border-top: 3px solid var(--line); padding-top: 1.3rem; font-size: 1rem; }
+  .grownups h2 { font-size: 1.3rem; margin-bottom: .5rem; }
+  footer { margin-top: 3rem; background: var(--ink); color: var(--paper); padding: 1.6rem 0 2rem; font-size: .95rem; }
+  footer .wrap { display: grid; gap: .6rem; }
+  footer .row { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
+
+  /* ---------- mission ---------- */
+  .mhead { background: var(--lemon); border-bottom: 3px solid var(--line); padding: 1.6rem 0 1.4rem; }
+  .mhead .kicker { font-weight: 700; margin-bottom: .4rem; }
+  .mhead h1 { font-size: clamp(2.1rem, 6.5vw, 3.6rem); }
+  .mhead .blurb { margin-top: .7rem; font-size: 1.15rem; max-width: 34ch; line-height: 1.35; }
+  .dots { display: flex; gap: 5px; margin-top: 1.1rem; }
+  .dots i { flex: 1; height: 9px; border-radius: 9px; background: rgba(31, 36, 64, .18); border: 2px solid var(--line); }
+  .dots i.on { background: var(--pink); }
+
+  .print-holder { display: none; }
+  .steps { padding: 1.6rem 0 0; display: grid; gap: 1.4rem; }
+  .step { border: 3px solid var(--line); border-radius: var(--r); padding: 1.25rem 1.2rem 1.35rem; background: var(--paper); animation: rise .35s ease both; scroll-margin-top: 4.3rem; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  .step h2 { font-size: clamp(1.5rem, 4vw, 1.95rem); margin-bottom: .7rem; }
+  .step .tag { display: inline-block; font-size: .9rem; font-weight: 700; background: var(--ink); color: var(--paper); border-radius: 999px; padding: .05rem .7rem; margin-bottom: .7rem; }
+  .step.rule { background: var(--lemon); }
+  .step.rule p { font-family: var(--display); font-weight: 800; font-size: clamp(1.5rem, 4.4vw, 2.1rem); line-height: 1.1; letter-spacing: -.015em; }
+  .step.rule p + p { font-family: var(--body); font-weight: 400; font-size: 1.1rem; line-height: 1.5; letter-spacing: 0; margin-top: .8rem; }
+  .step.dinner { background: var(--sky); }
+  .step.dinner .q { font-family: var(--display); font-weight: 700; font-size: 1.4rem; line-height: 1.2; margin-bottom: .6rem; }
+  .step.ai { background: var(--ink); color: var(--paper); }
+  .step.ai .tag { background: var(--lemon); color: var(--ink); }
+  .step.ai pre { white-space: pre-wrap; font-family: var(--body); font-size: 1rem; line-height: 1.45; background: rgba(255, 255, 255, .1); border-radius: 12px; padding: .9rem 1rem; margin: .8rem 0; }
+  .step.ai .btn { background: var(--lemon); }
+  .go { display: flex; justify-content: center; padding: 1.6rem 0 4rem; }
+
+  .opts { display: grid; gap: .6rem; margin-top: .9rem; }
+  .opt { text-align: left; background: var(--paper); border: 3px solid var(--line); border-radius: 14px; padding: .65rem .9rem; font-weight: 700; line-height: 1.3; transition: transform .08s; }
+  .opt:hover:not([disabled]) { transform: translateX(4px); background: var(--lemon-soft); }
+  .opt.yes { background: var(--leaf-soft); border-color: var(--leaf); }
+  .opt.no { background: #f1f1f5; color: #6c7088; border-color: #a9acbb; text-decoration: line-through; }
+  .opt.picked { background: var(--lemon); }
+  .opt[disabled] { cursor: default; }
+  .fb { margin-top: .9rem; border-left: 6px solid var(--leaf); background: var(--leaf-soft); border-radius: 0 12px 12px 0; padding: .7rem .9rem; }
+  .fb.try { border-color: var(--pink); background: var(--pink-soft); }
+  .fb b:first-child { font-family: var(--display); }
+  .g { background: none; border: 0; padding: 0; font-weight: 700; border-bottom: 3px dotted var(--pink); cursor: help; }
+  .gpop { position: absolute; z-index: 40; max-width: min(20rem, 88vw); background: var(--ink); color: var(--paper); border-radius: 14px; padding: .7rem .9rem; font-size: 1rem; line-height: 1.4; box-shadow: 0 8px 24px rgba(31, 36, 64, .35); }
+  .gpop b { font-family: var(--display); display: block; margin-bottom: .15rem; color: var(--lemon); }
+
+  /* ---------- widgets ---------- */
+  .ctl { display: grid; gap: .15rem; margin: .9rem 0; }
+  .ctl label { display: flex; justify-content: space-between; gap: 1rem; font-weight: 700; }
+  .ctl output { font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; height: 2rem; accent-color: var(--pink); }
+  input[type=text], textarea { width: 100%; font: inherit; color: inherit; border: 3px solid var(--line); border-radius: 12px; padding: .5rem .7rem; background: var(--paper); }
+  textarea { min-height: 4.2rem; resize: vertical; }
+  .big { font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 8vw, 3.4rem); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .readout { background: var(--sky); border-radius: 14px; padding: .9rem 1rem; margin: .9rem 0; }
+  .readout small { display: block; font-size: 1rem; font-weight: 700; margin-bottom: .2rem; }
+  .bars { display: flex; align-items: flex-end; gap: 3px; height: 11rem; margin: 1rem 0 .3rem; border-bottom: 3px solid var(--line); }
+  .bars .b { flex: 1; display: flex; flex-direction: column-reverse; min-width: 2px; }
+  .bars .b i { display: block; background: var(--ink); }
+  .bars .b i.extra { background: var(--pink); }
+  .bars .b i.pv { background: var(--leaf); }
+  .bars .b i.ghost { background: repeating-linear-gradient(45deg, #c9ccda 0 4px, #e6e8f0 4px 8px); }
+  .barlabels { display: flex; gap: 3px; font-size: .85rem; font-weight: 700; text-align: center; }
+  .barlabels span { flex: 1; }
+  .legend { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; font-size: .95rem; margin-top: .5rem; }
+  .legend i { display: inline-block; width: .9rem; height: .9rem; border-radius: 3px; margin-right: .35rem; vertical-align: -1px; }
+  .hbars { display: grid; gap: .55rem; margin: 1rem 0; }
+  .hbar { display: grid; grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+  .hbar span { font-size: 1rem; font-weight: 700; display: flex; justify-content: space-between; gap: 1rem; }
+  .hbar i { display: block; height: 1.1rem; border-radius: 6px; background: var(--ink); min-width: 6px; transition: width .6s ease; }
+  .hbar.me i { background: var(--pink); }
+  .quests { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .45rem; }
+  .quests li { padding: .5rem .8rem .5rem 2.4rem; border: 2.5px dashed var(--line); border-radius: 12px; position: relative; font-weight: 700; line-height: 1.3; }
+  .quests li::before { content: "?"; position: absolute; left: .7rem; top: .45rem; font-family: var(--display); font-weight: 800; }
+  .quests li.ok { border-style: solid; background: var(--leaf-soft); }
+  .quests li.ok::before { content: "✓"; color: var(--leaf); }
+  .quests li small { display: block; font-weight: 400; font-size: 1rem; margin-top: .2rem; }
+  .rows { display: grid; gap: .8rem; margin-top: .9rem; }
+  .rowq { border: 2.5px solid var(--line); border-radius: 14px; padding: .7rem .8rem; }
+  .rowq p { font-weight: 700; margin-bottom: .5rem; line-height: 1.3; }
+  .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .chip { border: 2.5px solid var(--line); border-radius: 999px; background: var(--paper); padding: .15rem .8rem; font-weight: 700; font-size: 1rem; }
+  .chip:hover:not([disabled]) { background: var(--lemon-soft); }
+  .chip.yes { background: var(--leaf-soft); border-color: var(--leaf); }
+  .chip.no { background: #f1f1f5; color: #8b8ea3; border-color: #b9bccb; }
+  .rowq .why { margin-top: .5rem; font-size: 1rem; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+  .duo .opt { height: 100%; }
+  .card-news { border: 3px solid var(--line); border-radius: 14px; background: var(--lemon-soft); padding: 1.1rem 1rem; font-family: var(--display); font-weight: 800; font-size: clamp(1.3rem, 4.5vw, 1.7rem); line-height: 1.12; min-height: 6.5rem; display: flex; align-items: center; }
+  table.t { width: 100%; border-collapse: collapse; margin: .8rem 0; font-variant-numeric: tabular-nums; }
+  table.t th, table.t td { text-align: left; padding: .4rem .5rem; border-bottom: 2px solid var(--line); }
+  table.t th { font-family: var(--display); }
+  table.t td:not(:first-child), table.t th:not(:first-child) { text-align: right; }
+  table.t tr.sum td { font-weight: 700; border-bottom: 0; }
+  .trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: .7rem; margin-top: .8rem; }
+  .trio div { background: var(--sky); border-radius: 14px; padding: .8rem .9rem; font-size: 1rem; line-height: 1.4; }
+  .trio b { font-family: var(--display); font-size: 1.15rem; display: block; margin-bottom: .2rem; }
+  .meter { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 6vw, 2.3rem); line-height: 1.05; }
+  .meter.up { color: var(--leaf); } .meter.down { color: #c2255c; }
+
+  /* ---------- finish, quiz, certificate ---------- */
+  .finish { text-align: center; background: var(--leaf-soft); }
+  .finish .badge { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 6vw, 2.6rem); line-height: 1.05; margin: .3rem 0 .6rem; }
+  .finish .acts { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; margin-top: 1.1rem; }
+  .drop { position: fixed; top: -3rem; font-size: 1.8rem; pointer-events: none; z-index: 60; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translateY(115vh) rotate(540deg); } }
+  .cert { border: 6px double var(--line); border-radius: var(--r); background: var(--lemon-soft); padding: 2rem 1.2rem; text-align: center; margin-top: 1.2rem; }
+  .cert .who { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 8vw, 3.2rem); line-height: 1; margin: .6rem 0; overflow-wrap: anywhere; }
+  .cert .what { font-family: var(--display); font-weight: 700; font-size: 1.3rem; }
+  .sheet h2 { font-size: 1.6rem; margin: 1.8rem 0 .6rem; }
+  .sheet .f { font-family: var(--display); font-weight: 700; font-size: 1.2rem; background: var(--lemon-soft); border-radius: 12px; padding: .6rem .8rem; margin: .5rem 0; line-height: 1.3; }
+  .sheet ul, .sheet ol { padding-left: 1.3rem; margin: .4rem 0; }
+  .sheet li { margin: .25rem 0; }
+  dl.gl dt { font-family: var(--display); font-weight: 800; font-size: 1.25rem; margin-top: 1.1rem; }
+  dl.gl dd { margin: .15rem 0 0; }
+
+  @media (max-width: 720px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero .copy { padding-bottom: .4rem; }
+    .path a { grid-template-columns: 2.4rem 1fr; }
+    .path .state { grid-column: 2; text-align: left; }
+    .top nav a.opt-hide { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .step, .purse.bump, .drop { animation: none; }
+    .drop { display: none; }
+    .btn, .opt, .path a, .hbar i { transition: none; }
+  }
+  @media print {
+    .top, footer, .go, .noprint { display: none !important; }
+    body.print-one > * { display: none !important; }
+    body.print-one > .print-holder { display: block !important; padding: 1rem; }
+    .step { break-inside: avoid; animation: none; }
+  }
+</style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <div class="page-wrapper">
-    <!-- Header -->
-    <header class="site-header">
-      <nav class="nav-container">
-        <a href="index.html" class="nav-logo">Valuation Course</a>
-
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-
-        <div class="nav-links">
-          <a href="index.html" class="nav-link active">Overview</a>
-          <a href="module-1.html" class="nav-link">Modules</a>
-          <a href="cheat-sheet.html" class="nav-link">Cheat Sheet</a>
-          <a href="glossary.html" class="nav-link">Glossary</a>
-          <button class="theme-toggle" aria-label="Toggle dark mode">
-            <svg class="icon-moon" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
-            </svg>
-            <svg class="icon-sun" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Progress Bar -->
-    <div class="progress-bar-container">
-      <div class="progress-bar"></div>
-    </div>
-
-    <!-- Main Content -->
-    <main id="main-content">
-      <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-          <img src="images/00-Intro top picture.png" alt="1980s Wall Street Style Illustration" class="module-image" style="margin-bottom: var(--space-lg);">
-          <h1>The Young Investor's Guide to Company Valuation</h1>
-          <p>How to Figure Out What Anything Is Really Worth</p>
-          <p class="text-small">A free course for young curious minds who want to think like investors</p>
-          <a href="module-1.html" class="hero-cta">
-            Start Learning
-            <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
-              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-            </svg>
-          </a>
-        </section>
-
-        <!-- Why This Matters -->
-        <section>
-          <h2>Why This Matters</h2>
-          <p>You probably already think like an investor without realizing it.</p>
-          <p>When you decide whether a Fortnite skin is "worth it" at 1,500 V-Bucks, you're doing valuation. When you wonder why Travis Scott Jordans resell for &euro;2,000 when regular Jordans cost &euro;180, you're asking valuation questions. When you hear that someone paid &euro;222 million for Neymar but Mbapp&eacute; left PSG for free, and you think "wait, what?" &mdash; that's the valuation instinct kicking in.</p>
-          <p>This course will teach you to take that instinct and sharpen it into a skill.</p>
-
-          <div class="big-idea">
-            <h3>By the end, you'll be able to:</h3>
-            <ul>
-              <li>Explain why &euro;100 today is worth more than &euro;100 next year</li>
-              <li>Look at a company and estimate what it's actually worth</li>
-              <li>Read news headlines and know whether they matter for a stock</li>
-              <li>Use AI to build real financial models and find investment ideas</li>
-            </ul>
-          </div>
-        </section>
-
-        <!-- Module Cards -->
-        <section>
-          <h2>6 Modules to Master Valuation</h2>
-          <p>Each module takes 20-30 minutes. Work through them in order for the best experience.</p>
-
-          <div class="modules-grid">
-            <!-- Module 1 -->
-            <a href="module-1.html" class="module-card" data-module="1">
-              <span class="module-number">1</span>
-              <h3>What Does "Value" Even Mean?</h3>
-              <p>Learn the difference between price and value using Fortnite skins, Travis Scott Jordans, and Supreme bricks.</p>
-              <div class="module-status">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" style="display:none;">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>~25 min</span>
-              </div>
-            </a>
-
-            <!-- Module 2 -->
-            <a href="module-2.html" class="module-card" data-module="2">
-              <span class="module-number">2</span>
-              <h3>The Time Machine Problem</h3>
-              <p>Discover why money today is worth more than money tomorrow through compounding and discount rates.</p>
-              <div class="module-status">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" style="display:none;">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>~25 min</span>
-              </div>
-            </a>
-
-            <!-- Module 3 -->
-            <a href="module-3.html" class="module-card" data-module="3">
-              <span class="module-number">3</span>
-              <h3>DCF Fundamentals</h3>
-              <p>Build your first valuation model &mdash; from a lemonade stand to Epic Games.</p>
-              <div class="module-status">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" style="display:none;">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>~30 min</span>
-              </div>
-            </a>
-
-            <!-- Module 4 -->
-            <a href="module-4.html" class="module-card" data-module="4">
-              <span class="module-number">4</span>
-              <h3>Multiples & Comparables</h3>
-              <p>Learn the shortcut method: P/E ratios, EV/Revenue, and why Nike is worth 5x more than Adidas.</p>
-              <div class="module-status">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" style="display:none;">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>~25 min</span>
-              </div>
-            </a>
-
-            <!-- Module 5 -->
-            <a href="module-5.html" class="module-card" data-module="5">
-              <span class="module-number">5</span>
-              <h3>Reading News Like an Investor</h3>
-              <p>Separate signal from noise: what actually moves stock prices and what doesn't.</p>
-              <div class="module-status">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" style="display:none;">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>~25 min</span>
-              </div>
-            </a>
-
-            <!-- Module 6 -->
-            <a href="module-6.html" class="module-card" data-module="6">
-              <span class="module-number">6</span>
-              <h3>Your AI-Powered Investment Lab</h3>
-              <p>Turn Claude into your personal analyst with prompt templates and build your first watchlist.</p>
-              <div class="module-status">
-                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" style="display:none;">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>~30 min</span>
-              </div>
-            </a>
-          </div>
-        </section>
-
-        <!-- Test Your Knowledge -->
-        <section>
-          <h2>Test Your Knowledge</h2>
-          <div class="modules-grid">
-            <a href="quiz.html" class="module-card" style="border-color: var(--gold); background: rgba(180, 140, 50, 0.08);">
-              <span class="module-number" style="color: var(--gold);">20 Questions</span>
-              <h3 style="color: var(--gold);">Take the Quiz</h3>
-              <p>Ready to test what you've learned? Complete all modules, then challenge yourself with this quiz. Score 0-100 points.</p>
-            </a>
-          </div>
-        </section>
-
-        <!-- Resources -->
-        <section>
-          <h2>Quick Resources</h2>
-          <div class="modules-grid">
-            <a href="cheat-sheet.html" class="module-card">
-              <h3>Cheat Sheet</h3>
-              <p>One-page reference with all key formulas and concepts.</p>
-            </a>
-            <a href="glossary.html" class="module-card">
-              <h3>Glossary</h3>
-              <p>Every term explained in plain English.</p>
-            </a>
-          </div>
-        </section>
-
-        <!-- Quote -->
-        <section>
-          <blockquote class="big-idea" style="border-left-color: var(--color-primary);">
-            <p style="font-style: italic; font-size: 1.125rem; margin-bottom: 0.5rem;">"The stock market is a device for transferring money from the impatient to the patient."</p>
-            <footer style="color: var(--color-text-muted);">&mdash; Warren Buffett</footer>
-          </blockquote>
-        </section>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <h4>Young Investor's Guide</h4>
-            <p>A free educational resource teaching company valuation to curious teenagers.</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-links-column">
-              <h5>Course</h5>
-              <ul>
-                <li><a href="module-1.html">Module 1: Value</a></li>
-                <li><a href="module-2.html">Module 2: Time Value</a></li>
-                <li><a href="module-3.html">Module 3: DCF</a></li>
-                <li><a href="module-4.html">Module 4: Multiples</a></li>
-                <li><a href="module-5.html">Module 5: News</a></li>
-                <li><a href="module-6.html">Module 6: AI Lab</a></li>
-              </ul>
-            </div>
-            <div class="footer-links-column">
-              <h5>Resources</h5>
-              <ul>
-                <li><a href="cheat-sheet.html">Cheat Sheet</a></li>
-                <li><a href="glossary.html">Glossary</a></li>
-                <li><a href="https://pelykh.co">pelykh.co</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="legal-disclaimer">
-          <h5>Trademark & Copyright Notice</h5>
-          <p>This educational course is not affiliated with, endorsed by, or sponsored by any of the companies, brands, or individuals mentioned herein.</p>
-          <p>All company names, logos, and trademarks referenced are the property of their respective owners and are used here solely for educational and informational purposes under fair use principles.</p>
-          <ul>
-            <li>Fortnite&reg;, Epic Games&reg;, and Unreal Engine&reg; are trademarks of Epic Games, Inc.</li>
-            <li>Nike&reg; and the Swoosh&reg; are trademarks of Nike, Inc.</li>
-            <li>Adidas&reg; and the Three Stripes&reg; are trademarks of Adidas AG.</li>
-            <li>Roblox&reg; is a trademark of Roblox Corporation.</li>
-            <li>All other trademarks are property of their respective owners.</li>
-          </ul>
-          <p>Stock prices, valuations, and financial data referenced are for illustrative purposes only and may not reflect current market conditions. <strong>This content does not constitute financial advice.</strong></p>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 Pelykh. Educational content for personal use.</p>
-          <p>Built with care for curious minds.</p>
-        </div>
-      </div>
-    </footer>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#/">Young Investor's Guide</a>
+    <nav aria-label="Course">
+      <a class="opt-hide" href="#/cheats">Cheat sheet</a>
+      <a class="opt-hide" href="#/words">Glossary</a>
+      <span class="purse" id="purse" title="Lemons earned" aria-live="polite">🍋 0</span>
+    </nav>
   </div>
-
-  <script src="assets/js/main.js"></script>
+</header>
+<main id="app"></main>
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a href="#/">Course map</a><a href="#/cheats">Cheat sheet</a><a href="#/words">Glossary</a><a href="/archive/valuation-course-2025/">The original 2025 edition</a><a href="/">pelykh.co</a>
+    </div>
+    <p>This course is for learning. It is not financial advice. The lemonade stand, the sneakers and the companies in the exercises are made up, and their numbers are invented to keep the sums easy. The one true story, about Netflix in April 2022, says so.</p>
+    <p>© 2025–2026 Pelykh. Free for curious minds.</p>
+  </div>
+</footer>
+<noscript><p style="padding:1rem">This course is interactive and needs JavaScript switched on.</p></noscript>
+<script src="app.js"></script>
 </body>
 </html>

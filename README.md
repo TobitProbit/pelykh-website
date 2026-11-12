@@ -17,7 +17,8 @@ Switching to Ukrainian changes their costumes to П Е Л И Х and sends K on p
 | `src/copy.js` | Every word on the page, in English and Ukrainian |
 | `src/glyphs.js` | Letter outlines, generated from the font by `src/gen-glyphs.mjs` |
 | `archive/` | Earlier versions of the home page, kept for history |
-| `valuation-course/`, `french-course/` | Separate mini-sites, untouched by the home page |
+| `valuation-course/` | The Young Investor's Guide: six interactive missions. Plain HTML and JS, no build step; all course text is in `app.js` |
+| `french-course/` | Separate mini-site |
 
 ## Changing things
 
@@ -35,6 +36,7 @@ there is no build step on the server.
 
 - `archive/2025-pelykh-was-here/` – the original page: a photograph of a carved table, in two languages.
 - `archive/2026-mountain-table/` – an interactive mountain scene with a table visitors could carve.
+- `archive/valuation-course-2025/` – the first edition of the valuation course (six long-read modules).
 
 ## Credits
 

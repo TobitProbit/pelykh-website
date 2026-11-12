@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3: DCF Fundamentals | Valuation Course</title>
+  <meta name="description" content="Build your first DCF valuation model - from a lemonade stand to Epic Games. Learn the foundation of company valuation.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer data-domain="pelykh.co" src="https://plausible.io/js/script.js"></script>
+</head>
+<body data-module="3">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <nav class="nav-container">
+        <a href="index.html" class="nav-logo">Valuation Course</a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Overview</a>
+          <a href="module-1.html" class="nav-link active">Modules</a>
+          <a href="cheat-sheet.html" class="nav-link">Cheat Sheet</a>
+          <a href="glossary.html" class="nav-link">Glossary</a>
+          <button class="theme-toggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="progress-bar-container"><div class="progress-bar"></div></div>
+
+    <main id="main-content">
+      <div class="container">
+        <div class="module-progress">
+          <a href="module-1.html" class="module-progress-item" data-module="1">1</a>
+          <a href="module-2.html" class="module-progress-item" data-module="2">2</a>
+          <a href="module-3.html" class="module-progress-item current" data-module="3">3</a>
+          <a href="module-4.html" class="module-progress-item" data-module="4">4</a>
+          <a href="module-5.html" class="module-progress-item" data-module="5">5</a>
+          <a href="module-6.html" class="module-progress-item" data-module="6">6</a>
+        </div>
+
+        <header class="module-header">
+          <span class="module-label">Module 3</span>
+          <img src="images/03-Lemonade_DCF valuation.png" alt="Module 3 - DCF Valuation illustration" class="module-image">
+          <h1>Valuing a Lemonade Stand &rarr; Valuing Epic Games</h1>
+          <p class="module-intro">Build your first DCF model and understand where valuations actually come from.</p>
+        </header>
+
+        <!-- Hook -->
+        <section class="hook-box">
+          <h2>The &euro;6 Billion Question</h2>
+          <p>Real Madrid made about &euro;800 million in revenue last year.</p>
+          <p>But the club is valued at over <strong>&euro;6 billion</strong>.</p>
+          <p>Wait... that's 7.5x their annual revenue. Where does the extra &euro;5+ billion come from?</p>
+          <p><strong>The answer: it comes from the future.</strong></p>
+        </section>
+
+        <!-- Big Idea -->
+        <section>
+          <div class="big-idea">
+            <h3>The Big Idea: A Company Is Worth All Its Future Cash</h3>
+            <p>Here's the single most important concept in valuation:</p>
+            <p><strong>A company (or any asset) is worth the sum of all the cash it will generate in the future, discounted back to today.</strong></p>
+            <p>That's it. That's the whole game. Everything else is just technique for estimating that number.</p>
+            <p>This approach is called <strong>DCF: Discounted Cash Flow.</strong></p>
+          </div>
+        </section>
+
+        <!-- Step 1: Cash Flow -->
+        <section>
+          <h2>Step 1: What Is "Cash Flow"?</h2>
+          <p>Cash flow means the actual money that comes IN minus the money that goes OUT. <strong>Not revenue. Not profit on paper. Actual cash.</strong></p>
+
+          <h3>Example: A Gaming YouTube Channel</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+              <tbody>
+                <tr><td>Ad revenue</td><td>+&euro;5,000/month</td></tr>
+                <tr><td>Sponsorship</td><td>+&euro;2,000/month</td></tr>
+                <tr><td>Camera equipment</td><td>-&euro;500/month</td></tr>
+                <tr><td>Editor salary</td><td>-&euro;1,500/month</td></tr>
+                <tr><td>Software subscriptions</td><td>-&euro;200/month</td></tr>
+                <tr><td><strong>Free Cash Flow</strong></td><td><strong>&euro;4,800/month</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>That &euro;4,800 is what the owner can actually take home (or reinvest).</p>
+          <p><em>Warren Buffett once said: "Revenue is vanity, profit is sanity, but cash is reality."</em></p>
+        </section>
+
+        <!-- Step 2: Project -->
+        <section>
+          <h2>Step 2: Project the Future (With Humility)</h2>
+          <h3>Example: A Lemonade Stand DCF</h3>
+          <p><strong>Current situation:</strong> Your lemonade stand makes &euro;20/day profit, 200 days/year = &euro;4,000 annually.</p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Year</th><th>Growth Assumption</th><th>Cash Flow</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>+10% (you're getting better)</td><td>&euro;4,400</td></tr>
+                <tr><td>2</td><td>+10%</td><td>&euro;4,840</td></tr>
+                <tr><td>3</td><td>+5% (market saturating)</td><td>&euro;5,082</td></tr>
+                <tr><td>4</td><td>+5%</td><td>&euro;5,336</td></tr>
+                <tr><td>5</td><td>+2% (maintenance mode)</td><td>&euro;5,443</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Step 3: Discount -->
+        <section>
+          <h2>Step 3: Discount It Back</h2>
+          <p>Using a 10% discount rate:</p>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Year</th><th>Cash Flow</th><th>Discount Factor</th><th>Present Value</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>&euro;4,400</td><td>&divide; 1.10</td><td>&euro;4,000</td></tr>
+                <tr><td>2</td><td>&euro;4,840</td><td>&divide; 1.21</td><td>&euro;4,000</td></tr>
+                <tr><td>3</td><td>&euro;5,082</td><td>&divide; 1.331</td><td>&euro;3,818</td></tr>
+                <tr><td>4</td><td>&euro;5,336</td><td>&divide; 1.464</td><td>&euro;3,645</td></tr>
+                <tr><td>5</td><td>&euro;5,443</td><td>&divide; 1.611</td><td>&euro;3,379</td></tr>
+                <tr><td colspan="3"><strong>Total 5-year value</strong></td><td><strong>&euro;18,842</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Step 4: Terminal Value -->
+        <section>
+          <h2>Step 4: Terminal Value (The Tricky Part)</h2>
+          <p>Your lemonade stand doesn't stop existing after 5 years. What about year 6, 7, 8... year 50?</p>
+          <p>We handle this with <strong>"Terminal Value"</strong> &mdash; a single number capturing all years beyond our forecast.</p>
+
+          <div class="big-idea">
+            <h3>Terminal Value Formula</h3>
+            <pre><code>Terminal Value = Final Year Cash Flow &times; (1 + long-term growth) &divide; (discount rate - long-term growth)</code></pre>
+          </div>
+
+          <p>With 2% long-term growth and 10% discount rate:</p>
+          <pre><code>Terminal Value = &euro;5,443 &times; 1.02 &divide; (0.10 - 0.02) = &euro;69,398 (at end of Year 5)
+Discounted back: &euro;69,398 &divide; 1.611 = &euro;43,075</code></pre>
+        </section>
+
+        <!-- Step 5: Total -->
+        <section>
+          <h2>Step 5: Add It All Up</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Component</th><th>Present Value</th></tr></thead>
+              <tbody>
+                <tr><td>Years 1-5 cash flows</td><td>&euro;18,842</td></tr>
+                <tr><td>Terminal value (discounted)</td><td>&euro;43,075</td></tr>
+                <tr><td><strong>Total Value of Lemonade Stand</strong></td><td><strong>&euro;61,917</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Your &euro;4,000/year lemonade stand is worth about <strong>&euro;62,000</strong>.</p>
+          <p>If someone offered to buy it for &euro;50,000, you should refuse - it's worth more. If they offered &euro;70,000, you should sell - you're getting paid more than it's worth.</p>
+        </section>
+
+        <!-- Epic Games Example -->
+        <section>
+          <h2>Now Let's Try: Epic Games</h2>
+          <p>Same process, bigger numbers. Using estimated &euro;2.5 billion annual cash flow, 12% discount rate:</p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Year</th><th>Cash Flow</th><th>Present Value</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>&euro;2.625B</td><td>&euro;2.34B</td></tr>
+                <tr><td>2</td><td>&euro;2.835B</td><td>&euro;2.26B</td></tr>
+                <tr><td>3</td><td>&euro;3.119B</td><td>&euro;2.22B</td></tr>
+                <tr><td>4</td><td>&euro;3.274B</td><td>&euro;2.08B</td></tr>
+                <tr><td>5</td><td>&euro;3.373B</td><td>&euro;1.91B</td></tr>
+                <tr><td colspan="2">5-year total</td><td>&euro;10.81B</td></tr>
+                <tr><td colspan="2">Terminal value (discounted)</td><td>&euro;19.5B</td></tr>
+                <tr><td colspan="2"><strong>Total estimated value</strong></td><td><strong>~&euro;30 billion</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>This is close to Epic's actual valuation of $31.5 billion from their last funding round!</p>
+        </section>
+
+        <!-- Why DCF is Dangerous -->
+        <section>
+          <h2>Why DCF Is Powerful (And Dangerous)</h2>
+          <p><strong>Powerful because:</strong> It forces you to think about what actually drives value and makes your assumptions explicit.</p>
+          <p><strong>Dangerous because:</strong> Small changes in assumptions = huge changes in value.</p>
+
+          <div class="big-idea">
+            <h3>Watch This</h3>
+            <p>If we change Epic's discount rate from 12% to 14%:</p>
+            <ul>
+              <li>Terminal value drops from &euro;19.5B to &euro;14.7B</li>
+              <li>Total value drops from &euro;30B to &euro;25.5B</li>
+              <li>That's <strong>&euro;4.5 billion vanished</strong> from changing one number by 2%!</li>
+            </ul>
+          </div>
+          <p><strong>The lesson:</strong> Never trust a DCF's exact number. Trust the thinking process.</p>
+        </section>
+
+        <!-- Investment Dilemma -->
+        <section class="dilemma-box">
+          <h3>Investment Dilemma: The Roblox Problem</h3>
+          <p>You're trying to value Roblox. But what do you project?</p>
+
+          <div class="dilemma-options">
+            <div class="dilemma-option" data-choice="users">
+              <h4>Number of Players</h4>
+              <p>70M daily users &rarr; 150M in 5 years?</p>
+            </div>
+            <div class="dilemma-option" data-choice="hours">
+              <h4>Hours Played</h4>
+              <p>5B hours/month &rarr; 10B in 5 years?</p>
+            </div>
+            <div class="dilemma-option" data-choice="spending">
+              <h4>Spending Per Player</h4>
+              <p>$12/year &rarr; $25/year in 5 years?</p>
+            </div>
+          </div>
+
+          <div class="dilemma-reveal">
+            <h4>How an Analyst Would Think:</h4>
+            <ul>
+              <li><strong>Users</strong> is easier to track but doesn't capture engagement</li>
+              <li><strong>Hours</strong> shows engagement but doesn't mean spending</li>
+              <li><strong>Monetization</strong> is the direct link to cash but hardest to predict</li>
+            </ul>
+            <p>Most pros would use a combination: Users &times; Hours/User &times; Revenue/Hour</p>
+            <p><strong>The uncomfortable truth:</strong> Valuation is judgment, not math. The math just forces you to be explicit about your judgment.</p>
+          </div>
+        </section>
+
+        <!-- AI Lab -->
+        <section>
+          <h2>AI Lab: DCF Builder</h2>
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <h4>Prompt Template</h4>
+              <button class="copy-btn" data-target="prompt-3">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="ai-prompt-content">
+              <pre id="prompt-3">Help me build a simple DCF model for [Company].
+
+I need:
+1. Current free cash flow (find or estimate it)
+2. Growth assumptions for Years 1-5 (explain your reasoning)
+3. A terminal value calculation
+4. The final valuation
+
+Format it as a table I could put in a spreadsheet.
+
+Then tell me: Which assumptions matter most? If I'm wrong about those, how much does the value change?</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dinner Table -->
+        <section class="dinner-table-box">
+          <h4>Dinner Table Discussion</h4>
+          <blockquote>"What's a company you think will be way bigger in 10 years? What would have to be true for that to happen?"</blockquote>
+          <p>This is projecting cash flows in disguise! If someone says "Tesla," they're implicitly forecasting growth in EVs, Tesla's market share, profitability, etc.</p>
+        </section>
+
+        <!-- Takeaway -->
+        <section class="takeaway-box">
+          <h3>So What? The Investor Takeaway</h3>
+          <p><strong>You now understand where valuations come from.</strong></p>
+          <p>When someone says "Roblox is worth $25 billion," they're really saying: "I expect Roblox to generate approximately $X billion in cash flows, discounted back at Y% interest rate, that equals $25 billion."</p>
+          <p>When you disagree with a valuation, you're really disagreeing with their assumptions.</p>
+          <p><strong>The power move:</strong> When you hear a valuation, ask "What assumptions would make that true?" Then decide if you believe those assumptions.</p>
+        </section>
+
+        <div class="text-center">
+          <button class="complete-module-btn" data-module="3">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Mark Module as Complete
+          </button>
+        </div>
+
+        <nav class="module-nav">
+          <a href="module-2.html" class="nav-btn nav-btn-prev">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            Module 2: Time Value
+          </a>
+          <a href="module-4.html" class="nav-btn nav-btn-next">
+            Module 4: Multiples
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </a>
+        </nav>
+
+        <section class="comments-section">
+          <h3>Discussion</h3>
+          <button class="like-btn">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            <span class="like-count">0</span> likes
+          </button>
+          <form class="comment-form">
+            <input type="text" name="author" placeholder="Your name (optional)">
+            <textarea name="content" placeholder="Share your thoughts..." required></textarea>
+            <button type="submit">Post Comment</button>
+          </form>
+          <div class="comments-list"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-bottom">
+          <p>&copy; 2025 Pelykh. Educational content.</p>
+          <p><a href="index.html">Back to Course Overview</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
