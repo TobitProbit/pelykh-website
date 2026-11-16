@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Verbes de cuisine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: an enamel-and-tile kitchen — recipe "fiches" on a tiled wall, one instruction at a time. */
+:root{
+  --wall:#e8eef4; --tile:#dbe4ee; --card:#ffffff; --ink:#18202b; --muted:#5a6676; --line:#cfd8e3;
+  --accent:#1f4fa3; --accent-soft:#e2eaf8; --butter:#f2c84b; --butter-soft:#fcf1cc;
+  --good:#1d7a4a; --good-soft:#e0f2e8; --bad:#b53334; --bad-soft:#fbe5e4;
+  --shadow:0 1px 0 rgba(24,32,43,.06),0 10px 26px -14px rgba(24,32,43,.35);
+  --display:"Young Serif",Georgia,"Times New Roman",serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --wall:#10151d; --tile:#151c26; --card:#1a222e; --ink:#e6ebf2; --muted:#9aa7b8; --line:#2a3443;
+  --accent:#8fb2ff; --accent-soft:#1f2c47; --butter:#e9bd3c; --butter-soft:#3a3118;
+  --good:#6fd39c; --good-soft:#173326; --bad:#ff8a86; --bad-soft:#3b1d1c;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 12px 30px -14px rgba(0,0,0,.75); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --wall:#10151d; --tile:#151c26; --card:#1a222e; --ink:#e6ebf2; --muted:#9aa7b8; --line:#2a3443;
+  --accent:#8fb2ff; --accent-soft:#1f2c47; --butter:#e9bd3c; --butter-soft:#3a3118;
+  --good:#6fd39c; --good-soft:#173326; --bad:#ff8a86; --bad-soft:#3b1d1c;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 12px 30px -14px rgba(0,0,0,.75); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background-color:var(--wall);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;
+  background-image:linear-gradient(var(--tile) 2px,transparent 2px),linear-gradient(90deg,var(--tile) 2px,transparent 2px);background-size:56px 56px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance;font-weight:400}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.panel{background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:22px 20px}
+.eyebrow{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hint{font-size:14.5px;color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+.hero{border-top:10px solid var(--accent)}
+.hero h1{font-family:var(--display);font-size:clamp(34px,7.5vw,54px);color:var(--accent)}
+.hero p{margin:8px 0 0;max-width:62ch}
+.mark{background:linear-gradient(transparent 58%,var(--butter-soft) 58%)}
+
+.ic{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:21px;line-height:1;background:var(--butter-soft);box-shadow:inset 0 0 0 2px var(--butter)}
+.ic.big{width:72px;height:72px;font-size:38px}
+
+/* glossary */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:99px;padding:5px 12px;font-size:14.5px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--card)}
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.item{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;min-height:68px;transition:border-color .12s}
+.item:hover{border-color:var(--accent)}
+.item .t{min-width:0;display:flex;flex-direction:column;gap:2px}
+.item b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.2}
+.item .m{font-size:14.5px;color:var(--muted)}
+.item .m.hide{color:transparent;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 9px);border-radius:4px;height:.9em;margin-top:5px;width:80%}
+.badge{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.badge.bonus{color:var(--muted)}
+
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.mode{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;transition:transform .12s,border-color .12s}
+.mode:hover{border-color:var(--accent);transform:translateY(-1px)}
+.mode b{font-size:18px}
+.mode span{color:var(--muted);font-size:14.5px}
+.mode .meta{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.mode.primary{grid-column:1/-1;background:var(--accent);border-color:var(--accent);color:var(--card)}
+.mode.primary span,.mode.primary .meta{color:var(--card);opacity:.92}
+.mode.primary b{font-family:var(--display);font-weight:400;font-size:25px}
+
+.bar{display:flex;align-items:center;gap:12px}
+.back{background:none;border:0;color:var(--muted);padding:6px 0;font-weight:700}
+.track{flex:1;height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .35s ease}
+.streak{font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent);min-width:4ch;text-align:right}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.tag.retry{background:var(--bad-soft);color:var(--bad)}
+.q{display:flex;gap:14px;align-items:center;margin:16px 0 18px}
+.prompt{font-size:clamp(20px,4.3vw,27px);line-height:1.35;min-width:0;text-wrap:balance}
+.prompt .x{font-family:var(--display);color:var(--accent)}
+.blank{display:inline-block;min-width:5ch;border-bottom:3px solid var(--accent);text-align:center;color:var(--accent);line-height:1.1;font-weight:700}
+.blank.ok{color:var(--good);border-color:var(--good)} .blank.no{color:var(--bad);border-color:var(--bad)}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:12px 12px 12px 36px;text-align:left;font-size:17px;min-height:52px;transition:border-color .12s,background .12s}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opt.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);animation:shake .25s}
+.opt.dim{opacity:.45}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* recipe ordering */
+.recipe{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:6px;counter-reset:step}
+.recipe li{counter-increment:step;display:flex;gap:12px;align-items:baseline;padding:8px 12px;border-radius:10px;background:var(--good-soft);color:var(--ink);animation:rise .2s ease}
+.recipe li::before{content:counter(step);font-family:var(--display);color:var(--good);font-size:20px;min-width:1.2ch}
+.recipe li.empty{background:transparent;border:1.5px dashed var(--line);color:var(--muted)}
+.recipe li.empty::before{color:var(--muted)}
+.steps{display:grid;gap:8px}
+.steps .opt{padding-left:14px}
+
+.typerow{display:flex;gap:10px;flex-wrap:wrap}
+.typerow input{flex:1 1 220px;min-width:0;font:inherit;font-size:20px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.accents{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.accents button{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:17px}
+.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:700;background:var(--accent);color:var(--card)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn.good{background:var(--good);color:var(--card)} .btn.bad{background:var(--bad);color:var(--card)}
+
+.fb{margin-top:16px;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;animation:rise .2s ease}
+.fb.ok{background:var(--good-soft)} .fb.no{background:var(--bad-soft)} .fb.neutral{background:var(--accent-soft)}
+.fb h3{font-family:var(--display);font-size:21px} .fb.ok h3{color:var(--good)} .fb.no h3{color:var(--bad)}
+.fb p{margin:0}
+.fb .ex{font-style:italic}
+@keyframes rise{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.say{background:none;border:1.5px solid currentColor;border-radius:99px;padding:4px 12px;font-size:14px;font-weight:700;color:var(--accent)}
+
+.face{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:22px;min-height:320px;display:flex;flex-direction:column;gap:10px;justify-content:center;cursor:pointer}
+.face .big{font-family:var(--display);font-size:clamp(32px,7.5vw,48px);color:var(--accent);line-height:1.1}
+.face .def{font-size:20px;font-weight:700}
+.face .imp{font-size:16px}
+.face .en{font-size:14.5px;color:var(--muted)}
+.face .ex{font-style:italic}
+.count{font-variant-numeric:tabular-nums;color:var(--muted)}
+.score{font-family:var(--display);font-size:68px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.review{list-style:none;padding:0;margin:8px 0 0}
+.review li{padding:9px 0;border-bottom:1px dashed var(--line)}
+.review b{color:var(--accent)}
+.rule{border-left:4px solid var(--butter);padding:4px 0 4px 12px;margin:12px 0 0}
+
+@media (max-width:460px){.panel{padding:18px 14px}.opt{font-size:16px}.q .ic.big{width:56px;height:56px;font-size:30px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="/french/salon.js" defer></script>
+</head>
+<body>
+
+<div class="wrap">
+
+<section id="home" class="wrap">
+  <div class="panel hero">
+    <div class="eyebrow">Fiche · la cuisine</div>
+    <h1>Verbes de cuisine</h1>
+    <p>Les 10 verbes de votre exercice et 10 verbes voisins qu'on trouve dans toutes les recettes. Beaucoup se ressemblent : <span class="mark">émincer</span> ou <span class="mark">hacher</span> ? <span class="mark">napper</span> ou <span class="mark">saupoudrer</span> ? C'est là qu'on s'entraîne.</p>
+    <p class="rule">Dans une recette, on écrit à l'<b>infinitif</b> (« Éplucher les pommes ») ou à l'<b>impératif avec vous</b> (« Épluchez les pommes »). Attention : faire → <b>faites</b> fondre.</p>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">Choisissez un exercice</div>
+    <div class="modes">
+      <button class="mode primary" data-mode="mix" id="m-mix"><span class="meta">Recommandé · ≈ 10 min</span><b>Le menu du jour</b><span>Un peu de tout, vos verbes faibles en premier.</span></button>
+      <button class="mode" data-mode="cards" id="m-cards"><span class="meta">Découvrir</span><b>Cartes</b><span>Le geste, l'impératif, un exemple et l'audio.</span></button>
+      <button class="mode" data-mode="phrase" id="m-phrase"><span class="meta">Comprendre</span><b>Compléter</b><span>Le bon verbe dans la phrase de la recette.</span></button>
+      <button class="mode" data-mode="geste" id="m-geste"><span class="meta">Distinguer</span><b>Quel geste ?</b><span>Une définition, quatre verbes proches.</span></button>
+      <button class="mode" data-mode="ordre" id="m-ordre"><span class="meta">Enchaîner</span><b>Recettes en ordre</b><span>Remettez les étapes de 4 recettes dans l'ordre.</span></button>
+      <button class="mode" data-mode="imp" id="m-imp"><span class="meta">Écrire</span><b>À l'impératif</b><span>Transformez l'infinitif : verser → versez.</span></button>
+      <button class="mode" data-mode="oral" id="m-oral"><span class="meta">Parler</span><b>Dictez la recette</b><span>Donnez l'instruction à voix haute, puis écoutez.</span></button>
+    </div>
+    <p class="hint" id="weaknote" hidden></p>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">Les verbes</div>
+    <p class="hint" style="margin:4px 0 0">Rappelez-vous le geste, puis touchez une étiquette pour vérifier.</p>
+    <div class="filters" id="filters"></div>
+    <div class="gloss" id="gloss"></div>
+  </div>
+</section>
+
+<section id="play" class="wrap" hidden>
+  <div class="bar"><button class="back" id="quit">← Fiche</button><div class="track"><div class="fill" id="fill"></div></div><div class="streak" id="streak" title="Série de bonnes réponses">0</div></div>
+  <div class="panel" id="stage"></div>
+</section>
+
+<section id="cards" class="wrap" hidden>
+  <div class="bar"><button class="back" id="quit2">← Fiche</button><div class="track"><div class="fill" id="cfill"></div></div><div class="count" id="ccount"></div></div>
+  <div class="panel">
+    <div id="card"></div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <button class="btn ghost" id="cprev">← Précédente</button>
+      <div class="row"><button class="btn bad" id="cagain">À revoir</button><button class="btn good" id="cknow">Je savais</button></div>
+    </div>
+    <p class="hint" style="margin-top:10px">Mimez le geste et dites le sens avant de retourner la carte (touchez-la ou barre d'espace).</p>
+  </div>
+</section>
+
+<section id="done" class="wrap" hidden><div class="panel" id="donebox"></div></section>
+</div>
+
+<script>
+(function(){
+/* v: infinitive · imp: vous imperative · d: definition · en · s: sentences with ___ (first = class sentence) · ic · cours */
+const V=[
+ {v:"peser",imp:"pesez",d:"mesurer le poids sur une balance",en:"to weigh",ic:"⚖️",cours:1,s:["___ la farine, il en faut 150 grammes.","___ 200 g de sucre sur la balance."]},
+ {v:"éplucher",imp:"épluchez",d:"enlever la peau d'un fruit ou d'un légume",en:"to peel",ic:"🍏",cours:1,s:["___ les pommes.","___ les pommes de terre avec un économe."]},
+ {v:"faire fondre",imp:"faites fondre",d:"chauffer pour rendre liquide (beurre, chocolat)",en:"to melt",ic:"🧈",cours:1,s:["___ le beurre.","___ le chocolat au bain-marie."]},
+ {v:"émincer",imp:"émincez",d:"couper en tranches très fines",en:"to slice thinly",ic:"🧅",cours:1,s:["___ les oignons.","___ le poireau en fines rondelles."]},
+ {v:"couvrir",imp:"couvrez",d:"mettre un couvercle sur la casserole",en:"to cover",ic:"🍲",cours:1,s:["___ le riz et laisser cuire doucement.","___ la casserole pour garder la chaleur."]},
+ {v:"mélanger",imp:"mélangez",d:"remuer pour réunir plusieurs ingrédients",en:"to mix, stir",ic:"🥄",cours:1,s:["___ avec une cuillère en bois.","___ la farine et le sucre dans un bol."]},
+ {v:"verser",imp:"versez",d:"faire couler un liquide dans un récipient",en:"to pour",ic:"🥛",cours:1,s:["___ le lait dans le saladier.","___ la soupe chaude dans les bols."]},
+ {v:"laisser reposer",imp:"laissez reposer",d:"attendre sans toucher pendant un moment",en:"to let rest",ic:"⏳",cours:1,s:["___ la pâte au frais pendant une heure.","___ la viande cinq minutes avant de la couper."]},
+ {v:"disposer",imp:"disposez",d:"placer joliment, avec ordre",en:"to arrange",ic:"🍎",cours:1,s:["___ les tranches de pommes sur la pâte à tarte.","___ les tomates en cercle sur l'assiette."]},
+ {v:"napper",imp:"nappez",d:"recouvrir d'une couche de sauce ou de crème",en:"to coat (with sauce)",ic:"🍫",cours:1,s:["___ la glace de sauce au chocolat.","___ le gâteau de crème anglaise."]},
+ {v:"hacher",imp:"hachez",d:"couper en tout petits morceaux",en:"to chop finely, mince",ic:"🌿",s:["___ le persil très finement.","___ la viande pour faire des boulettes."]},
+ {v:"râper",imp:"râpez",d:"réduire en petits filaments avec une râpe",en:"to grate",ic:"🧀",s:["___ le gruyère sur le gratin.","___ les carottes pour la salade."]},
+ {v:"fouetter",imp:"fouettez",d:"battre vite avec un fouet pour ajouter de l'air",en:"to whisk, whip",ic:"🥚",s:["___ les blancs d'œufs en neige.","___ la crème jusqu'à ce qu'elle soit ferme."]},
+ {v:"ajouter",imp:"ajoutez",d:"mettre en plus",en:"to add",ic:"➕",s:["___ une pincée de sel.","À la fin, ___ quelques feuilles de basilic."]},
+ {v:"assaisonner",imp:"assaisonnez",d:"donner du goût avec sel, poivre, épices",en:"to season",ic:"🧂",s:["___ la salade avec sel, poivre et vinaigrette.","Goûtez et ___ selon votre goût."]},
+ {v:"faire revenir",imp:"faites revenir",d:"faire dorer rapidement dans un peu de matière grasse",en:"to sauté, brown",ic:"🍳",s:["___ les oignons dans un peu d'huile.","___ les lardons à la poêle."]},
+ {v:"égoutter",imp:"égouttez",d:"enlever l'eau avec une passoire",en:"to drain",ic:"🍝",s:["___ les pâtes dans une passoire.","Rincez et ___ les haricots."]},
+ {v:"préchauffer",imp:"préchauffez",d:"chauffer le four avant d'y mettre le plat",en:"to preheat",ic:"🌡️",s:["___ le four à 180 °C.","Avant de commencer, ___ le four."]},
+ {v:"enfourner",imp:"enfournez",d:"mettre au four",en:"to put in the oven",ic:"🔥",s:["___ la tarte pour 35 minutes.","___ le gratin quand le four est chaud."]},
+ {v:"saupoudrer",imp:"saupoudrez",d:"répandre une poudre en fine couche (sucre, farine)",en:"to sprinkle, dust",ic:"❄️",s:["___ la tarte de sucre glace.","___ le moule d'un peu de farine."]}
+];
+const BY=Object.fromEntries(V.map(x=>[x.v,x]));
+/* verbs that could also fit each other's sentences: never offered together as distractors in "Compléter" */
+const CLOSE=[["verser","ajouter"],["émincer","hacher"],["mélanger","fouetter"],["couvrir","napper"],["disposer","ajouter"],["napper","saupoudrer"],["enfourner","préchauffer"],["assaisonner","ajouter"]];
+const close=(a,b)=>CLOSE.some(([x,y])=>(x===a&&y===b)||(x===b&&y===a));
+/* lookalikes for "Quel geste ?": the definition disambiguates, so we WANT neighbours here */
+const NEAR={"émincer":["hacher","râper","éplucher"],"hacher":["émincer","râper","éplucher"],"râper":["hacher","émincer","éplucher"],"éplucher":["émincer","râper","égoutter"],
+ "napper":["saupoudrer","couvrir","verser"],"saupoudrer":["napper","assaisonner","ajouter"],"couvrir":["napper","laisser reposer","disposer"],
+ "mélanger":["fouetter","verser","ajouter"],"fouetter":["mélanger","verser","faire revenir"],"verser":["ajouter","égoutter","napper"],"ajouter":["verser","assaisonner","disposer"],
+ "faire fondre":["faire revenir","préchauffer","fouetter"],"faire revenir":["faire fondre","enfourner","mélanger"],"préchauffer":["enfourner","faire fondre","faire revenir"],
+ "enfourner":["préchauffer","faire revenir","laisser reposer"],"laisser reposer":["couvrir","enfourner","égoutter"],"disposer":["ajouter","verser","napper"],
+ "peser":["verser","ajouter","disposer"],"égoutter":["verser","éplucher","laisser reposer"],"assaisonner":["saupoudrer","ajouter","mélanger"]};
+const RECIPES=[
+ {n:"Tarte aux pommes",steps:["Peser 150 g de farine.","Mélanger la farine avec le beurre fondu.","Laisser reposer la pâte au frais une heure.","Disposer les tranches de pommes sur la pâte.","Enfourner pour 35 minutes.","Saupoudrer de sucre glace avant de servir."]},
+ {n:"Riz aux oignons",steps:["Émincer les oignons.","Faire revenir les oignons dans un peu d'huile.","Ajouter le riz et l'eau.","Couvrir et laisser cuire doucement.","Assaisonner avant de servir."]},
+ {n:"Coupe glacée",steps:["Faire fondre le chocolat avec un peu de crème.","Mélanger jusqu'à obtenir une sauce lisse.","Disposer deux boules de glace dans une coupe.","Napper la glace de sauce au chocolat."]},
+ {n:"Pâte à crêpes",steps:["Peser la farine.","Verser le lait petit à petit sur la farine.","Fouetter pour éviter les grumeaux.","Laisser reposer la pâte une heure."]}
+];
+const ORAL=[
+ {v:"émincer",cue:"les oignons, en tranches très fines"},{v:"éplucher",cue:"les pommes : enlever la peau"},{v:"faire fondre",cue:"le beurre dans une casserole"},
+ {v:"verser",cue:"le lait dans le saladier"},{v:"laisser reposer",cue:"la pâte, une heure au frais"},{v:"napper",cue:"la glace, avec la sauce au chocolat"},
+ {v:"préchauffer",cue:"le four, à 180 °C"},{v:"égoutter",cue:"les pâtes, dans la passoire"},{v:"râper",cue:"le gruyère"},{v:"fouetter",cue:"les blancs d'œufs, en neige"},
+ {v:"disposer",cue:"les tranches de pommes, sur la pâte"},{v:"couvrir",cue:"le riz, puis cuire doucement"}
+];
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>s.toLowerCase().replace(/[’`´]/g,"'").replace(/[.!]/g,"").replace(/\s+/g," ").trim();
+const bare=s=>norm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
+const esc=s=>s.replace(/"/g,"&quot;");
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const icon=(x,big)=>`<span class="ic${big?" big":""}" aria-hidden="true">${x.ic}</span>`;
+const fillS=(s,w)=>{const t=s.replace("___",w);return s.startsWith("___")?cap(t):t};
+
+const canSpeak="speechSynthesis" in window;let frVoice=null;
+function pickVoice(){try{const v=speechSynthesis.getVoices();frVoice=v.find(x=>/fr[-_](FR|CH)/i.test(x.lang))||v.find(x=>/^fr/i.test(x.lang))||null}catch(e){}}
+if(canSpeak){pickVoice();try{speechSynthesis.onvoiceschanged=pickVoice}catch(e){}}
+function say(t){if(!canSpeak)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";if(frVoice)u.voice=frVoice;u.rate=.92;speechSynthesis.speak(u)}catch(e){}}
+const sayBtn=t=>canSpeak?`<button class="say" data-say="${esc(t)}">▶ Écouter</button>`:"";
+document.addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b){e.stopPropagation();say(b.dataset.say)}});
+
+const STORE="verbes-cuisine-v1";let weak={};
+try{weak=JSON.parse(localStorage.getItem(STORE)||"{}")||{}}catch(e){weak={}}
+const saveWeak=()=>{try{localStorage.setItem(STORE,JSON.stringify(weak))}catch(e){}};
+function mark(id,ok){if(!BY[id])return;weak[id]=Math.max(0,(weak[id]||0)+(ok?-1:2));if(!weak[id])delete weak[id];saveWeak()}
+function showWeak(){const k=Object.keys(weak).filter(i=>BY[i]).sort((a,b)=>weak[b]-weak[a]).slice(0,6);const n=$("#weaknote");
+  if(k.length){n.hidden=false;n.textContent="À retravailler : "+k.join(", ")+". Le menu du jour les reprend en premier."}else n.hidden=true}
+
+/* ---------- glossary ---------- */
+let filt="Tous";const opened=new Set();
+function drawFilters(){$("#filters").innerHTML=["Tous","Du cours","Bonus"].map(t=>`<button class="chip" aria-pressed="${t===filt}" data-t="${t}">${t}</button>`).join("");
+  $("#filters").querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{filt=b.dataset.t;drawFilters();drawGloss()}))}
+function drawGloss(){const list=V.filter(x=>filt==="Tous"||(filt==="Du cours"?x.cours:!x.cours));
+  $("#gloss").innerHTML=list.map(x=>`<button class="item" data-id="${esc(x.v)}">${icon(x)}<span class="t"><span class="badge${x.cours?"":" bonus"}">${x.cours?"Du cours":"Bonus"}</span><b>${x.v}</b>${opened.has(x.v)?`<span class="m">${x.d} · <i>${x.en}</i></span>`:'<span class="m hide" aria-label="sens caché"></span>'}</span></button>`).join("");
+  $("#gloss").querySelectorAll(".item").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.id;opened.has(id)?opened.delete(id):(opened.add(id),say(id));drawGloss()}))}
+drawFilters();drawGloss();
+
+/* ---------- builders ---------- */
+function qPhrase(x,si){const s=x.s[si??Math.floor(Math.random()*x.s.length)];
+  const pool=V.filter(o=>o.v!==x.v&&!close(o.v,x.v));const others=shuffle(pool.filter(o=>!!o.cours===!!x.cours)).concat(shuffle(pool)).filter((o,i,a)=>a.indexOf(o)===i).slice(0,3);
+  return{t:"mcq",tag:"Compléter",id:x.v,x,prompt:s.replace("___",'<span class="blank">______</span>'),opts:shuffle([x.v,...others.map(o=>o.v)]),a:x.v,full:fillS(s,x.v)}}
+function qGeste(x){return{t:"mcq",tag:"Quel geste ?",id:x.v,x,prompt:`Quel verbe veut dire : <span class="x">${x.d}</span> ?`,opts:shuffle([x.v,...NEAR[x.v]]),a:x.v,full:fillS(x.s[0],x.imp)}}
+function qImp(x){const s=x.s[Math.floor(Math.random()*x.s.length)];
+  return{t:"type",tag:"À l'impératif",id:x.v,x,prompt:`<span class="x">${x.v}</span> → ${s.replace("___",'<span class="blank">______</span>')}`,a:x.imp,full:fillS(s,x.imp)}}
+function qOrder(r){return{t:"order",tag:"Recette en ordre",id:"recette:"+r.n,r,prompt:r.n,a:""}}
+function qOral(o){const x=BY[o.v];return{t:"oral",tag:"Dictez la recette",id:x.v,x,cue:o.cue,full:cap(x.imp)+" "+o.cue.split(/[,:]/)[0].trim()+"."}}
+
+function build(mode){
+  if(mode==="phrase")return shuffle(V).slice(0,15).map(x=>qPhrase(x));
+  if(mode==="geste")return shuffle(V).slice(0,15).map(qGeste);
+  if(mode==="imp")return shuffle(V).slice(0,12).map(qImp);
+  if(mode==="ordre")return shuffle(RECIPES).map(qOrder);
+  if(mode==="oral")return shuffle(ORAL).slice(0,10).map(qOral);
+  const score=x=>(weak[x.v]||0)*3+(x.cours?2:0)+Math.random()*3;
+  const picked=V.slice().sort((a,b)=>score(b)-score(a)).slice(0,16);
+  const mk=[x=>qPhrase(x),qGeste,qImp,x=>qPhrase(x),qGeste,x=>{const o=ORAL.find(o=>o.v===x.v);return o?qOral(o):qImp(x)}];
+  const qs=picked.map((x,i)=>mk[i%mk.length](x)).concat(shuffle(RECIPES).slice(0,2).map(qOrder));
+  const out=[];let rest=shuffle(qs);
+  while(rest.length){const last=out[out.length-1];let i=rest.findIndex(q=>!last||q.tag!==last.tag);if(i<0)i=0;out.push(rest.splice(i,1)[0])}
+  return out;
+}
+
+/* ---------- engine ---------- */
+let S=null;
+function show(id){for(const s of["home","play","cards","done"])$("#"+s).hidden=s!==id;window.scrollTo(0,0)}
+function start(mode,custom){if(mode==="cards")return startCards();const q=custom||build(mode);
+  S={mode,queue:q.map(x=>({...x})),i:0,total:q.length,first:0,answered:0,streak:0,best:0,missed:new Map()};show("play");render()}
+function progress(){$("#fill").style.width=Math.min(100,Math.round(S.answered/S.total*100))+"%";$("#streak").textContent=S.streak?"×"+S.streak:"0"}
+function requeue(q){let c;if(q.t==="order")c={...q};else if(q.tag==="Compléter")c=qPhrase(q.x);else if(q.tag==="Quel geste ?")c=qGeste(q.x);else if(q.t==="type")c=qImp(q.x);else c={...q};
+  c.retry=true;S.queue.splice(Math.min(S.queue.length,S.i+4),0,c)}
+
+function render(){progress();const q=S.queue[S.i];if(!q)return finish();S.locked=false;const st=$("#stage");
+  const head=`<div class="tags"><span class="tag">${q.tag}</span>${q.retry?'<span class="tag retry">Deuxième chance</span>':""}</div>`;
+  if(q.t==="mcq"){
+    st.innerHTML=head+`<div class="q">${icon(q.x,true)}<div class="prompt">${q.prompt}</div></div><div class="opts">${q.opts.map((o,i)=>`<button class="opt" id="o${i}" data-o="${esc(o)}"><span class="k">${i+1}</span>${o}</button>`).join("")}</div><div id="fbx"></div>`;
+    if(q.tag==="Compléter")st.querySelector(".ic").style.visibility="hidden";
+    st.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>answerMcq(b)));
+  }else if(q.t==="type"){
+    st.innerHTML=head+`<div class="q">${icon(q.x,true)}<div class="prompt">${q.prompt}</div></div>
+      <form class="typerow" id="tf"><input id="tin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="verbe à l'impératif (vous)" aria-label="Le verbe à l'impératif"><button class="btn" type="submit">Vérifier</button></form>
+      <div class="accents">${["é","è","ê","â","ç"].map(c=>`<button type="button" data-ac="${c}">${c}</button>`).join("")}<span class="hint" style="align-self:center">Impératif « vous » : on enlève -er, on ajoute -ez.</span></div><div id="fbx"></div>`;
+    const inp=$("#tin");setTimeout(()=>inp.focus(),30);
+    st.querySelectorAll("[data-ac]").forEach(b=>b.addEventListener("click",()=>{inp.value+=b.dataset.ac;inp.focus()}));
+    $("#tf").addEventListener("submit",e=>{e.preventDefault();answerType(inp.value)});
+  }else if(q.t==="order"){
+    q.done=[];q.errs=0;q.pool=shuffle(q.r.steps.map((s,i)=>({s,i})));
+    drawOrder();
+  }else{
+    st.innerHTML=head+`<div class="q">${icon(q.x,true)}<div class="prompt">Vous dictez une recette. Dites l'instruction à l'impératif :<br><span class="x">${q.cue}</span></div></div>
+      <p class="hint">Exemple de forme : « Pesez la farine. » Dites-le à voix haute, puis comparez.</p><div class="row"><button class="btn" id="reveal">Voir le modèle</button></div><div id="fbx"></div>`;
+    $("#reveal").addEventListener("click",()=>{$("#reveal").remove();
+      $("#fbx").innerHTML=`<div class="fb neutral"><h3>${q.full}</h3><p class="hint">${q.x.v} = ${q.x.d}</p><div class="row">${sayBtn(q.full)}<span class="hint">Répétez après l'audio.</span></div>
+        <div class="row"><button class="btn good" id="sok">Je l'ai bien dit</button><button class="btn ghost" id="sno">À revoir</button></div></div>`;
+      say(q.full);$("#sok").addEventListener("click",()=>{grade(true);next()});$("#sno").addEventListener("click",()=>{grade(false);next()})});
+  }
+}
+function drawOrder(){const q=S.queue[S.i];const st=$("#stage");const n=q.r.steps.length;
+  st.innerHTML=`<div class="tags"><span class="tag">${q.tag}</span>${q.retry?'<span class="tag retry">Deuxième chance</span>':""}</div>
+    <div class="q"><div class="prompt"><span class="x">${q.r.n}</span><br><span class="hint">Touchez les étapes dans le bon ordre.</span></div></div>
+    <ol class="recipe">${q.done.map(s=>`<li>${s}</li>`).join("")}${Array.from({length:n-q.done.length},()=>'<li class="empty">…</li>').join("")}</ol>
+    <div class="steps">${q.pool.map((p,k)=>`<button class="opt" data-k="${k}">${p.s}</button>`).join("")}</div><div id="fbx"></div>`;
+  st.querySelectorAll(".steps .opt").forEach(b=>b.addEventListener("click",()=>{
+    const p=q.pool[+b.dataset.k];
+    if(p.i===q.done.length){q.done.push(p.s);q.pool.splice(+b.dataset.k,1);
+      if(!q.pool.length){const ok=q.errs===0;grade(ok);
+        $("#stage .steps").remove();
+        $("#fbx").innerHTML=`<div class="fb ${ok?"ok":"no"}"><h3>${ok?"Recette parfaite !":"Recette terminée"}</h3><p>${ok?"Toutes les étapes du premier coup.":`${q.errs} erreur${q.errs>1?"s":""} d'ordre. Cette recette reviendra plus tard.`}</p>
+          <div class="row">${sayBtn(q.r.steps.join(" "))}<span style="flex:1"></span><button class="btn" id="nx">Continuer ↵</button></div></div>`;
+        $("#nx").addEventListener("click",next);$("#nx").focus();
+      }else drawOrder()}
+    else{q.errs++;b.classList.add("no");setTimeout(()=>b.classList.remove("no"),400)}
+  }))}
+function grade(ok){const q=S.queue[S.i];if(!q.retry)S.answered++;
+  if(ok){if(!q.retry)S.first++;S.streak++;S.best=Math.max(S.best,S.streak)}else{S.streak=0;S.missed.set(q.id,q);requeue(q)}
+  if(q.t==="order")q.r.steps.forEach(()=>{});else mark(q.id,ok);progress()}
+function feedback(ok,q,extra){const x=q.x;const praise=["Exact !","Bravo !","C'est ça !","Parfait !","Très bien !"][Math.floor(Math.random()*5)];
+  const b=$("#stage .blank");if(b){b.textContent=q.t==="type"?q.a:q.a;b.classList.add(ok?"ok":"no")}
+  $("#fbx").innerHTML=`<div class="fb ${ok?"ok":"no"}"><h3>${ok?praise:"Pas tout à fait : « "+q.a+" »"}</h3>${extra||""}
+    <p><b>${x.v}</b> = ${x.d} <span class="hint">(${x.en})</span> · impératif : <b>${x.imp}</b></p><p class="ex">${q.full}</p>
+    <div class="row">${sayBtn(q.full)}<span style="flex:1"></span><button class="btn" id="nx">Continuer ↵</button></div>${ok?"":'<p class="hint">Ce verbe reviendra dans quelques questions.</p>'}</div>`;
+  $("#nx").addEventListener("click",next);$("#nx").focus()}
+function answerMcq(b){if(S.locked)return;S.locked=true;const q=S.queue[S.i];const ok=b.dataset.o===q.a;
+  $("#stage").querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(o.dataset.o===q.a)o.classList.add("ok");else if(o===b)o.classList.add("no");else o.classList.add("dim")});
+  $("#stage .ic").style.visibility="";
+  const w=BY[b.dataset.o];grade(ok);feedback(ok,q,!ok&&w?`<p class="hint">« ${w.v} » = ${w.d}.</p>`:"")}
+function answerType(v){if(S.locked||!v.trim())return;S.locked=true;const q=S.queue[S.i];
+  const exact=norm(v)===norm(q.a),loose=bare(v)===bare(q.a);const ok=exact||loose;$("#tin").disabled=true;
+  let extra="";if(!exact&&loose)extra=`<p><b>Attention aux accents :</b> on écrit « ${q.a} ».</p>`;
+  else if(!ok){extra=`<p>Vous avez écrit « ${v.trim()} ».</p>`;if(q.x.v.startsWith("faire"))extra+=`<p><b>Faire</b> est irrégulier : vous <b>faites</b>.</p>`}
+  grade(ok);feedback(ok,q,extra)}
+function next(){S.i++;render()}
+
+function finish(){show("done");const pct=Math.round(S.first/S.total*100);const missed=[...S.missed.values()];
+  const msg=pct>=90?"Excellent ! Pour fixer ces verbes, lisez une vraie recette en français ce soir et soulignez-les.":pct>=70?"Bon travail. Refaites vos erreurs maintenant, puis revenez dans deux jours.":"Normal : beaucoup de ces verbes se ressemblent. Passez par les cartes, puis refaites vos erreurs.";
+  $("#donebox").innerHTML=`<div class="eyebrow">Résultat · justes du premier coup</div>
+    <div class="row" style="align-items:end;gap:16px;margin:8px 0 6px"><div class="score">${pct}%</div><div class="hint">${S.first} / ${S.total}<br>meilleure série : ×${S.best}</div></div><p>${msg}</p>
+    ${missed.length?`<div class="eyebrow" style="margin-top:14px">À revoir</div><ul class="review">${missed.map(q=>q.t==="order"?`<li><b>${q.r.n}</b> : ${q.r.steps.join(" → ")}</li>`:`<li><b>${q.x.v}</b> (${q.x.imp}) : ${q.x.d}</li>`).join("")}</ul>`:""}
+    <div class="row" style="margin-top:16px">${missed.length?'<button class="btn" id="redo">Refaire mes erreurs</button>':""}<button class="btn ghost" id="again">Nouveau menu</button><button class="btn ghost" id="home2">Fiche</button></div>`;
+  if(missed.length)$("#redo").addEventListener("click",()=>{const mk=[x=>qPhrase(x),qGeste,qImp];start(S.mode,shuffle(missed).map((q,i)=>q.t==="order"?qOrder(q.r):mk[i%3](q.x)))});
+  $("#again").addEventListener("click",()=>start("mix"));$("#home2").addEventListener("click",goHome)}
+
+/* ---------- cards ---------- */
+let C=null;
+function startCards(){const w=x=>(weak[x.v]||0)+(x.cours?1:0)+Math.random();C={deck:V.slice().sort((a,b)=>w(b)-w(a)),i:0,flip:false};show("cards");drawCard()}
+function drawCard(){const x=C.deck[C.i];$("#ccount").textContent=`${C.i+1}/${C.deck.length}`;$("#cfill").style.width=Math.round(C.i/C.deck.length*100)+"%";
+  const ex=fillS(x.s[0],x.imp);
+  $("#card").innerHTML=C.flip?
+    `<div class="face" id="face"><div class="row">${icon(x)}<span class="eyebrow">${x.v}</span></div><div class="def">${x.d}</div><div class="imp">Impératif : <b>${x.imp}</b></div><div class="ex">${ex}</div><div class="en">En anglais : ${x.en}</div><div>${sayBtn(ex)}</div></div>`:
+    `<div class="face" id="face">${icon(x,true)}<div class="big">${x.v}</div><div class="hint">${x.cours?"Du cours":"Bonus"} · Quel est le geste ?</div><div>${sayBtn(x.v)}</div></div>`;
+  $("#face").addEventListener("click",()=>{C.flip=!C.flip;drawCard();if(C.flip)say(ex)})}
+function cardNext(knew){const x=C.deck[C.i];mark(x.v,knew);if(!knew)C.deck.splice(Math.min(C.deck.length,C.i+5),0,x);C.i++;C.flip=false;if(C.i>=C.deck.length)return goHome();drawCard()}
+$("#cknow").addEventListener("click",()=>cardNext(true));$("#cagain").addEventListener("click",()=>cardNext(false));
+$("#cprev").addEventListener("click",()=>{if(C.i>0){C.i--;C.flip=false;drawCard()}});
+
+function goHome(){try{speechSynthesis.cancel()}catch(e){}showWeak();show("home")}
+$("#quit").addEventListener("click",goHome);$("#quit2").addEventListener("click",goHome);
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>start(b.dataset.mode)));
+document.addEventListener("keydown",e=>{
+  if(!$("#cards").hidden){if(e.key===" "){e.preventDefault();$("#face")&&$("#face").click()}else if(e.key==="ArrowRight")cardNext(true);else if(e.key==="ArrowLeft")$("#cprev").click();return}
+  if($("#play").hidden||e.target.tagName==="INPUT"||!S||S.locked)return;
+  const n=parseInt(e.key,10);if(n>=1&&n<=4){const b=$("#o"+(n-1));if(b)b.click()}});
+showWeak();
+})();
+</script>
+
+</body></html>

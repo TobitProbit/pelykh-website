@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Le Salon · French practice · Pelykh</title>
+<meta name="description" content="Le Salon: interactive French practice from the Pelykh family. The subjunctive, pronouns, verbs for work and cooking, and everyday idioms, with lines to say out loud.">
+<meta name="theme-color" content="#1d2b4f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d2b4f'/%3E%3Crect x='7' y='9' width='6' height='14' fill='%233b6fd8'/%3E%3Crect x='13' y='9' width='6' height='14' fill='%23fff8ec'/%3E%3Crect x='19' y='9' width='6' height='14' fill='%23d8483b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,500&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root{
+  --cream:#fbf5ea; --paper:#fffdf8; --ink:#1d2b4f; --ink-2:#3c4870; --muted:#6a6f86;
+  --line:#e7dcc8; --blue:#2f5fc4; --blue-soft:#e7eefc; --red:#c8433a; --red-soft:#fbe9e6;
+  --gold:#e8a33d; --gold-soft:#fdf1dc; --green:#2d8059; --green-soft:#e2f2e9;
+  --display:"Fraunces",Georgia,serif; --body:"Atkinson Hyperlegible",system-ui,sans-serif;
+  --pad:clamp(18px,4vw,48px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- top bar ---------- */
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:15px}
+.top a{text-decoration:none;opacity:.75}.top a:hover{opacity:1;text-decoration:underline}
+.flag{display:inline-flex;height:12px;border-radius:2px;overflow:hidden;vertical-align:-1px;margin-right:8px}
+.flag i{width:7px;display:block}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(28px,6vw,72px) 0 clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:end}
+.kicker{font-family:var(--display);font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--red);margin:0 0 10px}
+.hero h1{font-size:clamp(56px,11vw,132px);font-weight:800;letter-spacing:-.035em}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--blue)}
+.lede{font-size:clamp(18px,2vw,21px);max-width:34ch;margin:18px 0 0;color:var(--ink-2)}
+.date{font-family:var(--display);font-style:italic;color:var(--muted);margin-top:14px}
+
+/* today card */
+.today{background:var(--ink);color:var(--cream);border-radius:22px;padding:24px;position:relative;overflow:hidden;box-shadow:0 22px 40px -24px rgba(29,43,79,.7)}
+.today::after{content:"";position:absolute;inset:auto -40px -60px auto;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,163,61,.35),transparent 70%)}
+.today h2{font-size:15px;font-family:var(--body);text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 18px}
+.stat b{display:block;font-family:var(--display);font-size:clamp(34px,4vw,44px);line-height:1}
+.stat span{font-size:13px;opacity:.75}
+.week{display:flex;gap:6px;margin-bottom:18px}
+.week div{flex:1;text-align:center;font-size:11px;opacity:.8}
+.week i{display:block;height:8px;border-radius:4px;background:rgba(255,248,236,.15);margin-bottom:4px}
+.week .on i{background:var(--gold)}
+.next{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--cream);color:var(--ink);border-radius:14px;padding:14px 16px;text-decoration:none;position:relative;z-index:1;transition:transform .15s}
+.next:hover{transform:translateY(-2px)}
+.next small{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.next strong{font-family:var(--display);font-size:20px}
+.next .go{font-size:24px}
+
+/* ---------- mot du jour ---------- */
+.mot{margin:0 0 clamp(40px,6vw,72px);background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,3vw,32px);align-items:center;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 31px,#efe5d3 31px 32px)}
+.mot .tag{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--red);font-weight:700}
+.mot .fr{font-family:var(--display);font-size:clamp(28px,4.4vw,48px);font-weight:700;line-height:1.05}
+.mot .gloss{margin:8px 0 0;color:var(--ink-2)}
+.mot .ex{margin:6px 0 0;font-style:italic;color:var(--muted)}
+.mot .from{font-size:13px;margin-top:8px;color:var(--muted)}
+.mot .from a{color:var(--blue)}
+.mot-actions{display:flex;flex-direction:column;gap:8px}
+.btn{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:10px 16px;font-weight:700;font-size:15px;white-space:nowrap}
+.btn:hover{background:var(--ink);color:var(--cream)}
+.btn.solid{background:var(--ink);color:var(--cream)}
+.btn.solid:hover{background:var(--blue);border-color:var(--blue)}
+
+/* ---------- modules ---------- */
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.section-head h2{font-size:clamp(36px,5.5vw,60px);font-weight:800;letter-spacing:-.02em}
+.section-head p{margin:0;color:var(--muted);max-width:40ch}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:18px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 34px -22px rgba(29,43,79,.55)}
+.card[hidden]{display:none}
+.band{height:132px;position:relative;display:flex;align-items:flex-end;padding:16px 18px;background:var(--c1)}
+.band{overflow:hidden}.band .big{position:absolute;right:14px;top:-6px;font-family:var(--display);font-style:italic;font-weight:800;font-size:84px;line-height:1.3;color:var(--c2);opacity:.9;letter-spacing:-.04em}
+.band .type{position:relative;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;background:var(--paper);border-radius:999px;padding:5px 10px}
+.body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body h3{font-size:26px;font-weight:700}
+.body p{margin:0;color:var(--ink-2);font-size:16px}
+.feat{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0;padding:0;list-style:none}
+.feat li{font-size:13px;background:var(--cream);border-radius:6px;padding:3px 8px;color:var(--ink-2)}
+.meta{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted);gap:8px}
+.due{font-weight:700;color:var(--red);background:var(--red-soft);border-radius:999px;padding:3px 10px;font-size:13px}
+.due.zero{color:var(--green);background:var(--green-soft)}
+.src{font-size:12px;color:var(--muted)}
+
+/* ---------- how ---------- */
+.how{margin:clamp(56px,8vw,96px) 0 0;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr);gap:clamp(24px,5vw,64px)}
+.how h2{font-size:clamp(34px,5vw,54px);font-weight:800}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px 16px 68px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:18px;top:14px;font-family:var(--display);font-weight:800;font-size:34px;line-height:1;color:var(--red)}
+.steps b{display:block;font-family:var(--display);font-size:20px;margin-bottom:2px}
+.steps p{margin:0;color:var(--ink-2);font-size:16px}
+.note{margin-top:14px;font-size:14px;color:var(--muted)}
+
+footer{margin-top:clamp(56px,8vw,96px);background:var(--ink);color:var(--cream);padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;font-size:15px}
+footer a{color:var(--gold)}
+footer .reset{background:none;border:0;color:var(--cream);opacity:.6;text-decoration:underline;font-size:14px;padding:0}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr}
+  .mot{grid-template-columns:minmax(0,1fr)}
+  .mot .tag{writing-mode:horizontal-tb;transform:none}
+  .mot-actions{flex-direction:row;flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="top" aria-label="Site">
+    <a href="/" lang="en">← pelykh.co</a>
+    <span><span class="flag" aria-hidden="true"><i style="background:#2f5fc4"></i><i style="background:#fff;border-block:1px solid #e7dcc8"></i><i style="background:#c8433a"></i></span>Lausanne · Vaud</span>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="kicker">Entrez, on vous attendait.</p>
+      <h1>Le <em>Salon</em></h1>
+      <p class="lede" lang="en">Our family's French practice room. Grammar that actually sticks, verbs for work and the kitchen, idioms people really say — and plenty of lines to say out loud.</p>
+      <p class="date" id="date"></p>
+    </div>
+    <aside class="today" aria-labelledby="todayH">
+      <h2 id="todayH">Aujourd'hui</h2>
+      <div class="stats" lang="en">
+        <div class="stat"><b id="streak">0</b><span>day streak</span></div>
+        <div class="stat"><b id="dueTotal">0</b><span>cards to review</span></div>
+        <div class="stat"><b id="daysTotal">0</b><span>days practised</span></div>
+      </div>
+      <div class="week" id="week" aria-label="This week"></div>
+      <a class="next" id="next" href="#">
+        <span><small id="nextWhy">Commencez ici</small><strong id="nextTitle">…</strong></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    </aside>
+  </header>
+
+  <section class="mot" aria-labelledby="motTag">
+    <span class="tag" id="motTag">Le mot du jour</span>
+    <div>
+      <div class="fr" id="motFr"></div>
+      <p class="gloss" id="motGloss" lang="en"></p>
+      <p class="ex" id="motEx"></p>
+      <p class="from" lang="en">From <a id="motFrom" href="#"></a></p>
+    </div>
+    <div class="mot-actions">
+      <button class="btn solid" id="motSay" type="button">▶ Écouter</button>
+      <button class="btn" id="motSlow" type="button">▶ Lentement</button>
+      <button class="btn" id="motNext" type="button">Un autre</button>
+    </div>
+  </section>
+
+  <section aria-labelledby="modsH">
+    <div class="section-head">
+      <h2 id="modsH">Les leçons</h2>
+      <p lang="en">Pick one and give it fifteen minutes. Every page brings back what you got wrong.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter lessons" id="filters">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">Tout</button>
+      <button class="chip" type="button" data-f="grammaire" aria-pressed="false">Grammaire</button>
+      <button class="chip" type="button" data-f="vocabulaire" aria-pressed="false">Vocabulaire</button>
+      <button class="chip" type="button" data-f="expressions" aria-pressed="false">Expressions</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="how" aria-labelledby="howH">
+    <div>
+      <h2 id="howH">Mode d'emploi</h2>
+      <p lang="en" style="color:var(--ink-2)">For anyone in the family picking this up. No account, no app, nothing to install.</p>
+    </div>
+    <div lang="en">
+      <ol class="steps">
+        <li><b>Fifteen minutes, most days</b><p>Short and often beats long and rare. The streak counter above is there to nag you, gently.</p></li>
+        <li><b>Say it out loud</b><p>In every "Parler" or speaking mode, answer aloud before you reveal the model, then shadow the audio. Speaking is the point.</p></li>
+        <li><b>Mistakes come back</b><p>Each page keeps a review deck of what you missed. The red badge on a lesson shows how many cards are waiting.</p></li>
+        <li><b>Use a good French voice</b><p>Audio uses your browser's built-in voices. Chrome and Safari have the best French ones; on a phone, check that a French voice is installed.</p></li>
+      </ol>
+      <p class="note">Progress is saved in your own browser on your own device, so each person keeps their own streak. Nothing is sent anywhere.</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Le Salon · <a href="/">pelykh.co</a></span>
+    <button class="reset" id="reset" type="button" lang="en">Reset my streak on this device</button>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var MODULES=[
+  {slug:"echange-43-7",href:"/french/echange-43-7/",cat:"grammaire",type:"Grammaire · Cours",title:"Le subjonctif présent",
+   desc:"Échange 43.7 from the Swiss French School course: when the subjunctive is needed, how to build it, and the traps around it.",
+   feat:["35 verbes","40 exercices du cours","24 situations à l'oral","Révision"],big:"que",c1:"#e7eefc",c2:"#2f5fc4",
+   src:"Échange 43.7",store:"e437_review",kind:"array"},
+  {slug:"piliers",href:"/french-course/",cat:"grammaire",type:"Grammaire · B1 → B2",title:"Les trois piliers",
+   desc:"Pronouns y, en, lui and leur; the subjunctive; and past hypotheticals with si. The three things that move B1 to B2.",
+   feat:["Pronoms","Subjonctif","Si + plus-que-parfait","Quiz par section"],big:"si",c1:"#fbe9e6",c2:"#c8433a",
+   src:"B1 → B2 diagnostic"},
+  {slug:"verbes-du-travail",href:"/french/verbes-du-travail/",cat:"vocabulaire",type:"Vocabulaire · Travail",title:"Verbes du travail",
+   desc:"33 professional verbs and their synonym families, with extra drills on the five that get mixed up most.",
+   feat:["Cartes","Par métier","Familles de synonymes","À l'oral"],big:"gérer",c1:"#e2f2e9",c2:"#2d8059",
+   src:"Cours de français",store:"verbes-travail-v1",kind:"weak"},
+  {slug:"verbes-de-cuisine",href:"/french/verbes-de-cuisine/",cat:"vocabulaire",type:"Vocabulaire · Cuisine",title:"Verbes de cuisine",
+   desc:"20 cooking verbs: ten from class and ten lookalikes, plus putting recipe steps in order and the vous imperative.",
+   feat:["Émincer ≠ hacher","Recette dans l'ordre","Impératif","À l'oral"],big:"mijoter",c1:"#fdf1dc",c2:"#c97a14",
+   src:"Cours de français",store:"verbes-cuisine-v1",kind:"weak"},
+  {slug:"expressions-fruitees",href:"/french/expressions-fruitees/",cat:"expressions",type:"Expressions · Idiomes",title:"Expressions fruitées",
+   desc:"30 fruit and vegetable idioms, from avoir la pêche to raconter des salades, sorted by theme and practised in context.",
+   feat:["Glossaire","Situations","Phrases à trous","À l'oral"],big:"pêche",c1:"#f6e7f3",c2:"#a3417f",
+   src:"Cours de français",store:"expressions-fruitees-v1",kind:"weak"}
+];
+
+var MOTS=[
+  ["avoir la pêche","to be full of energy","Ce matin, j'ai la pêche !","expressions-fruitees"],
+  ["tomber dans les pommes","to faint","Il faisait si chaud qu'elle est tombée dans les pommes.","expressions-fruitees"],
+  ["raconter des salades","to tell tall stories","Arrête de me raconter des salades.","expressions-fruitees"],
+  ["couper la poire en deux","to meet halfway","On coupe la poire en deux : 50 francs chacun.","expressions-fruitees"],
+  ["ramener sa fraise","to butt in uninvited","Personne ne t'a demandé de ramener ta fraise.","expressions-fruitees"],
+  ["mettre du beurre dans les épinards","to make life a bit more comfortable (money-wise)","Ce petit job met du beurre dans les épinards.","expressions-fruitees"],
+  ["c'est la fin des haricots","it's all over; that's the last straw","Plus de café au bureau ? C'est la fin des haricots.","expressions-fruitees"],
+  ["avoir un cœur d'artichaut","to fall in love easily","Mon cousin a un cœur d'artichaut.","expressions-fruitees"],
+  ["au poil","spot on, perfect (informal)","Ton rapport est au poil.","echange-43-7"],
+  ["être de mauvais poil","to be in a bad mood (informal)","Ne lui parle pas maintenant, il est de mauvais poil.","echange-43-7"],
+  ["à un poil près","by a whisker","On a raté le train à un poil près.","echange-43-7"],
+  ["le gilet de sauvetage","life jacket","Mettez votre gilet de sauvetage avant d'embarquer.","echange-43-7"],
+  ["se renverser","to capsize, to tip over","Le canoë s'est renversé dans les rapides.","echange-43-7"],
+  ["il faut que je sache","I need to know","Il faut que je sache avant vendredi.","echange-43-7"],
+  ["je ne pense pas qu'il ait raison","I don't think he's right","Je ne pense pas qu'il ait raison sur ce point.","echange-43-7"],
+  ["bien que","although (+ subjonctif)","Bien qu'il soit tard, on continue.","echange-43-7"],
+  ["si j'avais su, je serais venu","if I had known, I would have come","Si j'avais su, je serais venu plus tôt.","piliers"],
+  ["j'en ai besoin","I need it / some","Ce dossier ? Oui, j'en ai besoin demain.","piliers"],
+  ["j'y pense","I'm thinking about it","Ton idée ? J'y pense encore.","piliers"],
+  ["je le lui ai dit","I told him / her","Le prix ? Je le lui ai dit hier.","piliers"],
+  ["élaborer une stratégie","to devise a strategy","Nous devons élaborer une stratégie pour 2027.","verbes-du-travail"],
+  ["aménager","to fit out, to lay out (a space)","On va aménager le bureau du deuxième étage.","verbes-du-travail"],
+  ["surveiller","to monitor, to keep an eye on","Il faut surveiller les ventes de près.","verbes-du-travail"],
+  ["conseiller","to advise","Je vous conseille de signer rapidement.","verbes-du-travail"],
+  ["émincer","to slice thinly","Émincez les oignons.","verbes-de-cuisine"],
+  ["hacher","to chop finely, to mince","Hachez le persil.","verbes-de-cuisine"],
+  ["saupoudrer","to sprinkle, to dust","Saupoudrez de sucre glace.","verbes-de-cuisine"],
+  ["laisser mijoter","to let simmer","Laissez mijoter vingt minutes.","verbes-de-cuisine"]
+];
+
+function ls(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function dueOf(m){
+  if(!m.store) return null;
+  var v=ls(m.store);
+  if(!v) return 0;
+  if(m.kind==="array") return Array.isArray(v)?v.length:0;
+  var n=0; for(var k in v){ if(v[k]>0) n++; } return n;
+}
+function pad(n){return String(n).padStart(2,"0")}
+function key(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function ago(ts){
+  if(!ts) return "Pas encore commencé";
+  var days=Math.floor((Date.now()-ts)/864e5);
+  if(days<1) return "Pratiqué aujourd'hui";
+  if(days<2) return "Pratiqué hier";
+  return "Il y a "+days+" jours";
+}
+
+var salon=ls("salon-v1")||{}; salon.days=salon.days||[]; salon.last=salon.last||{};
+
+/* date */
+var now=new Date();
+try{ document.getElementById("date").textContent=now.toLocaleDateString("fr-CH",{weekday:"long",day:"numeric",month:"long",year:"numeric"}); }catch(e){}
+
+/* streak */
+var set={}; salon.days.forEach(function(d){set[d]=1});
+var streak=0, d=new Date();
+if(!set[key(d)]) d.setDate(d.getDate()-1);
+while(set[key(d)]){ streak++; d.setDate(d.getDate()-1); }
+document.getElementById("streak").textContent=streak;
+document.getElementById("daysTotal").textContent=salon.days.length;
+
+/* week strip, Monday first */
+var wk=document.getElementById("week"), names=["L","M","M","J","V","S","D"];
+var mon=new Date(now); mon.setDate(now.getDate()-((now.getDay()+6)%7));
+for(var i=0;i<7;i++){
+  var dd=new Date(mon); dd.setDate(mon.getDate()+i);
+  var el=document.createElement("div"); if(set[key(dd)]) el.className="on";
+  el.innerHTML="<i></i>"+names[i]; el.title=key(dd); wk.appendChild(el);
+}
+
+/* modules */
+var grid=document.getElementById("grid"), total=0;
+MODULES.forEach(function(m){
+  var due=dueOf(m); if(due) total+=due; m.due=due;
+  var a=document.createElement("a"); a.className="card"; a.href=m.href; a.dataset.cat=m.cat;
+  a.style.setProperty("--c1",m.c1); a.style.setProperty("--c2",m.c2);
+  var badge = due===null ? "" : '<span class="due'+(due?'':' zero')+'">'+(due? due+" à revoir" : "À jour")+'</span>';
+  a.innerHTML='<div class="band"><span class="big" aria-hidden="true">'+m.big+'</span><span class="type">'+m.type+'</span></div>'+
+    '<div class="body"><h3>'+m.title+'</h3><p lang="en">'+m.desc+'</p><ul class="feat">'+
+    m.feat.map(function(f){return "<li>"+f+"</li>"}).join("")+'</ul>'+
+    '<div class="meta"><span>'+ago(salon.last[m.slug])+'<br><span class="src">'+m.src+'</span></span>'+badge+'</div></div>';
+  grid.appendChild(a);
+});
+document.getElementById("dueTotal").textContent=total;
+
+/* suggested next: most cards due, else least recently practised */
+var pick=MODULES.slice().sort(function(a,b){
+  if((b.due||0)!==(a.due||0)) return (b.due||0)-(a.due||0);
+  return (salon.last[a.slug]||0)-(salon.last[b.slug]||0);
+})[0];
+var nx=document.getElementById("next"); nx.href=pick.href;
+document.getElementById("nextTitle").textContent=pick.title;
+document.getElementById("nextWhy").textContent = pick.due ? pick.due+" cartes à revoir" : (salon.last[pick.slug] ? "À reprendre" : "Commencez ici");
+
+/* filters */
+var chips=document.querySelectorAll("#filters .chip");
+chips.forEach(function(c){ c.addEventListener("click",function(){
+  chips.forEach(function(x){x.setAttribute("aria-pressed",x===c?"true":"false")});
+  var f=c.dataset.f;
+  grid.querySelectorAll(".card").forEach(function(card){ card.hidden = !(f==="all"||card.dataset.cat===f); });
+});});
+
+/* mot du jour */
+var start=new Date(now.getFullYear(),0,0), doy=Math.floor((now-start)/864e5), idx=doy%MOTS.length;
+function showMot(){
+  var m=MOTS[idx], mod=MODULES.filter(function(x){return x.slug===m[3]})[0];
+  document.getElementById("motFr").textContent=m[0];
+  document.getElementById("motGloss").textContent=m[1];
+  document.getElementById("motEx").textContent="« "+m[2]+" »";
+  var f=document.getElementById("motFrom"); f.textContent=mod.title; f.href=mod.href;
+}
+showMot();
+var voice=null;
+function pickVoice(){
+  if(!("speechSynthesis" in window)) return;
+  var vs=speechSynthesis.getVoices().filter(function(v){return /^fr/i.test(v.lang)});
+  voice = vs.filter(function(v){return /fr-CH/i.test(v.lang)})[0] || vs.filter(function(v){return /fr-FR/i.test(v.lang)})[0] || vs[0] || null;
+}
+if("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function say(rate){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  var m=MOTS[idx], u=new SpeechSynthesisUtterance(m[0]+". "+m[2]);
+  u.lang="fr-FR"; if(voice) u.voice=voice; u.rate=rate; speechSynthesis.speak(u);
+}
+document.getElementById("motSay").onclick=function(){say(0.95)};
+document.getElementById("motSlow").onclick=function(){say(0.65)};
+document.getElementById("motNext").onclick=function(){ idx=(idx+1)%MOTS.length; showMot(); };
+if(!("speechSynthesis" in window)){ document.getElementById("motSay").hidden=true; document.getElementById("motSlow").hidden=true; }
+
+/* reset */
+document.getElementById("reset").onclick=function(){
+  if(window.confirm("Reset the streak and visit history on this device? Review decks inside each lesson are kept.")){
+    try{localStorage.removeItem("salon-v1")}catch(e){} location.reload();
+  }
+};
+})();
+</script>
+</body>
+</html>

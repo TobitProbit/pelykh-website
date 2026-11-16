@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Échange 43.7 · Le subjonctif présent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f4ee; --card:#fff; --ink:#1f2a44; --muted:#5d6678; --line:#e3ddd1;
+  --acc:#e07a2e; --acc-soft:#fdf0e5; --blue:#2f6fb5; --blue-soft:#e8f0fa;
+  --ok:#2e8b57; --ok-soft:#e6f4ec; --bad:#c0392b; --bad-soft:#fbe9e7; --warn:#b7791f; --warn-soft:#fdf5e1;
+  --sub:#8e44ad; --sub-soft:#f3e9f8;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.2;margin:0 0 .5em}
+h1{font-size:2rem}
+h2{font-size:1.5rem;margin-top:1.6em}
+h3{font-size:1.15rem;margin-top:1.2em}
+p{margin:.4em 0 .8em}
+header{background:var(--ink);color:#fff;padding:22px 20px 0}
+header .wrap{max-width:1000px;margin:0 auto}
+header .kicker{color:#f3b27c;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+header h1{color:#fff;margin:.2em 0 .3em}
+header p{color:#c9d1e3;margin:0 0 14px;max-width:720px}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{color:#c9d1e3;text-decoration:none;padding:10px 14px;border-radius:10px 10px 0 0;font-weight:600;font-size:.95rem;white-space:nowrap}
+nav.tabs a.on{background:var(--bg);color:var(--ink)}
+nav.tabs a .badge{background:var(--acc);color:#fff;border-radius:99px;padding:0 7px;font-size:.75rem;margin-left:4px}
+main{max-width:1000px;margin:0 auto;padding:20px 16px 120px}
+section.view{display:none}
+section.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.mood{border-top:5px solid var(--line)}
+.mood.ind{border-top-color:var(--blue)}
+.mood.sub{border-top-color:var(--sub)}
+.mood.inf{border-top-color:var(--ok)}
+.mood.cond{border-top-color:var(--muted)}
+.mood .tag{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ind .tag{color:var(--blue)} .sub .tag{color:var(--sub)} .inf .tag{color:var(--ok)} .cond .tag{color:var(--muted)}
+.mood .big{font-family:Fraunces,serif;font-size:1.25rem;margin:.2em 0}
+.ex{font-style:italic;color:var(--muted)}
+b.s,span.s{color:var(--sub)} b.i,span.i{color:var(--blue)} b.n,span.n{color:var(--ok)}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#faf8f3;font-weight:600}
+.callout{border-left:4px solid var(--acc);background:var(--acc-soft);padding:12px 16px;border-radius:0 var(--r) var(--r) 0;margin:12px 0}
+.callout.blue{border-color:var(--blue);background:var(--blue-soft)}
+.callout.sub{border-color:var(--sub);background:var(--sub-soft)}
+.weirdo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.weirdo div{background:var(--sub-soft);border-radius:10px;padding:12px}
+.weirdo .L{font-family:Fraunces,serif;font-size:2rem;color:var(--sub);line-height:1}
+.weirdo .t{font-weight:700;margin:.2em 0}
+.weirdo .e{font-size:.88rem;color:var(--muted)}
+.boot td.in{background:var(--acc-soft)} .boot td.out{background:var(--blue-soft)}
+.flow{counter-reset:st}
+.flow .step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
+.flow .step::before{counter-increment:st;content:counter(st);flex:0 0 30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:.8rem;font-weight:700}
+.pill.s{background:var(--sub-soft);color:var(--sub)} .pill.i{background:var(--blue-soft);color:var(--blue)} .pill.n{background:var(--ok-soft);color:var(--ok)}
+button,.btn{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:9px;cursor:pointer;font-weight:600}
+button:hover{border-color:var(--ink)}
+button.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+button.acc{background:var(--acc);color:#fff;border-color:var(--acc)}
+button.sm{padding:4px 9px;font-size:.85rem}
+button.ico{padding:4px 8px;font-size:.95rem;line-height:1}
+button:disabled{opacity:.45;cursor:default}
+input[type=text]{font:inherit;padding:7px 10px;border:1.5px solid #cfc7b8;border-radius:8px;background:#fffdf9;min-width:0}
+input[type=text]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+input.ok{border-color:var(--ok);background:var(--ok-soft)}
+input.bad{border-color:var(--bad);background:var(--bad-soft)}
+input.warn{border-color:var(--warn);background:var(--warn-soft)}
+input.gap{width:9.5em;margin:0 4px}
+input.wide{width:100%}
+select{font:inherit;padding:7px 10px;border-radius:8px;border:1.5px solid #cfc7b8;background:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sp{flex:1}
+.subnav{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.subnav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.item{padding:12px 0;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0}
+.fb{font-size:.9rem;margin-top:6px;display:none}
+.fb.show{display:block}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)} .fb.warn{color:var(--warn)}
+.hint{color:var(--muted);font-size:.9rem}
+.score{font-weight:700;font-size:1.05rem}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.opts button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.opts button.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:10px;padding:6px 8px 6px 12px;background:#fff;display:flex;gap:6px;align-items:center}
+.chip.ok{border-color:var(--ok);background:var(--ok-soft)} .chip.bad{border-color:var(--bad);background:var(--bad-soft)}
+.chip button{padding:2px 8px;font-size:.8rem}
+.chip button.sel-s{background:var(--sub);color:#fff;border-color:var(--sub)}
+.chip button.sel-i{background:var(--blue);color:#fff;border-color:var(--blue)}
+.flash{min-height:190px;display:grid;place-items:center;text-align:center;cursor:pointer;user-select:none;background:linear-gradient(180deg,#fff,#faf6ef)}
+.flash .w{font-family:Fraunces,serif;font-size:1.8rem}
+.flash .b{color:var(--muted);margin-top:6px}
+.big-q{font-family:Fraunces,serif;font-size:1.6rem;text-align:center;margin:10px 0}
+.center{text-align:center}
+.streak{font-size:.95rem;color:var(--muted)}
+.vtable td:first-child{color:var(--muted);width:40%}
+.vtable td.f{font-weight:700}
+.speak-card .model{display:none;margin-top:10px;padding:10px 12px;background:var(--ok-soft);border-radius:8px}
+.speak-card .model.show{display:block}
+.en{color:var(--muted);font-size:.9rem}
+.accent-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;background:var(--ink);border-radius:12px;padding:6px;display:flex;gap:4px;flex-wrap:wrap;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.25);z-index:20;max-width:calc(100% - 20px)}
+.accent-bar button{background:#2d3a5c;color:#fff;border:0;padding:6px 10px;min-width:34px}
+.accent-bar button:hover{background:var(--acc)}
+.accent-bar .lbl{color:#9fb0d0;font-size:.75rem;align-self:center;padding:0 6px}
+.progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}
+.progress div{height:100%;background:var(--acc);width:0;transition:width .3s}
+.muted{color:var(--muted)}
+.kbd{font-family:ui-monospace,monospace;background:#f1ece2;padding:1px 6px;border-radius:5px;font-size:.88em}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.two-col>div{padding:10px 12px}
+.two-col>div:nth-child(odd){background:var(--blue-soft)}
+.two-col>div:nth-child(even){background:var(--sub-soft)}
+.two-col .h{font-weight:700}
+@media (max-width:600px){h1{font-size:1.6rem}.two-col{grid-template-columns:1fr}input.gap{width:7.5em}}
+</style>
+<script src="/french/salon.js" defer></script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">Swiss French School · Échange 43.7</div>
+    <h1>Le subjonctif présent</h1>
+    <p>Learn the rules through contrasts, drill the verbs until they're automatic, then use them in real sentences. Every mistake goes into your review deck.</p>
+    <nav class="tabs" id="tabs">
+      <a href="#comprendre" data-v="comprendre">① Comprendre</a>
+      <a href="#verbes" data-v="verbes">② Verbes</a>
+      <a href="#exercices" data-v="exercices">③ Exercices</a>
+      <a href="#parler" data-v="parler">④ Parler</a>
+      <a href="#vocabulaire" data-v="vocabulaire">⑤ Vocabulaire</a>
+      <a href="#revision" data-v="revision">⑥ Révision <span class="badge" id="revBadge">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ 1. COMPRENDRE ============ -->
+<section class="view" id="v-comprendre">
+
+  <h2 style="margin-top:.4em">1 · The big idea: 3 moods, 3 attitudes</h2>
+  <p>A French verb tells you what happened, and also how the speaker relates to it. Compare the same action, <em>il vient</em>, in four moods:</p>
+  <div class="grid g2">
+    <div class="card mood ind"><div class="tag">Indicatif</div><div class="big">« Je constate. »</div><p>Facts, certainty, real things, opinions stated as true.</p><p class="ex">Je sais qu'il <b class="i">vient</b>. · Il paraît qu'il <b class="i">vient</b>.</p></div>
+    <div class="card mood sub"><div class="tag">Subjonctif</div><div class="big">« Je veux, je ressens, je doute. »</div><p>The world <strong>as seen through someone's mind</strong>: wishes, needs, emotions, doubts, imagined things.</p><p class="ex">Il faut qu'il <b class="s">vienne</b>. · Je suis content qu'il <b class="s">vienne</b>.</p></div>
+    <div class="card mood inf"><div class="tag">Infinitif</div><div class="big">« Même sujet → pas de <em>que</em>. »</div><p>When the person who wants or feels is also the one who acts.</p><p class="ex">Je veux <b class="n">venir</b>. · Je suis content <b class="n">de venir</b>.</p></div>
+    <div class="card mood cond"><div class="tag">Conditionnel (contrast)</div><div class="big">« Si… alors… »</div><p>A hypothetical result. It's <em>not</em> an attitude: don't confuse <em>il viendrait</em> with <em>qu'il vienne</em>.</p><p class="ex">S'il pouvait, il <b>viendrait</b>.</p></div>
+  </div>
+
+  <div class="callout sub">
+    <strong>🌉 A bridge from Polish and Ukrainian:</strong> where you'd say <em>żeby / щоб</em>, French almost always wants the subjunctive.<br>
+    <em>Chcę, żebyś przyszedł · Я хочу, щоб ти прийшов</em> → Je veux que tu <b class="s">viennes</b>.<br>
+    <em>Pracuję, żeby… · Працюю, щоб…</em> → Je travaille pour que ma famille <b class="s">puisse</b>…<br>
+    <strong>⚠ But</strong> emotions use <em>że / що</em> in Polish and Ukrainian (<em>Cieszę się, że przyszedłeś</em>), while French still needs the subjunctive: Je suis content que tu <b class="s">sois</b> venu.
+  </div>
+  <div class="callout blue">
+    <strong>🇬🇧 English trap:</strong> "I want <u>you to come</u>" uses an infinitive in English, but French can't: <s>Je veux toi venir</s> → Je veux <b class="s">que tu viennes</b>.
+  </div>
+
+  <h2>2 · When? The triggers: W·E·I·R·D·O + 2</h2>
+  <div class="weirdo">
+    <div><div class="L">W</div><div class="t">Wishes / will</div><div class="e">vouloir que, souhaiter que, aimer que, avoir envie que, préférer que</div></div>
+    <div><div class="L">E</div><div class="t">Emotions</div><div class="e">être content / triste / ravi / déçu / gêné que, avoir peur que, adorer que, regretter que, cela m'étonne / m'amuse / m'exaspère que</div></div>
+    <div><div class="L">I</div><div class="t">Impersonal</div><div class="e">il faut que, il vaut mieux que, il est temps que, il semble que, c'est dommage / bien / normal / utile / curieux que</div></div>
+    <div><div class="L">R</div><div class="t">Requests & orders</div><div class="e">exiger, demander, ordonner, conseiller, permettre, autoriser, admettre, interdire que · s'opposer à ce que</div></div>
+    <div><div class="L">D</div><div class="t">Doubt & denial</div><div class="e">douter que, ne pas penser / croire que, ne pas être sûr que, il est possible que, il ne me semble pas que</div></div>
+    <div><div class="L">O</div><div class="t">Only-in-the-mind things</div><div class="e">relative clauses about imagined or non-existent things: je cherche un hôtel qui <b class="s">soit</b>…, il n'y a personne qui <b class="s">sache</b>…</div></div>
+    <div><div class="L">+</div><div class="t">Conjunctions</div><div class="e">pour que, avant que, bien que, à condition que, sans que</div></div>
+    <div><div class="L">+</div><div class="t">Wish on its own</div><div class="e">Que tu réussisses ! · Vive les vacances ! (<em>je souhaite</em> is understood)</div></div>
+  </div>
+
+  <h2>3 · Same subject or different subject? (do this first)</h2>
+  <div class="card">
+    <div class="two-col">
+      <div class="h">Different subjects → que + <span class="s">subjonctif</span></div>
+      <div class="h">Same subject → <span class="n">infinitif</span></div>
+      <div>Je veux que <u>tu</u> partes.</div><div>Je veux partir. <span class="hint">(verbs of will: no preposition)</span></div>
+      <div>Je suis ravi que <u>tu</u> viennes.</div><div>Je suis ravi <b>de</b> venir. <span class="hint">(adjective + <b>de</b>)</span></div>
+      <div>Cela m'amuse qu'<u>elle</u> danse.</div><div>Cela m'amuse <b>de</b> danser.</div>
+      <div>C'est dommage que <u>tu</u> doives partir.</div><div>C'est dommage <b>de</b> partir. <span class="hint">(general)</span></div>
+      <div>Je regrette qu'<u>il</u> parte.</div><div>Je regrette <b>de</b> partir.</div>
+      <div>Il n'accepte pas qu'<u>on</u> le critique.</div><div>Il n'accepte pas <b>d'</b>être critiqué. <span class="hint">(passive infinitive)</span></div>
+      <div>Il préfère qu'<u>on</u> le complimente.</div><div>Il préfère être complimenté.</div>
+    </div>
+    <p class="hint" style="margin-top:10px">Prepositions to learn by heart: <b>vouloir, préférer, aimer, adorer, détester</b> + infinitive · <b>être content/ravi/fier/triste/désolé, regretter, accepter, avoir peur, c'est dommage</b> + <b>de</b> + infinitive.</p>
+  </div>
+
+  <h2>4 · How? Building the forms</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">The 2-step recipe (90% of verbs)</h3>
+      <div class="flow">
+        <div class="step"><div>Take the present-tense <b>ils</b> form and drop <b>-ent</b>.<br><span class="hint">ils finiss<s>ent</s> → <b>finiss-</b> · ils prenn<s>ent</s> → <b>prenn-</b></span></div></div>
+        <div class="step"><div>Add <b>-e, -es, -e, -ions, -iez, -ent</b>.<br><span class="hint">que je finisse, que tu finisses, qu'il finisse, que nous finissions, que vous finissiez, qu'ils finissent</span></div></div>
+      </div>
+      <p class="hint">Even -ir verbs like <em>ouvrir, accueillir, partir</em> follow this: que j'ouvre, qu'on accueille, qu'on parte.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">👢 "The boot": two-stem verbs</h3>
+      <table class="boot">
+        <tr><th></th><th>venir</th><th>prendre</th></tr>
+        <tr><td>que je</td><td class="in">vienne</td><td class="in">prenne</td></tr>
+        <tr><td>que tu</td><td class="in">viennes</td><td class="in">prennes</td></tr>
+        <tr><td>qu'il</td><td class="in">vienne</td><td class="in">prenne</td></tr>
+        <tr><td>que nous</td><td class="out">venions</td><td class="out">prenions</td></tr>
+        <tr><td>que vous</td><td class="out">veniez</td><td class="out">preniez</td></tr>
+        <tr><td>qu'ils</td><td class="in">viennent</td><td class="in">prennent</td></tr>
+      </table>
+      <p class="hint"><span style="background:var(--acc-soft);padding:0 4px">Inside the boot</span> uses the <b>ils</b> stem. <span style="background:var(--blue-soft);padding:0 4px">nous/vous</span> use the <b>nous</b> stem (from <em>nous venons</em>). Others: devoir, voir, boire, croire, recevoir, obtenir, apprendre, ramener (ramène / ramenions).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">⭐ The 7 irregulars you'll use every day</h3>
+    <table>
+      <tr><th></th><th>être</th><th>avoir</th><th>aller</th><th>faire</th><th>pouvoir</th><th>savoir</th><th>vouloir</th></tr>
+      <tr><td>je</td><td>sois</td><td>aie</td><td>aille</td><td>fasse</td><td>puisse</td><td>sache</td><td>veuille</td></tr>
+      <tr><td>tu</td><td>sois</td><td>aies</td><td>ailles</td><td>fasses</td><td>puisses</td><td>saches</td><td>veuilles</td></tr>
+      <tr><td>il</td><td>soit</td><td>ait</td><td>aille</td><td>fasse</td><td>puisse</td><td>sache</td><td>veuille</td></tr>
+      <tr><td>nous</td><td>soyons</td><td>ayons</td><td class="out" style="background:var(--blue-soft)">allions</td><td>fassions</td><td>puissions</td><td>sachions</td><td style="background:var(--blue-soft)">voulions</td></tr>
+      <tr><td>vous</td><td>soyez</td><td>ayez</td><td style="background:var(--blue-soft)">alliez</td><td>fassiez</td><td>puissiez</td><td>sachiez</td><td style="background:var(--blue-soft)">vouliez</td></tr>
+      <tr><td>ils</td><td>soient</td><td>aient</td><td>aillent</td><td>fassent</td><td>puissent</td><td>sachent</td><td>veuillent</td></tr>
+    </table>
+    <p class="hint">Memory hooks: <b>faire → fass-, pouvoir → puiss-, savoir → sach-</b> keep one stem for every person. <b>aller and vouloir</b> are boot-shaped (allions, voulions). <b>être and avoir</b> are unique; note <em>soyons, ayons</em>, with <u>no i</u> (never <s>soyions</s>).</p>
+  </div>
+
+  <div class="callout">
+    <strong>🎧 Spelling vs sound:</strong> <em>aie / aies / ait / aient</em> all sound like /ɛ/, and <em>sois / sois / soit / soient</em> all sound like /swa/. The ending is a <u>writing</u> problem, not a speaking one.<br>
+    <strong>Homophone trap:</strong> for regular verbs, <em>que nous allions, que vous perdiez, que nous voyions</em> look exactly like the <strong>imparfait</strong> (<em>nous allions</em> = we used to go). Only the trigger (<em>il faut que…</em>) tells you which one it is.<br>
+    <strong>Silent-e spelling:</strong> ramener → que tu ram<b>è</b>nes but que nous ram<b>e</b>nions · peigner → que vous peign<b>i</b>ez (the i is barely heard) · nager → que nous nag<b>i</b>ons (no e, unlike <em>nous nageons</em>) · interrompre → qu'il interromp<b>e</b> (indicative: il interromp<b>t</b>).
+  </div>
+
+  <h2>5 · Subjonctif or indicatif? Minimal pairs</h2>
+  <p>Learn these in pairs. Contrast fixes them in memory far better than lists do.</p>
+  <div class="card" style="padding:6px 0">
+    <div class="two-col">
+      <div class="h">Indicatif: fact, certainty, belief</div><div class="h">Subjonctif: attitude, doubt, unreal</div>
+      <div>Je <b>pense</b> qu'il <b class="i">a</b> raison.</div><div>Je <b>ne pense pas</b> qu'il <b class="s">ait</b> raison.</div>
+      <div>J'<b>espère</b> que tu <b class="i">pourras</b> venir.</div><div>Je <b>souhaite</b> que tu <b class="s">puisses</b> venir.</div>
+      <div>Je <b>suis sûr</b> qu'elle <b class="i">dit</b> la vérité.</div><div>Je <b>doute</b> qu'elle <b class="s">dise</b> la vérité.</div>
+      <div>Il est <b>probable</b> qu'il <b class="i">pleut</b>/<b class="i">pleuvra</b>.</div><div>Il est <b>possible</b> qu'il <b class="s">pleuve</b>.</div>
+      <div>Il <b>me</b> semble qu'il <b class="i">est</b> malade. <span class="hint">(= je pense)</span></div><div>Il semble qu'il <b class="s">soit</b> malade.</div>
+      <div>Il <b>paraît</b> qu'il <b class="i">est</b> malade. <span class="hint">(apparently, hearsay)</span></div><div>Il <b>ne me semble pas</b> qu'il <b class="s">soit</b> malade.</div>
+      <div><b>parce que</b> tu <b class="i">es</b> là</div><div><b>pour que</b> tu <b class="s">sois</b> là</div>
+      <div><b>après que</b> tu <b class="i">es</b> parti</div><div><b>avant que</b> tu <b class="s">partes</b></div>
+      <div><b>pendant que</b> tu <b class="i">dors</b></div><div><b>bien que</b> tu <b class="s">dormes</b></div>
+      <div>J'<b>ai</b> un hôtel qui <b class="i">est</b> au bord de la mer.</div><div>Je <b>cherche</b> un hôtel qui <b class="s">soit</b> au bord de la mer.</div>
+      <div>J'<b>ai épousé</b> une femme qui <b class="i">est</b> rousse.</div><div>Je <b>ne connais pas de</b> femme qui <b class="s">soit</b> plus rousse.</div>
+      <div>C'est une entreprise où il n'y <b class="i">a</b> que des hommes.</div><div><b>Imagine</b> un monde où il n'y <b class="s">ait</b> que des hommes.</div>
+      <div>Vous ne vous souvenez pas que nous <b class="i">avons visité</b>… <span class="hint">(a forgotten fact is still a fact)</span></div><div>Je ne pense pas que cela <b class="s">ait été</b> possible.</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <strong>The opinion-verb flip:</strong> <em>penser, croire, trouver, imaginer, être sûr, il me semble</em> take the indicative in the affirmative and the subjunctive in the negative or with doubt.<br>
+    <strong>Nuance:</strong> <em>Jean-Pierre ne croit pas qu'il <b>pourra</b> venir</em> is also accepted. The indicative future stresses the speaker's near-certainty and the future (there's no future subjunctive). <em>qu'il <b>puisse</b></em> sounds more doubtful.<br>
+    <strong>Never subjunctive after:</strong> <em>espérer que</em> (affirmative), <em>il paraît que</em>, <em>il est probable que</em>, <em>je sais que</em>, <em>parce que</em>, <em>après que</em>.
+  </div>
+
+  <h2>6 · Relative clauses: fiction or reality?</h2>
+  <div class="card">
+    <p>After <b>qui / que / où / dont</b>: if the thing described <b>exists and is known</b>, use the indicative. If it's <b>wished for, searched for, imagined or doesn't exist</b>, use the subjunctive.</p>
+    <table>
+      <tr><th>Signal</th><th>Example</th></tr>
+      <tr><td><b>Wish or search</b> + <u>un/une</u></td><td>Je voudrais une voiture qui <b class="s">soit</b> décapotable. · Il aimerait un poste dont il <b class="s">puisse</b> être fier.</td></tr>
+      <tr><td><b>Negative antecedent</b></td><td>Il n'y a <b>personne</b> qui <b class="s">ait</b> téléphoné. · Il n'y a <b>rien</b> qui lui <b class="s">plaise</b>. · Il n'y a <b>pas un seul</b> ami qui <b class="s">vienne</b>.</td></tr>
+      <tr><td><b>Specific, real thing</b> (<u>le/la/ce</u>)</td><td>J'aimerais acheter <b>le</b> dernier disque de raï qui <b class="i">a</b> tant de succès. <span class="hint">(it exists; only the buying is wished)</span></td></tr>
+    </table>
+    <p class="hint"><b>Transformation trick:</b> <em>Personne n'a téléphoné</em> → <em>Il n'y a personne qui <b>ait</b> téléphoné</em>. The <em>ne</em> disappears from the relative clause, and the tense carries over: present → present subjunctive, passé composé → past subjunctive.</p>
+  </div>
+
+  <h2>7 · Present or past subjunctive? Active or passive?</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">Time</h3>
+      <p>Je suis content qu'il <b class="s">vienne</b>. <span class="hint">(now or later)</span></p>
+      <p>Je suis content qu'il <b class="s">soit venu</b>. <span class="hint">(already happened)</span></p>
+      <p class="hint">Past subjunctive = <b>que + avoir/être in the subjunctive + past participle</b>: qu'il ait téléphoné, que cela ait été, qu'elle soit partie.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Passive</h3>
+      <p>…qu'on prépare <u>les tables</u> → …que les tables <b class="s">soient préparées</b></p>
+      <p>…qu'on accueille <u>les clients</u> → …que les clients <b class="s">soient accueillis</b></p>
+      <p class="hint">If the object is <em>le/la/les</em> and refers back to the main subject, the subjects merge, so use the <b>passive infinitive</b>: qu'on <u>le</u> critique → <b class="n">d'être critiqué</b>.</p>
+    </div>
+  </div>
+
+  <h2>8 · The 4-question decision path</h2>
+  <div class="card flow">
+    <div class="step"><div><b>Is there <em>que</em> (or <em>qui/où/dont</em>) linking two verbs?</b> No → normal sentence.</div></div>
+    <div class="step"><div><b>Same subject on both sides?</b> Yes → <span class="pill n">infinitif</span> (with <em>de</em> after adjectives and many verbs).</div></div>
+    <div class="step"><div><b>Does the main part state a fact, certainty, hearsay, probability or an affirmative opinion?</b> Yes → <span class="pill i">indicatif</span>.</div></div>
+    <div class="step"><div><b>Is it a wish, need, emotion, order, doubt, denied opinion, purpose or imagined thing?</b> → <span class="pill s">subjonctif</span>. Then decide present or past, active or passive.</div></div>
+  </div>
+
+  <div class="center" style="margin-top:24px"><button class="acc" onclick="go('verbes')">Next: drill the verbs →</button></div>
+</section>
+
+<!-- ============ 2. VERBES ============ -->
+<section class="view" id="v-verbes">
+  <h2 style="margin-top:.4em">Verb gym</h2>
+  <p class="muted">Start with the 7 irregulars until rapid fire feels boring, then add the boot verbs. Short daily sessions (5 to 10 minutes) beat one long one.</p>
+  <div class="subnav" id="verbNav">
+    <button data-m="table" class="on">📋 Table</button>
+    <button data-m="fill">✍️ Fill the table</button>
+    <button data-m="rapid">⚡ Rapid fire</button>
+    <button data-m="dictee">🎧 Dictation</button>
+    <button data-m="context">💬 In context</button>
+  </div>
+  <div class="card">
+    <div class="row">
+      <label>Verb</label>
+      <select id="verbSel"></select>
+      <span class="sp"></span>
+      <span class="hint" id="verbMeta"></span>
+    </div>
+    <div class="row" id="groupFilter" style="margin-top:10px;display:none">
+      <span class="hint">Include:</span>
+      <label><input type="checkbox" value="irr" checked> ⭐ 7 irregulars</label>
+      <label><input type="checkbox" value="boot" checked> 👢 boot verbs</label>
+      <label><input type="checkbox" value="reg"> ✅ regular</label>
+    </div>
+  </div>
+  <div class="card" id="verbArea"></div>
+</section>
+
+<!-- ============ 3. EXERCICES ============ -->
+<section class="view" id="v-exercices">
+  <h2 style="margin-top:.4em">Exercises</h2>
+  <p class="muted">Course items first (from your Échange 43.7 exercises), then new contrast drills. Press <span class="kbd">Enter</span> to check a gap.</p>
+  <div class="subnav" id="exNav"></div>
+  <div class="card" id="exArea"></div>
+</section>
+
+<!-- ============ 4. PARLER ============ -->
+<section class="view" id="v-parler">
+  <h2 style="margin-top:.4em">Speaking practice</h2>
+  <div class="callout"><b>Method:</b> read the situation, <b>say your answer out loud</b> (the full sentence, at normal speed), then reveal and compare. Play the model and <b>shadow it</b> by repeating at the same time, three times. Be honest: "Again" sends the card to your review deck.</div>
+  <div class="subnav" id="spNav"></div>
+  <div id="spArea"></div>
+</section>
+
+<!-- ============ 5. VOCABULAIRE ============ -->
+<section class="view" id="v-vocabulaire">
+  <h2 style="margin-top:.4em">Vocabulary</h2>
+  <div class="subnav" id="voNav"></div>
+  <div class="card" id="voArea"></div>
+</section>
+
+<!-- ============ 6. REVISION ============ -->
+<section class="view" id="v-revision">
+  <h2 style="margin-top:.4em">My mistakes (review deck)</h2>
+  <p class="muted">Everything you got wrong anywhere on the page lands here. Answer a card correctly <b>twice</b> to retire it. Come back tomorrow: spaced retrieval is what makes it stick. Saved in this browser only.</p>
+  <div class="card" id="revArea"></div>
+</section>
+</main>
+
+<div class="accent-bar" id="accentBar">
+  <span class="lbl">accents</span>
+</div>
+
+<script>
+/* ================= UTIL ================= */
+const $ = (s,el=document)=>el.querySelector(s);
+const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
+const shuffle = a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function norm(s){return String(s).toLowerCase().replace(/[’`´]/g,"'").replace(/ /g," ").replace(/\s*'\s*/g,"'").replace(/\s+([!?;:.,])/g,"$1").replace(/[.!?]+$/,"").replace(/\s+/g," ").trim()}
+function strip(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"")}
+function variants(list){
+  const out=new Set();
+  list.forEach(a=>{
+    const base=[a];
+    if(/^cela /i.test(a)) base.push(a.replace(/^cela /i,"Ça "));
+    if(/^ça /i.test(a)) base.push(a.replace(/^ça /i,"Cela "));
+    base.forEach(b=>{out.add(b); if(/qu'on /.test(b)) out.add(b.replace(/qu'on /g,"que l'on ")); if(/que l'on /.test(b)) out.add(b.replace(/que l'on /g,"qu'on "));});
+  });
+  return [...out];
+}
+/* returns "ok" | "accent" | "bad" */
+function judge(input, answers){
+  const n=norm(input); if(!n) return "empty";
+  const vs=variants(answers).map(norm);
+  if(vs.includes(n)) return "ok";
+  if(vs.map(strip).includes(strip(n))) return "accent";
+  return "bad";
+}
+/* TTS */
+let frVoice=null;
+function pickVoice(){
+  try{
+    const vs=speechSynthesis.getVoices();
+    frVoice=vs.find(v=>/fr[-_]CH/i.test(v.lang))||vs.find(v=>/fr[-_]FR/i.test(v.lang)&&/Google|Amélie|Thomas|Audrey/i.test(v.name))||vs.find(v=>/^fr/i.test(v.lang))||null;
+  }catch(e){}
+}
+try{pickVoice(); speechSynthesis.onvoiceschanged=pickVoice;}catch(e){}
+function speak(t,rate=0.92){
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t.replace(/___/g,"…"));
+    u.lang="fr-FR"; if(frVoice) u.voice=frVoice; u.rate=rate;
+    speechSynthesis.speak(u);
+  }catch(e){toast("Audio not available in this browser")}
+}
+function spk(t){return `<button class="ico" title="Listen" onclick="speak(${esc(JSON.stringify(t))})">🔊</button>`}
+function toast(m){const d=document.createElement("div");d.textContent=m;d.style.cssText="position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#1f2a44;color:#fff;padding:8px 14px;border-radius:8px;z-index:50";document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
+
+/* storage */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let REVIEW=store.get("e437_review",[]);
+function saveReview(){store.set("e437_review",REVIEW);$("#revBadge").textContent=REVIEW.length}
+function addMistake(q,answers,why){
+  const id=norm(q)+"|"+answers[0];
+  const ex=REVIEW.find(r=>r.id===id);
+  if(ex){ex.hits=0;} else REVIEW.push({id,q,a:answers,why:why||"",hits:0});
+  saveReview();
+}
+
+/* accent bar */
+let lastInput=null;
+document.addEventListener("focusin",e=>{if(e.target.matches("input[type=text]")) lastInput=e.target});
+["é","è","ê","à","â","ç","ô","î","û","ù","ë","ï","œ","É","À","Ç","’"].forEach(ch=>{
+  const b=document.createElement("button");b.textContent=ch;b.type="button";
+  b.addEventListener("mousedown",e=>e.preventDefault());
+  b.onclick=()=>{ if(!lastInput) return; const c=ch==="’"?"'":ch; const s=lastInput.selectionStart??lastInput.value.length, en=lastInput.selectionEnd??s;
+    lastInput.value=lastInput.value.slice(0,s)+c+lastInput.value.slice(en); lastInput.focus(); lastInput.setSelectionRange(s+1,s+1); };
+  $("#accentBar").appendChild(b);
+});
+
+/* routing */
+const VIEWS=["comprendre","verbes","exercices","parler","vocabulaire","revision"];
+function go(v){location.hash=v}
+function route(){
+  let v=(location.hash||"#comprendre").slice(1); if(!VIEWS.includes(v)) v="comprendre";
+  VIEWS.forEach(x=>{$("#v-"+x).classList.toggle("on",x===v)});
+  $$("#tabs a").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+  if(v==="revision") renderReview();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+
+/* ================= VERB DATA ================= */
+const V={
+ "être":{g:"irr",en:"to be",f:["sois","sois","soit","soyons","soyez","soient"]},
+ "avoir":{g:"irr",en:"to have",f:["aie","aies","ait","ayons","ayez","aient"]},
+ "aller":{g:"irr",en:"to go",f:["aille","ailles","aille","allions","alliez","aillent"]},
+ "faire":{g:"irr",en:"to do / make",f:["fasse","fasses","fasse","fassions","fassiez","fassent"]},
+ "pouvoir":{g:"irr",en:"can / to be able",f:["puisse","puisses","puisse","puissions","puissiez","puissent"]},
+ "savoir":{g:"irr",en:"to know (how)",f:["sache","saches","sache","sachions","sachiez","sachent"]},
+ "vouloir":{g:"irr",en:"to want",f:["veuille","veuilles","veuille","voulions","vouliez","veuillent"]},
+ "venir":{g:"boot",en:"to come",f:["vienne","viennes","vienne","venions","veniez","viennent"]},
+ "prendre":{g:"boot",en:"to take",f:["prenne","prennes","prenne","prenions","preniez","prennent"]},
+ "apprendre":{g:"boot",en:"to learn",f:["apprenne","apprennes","apprenne","apprenions","appreniez","apprennent"]},
+ "devoir":{g:"boot",en:"to have to",f:["doive","doives","doive","devions","deviez","doivent"]},
+ "voir":{g:"boot",en:"to see",f:["voie","voies","voie","voyions","voyiez","voient"]},
+ "croire":{g:"boot",en:"to believe",f:["croie","croies","croie","croyions","croyiez","croient"]},
+ "boire":{g:"boot",en:"to drink",f:["boive","boives","boive","buvions","buviez","boivent"]},
+ "recevoir":{g:"boot",en:"to receive",f:["reçoive","reçoives","reçoive","recevions","receviez","reçoivent"]},
+ "obtenir":{g:"boot",en:"to obtain",f:["obtienne","obtiennes","obtienne","obtenions","obteniez","obtiennent"]},
+ "ramener":{g:"boot",en:"to bring back",f:["ramène","ramènes","ramène","ramenions","rameniez","ramènent"]},
+ "parler":{g:"reg",en:"to speak",f:["parle","parles","parle","parlions","parliez","parlent"]},
+ "finir":{g:"reg",en:"to finish",f:["finisse","finisses","finisse","finissions","finissiez","finissent"]},
+ "choisir":{g:"reg",en:"to choose",f:["choisisse","choisisses","choisisse","choisissions","choisissiez","choisissent"]},
+ "réussir":{g:"reg",en:"to succeed",f:["réussisse","réussisses","réussisse","réussissions","réussissiez","réussissent"]},
+ "attendre":{g:"reg",en:"to wait",f:["attende","attendes","attende","attendions","attendiez","attendent"]},
+ "perdre":{g:"reg",en:"to lose",f:["perde","perdes","perde","perdions","perdiez","perdent"]},
+ "dire":{g:"reg",en:"to say",f:["dise","dises","dise","disions","disiez","disent"]},
+ "mettre":{g:"reg",en:"to put",f:["mette","mettes","mette","mettions","mettiez","mettent"]},
+ "partir":{g:"reg",en:"to leave",f:["parte","partes","parte","partions","partiez","partent"]},
+ "sortir":{g:"reg",en:"to go out",f:["sorte","sortes","sorte","sortions","sortiez","sortent"]},
+ "ouvrir":{g:"reg",en:"to open",f:["ouvre","ouvres","ouvre","ouvrions","ouvriez","ouvrent"]},
+ "accueillir":{g:"reg",en:"to welcome",f:["accueille","accueilles","accueille","accueillions","accueilliez","accueillent"]},
+ "nager":{g:"reg",en:"to swim",f:["nage","nages","nage","nagions","nagiez","nagent"]},
+ "peigner":{g:"reg",en:"to comb",f:["peigne","peignes","peigne","peignions","peigniez","peignent"]},
+ "interrompre":{g:"reg",en:"to interrupt",f:["interrompe","interrompes","interrompe","interrompions","interrompiez","interrompent"]},
+ "plaire":{g:"reg",en:"to please",f:["plaise","plaises","plaise","plaisions","plaisiez","plaisent"]},
+ "connaître":{g:"reg",en:"to know (sb)",f:["connaisse","connaisses","connaisse","connaissions","connaissiez","connaissent"]},
+ "écrire":{g:"reg",en:"to write",f:["écrive","écrives","écrive","écrivions","écriviez","écrivent"]}
+};
+const GLAB={irr:"⭐ irregular",boot:"👢 boot verb (2 stems)",reg:"✅ regular (ils-stem)"};
+const PRON=["que je","que tu","qu'il/elle","que nous","que vous","qu'ils/elles"];
+const PSHORT=["que je","que tu","qu'il","que nous","que vous","qu'ils"];
+function withPro(i,form,short){const p=(short?PSHORT:PRON)[i]; if(i===0&&/^[aeiouyhéèêâîôû]/i.test(form)) return "que j'"+form; return p+" "+form}
+
+/* verb gym */
+let verbMode="table";
+const vs=$("#verbSel");
+[["irr","⭐ The 7 irregulars"],["boot","👢 Boot verbs"],["reg","✅ Regular"]].forEach(([g,l])=>{
+  const og=document.createElement("optgroup");og.label=l;
+  Object.keys(V).filter(k=>V[k].g===g).forEach(k=>{const o=document.createElement("option");o.value=k;o.textContent=k;og.appendChild(o)});
+  vs.appendChild(og);
+});
+vs.onchange=renderVerb;
+$$("#verbNav button").forEach(b=>b.onclick=()=>{verbMode=b.dataset.m;$$("#verbNav button").forEach(x=>x.classList.toggle("on",x===b));renderVerb()});
+$$("#groupFilter input").forEach(c=>c.onchange=renderVerb);
+
+function renderVerb(){
+  const v=vs.value, d=V[v], A=$("#verbArea");
+  $("#verbMeta").textContent=GLAB[d.g]+" · "+d.en;
+  const multi=["rapid","dictee"].includes(verbMode);
+  $("#groupFilter").style.display=multi?"flex":"none";
+  vs.disabled=multi||verbMode==="context"&&false;
+  if(verbMode==="table"){
+    A.innerHTML=`<div class="row"><h3 style="margin:0">${v}</h3><span class="sp"></span><button class="sm" onclick="speak(${esc(JSON.stringify(d.f.map((f,i)=>withPro(i,f,true)).join(", ")))},0.85)">🔊 Whole table</button></div>
+    <table class="vtable">${d.f.map((f,i)=>`<tr><td>${PRON[i]}</td><td class="f">${withPro(i,f,false).replace(PRON[i]+" ","").replace("que j'","j'")}</td><td style="width:40px">${spk(withPro(i,f,true))}</td></tr>`).join("")}</table>
+    <p class="hint">${tipFor(v)}</p>`;
+  }
+  else if(verbMode==="fill"){
+    A.innerHTML=`<h3 style="margin-top:0">${v}: write all 6 forms</h3>
+    ${d.f.map((f,i)=>`<div class="row" style="margin:6px 0"><span style="width:110px" class="muted">${PRON[i]}</span><input type="text" data-i="${i}" autocomplete="off" autocapitalize="off" spellcheck="false"></div>`).join("")}
+    <div class="row" style="margin-top:12px"><button class="pri" id="fillChk">Check</button><button id="fillShow">Show answers</button><span class="score" id="fillScore"></span></div>`;
+    const ins=$$("input",A);
+    ins.forEach((inp,k)=>inp.addEventListener("keydown",e=>{if(e.key==="Enter"){(ins[k+1]||$("#fillChk")).focus()}}));
+    $("#fillChk").onclick=()=>{let ok=0;ins.forEach(inp=>{const i=+inp.dataset.i,ans=d.f[i];const r=judge(inp.value.replace(/^que\s+(j'|je|tu|il|elle|on|nous|vous|ils|elles)\s*/i,"").replace(/^qu'(il|elle|ils|elles|on)\s*/i,""),[ans]);inp.className=r==="ok"?"ok":r==="accent"?"warn":"bad";if(r==="ok")ok++;else addMistake(`(${v}) ${PSHORT[i]} ___`,[ans],tipFor(v))});$("#fillScore").textContent=`${ok}/6`+(ok===6?" 🎉":"")};
+    $("#fillShow").onclick=()=>ins.forEach(inp=>{inp.value=d.f[+inp.dataset.i];inp.className=""});
+    ins[0].focus();
+  }
+  else if(verbMode==="rapid"||verbMode==="dictee"){ startRapid(verbMode==="dictee"); }
+  else if(verbMode==="context"){ renderContext(v); }
+}
+function tipFor(v){
+  const t={
+   "être":"Unique. <b>soyons, soyez</b> have no <i>i</i>. Sounds: /swa/ ×4.",
+   "avoir":"Unique. <b>ayons, ayez</b> have no <i>i</i>. aie/aies/ait/aient all sound /ɛ/.",
+   "aller":"Boot shape: <b>aill-</b> inside, <b>all-</b> for nous/vous (= imparfait forms).",
+   "faire":"One stem everywhere: <b>fass-</b>.","pouvoir":"One stem everywhere: <b>puiss-</b>.","savoir":"One stem everywhere: <b>sach-</b>.",
+   "vouloir":"Boot shape: <b>veuill-</b> inside, <b>voul-</b> for nous/vous.",
+   "voir":"nous/vous: <b>voyions, voyiez</b> (y + i!). Same as the imparfait.",
+   "croire":"Like voir: <b>croyions, croyiez</b>.","nager":"<b>nagions</b>: no e (indicative: nous nageons).",
+   "peigner":"<b>peignions, peigniez</b>: gn + i, easy to miss when you hear it.",
+   "ramener":"è when the ending is silent (ramène, ramènes, ramènent), e otherwise (ramenions).",
+   "interrompre":"Indicative <i>il interrompt</i> (t), subjunctive <i>qu'il interrompe</i> (e).",
+   "ouvrir":"An -ir verb with -er-type endings: que j'ouvre.","accueillir":"Like ouvrir: qu'on accueille.",
+   "recevoir":"<b>ç</b> before o: reçoive, but recevions.","dire":"From <i>ils disent</i>: dise (not <s>die</s>)."
+  };
+  return t[v]||"Recipe: present <b>ils</b> form − ent + e / es / e / ions / iez / ent.";
+}
+
+/* rapid fire & dictation */
+let rState={streak:0,best:store.get("e437_best",0),n:0,ok:0,cur:null};
+function pool(){const gs=$$("#groupFilter input:checked").map(c=>c.value);const ks=Object.keys(V).filter(k=>gs.includes(V[k].g));return ks.length?ks:Object.keys(V).filter(k=>V[k].g==="irr")}
+function startRapid(dict){
+  const A=$("#verbArea");
+  A.innerHTML=`<div class="row"><span class="streak">Streak <b id="rStreak">0</b> · best <b id="rBest">${rState.best}</b> · score <b id="rScore">0/0</b></span></div>
+  <div class="big-q" id="rQ"></div>
+  <div class="row" style="justify-content:center"><input type="text" id="rIn" style="width:260px;text-align:center" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${dict?"type what you hear":"subjunctive form"}"> <button class="pri" id="rGo">OK</button> ${dict?'<button id="rRep">🔊 Again</button>':""}</div>
+  <div class="center fb" id="rFb"></div>
+  <p class="hint center">${dict?"Listen, then write the verb form (with or without <i>que…</i>). This trains the ear for /ɛ/, /swa/ and the -ions / -iez endings.":"Type the form and press Enter. A wrong answer goes into your review deck."}</p>`;
+  rState.streak=0;rState.n=0;rState.ok=0;
+  const next=()=>{
+    const ks=pool(),v=ks[Math.floor(Math.random()*ks.length)],i=Math.floor(Math.random()*6);
+    rState.cur={v,i,a:V[v].f[i]};
+    if(dict){$("#rQ").innerHTML=`🎧 <span class="muted" style="font-size:1rem">(${v})</span>`;setTimeout(()=>speak(withPro(i,V[v].f[i],true),0.85),150)}
+    else $("#rQ").innerHTML=`<span class="muted" style="font-size:1rem">(${v})</span><br>${i===0?"que je / j'":PSHORT[i]} ___`;
+    $("#rIn").value="";$("#rIn").className="";$("#rIn").focus();
+  };
+  const check=()=>{
+    const c=rState.cur;if(!c)return;
+    let val=$("#rIn").value.replace(/^que\s+(j'|je|tu|il|elle|on|nous|vous|ils|elles)\s*/i,"").replace(/^qu'(il|elle|ils|elles|on)\s*/i,"").replace(/^j'/i,"");
+    const r=judge(val,[c.a]);if(r==="empty")return;
+    rState.n++;const fb=$("#rFb");fb.classList.add("show");
+    if(r==="ok"){rState.ok++;rState.streak++;fb.className="center fb show ok";fb.innerHTML="✓ "+withPro(c.i,c.a,true);
+      if(rState.streak>rState.best){rState.best=rState.streak;store.set("e437_best",rState.best)}}
+    else{rState.streak=0;fb.className="center fb show "+(r==="accent"?"warn":"bad");fb.innerHTML=(r==="accent"?"Almost, check the accents: ":"✗ ")+"<b>"+withPro(c.i,c.a,true)+"</b> "+spk(withPro(c.i,c.a,true));
+      addMistake(`(${c.v}) ${PSHORT[c.i]} ___`,[c.a],tipFor(c.v))}
+    $("#rStreak").textContent=rState.streak;$("#rBest").textContent=rState.best;$("#rScore").textContent=rState.ok+"/"+rState.n;
+    setTimeout(next,r==="ok"?700:2200);
+  };
+  $("#rGo").onclick=check;$("#rIn").addEventListener("keydown",e=>{if(e.key==="Enter")check()});
+  if(dict)$("#rRep").onclick=()=>{const c=rState.cur;if(c)speak(withPro(c.i,c.a,true),0.8)};
+  next();
+}
+
+/* in-context sentences for key verbs */
+const CTX={
+ "être":[["Il faut que tu ___ à l'heure demain matin.","sois"],["Je suis content que vous ___ là.","soyez"],["Il faut que nous ___ prêts à 8 heures.","soyons"],["C'est dommage qu'ils ne ___ pas libres ce week-end.","soient"],["Je ne pense pas que ce ___ une bonne idée.","soit"]],
+ "avoir":[["Il faut que j'___ mon passeport pour le voyage.","aie"],["Je voudrais que tu ___ un peu plus de patience.","aies"],["Il est possible qu'il y ___ des bouchons sur l'autoroute.","ait"],["Il faut que nous ___ une réponse avant vendredi.","ayons"],["Je doute qu'ils ___ le temps de venir.","aient"]],
+ "aller":[["Il faut que j'___ à la banque cet après-midi.","aille"],["Il vaut mieux que tu ___ chez le médecin.","ailles"],["Le guide ne veut pas que nous ___ trop vite.","allions"],["Il faut absolument que vous ___ voir ce film.","alliez"],["Il est temps que les enfants ___ se coucher.","aillent"]],
+ "faire":[["Il faut que je ___ les courses ce soir.","fasse"],["Je veux que tu ___ tes devoirs avant de sortir.","fasses"],["Pour la randonnée, il faut qu'il ___ beau.","fasse"],["Il faut que nous ___ attention aux rapides.","fassions"],["Il est important que vous ___ une pause.","fassiez"]],
+ "pouvoir":[["Je suis ravi que tu ___ venir.","puisses"],["Il faut qu'on ___ parler franchement.","puisse"],["Je parle lentement pour que vous ___ comprendre.","puissiez"],["Il n'y a rien qu'ils ___ faire.","puissent"]],
+ "savoir":[["Il faut que tu ___ nager pour faire du canoë.","saches"],["Je veux que vous ___ la vérité.","sachiez"],["Je ne pense pas qu'il ___ conduire.","sache"],["Il est important que nous ___ où aller.","sachions"]],
+ "vouloir":[["Cela m'étonne qu'elle ___ partir si tôt.","veuille"],["Je ne crois pas qu'ils ___ venir.","veuillent"],["Elle sera déçue que tu ne ___ pas venir.","veuilles"],["Bien que vous ___ rester, il faut partir.","vouliez"]],
+ "venir":[["Je veux que tu ___ avec moi.","viennes"],["C'est dommage que vous ne ___ pas ce soir.","veniez"],["Il faut qu'ils ___ nous chercher à la gare.","viennent"]],
+ "prendre":[["Il vaut mieux que tu ___ le train.","prennes"],["Il faut que nous ___ une décision aujourd'hui.","prenions"],["Mais il faut qu'on ___ nos sacs de couchage.","prenne"]],
+ "devoir":[["C'est dommage que tu ___ partir.","doives"],["Je ne pense pas que nous ___ payer l'entrée.","devions"]],
+ "dire":[["Il faut que tu me ___ la vérité.","dises"],["J'aimerais que vous me ___ ce que vous en pensez.","disiez"]],
+ "voir":[["Il faut absolument que vous ___ ce match.","voyiez"],["Je veux que tu ___ ça de tes propres yeux.","voies"]],
+ "mettre":[["Avant d'embarquer, il faut que je ___ mon gilet de sauvetage.","mette"]],
+ "partir":[["Je suis triste qu'elle ___ si tôt.","parte"]],
+ "finir":[["Le chef exige que nous ___ le rapport ce soir.","finissions"]],
+ "attendre":[["Je préfère que tu m'___ devant la gare.","attendes"]]
+};
+function renderContext(v){
+  const A=$("#verbArea");
+  const keys=Object.keys(CTX);
+  const items=(CTX[v]?CTX[v].map(([s,a])=>({s,inf:v,a:[a]})):[]);
+  A.innerHTML=`<p class="hint">${CTX[v]?`Everyday sentences with <b>${v}</b>.`:`No context sentences for <b>${v}</b> yet. Pick one of: ${keys.join(", ")}, or try the mix.`}</p><div id="ctxBox"></div><div class="row" style="margin-top:10px"><button onclick="ctxMix()">🔀 Mix all verbs (15 sentences)</button></div>`;
+  if(items.length) gapSet($("#ctxBox"),items);
+}
+function ctxMix(){
+  const all=[];Object.entries(CTX).forEach(([v,l])=>l.forEach(([s,a])=>all.push({s,inf:v,a:[a]})));
+  gapSet($("#ctxBox"),shuffle(all).slice(0,15));
+}
+
+/* ================= GENERIC ENGINES ================= */
+function gapSet(box,items,opts={}){
+  box.innerHTML=items.map((it,k)=>{
+    const parts=it.s.split("___");
+    return `<div class="item" data-k="${k}">${parts[0]}<input type="text" class="gap" autocomplete="off" autocapitalize="off" spellcheck="false">${parts[1]||""} ${it.inf?`<span class="hint">(${it.inf})</span>`:""} ${spk(it.s.replace("___",it.a[0]))}<div class="fb"></div></div>`;
+  }).join("")+`<div class="row" style="margin-top:12px"><button class="pri" data-act="all">Check all</button><button data-act="show">Show answers</button><button data-act="redo">🔀 Restart</button><span class="score"></span></div>`;
+  const rows=$$(".item",box);
+  const checkOne=(row)=>{
+    const it=items[+row.dataset.k],inp=$("input",row),fb=$(".fb",row);
+    const r=judge(inp.value,it.a); if(r==="empty") return null;
+    inp.className="gap "+(r==="ok"?"ok":r==="accent"?"warn":"bad");
+    fb.className="fb show "+(r==="ok"?"ok":r==="accent"?"warn":"bad");
+    fb.innerHTML=r==="ok"?("✓ "+(it.why||"")):(r==="accent"?"Almost, check the accents: ":"✗ Answer: ")+"<b>"+it.a[0]+"</b>"+(it.why?" · "+it.why:"");
+    if(r!=="ok") addMistake(it.s+(it.inf?` (${it.inf})`:""),it.a,it.why);
+    return r==="ok";
+  };
+  rows.forEach((row,k)=>$("input",row).addEventListener("keydown",e=>{if(e.key==="Enter"){checkOne(row);const nx=rows[k+1];if(nx)$("input",nx).focus()}}));
+  $('[data-act=all]',box).onclick=()=>{let ok=0;rows.forEach(r=>{if(checkOne(r))ok++});$(".score",box).textContent=`${ok}/${items.length}`+(ok===items.length?" 🎉 Parfait !":"")};
+  $('[data-act=show]',box).onclick=()=>rows.forEach(r=>{const it=items[+r.dataset.k];$("input",r).value=it.a[0];$("input",r).className="gap"});
+  $('[data-act=redo]',box).onclick=()=>gapSet(box,shuffle(items),opts);
+}
+function mcqSet(box,items){
+  let done=0,ok=0;
+  box.innerHTML=items.map((it,k)=>`<div class="item" data-k="${k}"><div>${it.q.replace("___","<b>____</b>")}</div><div class="opts">${shuffle(it.o).map(o=>`<button data-o="${esc(o)}">${o}</button>`).join("")}</div><div class="fb"></div></div>`).join("")+`<div class="row" style="margin-top:12px"><span class="score"></span><span class="sp"></span><button data-act="redo">🔀 Restart</button></div>`;
+  $$(".item",box).forEach(row=>{
+    const it=items[+row.dataset.k];
+    $$(".opts button",row).forEach(b=>b.onclick=()=>{
+      if(row.dataset.done)return;row.dataset.done=1;done++;
+      const right=b.dataset.o===it.a;if(right)ok++;
+      $$(".opts button",row).forEach(x=>{x.disabled=true;if(x.dataset.o===it.a)x.classList.add("right")});
+      if(!right){b.classList.add("wrong");addMistake(it.q,[it.a],it.why)}
+      const fb=$(".fb",row);fb.className="fb show "+(right?"ok":"bad");
+      const full=it.q.replace("___",it.a);
+      fb.innerHTML=(right?"✓ ":"✗ ")+(it.why||"")+" "+spk(full);
+      $(".score",box).textContent=`${ok}/${done} answered (of ${items.length})`;
+    });
+  });
+  $('[data-act=redo]',box).onclick=()=>mcqSet(box,shuffle(items));
+}
+function transformSet(box,items){
+  box.innerHTML=items.map((it,k)=>`<div class="item" data-k="${k}"><div><b>${it.src}</b> ${it.cue?`<span class="hint">→ ${it.cue}</span>`:""}</div><div class="row" style="margin-top:6px"><input type="text" class="wide" autocomplete="off" spellcheck="false" placeholder="Write the whole sentence…" style="flex:1"><button class="sm pri">Check</button></div><div class="fb"></div></div>`).join("")+`<div class="row" style="margin-top:12px"><span class="score"></span><span class="sp"></span><button data-act="redo">🔀 Restart</button></div>`;
+  let ok=0,n=0;
+  $$(".item",box).forEach(row=>{
+    const it=items[+row.dataset.k],inp=$("input",row),fb=$(".fb",row);
+    const check=()=>{
+      const r=judge(inp.value,it.a);if(r==="empty")return;
+      if(!row.dataset.done){row.dataset.done=1;n++;if(r==="ok")ok++;}
+      inp.className="wide "+(r==="ok"?"ok":r==="accent"?"warn":"bad");
+      fb.className="fb show "+(r==="ok"?"ok":r==="accent"?"warn":"bad");
+      fb.innerHTML=(r==="ok"?"✓ ":r==="accent"?"Almost, check the accents. Model: ":"Model answer: ")+"<b>"+it.a[0]+"</b> "+spk(it.a[0])+(it.why?`<br><span class="hint">${it.why}</span>`:"")+
+        (r==="bad"?` <button class="sm" data-self>I had it right (different wording)</button>`:"");
+      if(r!=="ok")addMistake("Transforme : "+it.src+(it.cue?" → "+it.cue:""),it.a,it.why);
+      const sb=$("[data-self]",fb);if(sb)sb.onclick=()=>{REVIEW=REVIEW.filter(x=>x.id!==norm("Transforme : "+it.src+(it.cue?" → "+it.cue:""))+"|"+it.a[0]);saveReview();inp.className="wide ok";ok++;sb.remove();upd()};
+      upd();
+    };
+    const upd=()=>$(".score",box).textContent=`${ok}/${n} checked (of ${items.length})`;
+    $("button",row).onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check()});
+  });
+  $('[data-act=redo]',box).onclick=()=>transformSet(box,shuffle(items));
+}
+function sortSet(box,items){
+  box.innerHTML=`<p class="hint">For each trigger, pick <span class="pill s">S</span> subjonctif or <span class="pill i">I</span> indicatif, then press "Check".</p>
+  <div class="chips">${shuffle(items).map(it=>`<div class="chip" data-a="${it.a}" data-w="${esc(it.w)}"><span>${it.w}…</span><button data-c="S">S</button><button data-c="I">I</button></div>`).join("")}</div>
+  <div class="row" style="margin-top:14px"><button class="pri" data-act="chk">Check</button><button data-act="redo">🔀 Restart</button><span class="score"></span></div>`;
+  $$(".chip",box).forEach(ch=>$$("button",ch).forEach(b=>b.onclick=()=>{ch.dataset.p=b.dataset.c;$$("button",ch).forEach(x=>x.className="");b.className=b.dataset.c==="S"?"sel-s":"sel-i";ch.classList.remove("ok","bad")}));
+  $('[data-act=chk]',box).onclick=()=>{let ok=0;$$(".chip",box).forEach(ch=>{const r=ch.dataset.p===ch.dataset.a;ch.classList.toggle("ok",r);ch.classList.toggle("bad",!r);if(r)ok++;else if(ch.dataset.p)addMistake(`Subjonctif (S) ou indicatif (I) ? « ${ch.dataset.w}… »`,[ch.dataset.a],"")});$(".score",box).textContent=`${ok}/${items.length}`};
+  $('[data-act=redo]',box).onclick=()=>sortSet(box,items);
+}
+
+/* ================= EXERCISE DATA ================= */
+const COURSE={
+ "Pour partir en canoë (être/avoir)":[
+  ["Il faut que nous ___ de la chance.","avoir","ayons"],["Elle veut que vous ___ sages.","être","soyez"],["Je veux que tu ___ à l'heure au rendez-vous.","être","sois"],["Pour partir en canoë, il faut qu'ils ___ beau temps.","avoir","aient"],["Gilbert veut que tu ___ un gilet de sauvetage.","avoir","aies"],["Il faut qu'il y ___ de l'eau dans la rivière.","avoir","ait"],["Gilbert ne veut pas que nous ___ ensemble.","être","soyons"]],
+ "Le sport":[
+  ["Il faut que tu ___ le tennis.","apprendre","apprennes"],["Le moniteur veut que nous ___ dans le grand bassin.","nager","nagions"],["Il ne faut pas que vous ___ courage.","perdre","perdiez"],["Il faut absolument que nous ___ ce match.","voir","voyions"],["Le professeur de tennis veut que tu ___ une bonne raquette.","choisir","choisisses"],["L'entraîneur veut que j'___ la médaille d'or.","obtenir","obtienne"],["Il faut qu'ils ___ avant de jouer.","se reposer","se reposent"]],
+ "Pour faire de l'hydrospeed":[
+  ["Cela m'étonne que Janine ___ faire de l'hydrospeed, elle est tellement peureuse !","vouloir","veuille"],["Il faut qu'elle ___ essayer si elle en a envie.","pouvoir","puisse"],["Mais il faut qu'elle ___ que c'est risqué.","savoir","sache"],["Elle veut que tu ___ avec elle.","aller","ailles"],["Quoi ? Elle veut que je ___ le zozo dans l'eau ?","faire","fasse"],["Elle sera très déçue que tu ne ___ pas.","vouloir","veuilles"]],
+ "Randonnée équestre":[
+  ["Après la leçon d'équitation, il faut que tu ___ le cheval à l'écurie.","ramener","ramènes"],["Je veux que vous lui ___ le poil.","brosser","brossiez"],["…et que vous ___ sa crinière.","peigner","peigniez"],["Pour que tu ___ monter à cheval, tu as besoin d'une selle.","pouvoir","puisses"],["C'est dommage que nous ne ___ pas encore galoper.","savoir","sachions"],["J'ai envie que vous ___ avec moi faire une randonnée en roulotte.","venir","veniez"],["Mais il faut qu'on ___ nos sacs de couchage.","prendre","prenne"]],
+ "Une entreprise autoritaire":[
+  ["Vous permettez que j'___ une cigarette ?","allumer","allume"],["Le chef demande qu'on ne ___ pas dans les bureaux.","fumer","fume"],["Est-ce qu'il admet qu'on ___ une pause de temps en temps ?","faire","fasse"],["Il exige que vous ___ à l'heure.","arriver","arriviez"],["Est-ce qu'il autorise qu'on ___ 5 semaines de suite l'été ?","partir","parte"],["Il s'oppose à ce qu'on ___ absent si longtemps.","être","soit"],["Alors il vaut mieux que j'___ voir ailleurs !","aller","aille"]],
+ "Quelle autorité !":[
+  ["Vous permettez que j'___ la fenêtre ?","ouvrir","ouvre"],["Le président conseille qu'on ne l'___ pas pendant son entretien.","interrompre","interrompe"],["Sa femme exige qu'il ___ la vaisselle.","faire","fasse"],["Le policier ordonne que vous ___ vos papiers.","montrer","montriez"],["Le magistrat ordonne que l'accusé ___ la vérité.","dire","dise"],["Le professeur autorise que les étudiants ___ un dictionnaire.","avoir","aient"],["Il interdit qu'on ___ pendant l'examen.","sortir","sorte"]]
+};
+const MOOD=[
+ {q:"Je pense qu'il ___ raison.",o:["a","ait"],a:"a",why:"Affirmative opinion (penser) → indicatif."},
+ {q:"Je ne pense pas qu'il ___ raison.",o:["a","ait"],a:"ait",why:"Negated opinion → subjonctif."},
+ {q:"J'espère que tu ___ venir samedi.",o:["pourras","puisses"],a:"pourras",why:"Espérer → indicatif (often future)."},
+ {q:"Je souhaite que tu ___ venir samedi.",o:["pourras","puisses"],a:"puisses",why:"Souhaiter = wish → subjonctif."},
+ {q:"Il paraît qu'il ___ neiger demain.",o:["va","aille"],a:"va",why:"Il paraît que (hearsay) → indicatif."},
+ {q:"Il semble qu'il y ___ un problème.",o:["a","ait"],a:"ait",why:"Il semble que (impersonal, uncertain) → subjonctif."},
+ {q:"Il me semble qu'il y ___ un problème.",o:["a","ait"],a:"a",why:"Il me semble = je pense → indicatif."},
+ {q:"Il ne me semble pas qu'il y ___ un problème.",o:["a","ait"],a:"ait",why:"Negative → subjonctif."},
+ {q:"Je suis sûr qu'elle ___ la vérité.",o:["dit","dise"],a:"dit",why:"Certainty → indicatif."},
+ {q:"Je ne suis pas sûr qu'elle ___ la vérité.",o:["dit","dise"],a:"dise",why:"Uncertainty → subjonctif."},
+ {q:"Il est probable qu'il ___ en retard.",o:["sera","soit"],a:"sera",why:"Probable = close to certain → indicatif (classic trap)."},
+ {q:"Il est possible qu'il ___ en retard.",o:["sera","soit"],a:"soit",why:"Possible = doubt → subjonctif."},
+ {q:"Il est évident qu'il ___ fatigué.",o:["est","soit"],a:"est",why:"Évident = certain → indicatif."},
+ {q:"Je suis content ___ ici.",o:["d'être","que je sois"],a:"d'être",why:"Same subject → de + infinitif."},
+ {q:"Je suis content que tu ___ ici.",o:["es","sois"],a:"sois",why:"Emotion + different subject → subjonctif."},
+ {q:"Je veux ___ à l'heure.",o:["être","que je sois"],a:"être",why:"Same subject → infinitif (no preposition after vouloir)."},
+ {q:"Il vaut mieux que vous ___ un taxi.",o:["prenez","preniez"],a:"preniez",why:"Il vaut mieux que → subjonctif."},
+ {q:"Quand il faisait beau, nous ___ au lac.",o:["allions","allons"],a:"allions",why:"Here allions is the IMPARFAIT (habit in the past): same form as the subjunctive!"},
+ {q:"Il faut que nous ___ au lac demain.",o:["allons","allions"],a:"allions",why:"Il faut que → subjonctif (looks like the imparfait)."},
+ {q:"Je travaille ___ ma famille vive bien.",o:["pour que","parce que"],a:"pour que",why:"Purpose → pour que + subjonctif (vive)."},
+ {q:"Je reste à la maison parce qu'il ___.",o:["pleut","pleuve"],a:"pleut",why:"Parce que (fact, cause) → indicatif."},
+ {q:"Partons avant qu'il ___.",o:["pleut","pleuve"],a:"pleuve",why:"Avant que → subjonctif."},
+ {q:"Je crois qu'il ___ demain.",o:["viendra","vienne"],a:"viendra",why:"Affirmative belief → indicatif."},
+ {q:"Vous ne vous souvenez plus que nous ___ les châteaux de la Loire en 1968 ?",o:["avons visité","ayons visité"],a:"avons visité",why:"A forgotten fact is still a fact → indicatif."},
+ {q:"Je ne pense pas que cela ___ possible en 1968.",o:["a été","ait été"],a:"ait été",why:"Negated opinion about the past → past subjunctive."},
+ {q:"J'imagine qu'il n'___ pas le temps.",o:["a","ait"],a:"a",why:"Imaginer que (= I suppose) → indicatif."},
+ {q:"Je ne pense pas qu'il ___ si occupé quand il s'agit de jouer au golf !",o:["est","soit"],a:"soit",why:"Negated opinion → subjonctif."}
+];
+const REL=[
+ {q:"Je rêve d'un hôtel qui ___ au bord de la mer.",o:["est","soit"],a:"soit",why:"A dream hotel (not yet real) → subjonctif."},
+ {q:"Je dors dans un hôtel qui ___ au bord de la mer.",o:["est","soit"],a:"est",why:"A real hotel → indicatif."},
+ {q:"Je ne connais pas de femme qui ___ plus rousse que toi.",o:["est","soit"],a:"soit",why:"Non-existent → subjonctif."},
+ {q:"J'ai épousé une femme qui ___ plus rousse que toi.",o:["est","soit"],a:"est",why:"Real person → indicatif."},
+ {q:"Imagine un monde où il n'y ___ que des hommes.",o:["a","ait"],a:"ait",why:"Imagined world → subjonctif."},
+ {q:"C'est une entreprise macho où il n'y ___ que des hommes.",o:["a","ait"],a:"a",why:"Real company → indicatif."},
+ {q:"J'ai déjà une voiture de course qui ___ rapide.",o:["est","soit"],a:"est",why:"I own it → indicatif."},
+ {q:"Mais je voudrais une voiture qui ___ décapotable.",o:["est","soit"],a:"soit",why:"Wished-for car (une) → subjonctif."},
+ {q:"Il a un travail dont il ___ content.",o:["est","soit"],a:"est",why:"Real job → indicatif."},
+ {q:"Mais il aimerait un poste dont il ___ être fier.",o:["peut","puisse"],a:"puisse",why:"Wished-for job → subjonctif."},
+ {q:"J'aimerais acheter le dernier disque de raï qui ___ tant de succès.",o:["a","ait"],a:"a",why:"A specific, real record (le) → indicatif. Only the buying is wished."},
+ {q:"Je cherche un appartement qui ___ près du lac.",o:["est","soit"],a:"soit",why:"Searching (un) → subjonctif."},
+ {q:"J'habite dans un appartement qui ___ près du lac.",o:["est","soit"],a:"est",why:"Real → indicatif."},
+ {q:"Il n'y a personne ici qui ___ parler allemand.",o:["sait","sache"],a:"sache",why:"Negative antecedent → subjonctif."}
+];
+const SORT=[
+ ["il faut que","S"],["je veux que","S"],["j'espère que","I"],["je pense que","I"],["je ne pense pas que","S"],["il paraît que","I"],["il semble que","S"],["il me semble que","I"],["c'est dommage que","S"],["je suis sûr que","I"],["il est possible que","S"],["il est probable que","I"],["bien que","S"],["parce que","I"],["pour que","S"],["pendant que","I"],["après que","I"],["avant que","S"],["je doute que","S"],["je sais que","I"],["cela m'étonne que","S"],["il est évident que","I"],["j'ai peur que","S"],["il vaut mieux que","S"],["je cherche quelqu'un qui","S"],["je connais quelqu'un qui","I"],["il n'y a personne qui","S"],["je crois que","I"],["s'opposer à ce que","S"],["exiger que","S"]
+].map(([w,a])=>({w,a}));
+const TRANS=[
+ {src:"Quand on me fait des compliments, j'adore ça.",cue:"J'adore que…",a:["J'adore qu'on me fasse des compliments."]},
+ {src:"Quand on ne regarde pas Isabelle, ça l'exaspère.",cue:"Ça exaspère…",a:["Ça exaspère Isabelle qu'on ne la regarde pas.","Cela exaspère Isabelle qu'on ne la regarde pas."]},
+ {src:"Quand Isabelle fait des caprices, cela m'amuse.",cue:"Cela m'amuse…",a:["Cela m'amuse qu'Isabelle fasse des caprices."]},
+ {src:"Tu dois partir, c'est dommage.",cue:"C'est dommage…",a:["C'est dommage que tu doives partir."]},
+ {src:"Les vacances se finissent, les enfants sont tristes.",cue:"Les enfants…",a:["Les enfants sont tristes que les vacances se finissent."]},
+ {src:"Le père retourne travailler, il est ravi.",cue:"same subject!",a:["Le père est ravi de retourner travailler."],why:"Same subject → de + infinitif."},
+ {src:"Cédric sait faire du canoë, il est fier.",cue:"same subject!",a:["Cédric est fier de savoir faire du canoë."]},
+ {src:"Il pleut, cela m'ennuie.",cue:"Cela m'ennuie…",a:["Cela m'ennuie qu'il pleuve."],why:"pleuvoir → qu'il pleuve."},
+ {src:"Je pars demain, je suis triste.",cue:"Je suis triste…",a:["Je suis triste de partir demain."],why:"Same subject → de + infinitif."},
+ {src:"Elle part demain, je suis triste.",cue:"Je suis triste…",a:["Je suis triste qu'elle parte demain."],why:"Different subjects → que + subjonctif."},
+ {src:"Nous sommes en retard, c'est normal.",cue:"C'est normal…",a:["C'est normal que nous soyons en retard."]},
+ {src:"Rien ne lui plaît.",cue:"Il n'y a rien…",a:["Il n'y a rien qui lui plaise."]},
+ {src:"Personne ne comprend.",cue:"Il n'y a personne…",a:["Il n'y a personne qui comprenne."]},
+ {src:"Aucun hiver n'a été si froid.",cue:"Il n'y a aucun…",a:["Il n'y a aucun hiver qui ait été si froid."],why:"Passé composé → past subjunctive."},
+ {src:"Personne n'a contesté les élections.",cue:"Il n'y a personne…",a:["Il n'y a personne qui ait contesté les élections."]},
+ {src:"Le patron souhaite qu'on prépare les tables l'après-midi.",cue:"passive",a:["Le patron souhaite que les tables soient préparées l'après-midi."],why:"Passive subjunctive: soient + participle (agreement -ées)."},
+ {src:"Il exige qu'on accueille les clients cordialement.",cue:"passive",a:["Il exige que les clients soient accueillis cordialement."]},
+ {src:"Le chef exige qu'on finisse le rapport ce soir.",cue:"passive",a:["Le chef exige que le rapport soit fini ce soir.","Le chef exige que le rapport soit terminé ce soir."]},
+ {src:"Il n'accepte pas qu'on le critique.",cue:"passive",a:["Il n'accepte pas d'être critiqué."],why:"le = the subject → passive infinitive."},
+ {src:"Elle préfère qu'on l'invite.",cue:"passive",a:["Elle préfère être invitée."],why:"Passive infinitive, with agreement (invitée)."}
+];
+const TENSE=[
+ {q:"Je suis content que tu ___ demain.",o:["viennes","sois venu"],a:"viennes",why:"Future/now → present subjunctive."},
+ {q:"Je suis content que tu ___ hier.",o:["viennes","sois venu"],a:"sois venu",why:"Already happened → past subjunctive."},
+ {q:"C'est dommage que tu ___ le train ce matin.",o:["rates","aies raté"],a:"aies raté",why:"This morning, finished → past subjunctive."},
+ {q:"Il n'y a personne qui ___ hier soir.",o:["téléphone","ait téléphoné"],a:"ait téléphoné",why:"Personne n'a téléphoné → past subjunctive."},
+ {q:"Il n'y a rien qui lui ___ dans ce magasin.",o:["plaise","ait plu"],a:"plaise",why:"Rien ne lui plaît (present) → present subjunctive."},
+ {q:"Je ne pense pas qu'elle ___ déjà partie.",o:["soit","ait"],a:"soit",why:"partir takes être → soit partie."},
+ {q:"Je doute qu'ils ___ fini le travail.",o:["aient","soient"],a:"aient",why:"finir takes avoir → aient fini."},
+ {q:"Je suis ravi que vous ___ venir ce soir.",o:["puissiez","ayez pu"],a:"puissiez",why:"Tonight (future) → present."}
+];
+const EXSETS=[
+ ...Object.keys(COURSE).map(t=>({t:"📘 "+t,f:b=>gapSet(b,COURSE[t].map(([s,inf,a])=>({s,inf,a:[a]})))})),
+ {t:"📘 All course gaps (mixed)",f:b=>{const all=[];Object.values(COURSE).forEach(l=>l.forEach(([s,inf,a])=>all.push({s,inf,a:[a]})));gapSet(b,shuffle(all).slice(0,20))}},
+ {t:"⚖️ Subj. / ind. / infinitive",f:b=>mcqSet(b,shuffle(MOOD))},
+ {t:"🗂 Sort the triggers",f:b=>sortSet(b,SORT)},
+ {t:"🏝 Fiction or reality?",f:b=>mcqSet(b,shuffle(REL))},
+ {t:"🔁 Transform",f:b=>transformSet(b,TRANS)},
+ {t:"⏱ Present or past?",f:b=>mcqSet(b,shuffle(TENSE))}
+];
+function buildNav(navSel,areaSel,sets){
+  const nav=$(navSel);nav.innerHTML="";
+  sets.forEach((s,i)=>{const b=document.createElement("button");b.textContent=s.t;b.onclick=()=>{$$("button",nav).forEach(x=>x.classList.remove("on"));b.classList.add("on");s.f($(areaSel))};nav.appendChild(b);if(i===0){b.classList.add("on");s.f($(areaSel))}});
+}
+
+/* ================= SPEAKING ================= */
+const SPEAK={
+ "💼 Au travail":[
+  ["Ask a colleague to send the report today. Start with « Il faut que… ».","Il faut que tu envoies le rapport aujourd'hui."],
+  ["Report that the boss demands that we're on time.","Le chef exige que nous soyons à l'heure."],
+  ["Politely ask whether you may open the window.","Vous permettez que j'ouvre la fenêtre ?"],
+  ["Advise a colleague to take a day off.","Il vaut mieux que tu prennes un jour de congé."],
+  ["Express doubt that the project will be ready on time.","Je ne pense pas que le projet soit prêt à temps."],
+  ["Pass on a rumour: apparently the meeting is cancelled.","Il paraît que la réunion est annulée."],
+  ["Say the boss doesn't accept being criticised.","Le chef n'accepte pas d'être critiqué."]
+ ],
+ "🏠 À la maison":[
+  ["Tell your teenager you want them to do their homework before going out.","Je veux que tu fasses tes devoirs avant de sortir."],
+  ["Say you need to go to the bank tomorrow (il faut que…).","Il faut que j'aille à la banque demain."],
+  ["Tell your family you're happy they're coming for Christmas.","Je suis content que vous veniez pour Noël."],
+  ["Now YOU are happy to go on holiday (same subject).","Je suis content de partir en vacances."],
+  ["It's time for the kids to go to bed.","Il est temps que les enfants aillent se coucher."]
+ ],
+ "🛶 En Dordogne":[
+  ["Before the canoe trip: everyone must wear a life jacket.","Il faut que tout le monde porte un gilet de sauvetage."],
+  ["You're looking for a campsite by the river (an ideal one, not found yet).","Je cherche un camping qui soit au bord de la rivière."],
+  ["Nobody in the group knows how to swim.","Il n'y a personne qui sache nager."],
+  ["The instructor wants you (plural) to keep your balance.","Le moniteur veut que vous gardiez l'équilibre."],
+  ["You're afraid the canoe will overturn in the rapids.","J'ai peur que le canoë se renverse dans les rapides."],
+  ["It's a pity we can't go horseback riding yet.","C'est dommage que nous ne sachions pas encore monter à cheval."]
+ ],
+ "😮 Réagir":[
+  ["Your friend leaves tomorrow: regret.","C'est dommage que tu partes demain."],
+  ["Your friend got a promotion: joy (it already happened).","Je suis ravi que tu aies eu une promotion !"],
+  ["Your neighbour makes noise at night: exasperation.","Ça m'exaspère que le voisin fasse du bruit la nuit."],
+  ["Wish a friend luck before an exam, with just the subjunctive.","Que tu réussisses !"],
+  ["You're surprised a colleague is always in a bad mood (poil idiom).","Ça m'étonne qu'il soit toujours de mauvais poil."],
+  ["Contrast: you believe he'll come, but she doesn't believe he'll come.","Je crois qu'il viendra, mais elle ne croit pas qu'il vienne."]
+ ]
+};
+function renderSpeak(cat){
+  const area=$("#spArea");
+  area.innerHTML=SPEAK[cat].map(([sit,model],k)=>`<div class="card speak-card"><div class="row"><span class="pill s">${k+1}</span><span class="sp"></span></div><p style="margin-top:6px">${sit}</p>
+   <div class="row"><button class="pri" data-rev>👁 Show the model</button></div>
+   <div class="model"><b>${model}</b> ${spk(model)} <button class="sm" onclick="speak(${esc(JSON.stringify(model))},0.75)">🐢 Slow</button>
+    <div class="row" style="margin-top:8px"><span class="hint">Did you say it correctly?</span><button class="sm" data-ok>✓ Yes</button><button class="sm" data-no>↺ Again</button></div></div></div>`).join("");
+  $$(".speak-card",area).forEach((c,k)=>{
+    const [sit,model]=SPEAK[cat][k];
+    $("[data-rev]",c).onclick=()=>{$(".model",c).classList.add("show");speak(model)};
+    $("[data-ok]",c).onclick=()=>{c.style.opacity=.55;toast("Bravo !")};
+    $("[data-no]",c).onclick=()=>{addMistake("🗣 "+sit,[model],"Say it aloud, then type it.");toast("Added to review")};
+  });
+}
+
+/* ================= VOCAB ================= */
+const VOC={
+ "En Dordogne":[["le gilet de sauvetage","life jacket","⚠ not « sauvage » (= wild)"],["l'équilibre (m.)","balance","garder / perdre l'équilibre"],["la dénivellation","drop, difference in height","⚠ not « la déviation » (= detour)"],["les rapides (m.)","rapids",""],["le courant","the current",""],["se renverser","to overturn, capsize","le canoë s'est renversé"],["embarquer","to get on board",""],["l'hydrospeed (m.)","riverboarding",""],["peureux / peureuse","fearful, timid",""],["faire le zozo","to clown around","informal"],["Jamais de la vie !","No way!",""]],
+ "Au poil !":[["à poil","naked","informal"],["au poil","super, perfect","C'est au poil !"],["de tout poil","of all sorts","des gens de tout poil"],["être de mauvais poil","to be in a bad mood",""],["avoir un poil dans la main","to be lazy",""],["à un poil près","by a hair, very nearly","bonus"],["reprendre du poil de la bête","to get back on one's feet","bonus"]],
+ "Vocabulary from the exercises":[["la leçon d'équitation","riding lesson",""],["l'écurie (f.)","stable",""],["la crinière","mane",""],["brosser le poil","to brush the coat",""],["peigner","to comb",""],["la selle","saddle",""],["galoper","to gallop",""],["la roulotte","horse-drawn caravan",""],["le sac de couchage","sleeping bag",""],["faire faillite","to go bankrupt",""],["fané(e)","wilted",""],["décapotable","convertible",""],["faire des caprices","to throw tantrums",""],["se rouler par terre","to roll on the floor",""],["exaspérer","to exasperate",""],["se réjouir (que)","to be delighted (that)",""],["gêné(e)","embarrassed",""],["faire la vaisselle","to do the dishes",""],["l'entretien (m.)","interview, meeting",""],["l'accusé(e)","the defendant",""],["se joindre à","to join",""],["quand il s'agit de…","when it comes to…",""],["il paraît que…","apparently…","+ indicatif"],["Quand on veut, on peut.","Where there's a will, there's a way.",""]]
+};
+const DORD_MCQ=[
+ {q:"life jacket → ___",o:["le gilet de sauvetage","le gilet de sauvage"],a:"le gilet de sauvetage",why:"sauvetage = rescue; sauvage = wild."},
+ {q:"balance → ___",o:["l'équilibre","la forme"],a:"l'équilibre",why:"la forme = shape / fitness (être en forme)."},
+ {q:"drop (in height) → ___",o:["la dénivellation","la déviation"],a:"la dénivellation",why:"la déviation = road detour."},
+ {q:"rapids → ___",o:["le rapide","le courant"],a:"le rapide",why:"usually plural: les rapides. le courant = the current."},
+ {q:"to overturn → ___",o:["se renverser","embarquer"],a:"se renverser",why:"embarquer = to get on board."}
+];
+const POIL_MCQ=[
+ {q:"Il fait −10° et il se baigne ___ ! Il est fou.",o:["à poil","au poil","de tout poil"],a:"à poil",why:"à poil = naked."},
+ {q:"Ton nouveau vélo ? Il est vraiment ___ !",o:["au poil","à poil","de mauvais poil"],a:"au poil",why:"au poil = super. One letter from « à poil »!"},
+ {q:"Ce festival attire des gens ___.",o:["de tout poil","au poil","à poil"],a:"de tout poil",why:"of all sorts."},
+ {q:"Ne lui parle pas ce matin, il est ___.",o:["de mauvais poil","au poil","de tout poil"],a:"de mauvais poil",why:"in a bad mood."},
+ {q:"Il ne fait jamais rien : il a ___.",o:["un poil dans la main","un poil au cœur","du poil de la bête"],a:"un poil dans la main",why:"to be lazy."},
+ {q:"Le canoë ne s'est pas renversé, mais ___ !",o:["à un poil près","au poil","à poil"],a:"à un poil près",why:"very nearly, by a hair."}
+];
+let fcState={deck:[],i:0,flip:false,dir:"fr"};
+function flashcards(box,name){
+  fcState={deck:shuffle(VOC[name]),i:0,flip:false,dir:fcState.dir||"fr"};
+  const draw=()=>{
+    const c=fcState.deck[fcState.i];
+    if(!c){box.innerHTML=`<p class="center">🎉 Deck done. <button onclick="flashcards($('#voArea'),'${name}')">Start again</button></p>`;return}
+    const front=fcState.dir==="fr"?c[0]:c[1], back=fcState.dir==="fr"?c[1]:c[0];
+    box.innerHTML=`<div class="row"><span class="hint">${fcState.i+1} / ${fcState.deck.length}</span><span class="sp"></span><button class="sm" id="fcDir">${fcState.dir==="fr"?"FR → EN":"EN → FR"} ⇄</button></div>
+    <div class="progress"><div style="width:${100*fcState.i/fcState.deck.length}%"></div></div>
+    <div class="card flash" id="fcCard"><div><div class="w">${fcState.flip?back:front}</div><div class="b">${fcState.flip?(c[2]||""):"tap to flip"}</div></div></div>
+    <div class="row" style="justify-content:center">${spk(c[0])}<button id="fcNo">↺ Again</button><button class="pri" id="fcYes">✓ Got it</button></div>`;
+    $("#fcCard").onclick=()=>{fcState.flip=!fcState.flip;draw();if(fcState.flip&&fcState.dir==="en")speak(c[0])};
+    $("#fcDir").onclick=()=>{fcState.dir=fcState.dir==="fr"?"en":"fr";fcState.flip=false;draw()};
+    $("#fcYes").onclick=()=>{fcState.i++;fcState.flip=false;draw()};
+    $("#fcNo").onclick=()=>{addMistake("Traduis en français : "+c[1],[c[0].replace(/ \((m|f)\.\)/,"")],c[2]);fcState.deck.push(c);fcState.i++;fcState.flip=false;draw()};
+  };
+  draw();
+}
+
+/* ================= REVIEW ================= */
+function renderReview(){
+  const A=$("#revArea");
+  if(!REVIEW.length){A.innerHTML=`<p class="center">Nothing to review 🎉. Go and make some mistakes in the exercises: that's how you learn!</p>`;return}
+  const q=shuffle(REVIEW).slice(0,12);
+  A.innerHTML=`<div class="row"><span class="hint">${REVIEW.length} card(s) in the deck · session of ${q.length}</span><span class="sp"></span><button class="sm" id="revClear">Empty the deck</button></div>`+
+   q.map((r,k)=>`<div class="item" data-k="${k}"><div>${esc(r.q).replace("___","<b>____</b>")} <span class="hint">· ${"●".repeat(r.hits)}${"○".repeat(2-r.hits)}</span></div><div class="row" style="margin-top:6px"><input type="text" style="flex:1" autocomplete="off" spellcheck="false" placeholder="your answer"><button class="sm pri">OK</button></div><div class="fb"></div></div>`).join("")+
+   `<div class="row" style="margin-top:12px"><button class="acc" onclick="renderReview()">🔀 New session</button></div>`;
+  $("#revClear").onclick=()=>{if(A.dataset.c){REVIEW=[];saveReview();renderReview();delete A.dataset.c}else{A.dataset.c=1;$("#revClear").textContent="Click again to confirm"}};
+  $$(".item",A).forEach(row=>{
+    const r=q[+row.dataset.k],inp=$("input",row),fb=$(".fb",row);
+    const go=()=>{
+      if(row.dataset.done)return;
+      let val=inp.value; const res=judge(val,r.a); if(res==="empty")return; row.dataset.done=1;
+      const live=REVIEW.find(x=>x.id===r.id);
+      if(res==="ok"){ if(live){live.hits++; if(live.hits>=2) REVIEW=REVIEW.filter(x=>x.id!==r.id);} inp.className="ok"; fb.className="fb show ok"; fb.innerHTML="✓ "+(live&&live.hits<2?"one more time next session":"retired 🎓")+" "+spk(r.a[0]); }
+      else { if(live) live.hits=0; inp.className=res==="accent"?"warn":"bad"; fb.className="fb show bad"; fb.innerHTML="Answer: <b>"+esc(r.a[0])+"</b> "+spk(r.a[0])+(r.why?`<br><span class="hint">${r.why}</span>`:""); }
+      saveReview();
+    };
+    $("button",row).onclick=go; inp.addEventListener("keydown",e=>{if(e.key==="Enter")go()});
+  });
+}
+
+/* ================= INIT ================= */
+renderVerb();
+buildNav("#exNav","#exArea",EXSETS);
+buildNav("#spNav","#spArea",Object.keys(SPEAK).map(k=>({t:k,f:()=>renderSpeak(k)})));
+buildNav("#voNav","#voArea",[
+ {t:"🛶 Dordogne: quiz",f:b=>mcqSet(b,shuffle(DORD_MCQ))},
+ {t:"🐾 Au poil: in context",f:b=>mcqSet(b,shuffle(POIL_MCQ))},
+ ...Object.keys(VOC).map(n=>({t:"🃏 Flashcards: "+n,f:b=>flashcards(b,n)}))
+]);
+saveReview();
+route();
+</script>
+</body>
+</html>

@@ -38,6 +38,7 @@ export const COPY = {
     archive1T: 'Pelykh was here', archive1D: 'The 2025 production. One photograph of a table, in two languages.',
     archive2T: 'The mountain table', archive2D: 'The 2026 revival, with a movable sun and a carving knife. Closed after twenty minutes.',
     courseT: 'Education department', courseD: 'A secret crash-course for young curious minds.',
+    frenchT: 'Le Salon', frenchD: 'The French rehearsal room. Verbs, idioms and the subjunctive, with lines to say out loud.',
     doorT: 'Stage door', doorD: 'Fan mail, complaints and unsolicited librettos.',
     foot: 'No letters were harmed. One was hit with a tomato, and has forgiven you.'
   },
@@ -79,6 +80,7 @@ export const COPY = {
     archive1T: 'Тут був Пелих', archive1D: 'Постановка 2025 року. Одна фотографія стола, двома мовами.',
     archive2T: 'Стіл у горах', archive2D: 'Відновлена версія 2026 року, з рухомим сонцем і ножем для різьблення. Зійшла зі сцени за двадцять хвилин.',
     courseT: 'Освітній відділ', courseD: 'Таємний експрес-курс для юних допитливих умів.',
+    frenchT: 'Le Salon', frenchD: 'Французька репетиційна. Дієслова, ідіоми та subjonctif, з репліками вголос.',
     doorT: 'Службовий вхід', doorD: 'Листи шанувальників, скарги та непрохані лібрето.',
     foot: 'Жодна літера не постраждала. В одну влучили помідором, і вона вже пробачила.'
   }

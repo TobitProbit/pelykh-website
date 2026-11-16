@@ -18,7 +18,8 @@ Switching to Ukrainian changes their costumes to П Е Л И Х and sends K on p
 | `src/glyphs.js` | Letter outlines, generated from the font by `src/gen-glyphs.mjs` |
 | `archive/` | Earlier versions of the home page, kept for history |
 | `valuation-course/` | The Young Investor's Guide: six interactive missions. Plain HTML and JS, no build step; all course text is in `app.js` |
-| `french-course/` | Separate mini-site |
+| `french/` | **Le Salon**: the family French practice hub (`/french/`). Each lesson is one self-contained page in its own folder; `french/salon.js` adds the back link and records visits for the streak. To add a lesson, drop its folder in, include `<script src="/french/salon.js" defer></script>` in its head, and add an entry to `MODULES` in `french/index.html` |
+| `french-course/` | B1 → B2 pillar practice (pronouns, subjunctive, si clauses), linked from Le Salon |
 
 ## Changing things
 

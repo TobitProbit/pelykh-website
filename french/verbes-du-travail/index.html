@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Verbes du travail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: a single French "cahier" sheet (Seyès ruling, red margin) holding one task at a time. */
+:root{
+  --paper:#fbfcff; --ground:#e9edf6; --ink:#1b2340; --muted:#5b6482;
+  --line:#c9d3ee; --line-strong:#a9b6de; --margin:#e0627a;
+  --accent:#2343c4; --accent-soft:#e3e8fb; --good:#1d7a4a; --good-soft:#e1f3e8;
+  --bad:#b8323f; --bad-soft:#fbe6e8; --chip:#ffffff; --shadow:0 1px 0 rgba(27,35,64,.06),0 8px 24px -12px rgba(27,35,64,.25);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#171d2e; --ground:#0f1320; --ink:#e7eaf6; --muted:#9aa3c2;
+  --line:#232b44; --line-strong:#2e3858; --margin:#c9566c;
+  --accent:#8fa6ff; --accent-soft:#232d52; --good:#5fcf94; --good-soft:#163326;
+  --bad:#ff8592; --bad-soft:#3a1c22; --chip:#1e2539; --shadow:0 1px 0 rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.7);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#171d2e; --ground:#0f1320; --ink:#e7eaf6; --muted:#9aa3c2;
+  --line:#232b44; --line-strong:#2e3858; --margin:#c9566c;
+  --accent:#8fa6ff; --accent-soft:#232d52; --good:#5fcf94; --good-soft:#163326;
+  --bad:#ff8592; --bad-soft:#3a1c22; --chip:#1e2539; --shadow:0 1px 0 rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.7);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.sheet{position:relative;background:var(--paper);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;
+  padding:22px 20px 24px 44px;
+  background-image:
+    linear-gradient(90deg,transparent 30px,var(--margin) 30px,var(--margin) 31.5px,transparent 31.5px),
+    repeating-linear-gradient(0deg,var(--line-strong) 0 1px,transparent 1px 32px),
+    repeating-linear-gradient(0deg,var(--line) 0 1px,transparent 1px 8px);
+  background-position:0 0,0 22px,0 22px}
+.sheet>*{position:relative}
+
+.top{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.top h1{font-size:clamp(30px,6vw,44px);font-weight:800;letter-spacing:-.02em}
+.top h1 em{font-style:normal;color:var(--accent)}
+.sub{color:var(--muted);margin:6px 0 0;max-width:60ch}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* pièges */
+.traps{display:grid;gap:8px;margin-top:12px}
+.trap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--line-strong)}
+.trap:last-child{border-bottom:0}
+.trap .ctx{min-width:0}
+.trap .right{font-weight:700;color:var(--good)}
+.trap .wrong{color:var(--bad);text-decoration:line-through;text-decoration-thickness:2px;font-size:15px}
+.note{margin:12px 0 0;font-size:15px;color:var(--muted)}
+
+/* modes */
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.mode{text-align:left;background:var(--chip);border:1.5px solid var(--line-strong);border-radius:12px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:4px;transition:transform .12s,border-color .12s}
+.mode:hover{border-color:var(--accent);transform:translateY(-1px)}
+.mode b{font-family:var(--display);font-size:19px}
+.mode span{color:var(--muted);font-size:14.5px}
+.mode .meta{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.mode.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.mode.primary span,.mode.primary .meta{color:var(--paper);opacity:.9}
+.mode.primary{grid-column:1/-1}
+
+/* play */
+.bar{display:flex;align-items:center;gap:12px}
+.back{background:none;border:0;color:var(--muted);padding:6px 0;font-weight:700}
+.track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .35s ease}
+.streak{font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent);min-width:3.5ch;text-align:right}
+.streak.hot{color:var(--margin)}
+
+.kicker{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.tag.retry{background:var(--bad-soft);color:var(--bad)}
+.prompt{font-family:var(--display);font-weight:500;font-size:clamp(22px,4.6vw,30px);line-height:1.3;margin:14px 0 18px;text-wrap:balance}
+.prompt .w{font-weight:800;color:var(--accent)}
+.blank{display:inline-block;min-width:4.5ch;border-bottom:3px solid var(--accent);text-align:center;font-weight:800;color:var(--accent);line-height:1.1}
+.blank.ok{color:var(--good);border-color:var(--good)}
+.blank.no{color:var(--bad);border-color:var(--bad)}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{position:relative;background:var(--chip);border:1.5px solid var(--line-strong);border-radius:10px;padding:12px 12px 12px 36px;text-align:left;font-size:18px;min-height:52px;transition:border-color .12s,background .12s}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opt.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.opt.dim{opacity:.45}
+.opt.ok,.opt.no,.opt.dim{animation:none}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.opt.no{animation:shake .25s}
+
+.typerow{display:flex;gap:10px;flex-wrap:wrap}
+.typerow input{flex:1 1 220px;min-width:0;font:inherit;font-size:20px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line-strong);background:var(--chip);color:var(--ink)}
+.accents{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.accents button{background:var(--chip);border:1px solid var(--line-strong);border-radius:8px;padding:4px 10px;font-size:17px}
+
+.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:700;background:var(--accent);color:var(--paper)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink)}
+.btn.good{background:var(--good);color:var(--paper)}
+.btn.bad{background:var(--bad);color:var(--paper)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+.fb{margin-top:16px;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;animation:rise .2s ease}
+.fb.ok{background:var(--good-soft)}
+.fb.no{background:var(--bad-soft)}
+.fb h3{font-size:19px}
+.fb.ok h3{color:var(--good)} .fb.no h3{color:var(--bad)}
+.fb p{margin:0}
+@keyframes rise{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.say{background:none;border:1.5px solid currentColor;border-radius:99px;padding:4px 12px;font-size:14px;font-weight:700;color:var(--accent)}
+.hint{font-size:14px;color:var(--muted)}
+
+/* speak */
+.model{font-family:var(--display);font-size:22px;line-height:1.35;padding:12px 0}
+
+/* cards */
+.card{perspective:1200px;min-height:300px}
+.face{background:var(--chip);border:1.5px solid var(--line-strong);border-radius:14px;padding:22px;min-height:300px;display:flex;flex-direction:column;gap:10px;justify-content:center;cursor:pointer}
+.face .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,8vw,52px);color:var(--accent);letter-spacing:-.02em}
+.face .def{font-size:19px}
+.face .ex{font-style:italic;color:var(--muted)}
+.face .en{font-size:14px;color:var(--muted)}
+.syns{display:flex;flex-wrap:wrap;gap:6px}
+.syns span{background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:3px 10px;font-weight:700;font-size:15px}
+.count{font-variant-numeric:tabular-nums;color:var(--muted)}
+
+/* done */
+.score{font-family:var(--display);font-weight:800;font-size:64px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.review{display:grid;gap:8px;margin:8px 0 0;padding:0;list-style:none}
+.review li{padding:8px 0;border-bottom:1px dashed var(--line-strong)}
+.review b{color:var(--accent)}
+
+@media (max-width:460px){.sheet{padding-left:38px;padding-right:14px;background-image:linear-gradient(90deg,transparent 24px,var(--margin) 24px,var(--margin) 25.5px,transparent 25.5px),repeating-linear-gradient(0deg,var(--line-strong) 0 1px,transparent 1px 32px),repeating-linear-gradient(0deg,var(--line) 0 1px,transparent 1px 8px)}.opt{font-size:16.5px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="/french/salon.js" defer></script>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- HOME -->
+<section id="home" class="wrap" style="gap:18px">
+  <div class="sheet">
+    <div class="top">
+      <div>
+        <div class="eyebrow">Cahier · domaine professionnel</div>
+        <h1>Verbes du <em>travail</em></h1>
+        <p class="sub">33 verbes de votre exercice : qui fait quoi au travail, et les familles de synonymes. Les erreurs reviennent jusqu'à ce qu'elles soient acquises.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="eyebrow">Vos pièges de l'exercice</div>
+    <div class="traps">
+      <div class="trap"><div class="ctx">Une gardienne <span class="right">surveille</span> et protège un bâtiment</div><span class="wrong">défend</span></div>
+      <div class="trap"><div class="ctx">Un avocat <span class="right">défend</span> ses clients</div><span class="wrong">conseille</span></div>
+      <div class="trap"><div class="ctx">Un vendeur <span class="right">conseille</span> les consommateurs</div><span class="wrong">surveille</span></div>
+      <div class="trap"><div class="ctx"><span class="right">préparer</span> va avec élaborer</div><span class="wrong">aménager</span></div>
+      <div class="trap"><div class="ctx"><span class="right">adapter</span> va avec aménager</div><span class="wrong">élaborer</span></div>
+    </div>
+    <p class="note">Les trois premières erreurs sont une rotation : chaque verbe est allé au métier voisin. Un avocat peut aussi conseiller, mais seul le vendeur avait besoin de « conseille ». Aménager parle d'un lieu (on adapte une pièce) ; élaborer parle d'un projet (on le prépare).</p>
+  </div>
+
+  <div class="sheet">
+    <div class="eyebrow">Choisissez un exercice</div>
+    <div class="modes">
+      <button class="mode primary" data-mode="mix" id="m-mix"><span class="meta">Recommandé · ≈ 10 min</span><b>Parcours mixte</b><span>Tout mélangé, vos pièges d'abord. Mélanger les types d'exercices aide la mémoire à long terme.</span></button>
+      <button class="mode" data-mode="cards" id="m-cards"><span class="meta">Découvrir</span><b>Cartes</b><span>Définition, exemple, prononciation. Retournez la carte.</span></button>
+      <button class="mode" data-mode="metiers" id="m-metiers"><span class="meta">Choix + écriture</span><b>Les métiers</b><span>Qui fait quoi ? Puis écrivez le verbe dans de nouvelles phrases.</span></button>
+      <button class="mode" data-mode="syn" id="m-syn"><span class="meta">Classer + contexte</span><b>Synonymes</b><span>Familles, intrus, et le bon verbe dans une phrase réelle.</span></button>
+      <button class="mode" data-mode="speak" id="m-speak"><span class="meta">Oral</span><b>À voix haute</b><span>Dites la phrase, puis comparez avec le modèle audio.</span></button>
+    </div>
+    <p class="note" id="weaknote" hidden></p>
+  </div>
+</section>
+
+<!-- PLAY -->
+<section id="play" class="wrap" hidden>
+  <div class="bar">
+    <button class="back" id="quit">← Accueil</button>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="streak" id="streak" title="Série de bonnes réponses">0</div>
+  </div>
+  <div class="sheet" id="stage"></div>
+</section>
+
+<!-- CARDS -->
+<section id="cards" class="wrap" hidden>
+  <div class="bar">
+    <button class="back" id="quit2">← Accueil</button>
+    <div class="track"><div class="fill" id="cfill"></div></div>
+    <div class="count" id="ccount">1/1</div>
+  </div>
+  <div class="sheet">
+    <div class="card" id="card"></div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <button class="btn ghost" id="cprev">← Précédente</button>
+      <div class="row">
+        <button class="btn bad" id="cagain">À revoir</button>
+        <button class="btn good" id="cknow">Je savais</button>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:10px">Essayez de dire la définition avant de retourner la carte. Touchez la carte pour la retourner (ou barre d'espace).</p>
+  </div>
+</section>
+
+<!-- DONE -->
+<section id="done" class="wrap" hidden>
+  <div class="sheet" id="donebox"></div>
+</section>
+</div>
+
+<script>
+(function(){
+/* ---------- data ---------- */
+const PROF = {
+  "rédiger":{def:"écrire un texte avec soin (lettre, rapport, contrat)",ex:"Un secrétaire rédige les lettres.",en:"to draft, write"},
+  "planifier":{def:"organiser dans le temps, prévoir",ex:"Il planifie les rendez-vous.",en:"to schedule, plan"},
+  "s'occuper de":{def:"prendre soin de quelqu'un ou de quelque chose",ex:"Une sage-femme s'occupe des femmes enceintes.",en:"to take care of"},
+  "surveiller":{def:"regarder avec attention pour éviter un problème",ex:"Une gardienne surveille le bâtiment.",en:"to watch over, monitor"},
+  "défendre":{def:"protéger quelqu'un, parler pour lui (en justice)",ex:"Un avocat défend ses clients.",en:"to defend"},
+  "conseiller":{def:"aider quelqu'un à choisir, recommander",ex:"Un vendeur conseille les consommateurs.",en:"to advise"},
+  "enregistrer":{def:"noter une information dans un système",ex:"Un caissier enregistre les achats.",en:"to record, ring up"},
+  "encaisser":{def:"recevoir de l'argent",ex:"Il encaisse le paiement.",en:"to collect payment"},
+  "nettoyer":{def:"rendre propre",ex:"Un agent d'entretien nettoie les bureaux.",en:"to clean"},
+  "ranger":{def:"mettre chaque chose à sa place",ex:"Il range les magasins.",en:"to tidy"},
+  "gérer":{def:"diriger, administrer, organiser",ex:"Une directrice gère l'entreprise.",en:"to manage"},
+  "garder":{def:"surveiller et prendre soin (enfants, animaux)",ex:"Une assistante maternelle garde les enfants.",en:"to look after"},
+  "installer":{def:"mettre en place un équipement",ex:"Un plombier installe le réseau d'eau.",en:"to install"},
+  "construire":{def:"bâtir un bâtiment, une maison",ex:"Un maçon construit des bâtiments.",en:"to build"}
+};
+const GROUPS = {
+  "aménager":{syn:["arranger","organiser","adapter"],def:"organiser un lieu pour un usage",ex:"La ville aménage une piste cyclable.",en:"to lay out, fit out"},
+  "concevoir":{syn:["imaginer","inventer","créer"],def:"imaginer et créer une idée, un objet",ex:"L'ingénieure conçoit un nouveau moteur.",en:"to design, conceive"},
+  "élaborer":{syn:["préparer","réaliser","composer"],def:"préparer quelque chose de complexe, étape par étape",ex:"L'équipe élabore un plan stratégique.",en:"to develop, work out"},
+  "entretenir":{syn:["maintenir","prolonger","faire durer"],def:"garder en bon état, faire durer",ex:"Il entretient sa voiture chaque année.",en:"to maintain"},
+  "rénover":{syn:["remettre à neuf","renouveler","moderniser"],def:"remettre à neuf, moderniser",ex:"Nous rénovons la cuisine.",en:"to renovate"},
+  "surveiller":{syn:["contrôler","examiner","inspecter"],def:"observer avec attention pour contrôler",ex:"Le professeur surveille l'examen.",en:"to supervise, monitor"}
+};
+const HEADS = Object.keys(GROUPS);
+const SYN_WHY = {
+  "préparer":"Élaborer un projet, c'est le préparer étape par étape. Aménager concerne un lieu.",
+  "adapter":"Aménager un espace, c'est l'adapter à un usage (une cuisine adaptée). Élaborer concerne un projet, un plan.",
+  "réaliser":"Élaborer = préparer, composer, réaliser un projet complexe.",
+  "composer":"On compose / élabore un menu, un programme, un plan.",
+  "arranger":"Aménager une pièce = l'arranger, l'organiser.",
+  "organiser":"Aménager un espace = l'organiser pour qu'il soit pratique.",
+  "inventer":"Concevoir = imaginer, inventer, créer quelque chose de nouveau.",
+  "imaginer":"Concevoir une idée = l'imaginer.",
+  "créer":"Concevoir un produit = le créer.",
+  "maintenir":"Entretenir = maintenir en bon état.",
+  "prolonger":"Entretenir une relation = la prolonger, la faire durer.",
+  "faire durer":"Entretenir = faire durer (une maison, une amitié).",
+  "remettre à neuf":"Rénover = remettre à neuf.",
+  "renouveler":"Rénover = renouveler ce qui est vieux.",
+  "moderniser":"Rénover un bâtiment = le moderniser.",
+  "contrôler":"Surveiller = contrôler ce qui se passe.",
+  "examiner":"Surveiller = examiner avec attention.",
+  "inspecter":"Surveiller un chantier = l'inspecter."
+};
+
+const B = "<span class=\"blank\">____</span>";
+const PROF_MCQ = [
+ {s:"Un avocat ___ ses clients devant le tribunal.",a:"défend",o:["défend","surveille","conseille","garde"],why:"Défendre = protéger quelqu'un en parlant pour lui, surtout en justice. C'est le cœur du métier d'avocat.",key:"défendre",trap:1},
+ {s:"Une gardienne ___ et protège un bâtiment, une exposition…",a:"surveille",o:["surveille","défend","range","conseille"],why:"Surveiller = regarder avec attention pour éviter un problème. La gardienne surveille ; l'avocat défend.",key:"surveiller",trap:1},
+ {s:"Un vendeur ___ les consommateurs et met en place les produits.",a:"conseille",o:["conseille","surveille","défend","enregistre"],why:"Conseiller = aider à choisir. Le vendeur ne surveille pas ses clients : il les conseille !",key:"conseiller",trap:1},
+ {s:"Un secrétaire ___ les lettres et planifie les rendez-vous.",a:"rédige",o:["rédige","construit","encaisse","gère"],why:"Rédiger = écrire un texte soigné.",key:"rédiger"},
+ {s:"Une sage-femme ___ des femmes enceintes et des nouveau-nés.",a:"s'occupe",o:["s'occupe","garde","surveille","installe"],why:"S'occuper de + personne = en prendre soin. Remarquez la préposition : s'occuper DES femmes.",key:"s'occuper de"},
+ {s:"Un caissier enregistre les achats et ___ le paiement.",a:"encaisse",o:["encaisse","range","rédige","prend"],why:"Encaisser = recevoir l'argent (dans la caisse).",key:"encaisser"},
+ {s:"Un agent d'entretien nettoie et ___ des bureaux.",a:"range",o:["range","gère","conseille","installe"],why:"Ranger = mettre chaque chose à sa place.",key:"ranger"},
+ {s:"Une directrice prend des décisions et ___ l'entreprise.",a:"gère",o:["gère","garde","rédige","nettoie"],why:"Gérer = diriger, administrer. Attention à l'accent : je gère, nous gérons.",key:"gérer"},
+ {s:"Une assistante maternelle ___ les enfants.",a:"garde",o:["garde","défend","gère","encaisse"],why:"Garder des enfants = les surveiller et en prendre soin.",key:"garder"},
+ {s:"Un plombier ___ le réseau d'eau.",a:"installe",o:["installe","construit","rédige","range"],why:"Installer = mettre en place un équipement.",key:"installer"},
+ {s:"Un maçon ___ des bâtiments avec des briques et du béton.",a:"construit",o:["construit","installe","rénove","range"],why:"Construire = bâtir. Il construit, ils construisent.",key:"construire"},
+ {s:"Qui ___ ? → défend ses clients",q:"Qui défend ses clients ?",a:"l'avocat",o:["l'avocat","la gardienne","le vendeur","le caissier"],why:"L'avocat défend ses clients en justice.",key:"défendre",trap:1},
+ {s:"",q:"Qui surveille une exposition ?",a:"la gardienne",o:["la gardienne","l'avocat","la sage-femme","le vendeur"],why:"La gardienne surveille et protège un lieu.",key:"surveiller",trap:1},
+ {s:"",q:"Qui conseille les clients en magasin ?",a:"le vendeur",o:["le vendeur","la gardienne","le plombier","l'avocat"],why:"Le vendeur conseille les clients pour les aider à choisir.",key:"conseiller",trap:1}
+];
+const PROF_TYPE = [
+ {s:"Au tribunal, l'avocate ___ son client.",a:"défend",key:"défendre",trap:1},
+ {s:"Dans le magasin de vélos, le vendeur ___ une cliente qui hésite.",a:"conseille",key:"conseiller",trap:1},
+ {s:"La nuit, un agent de sécurité ___ le musée avec des caméras.",a:"surveille",key:"surveiller",trap:1},
+ {s:"Après la réunion, l'assistante ___ le compte rendu.",a:"rédige",key:"rédiger"},
+ {s:"La comptable ___ le budget de l'association.",a:"gère",key:"gérer"},
+ {s:"Le mercredi, le grand-père ___ ses petits-enfants.",a:"garde",key:"garder"},
+ {s:"Le caissier ___ 45 francs en espèces.",a:"encaisse",key:"encaisser"},
+ {s:"L'électricien ___ des panneaux solaires sur le toit.",a:"installe",key:"installer"}
+];
+const SYN_CTX = [
+ {s:"La commune ___ un parc dans l'ancienne usine.",a:"aménage",o:["aménage","élabore","entretient","surveille"],why:"Aménager concerne un lieu : on l'organise, on l'adapte à un nouvel usage.",key:"aménager",trap:1},
+ {s:"L'équipe ___ un plan stratégique pour 2027.",a:"élabore",o:["élabore","aménage","rénove","surveille"],why:"Élaborer = préparer quelque chose de complexe, par étapes : un plan, un projet, une stratégie.",key:"élaborer",trap:1},
+ {s:"Ils ___ un vieil appartement : nouvelle cuisine, nouvelles fenêtres.",a:"rénovent",o:["rénovent","conçoivent","surveillent","aménagent"],why:"Rénover = remettre à neuf ce qui est vieux.",key:"rénover"},
+ {s:"Le designer ___ un nouveau modèle de chaise.",a:"conçoit",o:["conçoit","rénove","entretient","aménage"],why:"Concevoir = imaginer et créer. Conjugaison : je conçois, il conçoit, nous concevons.",key:"concevoir"},
+ {s:"Pour qu'elle dure longtemps, il ___ sa voiture chaque année.",a:"entretient",o:["entretient","rénove","élabore","surveille"],why:"Entretenir = maintenir en bon état, faire durer.",key:"entretenir"},
+ {s:"Pendant l'examen, le professeur ___ les étudiants.",a:"surveille",o:["surveille","entretient","conçoit","aménage"],why:"Surveiller = contrôler, observer avec attention.",key:"surveiller"},
+ {s:"Le chef ___ un menu de saison avec des produits locaux.",a:"élabore",o:["élabore","aménage","entretient","rénove"],why:"Élaborer un menu = le composer, le préparer.",key:"élaborer",trap:1},
+ {s:"On ___ le grenier en chambre d'amis.",a:"aménage",o:["aménage","élabore","conçoit","surveille"],why:"Aménager un grenier = l'arranger, l'adapter pour un nouvel usage.",key:"aménager",trap:1}
+];
+const ODD = [
+ {o:["contrôler","examiner","inspecter","inventer"],a:"inventer",why:"Inventer appartient à concevoir. Les trois autres = surveiller."},
+ {o:["maintenir","prolonger","faire durer","moderniser"],a:"moderniser",why:"Moderniser = rénover. Les trois autres = entretenir."},
+ {o:["arranger","organiser","adapter","réaliser"],a:"réaliser",why:"Réaliser = élaborer. Les trois autres = aménager."},
+ {o:["imaginer","créer","inventer","remettre à neuf"],a:"remettre à neuf",why:"Remettre à neuf = rénover. Les trois autres = concevoir."},
+ {o:["préparer","composer","réaliser","arranger"],a:"arranger",why:"Arranger = aménager. Les trois autres = élaborer."},
+ {o:["renouveler","moderniser","remettre à neuf","maintenir"],a:"maintenir",why:"Maintenir = entretenir (garder en l'état). Rénover, c'est changer pour du neuf."}
+];
+const SPEAK = [
+ {p:"Un avocat — que fait-il ?",hint:"défendre",m:"Un avocat défend ses clients devant le tribunal.",key:"défendre"},
+ {p:"Une gardienne — que fait-elle ?",hint:"surveiller, protéger",m:"Une gardienne surveille et protège un bâtiment.",key:"surveiller"},
+ {p:"Un vendeur — que fait-il ?",hint:"conseiller, mettre en place",m:"Un vendeur conseille les clients et met en place les produits.",key:"conseiller"},
+ {p:"Un caissier — que fait-il ?",hint:"enregistrer, encaisser",m:"Un caissier enregistre les achats et encaisse le paiement.",key:"encaisser"},
+ {p:"Une directrice — que fait-elle ?",hint:"prendre des décisions, gérer",m:"Une directrice prend des décisions et gère l'entreprise et le personnel.",key:"gérer"},
+ {p:"Expliquez « élaborer » avec un synonyme et un exemple.",hint:"préparer…",m:"Élaborer, c'est préparer quelque chose étape par étape, par exemple un plan stratégique.",key:"élaborer"},
+ {p:"Expliquez « aménager » avec un synonyme et un exemple.",hint:"adapter, organiser…",m:"Aménager, c'est organiser ou adapter un lieu, par exemple aménager un grenier en chambre.",key:"aménager"},
+ {p:"Votre travail : dites deux choses que vous faites, avec gérer, élaborer ou conseiller.",hint:"Je…",m:"Je gère des projets internationaux, j'élabore des stratégies et je conseille la direction.",key:"élaborer"}
+];
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const sample=(a,n)=>shuffle(a).slice(0,n);
+const norm=s=>s.toLowerCase().replace(/[’`´]/g,"'").replace(/\s+/g," ").trim();
+const bare=s=>norm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
+const fillS=(s,a)=>s.replace("___",a);
+const canSpeak="speechSynthesis" in window;
+let frVoice=null;
+function pickVoice(){try{const v=speechSynthesis.getVoices();frVoice=v.find(x=>/fr[-_](FR|CH)/i.test(x.lang))||v.find(x=>/^fr/i.test(x.lang))||null}catch(e){}}
+if(canSpeak){pickVoice();try{speechSynthesis.onvoiceschanged=pickVoice}catch(e){}}
+function say(t){if(!canSpeak)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";if(frVoice)u.voice=frVoice;u.rate=.92;speechSynthesis.speak(u)}catch(e){}}
+const sayBtn=t=>canSpeak?`<button class="say" data-say="${t.replace(/"/g,"&quot;")}">▶ Écouter</button>`:"";
+document.addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b){e.stopPropagation();say(b.dataset.say)}});
+
+/* weak words memory (per browser) */
+const STORE="verbes-travail-v1";
+let weak={};
+try{weak=JSON.parse(localStorage.getItem(STORE)||"{}")||{}}catch(e){weak={}}
+function saveWeak(){try{localStorage.setItem(STORE,JSON.stringify(weak))}catch(e){}}
+function mark(key,ok){if(!key)return;weak[key]=Math.max(0,(weak[key]||0)+(ok?-1:2));if(!weak[key])delete weak[key];saveWeak()}
+function showWeak(){const k=Object.keys(weak).sort((a,b)=>weak[b]-weak[a]).slice(0,6);const n=$("#weaknote");if(k.length){n.hidden=false;n.textContent="À retravailler d'après vos dernières sessions : "+k.join(", ")+". Le parcours mixte les reprend en premier."}else n.hidden=true}
+
+/* ---------- question builders ---------- */
+function qProf(x){return{t:"mcq",tag:"Métiers",key:x.key,trap:x.trap,
+  prompt:x.q?x.q:x.s.replace("___",B),opts:shuffle(x.o),a:x.a,why:x.why,say:x.q?x.why:fillS(x.s,x.a),blank:!x.q}}
+function qType(x){return{t:"type",tag:"Écrire",key:x.key,trap:x.trap,prompt:x.s.replace("___",B),a:x.a,
+  why:(PROF[x.key]?`${x.key} = ${PROF[x.key].def}.`:""),say:fillS(x.s,x.a),blank:true}}
+function qSort(w){const head=HEADS.find(h=>GROUPS[h].syn.includes(w));
+  return{t:"mcq",tag:"Synonymes",key:head,trap:(w==="préparer"||w==="adapter")?1:0,
+  prompt:`« <span class="w">${w}</span> » est un synonyme de…`,opts:HEADS.slice(),a:head,why:SYN_WHY[w]||"",say:`${w}, c'est un synonyme de ${head}.`}}
+function qCtx(x){return{t:"mcq",tag:"En contexte",key:x.key,trap:x.trap,prompt:x.s.replace("___",B),opts:shuffle(x.o),a:x.a,why:x.why,say:fillS(x.s,x.a),blank:true}}
+function qOdd(x){const head=HEADS.find(h=>GROUPS[h].syn.includes(x.a));return{t:"mcq",tag:"Intrus",key:head,prompt:"Trouvez l'intrus.",opts:shuffle(x.o),a:x.a,why:x.why,say:x.why}}
+function qSpeak(x){return{t:"speak",tag:"À voix haute",key:x.key,prompt:x.p,hint:x.hint,m:x.m,say:x.m}}
+const allSyn=HEADS.flatMap(h=>GROUPS[h].syn);
+
+function build(mode){
+  if(mode==="metiers") return shuffle(PROF_MCQ.map(qProf)).slice(0,10).concat(shuffle(PROF_TYPE).slice(0,6).map(qType));
+  if(mode==="syn") return shuffle(allSyn.map(qSort)).slice(0,10).concat(shuffle(ODD).slice(0,3).map(qOdd)).concat(shuffle(SYN_CTX).slice(0,5).map(qCtx));
+  if(mode==="speak") return SPEAK.map(qSpeak);
+  // mix: weak/trap first, then interleaved variety
+  const pool=[...PROF_MCQ.map(qProf),...PROF_TYPE.map(qType),...allSyn.map(qSort),...SYN_CTX.map(qCtx),...ODD.map(qOdd),...SPEAK.map(qSpeak)];
+  const score=q=>(weak[q.key]||0)*2+(q.trap?2:0)+Math.random()*2;
+  const ranked=pool.slice().sort((a,b)=>score(b)-score(a));
+  const picked=[];const typeCount={};
+  for(const q of ranked){const k=q.t+q.tag;if((typeCount[k]||0)>=5)continue;picked.push(q);typeCount[k]=(typeCount[k]||0)+1;if(picked.length>=20)break}
+  // interleave: avoid two of the same tag in a row
+  const out=[];let rest=shuffle(picked);
+  while(rest.length){const last=out[out.length-1];let i=rest.findIndex(q=>!last||q.tag!==last.tag);if(i<0)i=0;out.push(rest.splice(i,1)[0])}
+  return out;
+}
+
+/* ---------- session engine ---------- */
+let S=null;
+function show(id){for(const s of ["home","play","cards","done"])$("#"+s).hidden=s!==id;window.scrollTo(0,0)}
+function start(mode,custom){
+  if(mode==="cards") return startCards();
+  const q=custom||build(mode);
+  S={mode,queue:q.map(x=>({...x})),i:0,total:q.length,firstTry:0,answered:0,streak:0,best:0,missed:new Map(),done:false};
+  show("play");render();
+}
+function progress(){const pct=Math.min(100,Math.round(S.answered/S.total*100));$("#fill").style.width=pct+"%";
+  const st=$("#streak");st.textContent=S.streak?("×"+S.streak):"0";st.classList.toggle("hot",S.streak>=5)}
+function requeue(q){const c={...q,retry:true};if(c.opts)c.opts=shuffle(c.opts);if(q.tag==="Synonymes")c.opts=HEADS.slice();
+  const pos=Math.min(S.queue.length,S.i+1+3);S.queue.splice(pos,0,c)}
+
+function render(){
+  progress();
+  const q=S.queue[S.i];if(!q)return finish();
+  const st=$("#stage");S.locked=false;
+  const head=`<div class="kicker"><span class="tag">${q.tag}</span>${q.retry?'<span class="tag retry">Deuxième chance</span>':""}${q.trap&&!q.retry?'<span class="tag retry">Piège</span>':""}</div>`;
+  if(q.t==="mcq"){
+    st.innerHTML=head+`<div class="prompt">${q.prompt}</div><div class="opts">${q.opts.map((o,i)=>`<button class="opt" id="o${i}" data-o="${o.replace(/"/g,"&quot;")}"><span class="k">${i+1}</span>${o}</button>`).join("")}</div><div id="fbx"></div>`;
+    st.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>answerMcq(b)));
+  }else if(q.t==="type"){
+    st.innerHTML=head+`<div class="prompt">${q.prompt}</div>
+      <form class="typerow" id="tf"><input id="tin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="verbe conjugué…" aria-label="Votre réponse"><button class="btn" type="submit">Vérifier</button></form>
+      <div class="accents">${["é","è","ê","à","ç","ô"].map(c=>`<button type="button" data-ac="${c}">${c}</button>`).join("")}<button type="button" class="hint" id="peek" style="border:0;background:none">Indice</button></div><div id="fbx"></div>`;
+    const inp=$("#tin");setTimeout(()=>inp.focus(),30);
+    st.querySelectorAll("[data-ac]").forEach(b=>b.addEventListener("click",()=>{inp.value+=b.dataset.ac;inp.focus()}));
+    $("#peek").addEventListener("click",()=>{$("#peek").textContent=`Indice : ${q.key} · commence par « ${q.a.slice(0,2)} »`});
+    $("#tf").addEventListener("submit",e=>{e.preventDefault();answerType(inp.value)});
+  }else{
+    st.innerHTML=head+`<div class="prompt">${q.prompt}</div><p class="hint">Mots utiles : <b>${q.hint}</b>. Dites une phrase complète à voix haute, puis comparez.</p>
+      <div class="row"><button class="btn" id="reveal">Voir le modèle</button></div><div id="fbx"></div>`;
+    $("#reveal").addEventListener("click",()=>{
+      $("#reveal").remove();
+      $("#fbx").innerHTML=`<div class="fb ok" style="background:var(--accent-soft)"><div class="model">${q.m}</div><div class="row">${sayBtn(q.m)}<span class="hint">Répétez après l'audio, au même rythme.</span></div>
+      <div class="row"><button class="btn good" id="sok">Je l'ai bien dit</button><button class="btn ghost" id="sno">À revoir</button></div></div>`;
+      say(q.m);
+      $("#sok").addEventListener("click",()=>{grade(true);next()});
+      $("#sno").addEventListener("click",()=>{grade(false);next()});
+    });
+  }
+}
+function grade(ok){const q=S.queue[S.i];
+  if(!q.retry)S.answered++;
+  if(ok){if(!q.retry)S.firstTry++;S.streak++;S.best=Math.max(S.best,S.streak)}
+  else{S.streak=0;S.missed.set(q.key+"|"+q.a,q);requeue(q)}
+  mark(q.key,ok);progress()}
+function feedback(ok,q,extra){
+  const fill=q.blank?$("#stage .blank"):null;
+  if(fill){fill.textContent=q.a;fill.classList.add(ok?"ok":"no")}
+  const praise=["Exact !","Bravo !","C'est ça !","Parfait !","Très bien !"][Math.floor(Math.random()*5)];
+  $("#fbx").innerHTML=`<div class="fb ${ok?"ok":"no"}"><h3>${ok?praise:"Pas tout à fait : « "+q.a+" »"}</h3>${extra||""}${q.why?`<p>${q.why}</p>`:""}
+    <div class="row">${sayBtn(q.say)}<span style="flex:1"></span><button class="btn" id="nx">Continuer ↵</button></div>${ok?"":'<p class="hint">Cette question reviendra dans quelques instants.</p>'}</div>`;
+  $("#nx").addEventListener("click",next);$("#nx").focus();
+}
+function answerMcq(b){if(S.locked)return;S.locked=true;const q=S.queue[S.i];const ok=b.dataset.o===q.a;
+  $("#stage").querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(x.dataset.o===q.a)x.classList.add("ok");else if(x===b)x.classList.add("no");else x.classList.add("dim")});
+  grade(ok);feedback(ok,q);}
+function answerType(v){if(S.locked||!v.trim())return;S.locked=true;const q=S.queue[S.i];
+  const exact=norm(v)===norm(q.a), loose=bare(v)===bare(q.a);
+  const ok=exact||loose;$("#tin").disabled=true;
+  grade(ok);feedback(ok,q,(!exact&&loose)?`<p><b>Attention aux accents :</b> on écrit « ${q.a} ».</p>`:(!ok?`<p>Vous avez écrit « ${v.trim()} ».</p>`:""));}
+function next(){S.i++;render()}
+
+function finish(){
+  show("done");const pct=Math.round(S.firstTry/S.total*100);
+  const missed=[...S.missed.values()];
+  const msg=pct>=90?"Excellent. Revenez demain pour fixer ces verbes : un rappel espacé vaut plus qu'une longue séance aujourd'hui.":pct>=70?"Bonne base. Refaites les erreurs maintenant, puis un parcours mixte demain.":"C'est normal au début. Refaites les erreurs tout de suite, puis passez par les cartes.";
+  const line=q=>{const d=PROF[q.key]||GROUPS[q.key];return`<li><b>${q.key}</b>${d?" : "+d.def:""}${d&&d.ex?`<br><span class="hint">${d.ex}</span>`:""}</li>`};
+  const uniq=[...new Map(missed.map(q=>[q.key,q])).values()];
+  $("#donebox").innerHTML=`<div class="eyebrow">Résultat · premier essai</div>
+   <div class="row" style="align-items:end;gap:16px;margin:8px 0 6px"><div class="score">${pct}%</div><div class="hint">${S.firstTry} / ${S.total} justes du premier coup<br>meilleure série : ×${S.best}</div></div>
+   <p>${msg}</p>
+   ${uniq.length?`<div class="eyebrow" style="margin-top:14px">À revoir</div><ul class="review">${uniq.map(line).join("")}</ul>`:""}
+   <div class="row" style="margin-top:16px">${missed.length?'<button class="btn" id="redo">Refaire mes erreurs</button>':""}<button class="btn ghost" id="again">Nouveau parcours mixte</button><button class="btn ghost" id="home2">Accueil</button></div>`;
+  if(missed.length)$("#redo").addEventListener("click",()=>start(S.mode,shuffle(missed).map(q=>({...q,retry:false,opts:q.opts?(q.tag==="Synonymes"?HEADS.slice():shuffle(q.opts)):undefined}))));
+  $("#again").addEventListener("click",()=>start("mix"));
+  $("#home2").addEventListener("click",goHome);
+}
+
+/* ---------- flashcards ---------- */
+let C=null;
+function startCards(){
+  const cards=[...Object.entries(PROF).map(([v,d])=>({v,...d})),...Object.entries(GROUPS).filter(([v])=>v!=="surveiller").map(([v,d])=>({v,...d}))];
+  cards.find(c=>c.v==="surveiller").syn=GROUPS.surveiller.syn;
+  const w=c=>(weak[c.v]||0)+Math.random();
+  C={deck:cards.sort((a,b)=>w(b)-w(a)),i:0,flip:false,known:0};show("cards");drawCard();
+}
+function drawCard(){
+  const c=C.deck[C.i];$("#ccount").textContent=`${Math.min(C.i+1,C.deck.length)}/${C.deck.length}`;
+  $("#cfill").style.width=Math.round(C.i/C.deck.length*100)+"%";
+  $("#card").innerHTML=C.flip?
+   `<div class="face" id="face"><div class="eyebrow">${c.v}</div><div class="def">${c.def}</div>${c.syn?`<div class="syns">${c.syn.map(s=>`<span>${s}</span>`).join("")}</div>`:""}<div class="ex">${c.ex}</div><div class="en">${c.en}</div><div>${sayBtn(c.ex)}</div></div>`:
+   `<div class="face" id="face"><div class="eyebrow">Que signifie…</div><div class="big">${c.v}</div><div class="hint">Dites la définition à voix haute${c.syn?" et ses synonymes":""}, puis touchez la carte.</div><div>${sayBtn(c.v)}</div></div>`;
+  $("#face").addEventListener("click",()=>{C.flip=!C.flip;drawCard();if(C.flip)say(c.ex)});
+}
+function cardNext(knew){
+  const c=C.deck[C.i];mark(c.v,knew);
+  if(!knew){C.deck.splice(Math.min(C.deck.length,C.i+4),0,c)}
+  C.i++;C.flip=false;
+  if(C.i>=C.deck.length){goHome();return}
+  drawCard();
+}
+$("#cknow").addEventListener("click",()=>cardNext(true));
+$("#cagain").addEventListener("click",()=>cardNext(false));
+$("#cprev").addEventListener("click",()=>{if(C.i>0){C.i--;C.flip=false;drawCard()}});
+
+/* ---------- nav & keys ---------- */
+function goHome(){try{speechSynthesis.cancel()}catch(e){}showWeak();show("home")}
+$("#quit").addEventListener("click",goHome);$("#quit2").addEventListener("click",goHome);
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>start(b.dataset.mode)));
+document.addEventListener("keydown",e=>{
+  if(!$("#cards").hidden){if(e.key===" "){e.preventDefault();$("#face")&&$("#face").click()}else if(e.key==="ArrowRight")cardNext(true);else if(e.key==="ArrowLeft")$("#cprev").click();return}
+  if($("#play").hidden||e.target.tagName==="INPUT")return;
+  const n=parseInt(e.key,10);
+  if(n>=1&&n<=6&&!S.locked){const b=$("#o"+(n-1));if(b)b.click()}
+});
+showWeak();
+})();
+</script>
+
+</body></html>

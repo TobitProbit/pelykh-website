@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Expressions fruitées</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: a market stall — a crate-grid of produce tags on top, one exercise "étiquette" at a time below. */
+:root{
+  --ground:#e6eeec; --paper:#fbfdfc; --ink:#1f2a28; --muted:#5d6b68; --line:#cfdcd8;
+  --accent:#7a2856; --accent-soft:#f3e3ec; --tag:#ffffff;
+  --good:#1f7a4c; --good-soft:#e0f2e8; --bad:#b53334; --bad-soft:#fbe5e4;
+  --shadow:0 1px 0 rgba(31,42,40,.06),0 10px 26px -14px rgba(31,42,40,.35);
+  --display:"Bagel Fat One",ui-rounded,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#121917; --paper:#1a2321; --ink:#e6eeec; --muted:#9db0ab; --line:#2a3633;
+  --accent:#f09ac7; --accent-soft:#3a2131; --tag:#202b29;
+  --good:#6fd39c; --good-soft:#173326; --bad:#ff8a86; --bad-soft:#3b1d1c;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 12px 30px -14px rgba(0,0,0,.75); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#121917; --paper:#1a2321; --ink:#e6eeec; --muted:#9db0ab; --line:#2a3633;
+  --accent:#f09ac7; --accent-soft:#3a2131; --tag:#202b29;
+  --good:#6fd39c; --good-soft:#173326; --bad:#ff8a86; --bad-soft:#3b1d1c;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 12px 30px -14px rgba(0,0,0,.75); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{margin:0;line-height:1.1;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.panel{background:var(--paper);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px}
+.eyebrow{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hint{font-size:14.5px;color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* hero */
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(36px,8vw,58px);letter-spacing:-.01em;color:var(--accent)}
+.hero p{margin:8px 0 0;max-width:62ch}
+.fruitline{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+
+/* produce icon: always a disc in the produce colour */
+.ic{--c:#ccc;flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;line-height:1;
+  background:color-mix(in srgb,var(--c) 28%,var(--tag));box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--c) 70%,transparent)}
+.ic.txt{font-family:var(--display);font-size:18px;color:color-mix(in srgb,var(--c) 75%,var(--ink))}
+.ic.big{width:76px;height:76px;font-size:42px}
+.ic.big.txt{font-size:34px}
+
+/* stall */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.chip{border:1.5px solid var(--line);background:var(--tag);border-radius:99px;padding:5px 12px;font-size:14.5px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.stall{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.item{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--tag);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;min-height:72px;transition:border-color .12s}
+.item:hover{border-color:var(--accent)}
+.item .t{min-width:0;display:flex;flex-direction:column;gap:2px}
+.item b{font-size:16px;line-height:1.25}
+.item .m{font-size:14.5px;color:var(--muted)}
+.item .m.hide{color:transparent;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 9px);border-radius:4px;height:.9em;margin-top:5px;width:80%}
+.item .cours{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+/* modes */
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.mode{text-align:left;background:var(--tag);border:1.5px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px;transition:transform .12s,border-color .12s}
+.mode:hover{border-color:var(--accent);transform:translateY(-1px)}
+.mode b{font-size:18px}
+.mode span{color:var(--muted);font-size:14.5px}
+.mode .meta{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.mode.primary{grid-column:1/-1;background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.mode.primary span,.mode.primary .meta{color:var(--paper);opacity:.92}
+.mode.primary b{font-family:var(--display);font-weight:400;font-size:24px}
+
+/* play */
+.bar{display:flex;align-items:center;gap:12px}
+.back{background:none;border:0;color:var(--muted);padding:6px 0;font-weight:700}
+.track{flex:1;height:10px;border-radius:99px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .35s ease}
+.basket{font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent);min-width:4ch;text-align:right}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.tag.retry{background:var(--bad-soft);color:var(--bad)}
+.q{display:flex;gap:14px;align-items:center;margin:16px 0 18px}
+.prompt{font-size:clamp(21px,4.4vw,28px);line-height:1.3;font-weight:700;text-wrap:balance;min-width:0}
+.prompt.sit{font-weight:400;font-size:clamp(19px,3.8vw,23px)}
+.prompt .x{color:var(--accent)}
+.blank{display:inline-block;min-width:4.5ch;border-bottom:3px solid var(--accent);text-align:center;color:var(--accent);line-height:1.1}
+.blank.ok{color:var(--good);border-color:var(--good)} .blank.no{color:var(--bad);border-color:var(--bad)}
+
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opts.one{grid-template-columns:1fr}
+.opt{position:relative;background:var(--tag);border:1.5px solid var(--line);border-radius:10px;padding:12px 12px 12px 36px;text-align:left;font-size:17px;min-height:52px;transition:border-color .12s,background .12s}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opt.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);animation:shake .25s}
+.opt.dim{opacity:.45}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf .opt{text-align:center;padding-left:12px;font-weight:700;font-size:19px}
+
+.typerow{display:flex;gap:10px;flex-wrap:wrap}
+.typerow input{flex:1 1 220px;min-width:0;font:inherit;font-size:20px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--tag);color:var(--ink)}
+.accents{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.accents button{background:var(--tag);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:17px}
+.btn{border:0;border-radius:10px;padding:12px 18px;font-weight:700;background:var(--accent);color:var(--paper)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn.good{background:var(--good);color:var(--paper)} .btn.bad{background:var(--bad);color:var(--paper)}
+
+.fb{margin-top:16px;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;animation:rise .2s ease}
+.fb.ok{background:var(--good-soft)} .fb.no{background:var(--bad-soft)} .fb.neutral{background:var(--accent-soft)}
+.fb h3{font-size:19px} .fb.ok h3{color:var(--good)} .fb.no h3{color:var(--bad)}
+.fb p{margin:0}
+.fb .ex{font-style:italic}
+@keyframes rise{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.say{background:none;border:1.5px solid currentColor;border-radius:99px;padding:4px 12px;font-size:14px;font-weight:700;color:var(--accent)}
+
+/* cards */
+.face{background:var(--tag);border:1.5px solid var(--line);border-radius:14px;padding:22px;min-height:320px;display:flex;flex-direction:column;gap:10px;justify-content:center;cursor:pointer}
+.face .big{font-family:var(--display);font-weight:400;font-size:clamp(28px,6.5vw,42px);color:var(--accent);line-height:1.1}
+.face .def{font-size:20px;font-weight:700}
+.face .lit,.face .en{font-size:14.5px;color:var(--muted)}
+.face .ex{font-style:italic}
+.count{font-variant-numeric:tabular-nums;color:var(--muted)}
+
+.score{font-family:var(--display);font-size:68px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.review{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:0}
+.review li{padding:9px 0;border-bottom:1px dashed var(--line)}
+.review b{color:var(--accent)}
+
+@media (max-width:460px){.panel{padding:18px 14px}.opt{font-size:16px}.q .ic.big{width:58px;height:58px;font-size:32px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="/french/salon.js" defer></script>
+</head>
+<body>
+
+<div class="wrap">
+
+<section id="home" class="wrap">
+  <div class="panel hero">
+    <div class="eyebrow">Français familier · fruits & légumes</div>
+    <h1>Expressions fruitées</h1>
+    <p>Les 6 expressions de votre cours, plus 24 autres très courantes à l'oral. Le sens est presque toujours imagé : on ne parle pas du tout de fruits !</p>
+    <div class="fruitline" id="fruitline"></div>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">Choisissez un exercice</div>
+    <div class="modes">
+      <button class="mode primary" data-mode="mix" id="m-mix"><span class="meta">Recommandé · ≈ 10 min</span><b>Le panier du jour</b><span>20 questions de tous types, vos expressions faibles en premier.</span></button>
+      <button class="mode" data-mode="cards" id="m-cards"><span class="meta">Découvrir</span><b>Cartes</b><span>Sens littéral, vrai sens, exemple et audio.</span></button>
+      <button class="mode" data-mode="sens" id="m-sens"><span class="meta">Comprendre</span><b>Quel sens ?</b><span>L'expression → son sens. Plus quelques vrai ou faux.</span></button>
+      <button class="mode" data-mode="situ" id="m-situ"><span class="meta">Utiliser</span><b>Situations</b><span>Une scène de la vie réelle : quelle expression va ?</span></button>
+      <button class="mode" data-mode="ecrire" id="m-ecrire"><span class="meta">Mémoriser la forme</span><b>Le bon fruit</b><span>Écrivez le fruit ou le légume qui manque.</span></button>
+      <button class="mode" data-mode="oral" id="m-oral"><span class="meta">Parler</span><b>À voix haute</b><span>Réagissez à une situation avec l'expression, puis écoutez le modèle.</span></button>
+    </div>
+    <p class="hint" id="weaknote" hidden></p>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">L'étal · toutes les expressions</div>
+    <p class="hint" style="margin:4px 0 0">Essayez de vous rappeler le sens, puis touchez une étiquette pour le voir.</p>
+    <div class="filters" id="filters"></div>
+    <div class="stall" id="stall"></div>
+  </div>
+</section>
+
+<section id="play" class="wrap" hidden>
+  <div class="bar"><button class="back" id="quit">← Étal</button><div class="track"><div class="fill" id="fill"></div></div><div class="basket" id="streak" title="Série de bonnes réponses">0</div></div>
+  <div class="panel" id="stage"></div>
+</section>
+
+<section id="cards" class="wrap" hidden>
+  <div class="bar"><button class="back" id="quit2">← Étal</button><div class="track"><div class="fill" id="cfill"></div></div><div class="count" id="ccount"></div></div>
+  <div class="panel">
+    <div id="card"></div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <button class="btn ghost" id="cprev">← Précédente</button>
+      <div class="row"><button class="btn bad" id="cagain">À revoir</button><button class="btn good" id="cknow">Je savais</button></div>
+    </div>
+    <p class="hint" style="margin-top:10px">Dites le sens à voix haute avant de retourner la carte. Touchez la carte (ou barre d'espace) pour la retourner.</p>
+  </div>
+</section>
+
+<section id="done" class="wrap" hidden><div class="panel" id="donebox"></div></section>
+</div>
+
+<script>
+(function(){
+/* ---------- data ----------
+ e: expression · f: frame with ___ · k: missing word · m: real meaning · lit: literal · en: English
+ ex: example · s: situation · ic/c: icon + produce colour · g: theme · syn: synonym group · cours: from the class */
+const E=[
+ {id:"pommes",e:"Tomber dans les pommes",f:"Tomber dans les ___",k:"pommes",m:"s'évanouir, perdre connaissance",lit:"tomber dans des pommes",en:"to faint, pass out",ex:"Il faisait si chaud dans le métro qu'une passagère est tombée dans les pommes.",s:"Pendant la prise de sang, Marc devient tout blanc et perd connaissance.",ic:"🍎",c:"#d8343b",g:"Corps",cours:1},
+ {id:"prunes",e:"Compter pour des prunes",f:"Compter pour des ___",k:"prunes",m:"ne pas être pris en compte, n'avoir aucune valeur",lit:"valoir des prunes",en:"to count for nothing",ex:"Dans cette réunion, mon avis compte pour des prunes.",s:"Lors du vote, personne n'écoute l'avis du stagiaire : on fait comme s'il n'existait pas.",ic:"P",c:"#5b2a6e",g:"Travail",cours:1},
+ {id:"poire2",e:"Couper la poire en deux",f:"Couper la ___ en deux",k:"poire",m:"faire un compromis, partager la différence",lit:"partager une poire",en:"to split the difference",ex:"Vous demandez 100 francs, j'en offre 80 : coupons la poire en deux, 90 ?",s:"Le vendeur veut 1000 francs, l'acheteur en propose 800. Ils tombent d'accord sur 900.",ic:"🍐",c:"#a8b83a",g:"Travail",cours:1},
+ {id:"peche",e:"Avoir la pêche",f:"Avoir la ___",k:"pêche",m:"avoir de l'énergie, être en pleine forme",lit:"posséder une pêche",en:"to be full of beans",ex:"Après mes vacances, j'ai vraiment la pêche !",s:"Lundi matin, Sophie arrive au bureau pleine d'énergie, prête à tout faire.",ic:"🍑",c:"#f08a4b",g:"Humeur",cours:1,syn:"forme"},
+ {id:"banane",e:"Avoir la banane",f:"Avoir la ___",k:"banane",m:"avoir un grand sourire, être de bonne humeur",lit:"la banane a la forme d'un sourire",en:"to grin from ear to ear",ex:"Il a eu sa promotion : il a la banane toute la journée.",s:"Depuis qu'elle a réussi son examen, Léa sourit sans arrêt.",ic:"🍌",c:"#e9c629",g:"Humeur",cours:1},
+ {id:"fraise",e:"Ramener sa fraise",f:"Ramener sa ___",k:"fraise",m:"donner son avis alors que personne ne l'a demandé",lit:"apporter sa fraise (« fraise » = visage, en argot)",en:"to stick one's oar in",ex:"On discutait tranquillement et mon cousin est venu ramener sa fraise.",s:"Deux collègues parlent de leur projet. Un troisième, pas concerné, s'invite pour donner son opinion.",ic:"🍓",c:"#e0353f",g:"Comportement",cours:1},
+ {id:"patate",e:"Avoir la patate",f:"Avoir la ___",k:"patate",m:"être en forme, plein d'énergie (= avoir la pêche)",lit:"avoir une pomme de terre",en:"to be full of energy",ex:"Ce matin j'ai la patate : je vais courir 10 km.",s:"Après une excellente nuit, Paul a envie de ranger toute la maison et d'aller courir.",ic:"🥔",c:"#b88a4a",g:"Humeur",syn:"forme"},
+ {id:"frite",e:"Avoir la frite",f:"Avoir la ___",k:"frite",m:"être en forme, de bonne humeur (= avoir la pêche)",lit:"avoir une frite",en:"to feel great",ex:"Elle a la frite depuis qu'elle fait du sport le matin.",s:"Ton ami a très bien dormi et il est d'excellente humeur pour la randonnée.",ic:"🍟",c:"#e6b52c",g:"Humeur",syn:"forme"},
+ {id:"fendre",e:"Se fendre la poire",f:"Se fendre la ___",k:"poire",m:"rire beaucoup",lit:"s'ouvrir le visage (« poire » = visage)",en:"to laugh one's head off",ex:"On s'est fendu la poire devant ce film.",s:"Devant la comédie, toute la salle rit aux éclats pendant deux heures.",ic:"🍐",c:"#a8b83a",g:"Humeur"},
+ {id:"figue",e:"Mi-figue, mi-raisin",f:"Mi-figue, mi-___",k:"raisin",m:"mitigé, à moitié content et à moitié mécontent",lit:"moitié figue, moitié raisin",en:"mixed, lukewarm",ex:"Il a accueilli la nouvelle d'un air mi-figue, mi-raisin.",s:"Ta cheffe lit ton rapport et dit : « Pas mal… mais. » Elle n'est qu'à moitié satisfaite.",ic:"🍇",c:"#6f3d8f",g:"Humeur"},
+ {id:"salades",e:"Raconter des salades",f:"Raconter des ___",k:"salades",m:"raconter des mensonges, des histoires inventées",lit:"raconter des salades",en:"to tell fibs",ex:"Arrête de me raconter des salades, je sais que tu n'étais pas malade.",s:"Tom dit qu'il est en retard à cause d'un éléphant dans la rue. Personne ne le croit.",ic:"🥗",c:"#4f9a3a",g:"Comportement"},
+ {id:"artichaut",e:"Avoir un cœur d'artichaut",f:"Avoir un cœur d'___",k:"artichaut",m:"tomber amoureux très facilement",lit:"une feuille pour chacun",en:"to fall in love easily",ex:"Chaque semaine il aime quelqu'un de nouveau : il a un cœur d'artichaut.",s:"Julien tombe amoureux de presque chaque personne qu'il rencontre en soirée.",ic:"A",c:"#5c8a4e",g:"Comportement"},
+ {id:"fromage",e:"En faire tout un fromage",f:"En faire tout un ___",k:"fromage",m:"exagérer l'importance d'un petit problème",lit:"faire un fromage entier avec un peu de lait",en:"to make a mountain out of a molehill",ex:"J'ai juste oublié ton stylo, n'en fais pas tout un fromage !",s:"Ton collègue est furieux pendant une heure parce que tu as utilisé sa tasse.",ic:"🧀",c:"#e8b830",g:"Comportement"},
+ {id:"melon",e:"Avoir le melon",f:"Avoir le ___",k:"melon",m:"être prétentieux, se croire supérieur",lit:"avoir une tête grosse comme un melon",en:"to have a big head",ex:"Depuis qu'il est passé à la télé, il a le melon.",s:"Depuis sa promotion, Marc ne dit plus bonjour et pense qu'il est meilleur que tout le monde.",ic:"🍈",c:"#9cc45a",g:"Comportement"},
+ {id:"bonnepoire",e:"Être une bonne poire",f:"Être une bonne ___",k:"poire",m:"être naïf, trop gentil, se laisser exploiter",lit:"être une bonne poire",en:"to be a pushover",ex:"Il prête de l'argent à tout le monde sans être remboursé : quelle bonne poire !",s:"Lucas fait toujours le travail des autres sans rien dire, et tout le monde en profite.",ic:"🍐",c:"#a8b83a",g:"Comportement"},
+ {id:"oignons",e:"Occupe-toi de tes oignons",f:"Occupe-toi de tes ___",k:"oignons",m:"mêle-toi de tes affaires",lit:"surveille tes oignons",en:"mind your own business",ex:"Ma vie privée ? Occupe-toi de tes oignons !",s:"Un voisin curieux te demande combien tu gagnes. Tu lui réponds sèchement.",ic:"🧅",c:"#c58a5a",g:"Comportement"},
+ {id:"carottes",e:"Les carottes sont cuites",f:"Les ___ sont cuites",k:"carottes",m:"c'est fini, il n'y a plus d'espoir",lit:"les carottes ont fini de cuire",en:"the game is up",ex:"Il reste deux minutes et on perd 4 à 0 : les carottes sont cuites.",s:"Il reste une minute de match et ton équipe perd 5 à 0.",ic:"🥕",c:"#ec7a22",g:"Problèmes",syn:"fin"},
+ {id:"haricots",e:"C'est la fin des haricots",f:"C'est la fin des ___",k:"haricots",m:"c'est la catastrophe, tout est perdu",lit:"il n'y a plus de haricots",en:"it's all over",ex:"Plus d'électricité et plus de café : c'est la fin des haricots !",s:"Ton ordinateur tombe en panne la veille de la présentation, sans sauvegarde.",ic:"🫘",c:"#9a4a3a",g:"Problèmes",syn:"fin"},
+ {id:"pepin",e:"Avoir un pépin",f:"Avoir un ___",k:"pépin",m:"avoir un petit problème imprévu",lit:"tomber sur un pépin dans un fruit",en:"to hit a snag",ex:"J'ai eu un pépin avec la voiture, j'arrive en retard.",s:"Ta voiture ne démarre pas ce matin. Tu préviens ton collègue que tu seras en retard.",ic:"·",c:"#7a5a3a",g:"Problèmes"},
+ {id:"vinaigre",e:"Tourner au vinaigre",f:"Tourner au ___",k:"vinaigre",m:"mal tourner, se dégrader (une situation)",lit:"le vin devient du vinaigre",en:"to turn sour",ex:"La discussion a vite tourné au vinaigre.",s:"La réunion commence calmement, puis tout le monde se met à crier.",ic:"V",c:"#8a6a2a",g:"Problèmes"},
+ {id:"radis",e:"Ne pas avoir un radis",f:"Ne pas avoir un ___",k:"radis",m:"ne pas avoir d'argent du tout",lit:"pas même un radis",en:"to be broke",ex:"À la fin du mois, je n'ai plus un radis.",s:"Le 28 du mois, Karim n'a plus un centime sur son compte.",ic:"R",c:"#d8456a",g:"Argent"},
+ {id:"epinards",e:"Mettre du beurre dans les épinards",f:"Mettre du beurre dans les ___",k:"épinards",m:"améliorer ses revenus, gagner un peu plus",lit:"rendre les épinards meilleurs",en:"to earn a bit extra",ex:"Elle donne des cours le soir pour mettre du beurre dans les épinards.",s:"Anna travaille le samedi dans un café pour arrondir ses fins de mois.",ic:"🥬",c:"#3d8a3a",g:"Argent"},
+ {id:"pain",e:"Avoir du pain sur la planche",f:"Avoir du ___ sur la planche",k:"pain",m:"avoir beaucoup de travail à faire",lit:"beaucoup de pain à couper",en:"to have a lot on one's plate",ex:"Lancement le mois prochain : on a du pain sur la planche.",s:"Trois rapports à finir avant vendredi et un lancement de produit lundi.",ic:"🍞",c:"#c98a3e",g:"Travail"},
+ {id:"citron",e:"Presser quelqu'un comme un citron",f:"Presser quelqu'un comme un ___",k:"citron",m:"exploiter quelqu'un au maximum",lit:"presser jusqu'à la dernière goutte",en:"to squeeze someone dry",ex:"Cette entreprise presse ses employés comme des citrons.",s:"Un patron fait travailler ses employés 60 heures par semaine, sans pause ni prime.",ic:"🍋",c:"#e3cf2a",g:"Travail"},
+ {id:"tarte",e:"Ce n'est pas de la tarte",f:"Ce n'est pas de la ___",k:"tarte",m:"c'est difficile",lit:"ce n'est pas un dessert",en:"it's no picnic",ex:"Apprendre le subjonctif, ce n'est pas de la tarte !",s:"Tu montes seul une grande armoire en kit, avec une notice de 40 pages.",ic:"🥧",c:"#c9803a",g:"Quotidien",syn:"diff"},
+ {id:"gateau",e:"C'est du gâteau",f:"C'est du ___",k:"gâteau",m:"c'est très facile",lit:"c'est un gâteau",en:"it's a piece of cake",ex:"Cet exercice ? C'est du gâteau !",s:"Ton collègue te demande si tu peux envoyer un simple e-mail. Pour toi, aucune difficulté.",ic:"🍰",c:"#e58aa8",g:"Quotidien",syn:"facile"},
+ {id:"poireau",e:"Faire le poireau",f:"Faire le ___",k:"poireau",m:"attendre longtemps, debout, au même endroit",lit:"rester planté comme un poireau",en:"to be kept waiting",ex:"J'ai fait le poireau 40 minutes devant le cinéma !",s:"Ton ami a une heure de retard et tu l'attends sous la pluie devant la gare.",ic:"L",c:"#6aa84f",g:"Quotidien"},
+ {id:"champignon",e:"Appuyer sur le champignon",f:"Appuyer sur le ___",k:"champignon",m:"accélérer (en voiture)",lit:"l'ancienne pédale ressemblait à un champignon",en:"to step on it",ex:"On va rater l'avion, appuie sur le champignon !",s:"Vous allez rater l'avion : tu demandes au chauffeur d'aller plus vite.",ic:"🍄",c:"#c4473a",g:"Quotidien"},
+ {id:"troispommes",e:"Haut comme trois pommes",f:"Haut comme trois ___",k:"pommes",m:"très petit (pour un enfant)",lit:"pas plus haut que trois pommes",en:"knee-high to a grasshopper",ex:"Je la connais depuis qu'elle est haute comme trois pommes.",s:"Ta nièce de trois ans, toute petite, veut déjà porter les sacs de courses.",ic:"🍎",c:"#d8343b",g:"Corps"},
+ {id:"tomate",e:"Rouge comme une tomate",f:"Rouge comme une ___",k:"tomate",m:"très rouge (de gêne, de honte)",lit:"de la couleur d'une tomate",en:"red as a beetroot",ex:"Quand on lui a fait un compliment, il est devenu rouge comme une tomate.",s:"On complimente Emma devant toute l'équipe. Gênée, elle rougit très fort.",ic:"🍅",c:"#e0402f",g:"Corps"}
+];
+const BY=Object.fromEntries(E.map(x=>[x.id,x]));
+const THEMES=["Tout","Du cours","Humeur","Comportement","Travail","Problèmes","Argent","Quotidien","Corps"];
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>s.toLowerCase().replace(/[’`´]/g,"'").replace(/\s+/g," ").trim();
+const bare=s=>norm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
+const esc=s=>s.replace(/"/g,"&quot;");
+const icon=(x,big)=>{const t=[...x.ic].length===1&&/[A-Z·]/.test(x.ic);return`<span class="ic${big?" big":""}${t?" txt":""}" style="--c:${x.c}" aria-hidden="true">${x.ic}</span>`};
+const compatible=(a,b)=>a.id!==b.id&&!(a.syn&&a.syn===b.syn)&&a.m!==b.m;
+const distract=(x,n)=>shuffle(E.filter(o=>compatible(x,o))).slice(0,n);
+
+const canSpeak="speechSynthesis" in window;let frVoice=null;
+function pickVoice(){try{const v=speechSynthesis.getVoices();frVoice=v.find(x=>/fr[-_](FR|CH)/i.test(x.lang))||v.find(x=>/^fr/i.test(x.lang))||null}catch(e){}}
+if(canSpeak){pickVoice();try{speechSynthesis.onvoiceschanged=pickVoice}catch(e){}}
+function say(t){if(!canSpeak)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";if(frVoice)u.voice=frVoice;u.rate=.92;speechSynthesis.speak(u)}catch(e){}}
+const sayBtn=t=>canSpeak?`<button class="say" data-say="${esc(t)}">▶ Écouter</button>`:"";
+document.addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b){e.stopPropagation();say(b.dataset.say)}});
+
+const STORE="expressions-fruitees-v1";let weak={};
+try{weak=JSON.parse(localStorage.getItem(STORE)||"{}")||{}}catch(e){weak={}}
+const saveWeak=()=>{try{localStorage.setItem(STORE,JSON.stringify(weak))}catch(e){}};
+function mark(id,ok){weak[id]=Math.max(0,(weak[id]||0)+(ok?-1:2));if(!weak[id])delete weak[id];saveWeak()}
+function showWeak(){const k=Object.keys(weak).filter(i=>BY[i]).sort((a,b)=>weak[b]-weak[a]).slice(0,5);const n=$("#weaknote");
+  if(k.length){n.hidden=false;n.textContent="À retravailler : "+k.map(i=>BY[i].e).join(" · ")+". Le panier du jour les reprend en premier."}else n.hidden=true}
+
+/* ---------- home: stall ---------- */
+$("#fruitline").innerHTML=E.filter(x=>x.cours).map(x=>icon(x)).join("");
+let theme="Tout";const opened=new Set();
+function drawFilters(){$("#filters").innerHTML=THEMES.map(t=>`<button class="chip" aria-pressed="${t===theme}" data-t="${t}">${t}</button>`).join("");
+  $("#filters").querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{theme=b.dataset.t;drawFilters();drawStall()}))}
+function drawStall(){const list=E.filter(x=>theme==="Tout"||(theme==="Du cours"?x.cours:x.g===theme));
+  $("#stall").innerHTML=list.map(x=>`<button class="item" data-id="${x.id}">${icon(x)}<span class="t">${x.cours?'<span class="cours">Du cours</span>':""}<b>${x.e}</b>${opened.has(x.id)?`<span class="m">${x.m}</span>`:'<span class="m hide" aria-label="sens caché"></span>'}</span></button>`).join("");
+  $("#stall").querySelectorAll(".item").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.id;opened.has(id)?opened.delete(id):(opened.add(id),say(BY[id].e));drawStall()}))}
+drawFilters();drawStall();
+
+/* ---------- question builders ---------- */
+function qSens(x){return{t:"mcq",tag:"Quel sens ?",id:x.id,ico:x,prompt:`« <span class="x">${x.e}</span> », c'est…`,opts:shuffle([x.m,...distract(x,3).map(o=>o.m)]),a:x.m,x}}
+function qSitu(x){return{t:"mcq",tag:"Situation",id:x.id,sit:1,prompt:x.s,opts:shuffle([x.e,...distract(x,3).map(o=>o.e)]),a:x.e,one:1,x}}
+function qTF(x){const truth=Math.random()<.5;const other=distract(x,1)[0];const shown=truth?x.m:other.m;
+  return{t:"tf",tag:"Vrai ou faux ?",id:x.id,ico:x,prompt:`« <span class="x">${x.e}</span> » veut dire : <em>${shown}</em>.`,a:truth,x,other:truth?null:other}}
+function qType(x){return{t:"type",tag:"Le bon fruit",id:x.id,prompt:x.f.replace("___",'<span class="blank">____</span>'),hintm:x.m,a:x.k,x}}
+function qOral(x){return{t:"oral",tag:"À voix haute",id:x.id,sit:1,prompt:x.s,x}}
+
+function build(mode){
+  if(mode==="sens")return shuffle(E).slice(0,12).map(qSens).concat(shuffle(E).slice(0,6).map(qTF)).sort(()=>Math.random()-.5);
+  if(mode==="situ")return shuffle(E).slice(0,15).map(qSitu);
+  if(mode==="ecrire")return shuffle(E).slice(0,15).map(qType);
+  if(mode==="oral")return shuffle(E).slice(0,10).map(qOral);
+  // mix: rank expressions by need, then give each picked one a different exercise type
+  const score=x=>(weak[x.id]||0)*3+(x.cours?2:0)+Math.random()*3;
+  const picked=E.slice().sort((a,b)=>score(b)-score(a)).slice(0,20);
+  const makers=[qSens,qSitu,qType,qSitu,qTF,qSens,qType,qOral];
+  const qs=picked.map((x,i)=>makers[i%makers.length](x));
+  const out=[];let rest=shuffle(qs);
+  while(rest.length){const last=out[out.length-1];let i=rest.findIndex(q=>!last||q.tag!==last.tag);if(i<0)i=0;out.push(rest.splice(i,1)[0])}
+  return out;
+}
+
+/* ---------- engine ---------- */
+let S=null;
+function show(id){for(const s of["home","play","cards","done"])$("#"+s).hidden=s!==id;window.scrollTo(0,0)}
+function start(mode,custom){if(mode==="cards")return startCards();
+  const q=custom||build(mode);
+  S={mode,queue:q.map(x=>({...x})),i:0,total:q.length,first:0,answered:0,streak:0,best:0,missed:new Map()};
+  show("play");render()}
+function progress(){$("#fill").style.width=Math.min(100,Math.round(S.answered/S.total*100))+"%";$("#streak").textContent=S.streak?"×"+S.streak:"0"}
+function requeue(q){const c={...q,retry:true};if(c.opts)c.opts=shuffle(c.opts);if(c.t==="tf")Object.assign(c,qTF(c.x),{retry:true});S.queue.splice(Math.min(S.queue.length,S.i+4),0,c)}
+
+function render(){progress();const q=S.queue[S.i];if(!q)return finish();S.locked=false;
+  const st=$("#stage");
+  const head=`<div class="tags"><span class="tag">${q.tag}</span>${q.retry?'<span class="tag retry">Deuxième chance</span>':""}${q.x.cours&&!q.retry?'<span class="tag">Du cours</span>':""}</div>`;
+  const body=`<div class="q">${q.ico?icon(q.ico,true):""}<div class="prompt${q.sit?" sit":""}">${q.prompt}</div></div>`;
+  if(q.t==="mcq"){
+    st.innerHTML=head+body+`<div class="opts${q.one?" one":""}">${q.opts.map((o,i)=>`<button class="opt" id="o${i}" data-o="${esc(o)}"><span class="k">${i+1}</span>${o}</button>`).join("")}</div><div id="fbx"></div>`;
+    st.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>answerMcq(b)));
+  }else if(q.t==="tf"){
+    st.innerHTML=head+body+`<div class="tf"><button class="opt" id="o0" data-v="1">Vrai</button><button class="opt" id="o1" data-v="0">Faux</button></div><div id="fbx"></div>`;
+    st.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>answerTF(b)));
+  }else if(q.t==="type"){
+    st.innerHTML=head+body+`<p class="hint" style="margin:-6px 0 14px">Sens : ${q.hintm}</p>
+      <form class="typerow" id="tf"><input id="tin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="le fruit, le légume…" aria-label="Le mot qui manque"><button class="btn" type="submit">Vérifier</button></form>
+      <div class="accents">${["é","è","ê","â","ç","ô"].map(c=>`<button type="button" data-ac="${c}">${c}</button>`).join("")}<button type="button" class="hint" id="peek" style="border:0;background:none">Indice</button></div><div id="fbx"></div>`;
+    const inp=$("#tin");setTimeout(()=>inp.focus(),30);
+    st.querySelectorAll("[data-ac]").forEach(b=>b.addEventListener("click",()=>{inp.value+=b.dataset.ac;inp.focus()}));
+    $("#peek").addEventListener("click",()=>{$("#peek").outerHTML=`<span class="hint" style="align-self:center">${icon(q.x)} commence par « ${q.a.slice(0,2)} »</span>`});
+    $("#tf").addEventListener("submit",e=>{e.preventDefault();answerType(inp.value)});
+  }else{
+    st.innerHTML=head+body+`<p class="hint">Réagissez à voix haute avec une expression fruitée, en phrase complète. Puis comparez.</p><div class="row"><button class="btn" id="reveal">Voir l'expression</button></div><div id="fbx"></div>`;
+    $("#reveal").addEventListener("click",()=>{$("#reveal").remove();
+      $("#fbx").innerHTML=`<div class="fb neutral"><div class="row">${icon(q.x)}<h3>${q.x.e}</h3></div><p class="ex">${q.x.ex}</p><div class="row">${sayBtn(q.x.ex)}<span class="hint">Répétez après l'audio, avec la même intonation.</span></div>
+        <div class="row"><button class="btn good" id="sok">Je l'ai trouvée</button><button class="btn ghost" id="sno">À revoir</button></div></div>`;
+      say(q.x.ex);$("#sok").addEventListener("click",()=>{grade(true);next()});$("#sno").addEventListener("click",()=>{grade(false);next()})});
+  }
+}
+function grade(ok){const q=S.queue[S.i];if(!q.retry)S.answered++;
+  if(ok){if(!q.retry)S.first++;S.streak++;S.best=Math.max(S.best,S.streak)}else{S.streak=0;S.missed.set(q.id,q);requeue(q)}
+  mark(q.id,ok);progress()}
+function feedback(ok,q,extra){const x=q.x;const praise=["Exact !","Bravo !","C'est ça !","Parfait !","Très bien !"][Math.floor(Math.random()*5)];
+  const b=$("#stage .blank");if(b){b.textContent=q.a;b.classList.add(ok?"ok":"no")}
+  $("#fbx").innerHTML=`<div class="fb ${ok?"ok":"no"}"><h3>${ok?praise:"Pas tout à fait"}</h3>${extra||""}
+    <p><b>${x.e}</b> = ${x.m}. <span class="hint">(${x.en})</span></p><p class="ex">${x.ex}</p>
+    <div class="row">${sayBtn(x.ex)}<span style="flex:1"></span><button class="btn" id="nx">Continuer ↵</button></div>${ok?"":'<p class="hint">Elle reviendra dans quelques questions.</p>'}</div>`;
+  $("#nx").addEventListener("click",next);$("#nx").focus()}
+function answerMcq(b){if(S.locked)return;S.locked=true;const q=S.queue[S.i];const ok=b.dataset.o===q.a;
+  $("#stage").querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(o.dataset.o===q.a)o.classList.add("ok");else if(o===b)o.classList.add("no");else o.classList.add("dim")});
+  let extra="";if(!ok){const w=E.find(o=>o.m===b.dataset.o||o.e===b.dataset.o);if(w)extra=`<p class="hint">Votre choix : « ${w.e} » = ${w.m}.</p>`}
+  grade(ok);feedback(ok,q,extra)}
+function answerTF(b){if(S.locked)return;S.locked=true;const q=S.queue[S.i];const said=b.dataset.v==="1";const ok=said===q.a;
+  $("#stage").querySelectorAll(".opt").forEach(o=>{o.disabled=true;const v=o.dataset.v==="1";if(v===q.a)o.classList.add("ok");else o.classList.add(o===b?"no":"dim")});
+  grade(ok);feedback(ok,q,q.other?`<p class="hint">Le sens proposé était celui de « ${q.other.e} ».</p>`:"")}
+function answerType(v){if(S.locked||!v.trim())return;S.locked=true;const q=S.queue[S.i];
+  const exact=norm(v)===norm(q.a),loose=bare(v)===bare(q.a)||bare(v)===bare(q.a).replace(/s$/,"")||bare(v)+"s"===bare(q.a);
+  const ok=exact||loose;$("#tin").disabled=true;
+  const extra=(!exact&&loose)?`<p><b>Presque parfait :</b> on écrit « ${q.a} » (accent ou pluriel).</p>`:(!ok?`<p>Vous avez écrit « ${v.trim()} ». Il fallait <b>${q.a}</b>.</p>`:"");
+  grade(ok);feedback(ok,q,extra)}
+function next(){S.i++;render()}
+
+function finish(){show("done");const pct=Math.round(S.first/S.total*100);const missed=[...S.missed.values()];
+  const msg=pct>=90?"Excellent ! Revenez dans deux ou trois jours : c'est le rappel espacé qui fixe les expressions.":pct>=70?"Bonne récolte. Refaites vos erreurs maintenant, puis essayez de placer une expression dans une vraie conversation aujourd'hui.":"Normal au début : ces expressions ne se devinent pas. Passez par les cartes, puis refaites vos erreurs.";
+  $("#donebox").innerHTML=`<div class="eyebrow">Récolte · justes du premier coup</div>
+    <div class="row" style="align-items:end;gap:16px;margin:8px 0 6px"><div class="score">${pct}%</div><div class="hint">${S.first} / ${S.total}<br>meilleure série : ×${S.best}</div></div><p>${msg}</p>
+    ${missed.length?`<div class="eyebrow" style="margin-top:14px">À revoir</div><ul class="review">${missed.map(q=>`<li><b>${q.x.e}</b> : ${q.x.m}<br><span class="hint">${q.x.ex}</span></li>`).join("")}</ul>`:""}
+    <div class="row" style="margin-top:16px">${missed.length?'<button class="btn" id="redo">Refaire mes erreurs</button>':""}<button class="btn ghost" id="again">Nouveau panier</button><button class="btn ghost" id="home2">Étal</button></div>`;
+  if(missed.length)$("#redo").addEventListener("click",()=>{const mk=[qSens,qSitu,qType];start(S.mode,shuffle(missed).map((q,i)=>mk[i%3](q.x)))});
+  $("#again").addEventListener("click",()=>start("mix"));$("#home2").addEventListener("click",goHome)}
+
+/* ---------- cards ---------- */
+let C=null;
+function startCards(){const w=x=>(weak[x.id]||0)+(x.cours?1:0)+Math.random();C={deck:E.slice().sort((a,b)=>w(b)-w(a)),i:0,flip:false};show("cards");drawCard()}
+function drawCard(){const x=C.deck[C.i];$("#ccount").textContent=`${C.i+1}/${C.deck.length}`;$("#cfill").style.width=Math.round(C.i/C.deck.length*100)+"%";
+  $("#card").innerHTML=C.flip?
+    `<div class="face" id="face"><div class="row">${icon(x)}<span class="eyebrow">${x.e}</span></div><div class="def">${x.m}</div><div class="ex">${x.ex}</div><div class="lit">Image : ${x.lit}</div><div class="en">En anglais : ${x.en}</div><div>${sayBtn(x.ex)}</div></div>`:
+    `<div class="face" id="face">${icon(x,true)}<div class="big">${x.e}</div><div class="hint">Que veut dire cette expression ? Dites-le à voix haute, puis touchez la carte.</div><div>${sayBtn(x.e)}</div></div>`;
+  $("#face").addEventListener("click",()=>{C.flip=!C.flip;drawCard();if(C.flip)say(x.ex)})}
+function cardNext(knew){const x=C.deck[C.i];mark(x.id,knew);if(!knew)C.deck.splice(Math.min(C.deck.length,C.i+5),0,x);C.i++;C.flip=false;if(C.i>=C.deck.length)return goHome();drawCard()}
+$("#cknow").addEventListener("click",()=>cardNext(true));$("#cagain").addEventListener("click",()=>cardNext(false));
+$("#cprev").addEventListener("click",()=>{if(C.i>0){C.i--;C.flip=false;drawCard()}});
+
+function goHome(){try{speechSynthesis.cancel()}catch(e){}showWeak();show("home")}
+$("#quit").addEventListener("click",goHome);$("#quit2").addEventListener("click",goHome);
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>start(b.dataset.mode)));
+document.addEventListener("keydown",e=>{
+  if(!$("#cards").hidden){if(e.key===" "){e.preventDefault();$("#face")&&$("#face").click()}else if(e.key==="ArrowRight")cardNext(true);else if(e.key==="ArrowLeft")$("#cprev").click();return}
+  if($("#play").hidden||e.target.tagName==="INPUT"||!S||S.locked)return;
+  const n=parseInt(e.key,10);if(n>=1&&n<=4){const b=$("#o"+(n-1));if(b)b.click()}});
+showWeak();
+})();
+</script>
+
+</body></html>
